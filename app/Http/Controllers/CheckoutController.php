@@ -20,6 +20,7 @@ class CheckoutController extends Controller
         //save user data 
         $user = Auth::user();
         $user->update($request->except('total_price'));
+        
 
         //proses checkout
         $code = 'STORE-'. mt_rand(000000,999999);
