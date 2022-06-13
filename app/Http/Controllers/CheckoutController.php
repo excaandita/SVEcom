@@ -12,6 +12,7 @@ use Exception;
 
 use Midtrans\Snap;
 use Midtrans\Config;
+use Midtrans\Notification;
 
 class CheckoutController extends Controller
 {
@@ -47,6 +48,10 @@ class CheckoutController extends Controller
                 'code' => $trx,
             ]);
         }
+
+        //hapus data di cart setelah belanja/checkout
+        Cart::where('users_id', Auth::user()->id)->delete();
+                
 
         //konfigurasi ke midtrans
             Config::$serverKey = "SB-Mid-server-znrFEsDQHBnCz10WVBND7Xs_";
@@ -85,6 +90,54 @@ class CheckoutController extends Controller
 
     public function callback(Request $request) 
     {
+        //set konfigurasi ke midtransa
+        config::$serverKey = config('services.midtrans.serverKey');
+        config::$isProduction = config('services.midtrans.isProduction');
+        config::$isSanitized = config('services.midtrans.isSanitized');
+        config::$is3ds = config('services.midtrans.is3ds');
+
+        //instance notifikasi midtrans
+        $notification = new Notification();
+
+        //deklarasi variable midtrans dari dokumentasi Midtrans
+        $status = $notification->transaction_status;
+        $type = $notification->payment_type;
+        $fraud = $notification->fraud_status;
+        $order_id = $notification->order_id;
+
+        // cari transaksi berdasarkan ID
+        $transaction = Transaction::findOrFail($order_id); 
+
+        //handle notifikasi status
+        if($status == 'capture') {
+            if($type == 'credit_card') {
+                if($fraud == 'challenge') {
+                    $transaction->status = 'PENDING';
+                } 
+                else {
+                    $transaction->status = 'SUCCESS';
+                }
+            }
+        }
+
+        else if($status == 'settlement') { //kondisi berdasarkan dari Midtrnas
+            $transaction->status = 'SUCCESS'; //mengubah status yang ada di DB
+        }
+        else if($status == 'pending') {
+            $transaction->status = 'PENDING'; //mengubah status yang ada di DB
+        }
+        else if($status == 'deny') {
+            $transaction->status = 'CANCELLED'; //mengubah status yang ada di DB
+        }
+        else if($status == 'expire') {
+            $transaction->status = 'CANCELLED'; //mengubah status yang ada di DB
+        }
+        else if($status == 'cancel') {
+            $transaction->status = 'CANCELLED'; //mengubah status yang ada di DB
+        }
+
+        //simpan transaksi
+        $transaction->save();
 
     }
 }
