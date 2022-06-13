@@ -17,13 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="/index.html" class="nav-link">Home</a>
+              <a href="{{ route('/') }}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="/categories.html" class="nav-link">Categories</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">Rewards</a>
+              <a href="{{ route('categories')}}" class="nav-link">Categories</a>
             </li>
           </ul>
           <!--Desktop Menu-->
@@ -44,7 +41,7 @@
                 Hi, Siapa anda?
               </a>
               <div class="dropdown-menu">
-                <a href="/dashboard.html" class="dropdown-item">Dashboard</a>
+                <a href="{{route('/dashboard')}}" class="dropdown-item">Dashboard</a>
                 <a href="/dashboard-account.html" class="dropdown-item"
                   >Settings</a
                 >
