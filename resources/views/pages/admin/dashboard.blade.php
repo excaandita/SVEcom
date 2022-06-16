@@ -29,7 +29,7 @@
             <div class="card mb-2">
               <div class="card-body">
                 <div class="dashboard-card-title">Pendapatan</div>
-                <div class="dashboard-card-subtitle">Rp. {{ $revenue }}</div>
+                <div class="dashboard-card-subtitle">Rp. {{ number_format($revenue)  }}</div>
               </div>
             </div>
           </div>

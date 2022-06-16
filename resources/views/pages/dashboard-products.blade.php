@@ -32,11 +32,13 @@
                         href="{{ route('dashboard-product-details', $product->id )}}"
                         class="card card-dashboard-product d-block"
                       >
-                        <div class="card-body">
+                      
+                      
+                      <div class="card-body products-image">
                           <img
                             src="{{ Storage::url($product->galleries->first()->photos ?? '') }}"
                             alt=""
-                            class="w-100 mb-2"
+                            class="w-100 mb-2 "
                           />
                           <div class="product-title">{{ $product->name }}</div>
                           <div class="product-category">{{ $product->category->name }}</div>

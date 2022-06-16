@@ -100,6 +100,33 @@ data-aos="fade-up"
                         <div class="product-title">Negara</div>
                         <div class="product-subtitle">{{ $transaction->transaction->user->country }}</div>
                       </div>
+
+                      @if (auth()->user()->roles == 'BUYER')
+                        <div class="col-12 col-md-3">
+                          <div class="product-title">Status Pengiriman</div>
+                          <input
+                              type="text"
+                              name="shipping_status"
+                              v-model="status"
+                              class="form-control"
+                              disabled
+                            />
+                        </div>
+                        <template v-if="status == 'SHIPPING'">
+                          <div class="col-md-3">
+                            <div class="product-title">Resi</div>
+                            <input
+                              type="text"
+                              name="resi"
+                              v-model="resi"
+                              class="form-control"
+                              disabled
+                            />
+                          </div>
+                        </template>
+                      @endif
+
+                      @if (auth()->user()->roles == 'USER')
                       <div class="col-12 col-md-3">
                         <div class="product-title">Status Pengiriman</div>
                         <select
@@ -133,6 +160,9 @@ data-aos="fade-up"
                           </button>
                         </div>
                       </template>
+                      @endif
+                        
+                      
                     </div>
                   </div>
                 </div>

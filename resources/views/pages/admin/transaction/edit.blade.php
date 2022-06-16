@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    User-Sekolah Vokasi E-COM
+    Transaksi-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
@@ -12,8 +12,8 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - User</h2>
-            <p class="dashboard-subtitle">Edit User</p>
+            <h2 class="dashboard-title">Admin Dashboard - Transaksi</h2>
+            <p class="dashboard-subtitle">Edit Transaksi</p>
         </div>
         <div class="dashboard-content">
             <div class="row">
@@ -29,40 +29,37 @@
                     @endif
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('user.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('transaction.update', $item->id) }}" method="POST" enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Nama User</label>
-                                            <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
+                                            <label>Kode Transaksi</label>
+                                            <input type="text" name="name" class="form-control" value="{{ $item->code}}" required disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Email User</label>
-                                            <input type="email" name="email" class="form-control" value="{{ $item->email }}" required >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Password User</label>
-                                            <input type="password" name="password" class="form-control" >
-                                            <small>Kosongkan jika tidak ingin mengganti password</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Roles</label>
-                                            <select name="roles" required id="roles" class="form-control">
-                                                <option value="{{ $item->roles }}" selected>Tidak Berubah ({{ $item->roles }})</option>
-                                                <option value="ADMIN">Admin</option>
-                                                <option value="USER">User</option>
-                                                <option value="BUYER">Buyer</option>
+                                            <label>Status Transaksi</label>
+                                            <select name="transaction_status" class="form-control">
+                                                <option value="{{ $item->transaction_status }}" selected>{{ $item->transaction_status }}</option>
+                                                    <option value="" disabled>--------------------</option>
+                                                    <option value="PENDING">PENDING</option>
+                                                    <option value="UNPAID">UNPAID</option>
+                                                    <option value="SUCCESS">SUCCESS</option>
+                                                    <option value="CANCELLED">CANCELLED</option>
+                                            
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Total Harga </label>
+                                            <input type="number" name="total_price" class="form-control" value="{{ $item->total_price }}" required>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
@@ -80,3 +77,16 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector("#editor"))
+          .then((editor) => {
+            console.log(editor);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      </script>
+@endpush

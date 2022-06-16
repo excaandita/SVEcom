@@ -9,25 +9,21 @@
     <section class="store-carousel">
       <div class="container">
         <div class="row">
-          <div class="col-lg-12" data-aos="zoom-in">
+          <div class="col-lg-12" data-aos="zoom-in-up">
             <div
               id="storeCarousel"
               class="carousel slide"
               data-ride="carousel"
             >
               <ol class="carousel-indicators">
-                <li
-                  data-target="#storeCarousel"
-                  data-slide-to="0"
-                  class="active"
-                ></li>
+                <li data-target="# storeCarousel"data-slide-to="0"class="active"></li>
                 <li data-target="#storeCarousel" data-slide-to="1"></li>
                 <li data-target="#storeCarousel" data-slide-to="2"></li>
               </ol>
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <img
-                    class="d-block w-100"
+                    class="d-block w-100 "
                     src="images/banner.jpg"
                     alt="First slide"
                   />
@@ -77,7 +73,7 @@
       </div>
     </section>
 
-    <section class="store-trend-categories mt-4">
+    <section class="store-trend-categories mt-5">
       <div class="container">
         <div class="row">
           <div class="col-12">
@@ -89,19 +85,19 @@
             @forelse ($categories as $category)
               <div
                 class="col-6 col-md-3 col-lg-2"
-                data-aos="fade-up"
-                data-aos-delay="{{ $incrementCategory+= 100 }}"
+                data-aos="fade-down-right"
+                data-aos-delay="{{ $incrementCategory+= 200 }}"
               >
                 <a href="{{ route('categories-detail', $category->slug) }}" class="component-categories d-block">
                   <div class="categories-image">
                     <img src="{{ Storage::url($category->photo) }}" class="w-100" />
-                  </div>
-                  <p class="categories-text">{{ $category->name }}</p>
+                  </div>   
+                    <p class="categories-text">{{ $category->name }}</p>
                 </a>
               </div>
             @empty
-                <div class="col-12 text-center py-5" data-aos="fade-up"
-                data-aos-delay="100">
+                <div class="col-12 text-center py-5" data-aos="fade-down-right"
+                data-aos-delay="200">
                   Tidak Ada Kategori
                 </div>
             @endforelse

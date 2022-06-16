@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\User;
-use Illuminate\Support\Str;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Storage;
 
-use App\Http\Requests\Admin\UserRequest;
-use Yajra\DataTables\DataTables as DataTablesDataTables;
+use Yajra\DataTables\Facades\DataTables as DataTablesDataTables;
 
-class UserController extends Controller
+class TransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -22,7 +19,7 @@ class UserController extends Controller
     {
         if(request()->ajax())
         {
-            $query = User::query();
+            $query = Transaction::with(['user']);
 
             return DataTablesDataTables::of($query)
                 ->addColumn('action', function($item){
@@ -35,10 +32,10 @@ class UserController extends Controller
                                         Aksi
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('user.edit', $item->id) .'">
+                                    <a class="dropdown-item" href="' . route('transaction.edit', $item->id) .'">
                                         Edit
                                     </a>
-                                    <form action="'. route('user.destroy', $item->id) .'" method="POST">
+                                    <form action="'. route('transaction.destroy', $item->id) .'" method="POST">
                                         '. method_field('delete').  csrf_field() .'
                                         <button type="submit" class="dropdown-item text-danger">
                                             Hapus
@@ -53,7 +50,7 @@ class UserController extends Controller
                 ->make();
         }
 
-        return view('pages.admin.user.index');
+        return view('pages.admin.transaction.index');
     }
 
     /**
@@ -63,7 +60,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.user.create');
+        //
     }
 
     /**
@@ -72,15 +69,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->all();
-
-        $data['password'] = bcrypt($request->password);
-
-        User::create($data);
-
-        return redirect()->route('user.index');
+        
     }
 
     /**
@@ -102,10 +93,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $item = User::findOrFail($id);
+        $item = Transaction::findOrFail($id);
 
-        return view('pages.admin.user.edit',[
+        return view('pages.admin.transaction.edit',[
             'item' => $item,
+
         ]);
     }
 
@@ -116,24 +108,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $data = $request->all();
 
-        $item = User::findOrFail($id);
-        
-        if($request->password)
-        {
-            $data['password'] = bcrypt($request->password);
-        } 
-        else 
-        {
-            unset($data['password']);
-        }
+        $item = Transaction::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('user.index');
+        return redirect()->route('transaction.index');
     }
 
     /**
@@ -144,10 +127,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $item = User::findOrFail($id);
+        $item = Transaction::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('user.index');
+        return redirect()->route('transaction.index');
     }
 }
-

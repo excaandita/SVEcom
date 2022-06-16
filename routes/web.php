@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -16,6 +17,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
+use App\Http\Controllers\ProfileController;
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +39,8 @@ Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('cat
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
 Route::post('/details/{id}', [DetailController::class, 'add'])->name('detail-add');
+
+Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile');
 
 Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
 
@@ -84,6 +88,7 @@ Route::prefix('admin')
         Route::resource('user', AdminUserController::class);
         Route::resource('product', AdminProductController::class);
         Route::resource('product-gallery', AdminProductGalleryController::class);
+        Route::resource('transaction', AdminTransactionController::class);
     });
 
 Auth::routes();
