@@ -32,42 +32,49 @@
             <img src="/images/dashboard-store-logo.svg" class="my-4" alt="" />
           </div>
           <div class="list-group list-group-flush">
-            <a
-              href="{{ route('dashboard')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }}"
-            >
-              Dashboard
-            </a>
-            <a
-              href="{{ route('dashboard-product')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/products')) ? 'active' : '' }}"
-            >
-              Produk
-            </a>
-            <a
-              href="{{ route('dashboard-transaction')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
-            >
-              Transaksi
-            </a>
-            <a
-              href="{{ route('dashboard-setting-store')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
-            >
-              Pengaturan Toko
-            </a>
-            <a
-              href="{{ route('dashboard-setting-account')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
-            >
-              Pengaturan Akun
-            </a>
-            <a class="dropdown-item" href="{{ route('logout') }}"
-                onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();"
-            >
-              Log Out
-            </a>
+              <a
+                href="{{ route('dashboard')}}"
+                class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }}"
+              >
+                Dashboard
+              </a>
+              <!-- fungsi if untuk memisah dan menampilkan kolom produk jika roles yang sedang login adalah user-->
+              @if (auth()->user()->roles == 'USER')
+                <a
+                  href="{{ route('dashboard-product')}}"
+                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/products')) ? 'active' : '' }}"
+                >
+                  Produk
+                </a>
+              @endif
+              <a
+                href="{{ route('dashboard-transaction')}}"
+                class="list-group-item list-group-item-action {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
+              >
+                Transaksi
+              </a>
+              <!-- fungsi if untuk memisah dan menampilkan kolom setting-store jika roles yang sedang login adalah user-->
+              @if (auth()->user()->roles == 'USER')
+                <a
+                  href="{{ route('dashboard-setting-store')}}"
+                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
+                >
+                  Pengaturan Toko
+                </a>
+              @endif
+              <a
+                href="{{ route('dashboard-setting-account')}}"
+                class="list-group-item list-group-item-action {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
+              >
+                Pengaturan Akun
+              </a>
+              <a class="dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"
+              >
+                Log Out
+              </a>
+            
           </div>
         </div>
 

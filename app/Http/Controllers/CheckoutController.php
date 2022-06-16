@@ -19,8 +19,8 @@ class CheckoutController extends Controller
     public function process(Request $request) 
     {
         //save user data 
-        $user = Auth::user();
-        $user->update($request->except('total_price'));
+        $user = Auth::user();           //memanggil user yang sedang login
+        $user->update($request->except('total_price'));         //mengupdate data dari checkout kedalam table user kecuali totalprice karna tidak ada element tersebut
 
         //proses checkout
         $code = 'STORE-'. mt_rand(000000,999999);

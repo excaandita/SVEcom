@@ -95,8 +95,8 @@
                 <a href="{{ route('categories-detail', $category->slug) }}" class="component-categories d-block">
                   <div class="categories-image">
                     <img src="{{ Storage::url($category->photo) }}" class="w-100" />
-                  </div>
-                  <p class="categories-text">{{ $category->name }}</p>
+                  </div>   
+                    <p class="categories-text">{{ $category->name }}</p>
                 </a>
               </div>
             @empty
