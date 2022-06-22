@@ -13,7 +13,8 @@
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
-    <link href="/style/main.scss" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+    
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -55,6 +56,12 @@
               </a>
               <!-- fungsi if untuk memisah dan menampilkan kolom setting-store jika roles yang sedang login adalah user-->
               @if (auth()->user()->roles == 'USER')
+                <a
+                  href="{{ route('dashboard-withdraw')}}"
+                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
+                >
+                  Pengajuan Penarikan 
+                </a>
                 <a
                   href="{{ route('dashboard-setting-store')}}"
                   class="list-group-item list-group-item-action {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
@@ -181,9 +188,11 @@
   </body>
   <!-- Bootstrap core JavaScript -->
   @stack('prepend-script')
-  <script src="/vendor/jquery/jquery.slim.min.js"></script>
+  
+  <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
   <script>
     AOS.init();
   </script>

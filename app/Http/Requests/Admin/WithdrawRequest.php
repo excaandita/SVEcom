@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class WithdrawRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,8 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:50',
-            'email' => 'required|email',
-            'roles' => 'nullable|string|in:ADMIN,USER,BUYER',
+            'users_id' => 'required|exists:users,id',
+            'total_withdraw' => 'required|integer',
         ];
     }
 }

@@ -65,7 +65,7 @@
                 <b>Jumlah Produk</b> <a class="float-right">{{ $products_count }}</a>
                 </li>
                 <li class="list-group-item">
-                <b>Friends</b> <a class="float-right">13,287</a>
+                <b>Barang Terjual</b> <a class="float-right">{{ $sellTransactions}}</a>
                 </li>
               </ul>
               <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
