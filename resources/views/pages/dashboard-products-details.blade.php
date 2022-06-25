@@ -11,7 +11,7 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Boba Jaksel</h2>
+                <h2 class="dashboard-title">{{ $product->name }}</h2>
                 <p class="dashboard-subtitle">Detail Produk</p>
               </div>
               <div class="dashboard-content">
@@ -126,6 +126,11 @@
                               >
                                 Tambah Gambar
                               </button>
+                              <div>
+                              <a href="{{ route('dashboard-product-delete', $product->id )}}" 
+                                 class="btn btn-danger btn-block mt-3">Hapus Produk
+                              </a>
+                              </div>
                             </form>
                           </div>
                         </div>

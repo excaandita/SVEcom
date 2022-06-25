@@ -7,5 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organisasi extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'nama',
+        'jabatan',
+        'divisi',
+        'waktu_mulai',
+        'waktu_selesai',
+        'deskripsi',
+        'users_id'
+    ];
+     protected $hidden = [
+
+    ];
+    public function user() {
+        return $this->belongsTo(User::class, 'users_id', 'id');
+    }
 }
