@@ -12,7 +12,6 @@ class Cart extends Model
     protected $fillable = [
         'products_id',
         'users_id',
-        'quantity'
     ];
 
     protected $hidden = [
