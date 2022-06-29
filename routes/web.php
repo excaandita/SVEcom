@@ -20,6 +20,16 @@ use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardWithdrawController;
+<<<<<<< Updated upstream
+=======
+use App\Http\Controllers\Portofolio\BiodataController;
+use App\Http\Controllers\Portofolio\KepanitiaanController;
+use App\Http\Controllers\Portofolio\OrganisasiController;
+use App\Http\Controllers\Portofolio\PendidikanController;
+use App\Http\Controllers\Portofolio\ExperiencesController;
+use App\Http\Controllers\Portofolio\ProjectsController;
+use App\Http\Controllers\Portofolio\SkillController;
+>>>>>>> Stashed changes
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -83,6 +93,47 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');
     Route::post('/dashboard/withdraw', [DashboardWithdrawController::class, 'store'])->name('dashboard-withdraw-store');
     
+<<<<<<< Updated upstream
+=======
+    
+    Route::get('/portofolio/biodata/create', [BiodataController::class, 'create'])->name('portofolio-biodata-create');
+    Route::post('portofolio/biodata', [BiodataController::class, 'store'])->name('portofolio-biodata-store');
+
+    Route::get('portofolio/kepanitiaan', [KepanitiaanController::class, 'index'])->name('portofolio-kepanitiaan');
+    Route::get('/portofolio/kepanitiaan/create', [KepanitiaanController::class, 'create'])->name('portofolio-kepanitiaan-create');
+    Route::post('portofolio/kepanitiaan', [KepanitiaanController::class, 'store'])->name('portofolio-kepanitiaan-store');
+    Route::get('/portofolio/kepanitiaan/edit/{id}', [KepanitiaanController::class, 'edit'])->name('portofolio-kepanitiaan-edit'); 
+    Route::post('/portofolio/kepanitiaan/{id}', [KepanitiaanController::class, 'update'])->name('portofolio-kepanitiaan-update');
+    Route::post('/portofolio/kepanitiaan/delete/{id}', [KepanitiaanController::class, 'destroy'])->name('portofolio-kepanitiaan-delete');
+
+    Route::get('/portofolio/organisasi/create', [OrganisasiController::class, 'create'])->name('portofolio-organisasi-create');
+    Route::post('portofolio/organisasi', [OrganisasiController::class, 'store'])->name('portofolio-organisasi-store');
+    Route::get('/portofolio/organisasi/edit/{id}', [OrganisasiController::class, 'edit'])->name('portofolio-organisasi-edit'); 
+    Route::post('/portofolio/organisasi/{id}', [OrganisasiController::class, 'update'])->name('portofolio-organisasi-update');
+    Route::post('/portofolio/organisasi/delete/{id}', [OrganisasiController::class, 'destroy'])->name('portofolio-organisasi-delete');
+
+    Route::get('/portofolio/pendidikan/create', [PendidikanController::class, 'create'])->name('portofolio-pendidikan-create');
+    Route::post('portofolio/pendidikan', [PendidikanController::class, 'store'])->name('portofolio-pendidikan-store');
+    Route::get('/portofolio/pendidikan/edit/{id}', [PendidikanController::class, 'edit'])->name('portofolio-pendidikan-edit'); 
+    Route::post('/portofolio/pendidikan/{id}', [PendidikanController::class, 'update'])->name('portofolio-pendidikan-update');
+    Route::post('/portofolio/pendidikan/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-pendidikan-delete');
+
+    Route::get('/portofolio/experiences/create', [ExperiencesController::class, 'create'])->name('portofolio-experiences-create');
+    Route::post('portofolio/experiences', [ExperiencesController::class, 'store'])->name('portofolio-experiences-store');
+    Route::get('/dashboard/experiences', [ExperiencesController::class, 'index'])->name('dashboard-experiences');
+    Route::get('/dashboard/experiences/detail', [ExperiencesController::class, 'detail'])->name('dashboard-experience-details');
+    Route::get('/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit'); 
+    Route::post('/portofolio/experiences/{id}', [ExperiencesController::class, 'update'])->name('portofolio-experiences-update'); 
+
+    Route::get('/portofolio/projects/create', [ProjectsController::class, 'create'])->name('portofolio-projects-create');
+    Route::post('portofolio/projects', [ProjectsController::class, 'store'])->name('portofolio-projects-store');
+    Route::get('/portofolio/project/edit/{id}', [ProjectsController::class, 'edit'])->name('portofolio-project-edit'); 
+    Route::post('/portofolio/project/{id}', [ProjectsController::class, 'update'])->name('portofolio-project-update'); 
+    Route::post('/portofolio/project/delete/{id}', [ProjectsController::class, 'destroy'])->name('portofolio-project-delete');
+    
+    Route::get('/portofolio/skill/create', [SkillController::class, 'create'])->name('portofolio-skill-create');
+    Route::post('portofolio/skill', [SkillController::class, 'store'])->name('portofolio-skill-store');
+>>>>>>> Stashed changes
 
 });
 

@@ -58,7 +58,7 @@
               @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-withdraw')}}"
-                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
+                  class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
                 >
                   Pengajuan Penarikan 
                 </a>
@@ -136,10 +136,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('home')}}"
-                        >Back to Store</a
+                        >Home</a
                         >
                         <a class="dropdown-item" href="{{ url('dashboard/account')}}"
-                        >Settings</a
+                        >Pengaturan</a
                         >
                         <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
