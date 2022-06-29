@@ -129,7 +129,7 @@
                             <div class="col text-right">
                               <button
                                 type="submit"
-                                class="btn btn-success px-5"
+                                class="btn btn-info px-5"
                               >
                                 Simpan
                               </button>

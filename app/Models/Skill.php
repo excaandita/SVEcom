@@ -7,5 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Skill extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'jenis',
+        'lembaga',
+        'tanggal',
+        'tanggal_expired',
+        'no_sertifikat',
+        'users_id',
+    ];
+
+    protected $hidden = [
+
+    ];
 }

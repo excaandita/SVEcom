@@ -15,8 +15,8 @@ class Prodi extends Model
     protected $hidden = [
 
     ];
-    public function fakultas()
-    {
-        return $this->belongsTo(Fakultas::class, 'fakultas_id', 'id');
+    
+    public function mahasiswa() {
+        return $this->hasMany(Mahasiswa::class, 'id', 'mahasiswas_id');
     }
 }
