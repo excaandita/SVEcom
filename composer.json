@@ -16,8 +16,7 @@
         "laravel/ui": "^3.4",
         "midtrans/midtrans-php": "^2.5",
         "sentry/sentry-laravel": "^2.12",
-        "yajra/laravel-datatables-oracle": "~9.0",
-        "kavist/rajaongkir": "dev-master"
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -65,9 +64,5 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true,
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/akbarhmu/rajaongkir"
-    }]
+    "prefer-stable": true
 }
