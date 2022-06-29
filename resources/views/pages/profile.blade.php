@@ -41,7 +41,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-4">      
-          <div class="card card-primary card-outline">
+          <div class="card card-info card-outline">
             <div class="card-body box-profile">
               <!-- Foto belum dipakai 
 
@@ -68,11 +68,11 @@
                 <b>Barang Terjual</b> <a class="float-right">{{ $sellTransactions}}</a>
                 </li>
               </ul>
-              <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+              <a href="#" class="btn btn-info btn-block"><b>Follow</b></a>
             </div>
           </div>
 
-          <div class="card card-primary card-outline">
+          <div class="card card-info card-outline">
             <div class="card-header">
               <h3 class="card-title">About Me</h3>
             </div>

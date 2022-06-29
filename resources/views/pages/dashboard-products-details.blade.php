@@ -11,7 +11,7 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Boba Jaksel</h2>
+                <h2 class="dashboard-title">{{ $product->name }}</h2>
                 <p class="dashboard-subtitle">Detail Produk</p>
               </div>
               <div class="dashboard-content">
@@ -32,7 +32,7 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <div class="form-group">
                                 <label>Nama Produk</label>
                                 <input
@@ -43,7 +43,7 @@
                                 />
                               </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <div class="form-group">
                                 <label>Harga Produk</label>
                                 <input
@@ -51,6 +51,17 @@
                                   name="price"
                                   class="form-control"
                                   value="{{ $product->price }}"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Stok Produk</label>
+                                <input
+                                  type="number"
+                                  name="stock"
+                                  class="form-control"
+                                  value="{{ $product->stock }}"
                                 />
                               </div>
                             </div>
@@ -126,6 +137,11 @@
                               >
                                 Tambah Gambar
                               </button>
+                              <div>
+                              <a href="{{ route('dashboard-product-delete', $product->id )}}" 
+                                 class="btn btn-danger btn-block mt-3">Hapus Produk
+                              </a>
+                              </div>
                             </form>
                           </div>
                         </div>

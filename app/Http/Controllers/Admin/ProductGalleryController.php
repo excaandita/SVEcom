@@ -32,7 +32,7 @@ class ProductGalleryController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown=toggle mr-1 mb-1"
+                                <button class="btn btn-info dropdown=toggle mr-1 mb-1"
                                         type="button"
                                         data-toggle="dropdown">
                                         Aksi
