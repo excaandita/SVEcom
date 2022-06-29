@@ -18,6 +18,7 @@ class Product extends Model
         'price',
         'description',
         'slug',
+        'stock'
     ];
 
     protected $hidden = [
@@ -33,7 +34,7 @@ class Product extends Model
     {
         return $this->hasOne(User::class, 'id', 'users_id');
     }
-    
+
     public function category()
     {
         return $this->belongsTo(Category::class, 'categories_id', 'id');

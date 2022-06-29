@@ -32,7 +32,7 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <div class="form-group">
                                 <label>Nama Produk</label>
                                 <input
@@ -43,7 +43,7 @@
                                 />
                               </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <div class="form-group">
                                 <label>Harga Produk</label>
                                 <input
@@ -51,6 +51,17 @@
                                   name="price"
                                   class="form-control"
                                   value="{{ $product->price }}"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Stok Produk</label>
+                                <input
+                                  type="number"
+                                  name="stock"
+                                  class="form-control"
+                                  value="{{ $product->stock }}"
                                 />
                               </div>
                             </div>
