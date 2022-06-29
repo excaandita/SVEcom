@@ -25,6 +25,7 @@ class Regency extends Model
      * @var string
      */
     protected $table = 'regencies';
+    public $timestamps = false;
 
     /**
      * The attributes that should be hidden for arrays.

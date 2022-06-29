@@ -19,9 +19,8 @@ use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
 use App\Http\Controllers\ProfileController;
-<<<<<<< Updated upstream
+
 use App\Http\Controllers\DashboardWithdrawController;
-=======
 use App\Http\Controllers\Portofolio\BiodataController;
 use App\Http\Controllers\Portofolio\KepanitiaanController;
 use App\Http\Controllers\Portofolio\OrganisasiController;
@@ -29,7 +28,7 @@ use App\Http\Controllers\Portofolio\PendidikanController;
 use App\Http\Controllers\Portofolio\ExperiencesController;
 use App\Http\Controllers\Portofolio\ProjectsController;
 use App\Http\Controllers\Portofolio\SkillController;
->>>>>>> Stashed changes
+
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
@@ -50,7 +49,7 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('categories-detail');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
-Route::post('/details/{id}', [DetailController::class, 'add'])->name('detail-add');
+Route::post('/details/{product}', [DetailController::class, 'add'])->name('detail-add');
 
 Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile');
 
@@ -65,7 +64,10 @@ Route::get('/register/success', [RegisterController::class, 'success'])->name('r
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
     Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
+    
+    Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
 
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
 
@@ -76,26 +78,26 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/dashboard/products', [DashboardProductController::class, 'store'])->name('dashboard-product-store');
     Route::get('/dashboard/products/{id}', [DashboardProductController::class, 'details'])->name('dashboard-product-details');
     Route::post('/dashboard/products/{id}', [DashboardProductController::class, 'update'])->name('dashboard-product-update');
+
+  
     Route::get('/dashboard/products/delete/{id}', [DashboardProductController::class, 'delete'])->name('dashboard-product-delete');
-    
     Route::post('/dashboard/products/gallery/upload', [DashboardProductController::class, 'uploadGallery'])->name('dashboard-product-gallery-upload');
     Route::get('/dashboard/products/gallery/delete/{id}', [DashboardProductController::class, 'deleteGallery'])->name('dashboard-product-gallery-delete');
-    
+
     Route::get('/dashboard/setting', [DashboardSettingController::class, 'store'])->name('dashboard-setting-store');
     Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
     Route::post('/dashboard/account/{redirect}', [DashboardSettingController::class, 'update'])->name('dashboard-setting-redirect');
 
-    Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction'); 
-    Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details'); 
-    Route::post('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'update'])->name('dashboard-transaction-update'); 
+    Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
+    Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details');
+    Route::post('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'update'])->name('dashboard-transaction-update');
 
-<<<<<<< Updated upstream
     Route::get('/dashboard/withdraw', [DashboardWithdrawController::class, 'index'])->name('dashboard-withdraw');
     Route::get('/dashboard/withdraw/create', [DashboardWithdrawController::class, 'create'])->name('dashboard-withdraw-create');
     Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');
     Route::post('/dashboard/withdraw', [DashboardWithdrawController::class, 'store'])->name('dashboard-withdraw-store');
-    
-=======
+
+
     
     Route::get('/portofolio/biodata/create', [BiodataController::class, 'create'])->name('portofolio-biodata-create');
     Route::post('portofolio/biodata', [BiodataController::class, 'store'])->name('portofolio-biodata-store');
@@ -134,7 +136,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/portofolio/skill/create', [SkillController::class, 'create'])->name('portofolio-skill-create');
     Route::post('portofolio/skill', [SkillController::class, 'store'])->name('portofolio-skill-store');
->>>>>>> Stashed changes
+
 
 });
 
