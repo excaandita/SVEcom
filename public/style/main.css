@@ -11780,6 +11780,15 @@ footer p {
     right: 0;
 }
 
+.sidebar-dropdown {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.sidebar-submenu {
+    display: none;
+}
+
 .store-breadcrumbs .breadcrumb {
     background: transparent;
     padding: 0;

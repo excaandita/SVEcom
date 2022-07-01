@@ -62,6 +62,20 @@
                 >
                   Pengajuan Penarikan 
                 </a>
+                <li class="sidebar-dropdown">
+                  <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
+                  <div class="sidebar-submenu">
+                    <ul>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Biodata</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Kepanitiaan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Organisasi</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Pendidikan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Experience</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Project</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Skills</a>
+                    </ul>
+                  </div>
+                </li>
                 <a
                   href="{{ route('dashboard-setting-store')}}"
                   class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
@@ -200,6 +214,28 @@
     $("#menu-toggle").click(function (e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
+    });
+
+    $(".sidebar-dropdown > a").click(function() {
+      $(".sidebar-submenu").slideUp(250);
+      if (
+        $(this)
+          .parent()
+          .hasClass("active")
+      ) {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .parent()
+          .removeClass("active");
+      } else {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .next(".sidebar-submenu")
+          .slideDown(250);
+        $(this)
+          .parent()
+          .addClass("active");
+      }
     });
   </script>
    @stack('addon-script')
