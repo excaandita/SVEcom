@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
 use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
+use App\Http\Controllers\Admin\UserBaruController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
 use App\Http\Controllers\Auth\LoginController;
@@ -20,8 +21,9 @@ use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardWithdrawController;
-<<<<<<< Updated upstream
-=======
+
+use App\Http\Controllers\DashboardRefundController;
+
 use App\Http\Controllers\Portofolio\BiodataController;
 use App\Http\Controllers\Portofolio\KepanitiaanController;
 use App\Http\Controllers\Portofolio\OrganisasiController;
@@ -29,8 +31,9 @@ use App\Http\Controllers\Portofolio\PendidikanController;
 use App\Http\Controllers\Portofolio\ExperiencesController;
 use App\Http\Controllers\Portofolio\ProjectsController;
 use App\Http\Controllers\Portofolio\SkillController;
->>>>>>> Stashed changes
+
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -92,9 +95,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/withdraw/create', [DashboardWithdrawController::class, 'create'])->name('dashboard-withdraw-create');
     Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');
     Route::post('/dashboard/withdraw', [DashboardWithdrawController::class, 'store'])->name('dashboard-withdraw-store');
-    
-<<<<<<< Updated upstream
-=======
+
+    Route::get('/dashboard/refund', [DashboardRefundController::class, 'index'])->name('dashboard-refund');
+    Route::get('/dashboard/refund/create', [DashboardRefundController::class, 'create'])->name('dashboard-refund-create');
+    Route::get('/dashboard/refund/edit/{id}', [DashboardRefundController::class, 'edit'])->name('dashboard-refund-edit');
+    Route::post('/dashboard/refund', [DashboardRefundController::class, 'store'])->name('dashboard-refund-store');
     
     Route::get('/portofolio/biodata/create', [BiodataController::class, 'create'])->name('portofolio-biodata-create');
     Route::post('portofolio/biodata', [BiodataController::class, 'store'])->name('portofolio-biodata-store');
@@ -133,7 +138,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/portofolio/skill/create', [SkillController::class, 'create'])->name('portofolio-skill-create');
     Route::post('portofolio/skill', [SkillController::class, 'store'])->name('portofolio-skill-store');
->>>>>>> Stashed changes
+
 
 });
 
@@ -145,11 +150,18 @@ Route::prefix('admin')
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
         Route::resource('category', AdminCategoryController::class);
         Route::resource('user', AdminUserController::class);
+        Route::resource('slider', AdminSliderController::class);
         Route::resource('product', AdminProductController::class);
         Route::resource('product-gallery', AdminProductGalleryController::class);
         Route::resource('transaction', AdminTransactionController::class);
         Route::resource('withdraw', AdminWithdrawController::class);
+
+        //user baru
+        Route::resource('user-baru', UserBaruController::class);
+        Route::get('/user-baru/status/{id}/{status_code}', [UserBaruController::class, 'updateStatus'])->name('update-status-baru');
     });
+
+
 
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
