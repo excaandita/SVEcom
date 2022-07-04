@@ -20,18 +20,19 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('product.create')}}" class="btn btn-primary mb-3">
+                            <a href="{{ route('product.create')}}" class="btn btn-info mb-3">
                                 Tambah Produk
                             </a>
                             <div class="table-responsive">
-                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
-                                    <thead>
+                                <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
+                                    <thead class="bg-info">
                                         <tr>
                                             <th>ID</th>
                                             <th>Nama</th>
                                             <th>User</th>
                                             <th>Kategori</th>
                                             <th>Harga</th>
+                                            <th>Stok</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -62,7 +63,8 @@
                 { data: 'user.name', name: 'user.name' },
                 { data: 'category.name', name: 'category.name' },
                 { data: 'price', name: 'price' },
-                { 
+                { data: 'stock', name: 'stock' },
+                {
                     data: 'action',
                     name: 'action',
                     orderable: false,

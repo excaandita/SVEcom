@@ -35,7 +35,7 @@
           <div class="list-group list-group-flush">
               <a
                 href="{{ route('dashboard')}}"
-                class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard')) ? 'active' : '' }}"
               >
                 Dashboard
               </a>
@@ -43,14 +43,14 @@
               @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-product')}}"
-                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/products')) ? 'active' : '' }}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/products')) ? 'active' : '' }}"
                 >
                   Produk
                 </a>
               @endif
               <a
                 href="{{ route('dashboard-transaction')}}"
-                class="list-group-item list-group-item-action {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
               >
                 Transaksi
               </a>
@@ -64,7 +64,7 @@
                 </a>
                 <a
                   href="{{ route('dashboard-setting-store')}}"
-                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
                 >
                   Pengaturan Toko
                 </a>
@@ -79,7 +79,7 @@
               @endif
               <a
                 href="{{ route('dashboard-setting-account')}}"
-                class="list-group-item list-group-item-action {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
               >
                 Pengaturan Akun
               </a>
