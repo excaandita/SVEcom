@@ -66,17 +66,13 @@
             </a>
             <a
               href="{{ route('transaction.index')}}"
-<<<<<<< Updated upstream
-              class="list-group-item list-group-item-action {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
-=======
-              class="list-group-item list-group-item-action list-group-item-info"
->>>>>>> Stashed changes
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
             >
               Transaksi
             </a>
             <a
               href="{{ route('withdraw.index')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/withdraw*')) ? 'active' : '' }}"
+              class="list-group-item list-group-item-action list-group-item-info{{ (request()->is('admin/withdraw*')) ? 'active' : '' }}"
             >
               Penarikan 
             </a>

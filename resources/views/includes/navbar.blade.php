@@ -24,7 +24,7 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Customer Service
+                Portofolio
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="#">Tutorial HTML</a>
@@ -67,9 +67,12 @@
                 {{ Auth::user()->name }}
               </a>
               <div class="dropdown-menu">
+                @if (auth()->user()->roles == 'ADMIN')
+                <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
+                @endif
                 <a href="{{ route('dashboard')}}" class="dropdown-item">Dashboard</a>
                 <a href="{{ route('dashboard-setting-account')}}" class="dropdown-item"
-                  >Settings</a
+                  >Pengaturan</a
                 >
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -100,7 +103,7 @@
 
           <ul class="navbar-nav d-block d-lg-none">
             <li class="nav-item" style="list-style: none">
-              <a href="#" class="nav-link"> Hi. Siapa anda? </a>
+              <a href="#" class="nav-link"> Hi, {{ Auth::user()->name }}</a>
             </li>
             <li class="nav-item" style="list-style: none">
               <a href="#" class="nav-link d-inline-block"> Cart </a>
