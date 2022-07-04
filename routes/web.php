@@ -94,6 +94,7 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/portofolio/biodata/create', [BiodataController::class, 'create'])->name('portofolio-biodata-create');
     Route::post('portofolio/biodata', [BiodataController::class, 'store'])->name('portofolio-biodata-store');
+    Route::get('/portfolio/biodata', [BiodataController::class, 'index'])->name('portfolio-biodata');
 
     Route::get('portofolio/kepanitiaan', [KepanitiaanController::class, 'index'])->name('portofolio-kepanitiaan');
     Route::get('/portofolio/kepanitiaan/create', [KepanitiaanController::class, 'create'])->name('portofolio-kepanitiaan-create');
