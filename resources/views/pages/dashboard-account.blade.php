@@ -153,10 +153,51 @@
 
 @push('addons-script')
 <script>
+<<<<<<< Updated upstream
     $("#menu-toggle").click(function (e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
+=======
+  var locations = new Vue({
+    el: "#locations",
+    mounted() {
+      AOS.init();
+      this.getProvincesData();
+      this.getRegenciesData();
+    },
+    data: {
+      provinces: null,
+      regencies: null,
+      provinces_id: {{ $user->provinces_id }},
+      regencies_id: {{ $user->regencies_id }},
+    },
+    methods: {
+      getProvincesData() {
+        var self = this;
+        axios.get('{{ route('api-provinces') }}')
+          .then(function(response){
+              self.provinces = response.data;
+          })
+      },
+
+      getRegenciesData() {
+        var self = this;
+        axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+          .then(function(response){
+              self.regencies = response.data;
+          })
+      },
+    },
+    watch: {
+      provinces_id: function(val, oldVal) {
+        this.regencies_id = null;
+        this.getRegenciesData();
+      }
+    }
+
+  });
+>>>>>>> Stashed changes
 </script>
 @endpush
 

@@ -11382,13 +11382,27 @@ footer p {
 }
 
 .page-details .store-heading .price {
+<<<<<<< Updated upstream
   font-weight: 500;
   font-size: 18px;
   line-height: 27px;
   color: #ff7158;
   margin-bottom: 10px;
+=======
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    color: #016a85;
+    margin-bottom: 10px;
 }
-
+.page-details .store-heading .stock {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 27px;
+    color: rgb(71, 71, 71);
+    margin-bottom: 10px;
+>>>>>>> Stashed changes
+}
 .page-details .store-gallery {
   margin-bottom: 20px;
 }

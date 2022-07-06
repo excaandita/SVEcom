@@ -59,8 +59,19 @@
               Kategori
             </a>
             <a
+<<<<<<< Updated upstream
               href="#"
               class="list-group-item list-group-item-action"
+=======
+            href="{{ route('slider.index')}}"
+            class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/slider*')) ? 'active' : '' }}"
+            >
+              Slider
+            </a>
+            <a
+              href="{{ route('transaction.index')}}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
+>>>>>>> Stashed changes
             >
               Transaksi
             </a>
@@ -128,7 +139,7 @@
                         alt=""
                         class="rounded-circle mr-2 profile-picture"
                         />
-                        Hi, Siapa anda?
+                        Hi, {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/">Logout</a>

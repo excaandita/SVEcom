@@ -32,6 +32,11 @@
                                             <th>User</th>
                                             <th>Kategori</th>
                                             <th>Harga</th>
+<<<<<<< Updated upstream
+=======
+                                            <th>Stok</th>
+                                            <th>Terjual</th>
+>>>>>>> Stashed changes
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -62,7 +67,13 @@
                 { data: 'user.name', name: 'user.name' },
                 { data: 'category.name', name: 'category.name' },
                 { data: 'price', name: 'price' },
+<<<<<<< Updated upstream
                 { 
+=======
+                { data: 'stock', name: 'stock' },
+                { data: 'transactiondetail_count', name: 'transactiondetail_count' },
+                {
+>>>>>>> Stashed changes
                     data: 'action',
                     name: 'action',
                     orderable: false,

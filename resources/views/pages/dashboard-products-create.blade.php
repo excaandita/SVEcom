@@ -53,10 +53,14 @@
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
+<<<<<<< Updated upstream
                                 <label>Gambar</label>
                                 <input type="file" class="form-control" />
+=======
+                                <label>Gambar Thumbnail</label>
+                                <input type="file" name="photo" class="form-control" />
+>>>>>>> Stashed changes
                                 <p class="text-muted">
-                                  Dapat upload lebih dari satu Gambar
                                 </p>
                               </div>
                             </div>
