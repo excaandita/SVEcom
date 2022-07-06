@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slider;
 
 class HomeController extends Controller
 {
@@ -19,10 +20,12 @@ class HomeController extends Controller
 
         $categories = Category::take(6)->get();
         $products = Product::with(['galleries'])->take(8)->get();
+        $sliders = Slider::take(3)->get();
 
         return view('pages.home',[
             'categories'=> $categories,
             'products' => $products,
+            'sliders' => $sliders,
         ]);
     }
 }

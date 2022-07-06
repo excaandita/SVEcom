@@ -20,14 +20,14 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('category.create')}}" class="btn btn-primary mb-3">
+                            <a href="{{ route('category.create')}}" class="btn btn-info mb-3">
                                 Tambah Kategori
                             </a>
                             <div class="table-responsive">
-                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
-                                    <thead>
+                                <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
+                                    <thead class="bg-info">
                                         <tr>
-                                            <th>ID</th>
+                                            <th >ID</th>
                                             <th>Nama</th>
                                             <th>Icon</th>
                                             <th>Slug</th>

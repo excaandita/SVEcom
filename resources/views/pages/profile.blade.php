@@ -148,6 +148,7 @@
                       >
                         <!-- view list barang  -->
                         <!-- batasProduct-->
+
             @php $incrementProduct = 0 @endphp
             @forelse ($products as $product)
               <div
@@ -181,8 +182,6 @@
                   
                   
             <!-- batas Product-->
-
-                        
 
                       </div>
                       {{-- <div
@@ -221,7 +220,6 @@
                       </div> --}}
                     </div>
                   </div>
-           
           </div>
         </div>
       </div>

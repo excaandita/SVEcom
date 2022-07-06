@@ -11,8 +11,8 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['galleries'])->paginate(8);
-        $categories = Category::all();
+        $products = Product::with(['galleries'])->paginate(8);      //mengambil data product dengan relasi gelleries untuk mengambil gambar productnya
+        $categories = Category::all();                  //mengambil data semuanya di table kategori
 
         return view('pages.category',[
             'categories' => $categories,
@@ -20,11 +20,11 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function detail(Request $request, $slug)
+    public function detail(Request $request, $slug)         //untuk mengambil produk seusai kategori yang diinginkan
     {
-        $categories = Category::all();
-        $category = Category::where('slug', $slug)->firstOrFail();
-        $products = Product::with(['galleries'])->where('categories_id', $category->id)->paginate(8);
+        $categories = Category::all();      //mengambil semua data kategori
+        $category = Category::where('slug', $slug)->firstOrFail();      //mengambil kategori berdasrkan nama slugnya untuk dipanggil 
+        $products = Product::with(['galleries'])->where('categories_id', $category->id)->paginate(8); //mengambil data product bersama relasi gallery untuk dipangil berdasrakan category yang diingikan
 
         return view('pages.category',[
             'categories' => $categories,

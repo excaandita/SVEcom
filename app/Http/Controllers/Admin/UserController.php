@@ -29,7 +29,7 @@ class UserController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown=toggle mr-1 mb-1"
+                                <button class="btn btn-info dropdown=toggle mr-1 mb-1"
                                         type="button"
                                         data-toggle="dropdown">
                                         Aksi
@@ -121,7 +121,7 @@ class UserController extends Controller
         $data = $request->all();
 
         $item = User::findOrFail($id);
-
+        
         if($request->password)
         {
             $data['password'] = bcrypt($request->password);

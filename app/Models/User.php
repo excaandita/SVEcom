@@ -33,6 +33,15 @@ class User extends Authenticatable
         'zip_code',
         'country',
         'phone_number',
+        'nim',
+        'tempat_lahir',
+        'tanggal_lahir',
+        'alamat_solo',
+        'prodis_id',
+        'fakultas',
+        'angkatan',
+        'is_active',
+        'deskripsi'
     ];
 
     /**

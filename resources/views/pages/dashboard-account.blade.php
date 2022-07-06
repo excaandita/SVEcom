@@ -17,7 +17,8 @@
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-12">
-                    <form action="">
+                    <form action="{{ route('dashboard-setting-redirect', 'dashboard-setting-account')}}" id="locations" method="POST" enctype="multipart/form-data" >
+                      @csrf
                       <div class="card">
                         <div class="card-body">
                           <div class="row mb-2">
@@ -29,7 +30,7 @@
                                   class="form-control"
                                   name="name"
                                   id="name"
-                                  value="Exca Muchlis Andita"
+                                  value="{{$user->name}}"
                                 />
                               </div>
                             </div>
@@ -41,69 +42,61 @@
                                   class="form-control"
                                   name="email"
                                   id="email"
-                                  value="email@gmail.com"
+                                  value="{{ $user->email }}"
                                 />
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="addressOne">Alamat 1</label>
+                                <label for="address_one">Alamat</label>
                                 <input
                                   type="text"
                                   class="form-control"
-                                  name="addressOne"
-                                  id="addressOne"
-                                  value="Jl. Ir Sutami No.18"
+                                  name="address_one"
+                                  id="address_one"
+                                  value="{{ $user->address_one}}"
                                 />
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="addressTwo">Alamat 2</label>
+                                <label for="address_two">Alamat Detail</label>
                                 <input
                                   type="text"
                                   class="form-control"
-                                  name="addressTwo"
-                                  id="addressTwo"
-                                  value="Jl. Ir Sutami No.26"
+                                  name="address_two"
+                                  id="address_two"
+                                  value="{{ $user->address_two }}"
                                 />
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label for="province">Provinsi </label>
-                                <select
-                                  name="province"
-                                  id="province"
-                                  class="form-control"
-                                >
-                                  <option value="Jawa Tengah">
-                                    Jawa Tengah
-                                  </option>
+                                <label for="provinces_id">Provinsi </label>
+                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" v-model="provinces_id" >
+                                  <option v-for="province in provinces" :value="province.id"> @{{ province.name }} </option>
                                 </select>
+                                <select v-else class="form-control"></select>
+                              </div> 
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="regencies_id">Kota </label>
+                                <select name="regencies_id" id="regencies_id" class="form-control" v-if="regencies" v-model="regencies_id" >
+                                  <option v-for="regency in regencies" :value="regency.id"> @{{ regency.name }} </option>
+                                </select>
+                                <select v-else class="form-control"></select>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label for="city">Kota </label>
-                                <select
-                                  name="city"
-                                  id="city"
-                                  class="form-control"
-                                >
-                                  <option value="Surakarta">Surakarta</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="form-group">
-                                <label for="postalCode">Kode POS</label>
+                                <label for="zip_code">Kode POS</label>
                                 <input
                                   type="text"
                                   class="form-control"
-                                  name="postalCode"
-                                  id="postalCode"
-                                  value=" 17562"
+                                  name="zip_code"
+                                  id="zip_code"
+                                  value=" {{$user->zip_code}}"
                                 />
                               </div>
                             </div>
@@ -115,19 +108,19 @@
                                   class="form-control"
                                   name="country"
                                   id="country"
-                                  value="Indonesia"
+                                  value="{{$user->country}}"
                                 />
                               </div>
                             </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="mobile">Nomor Telpon</label>
+                                <label for="phone_number">Nomor Telpon</label>
                                 <input
                                   type="text"
                                   class="form-control"
-                                  name="mobile"
-                                  id="mobile"
-                                  value="+62 81222221212"
+                                  name="phone_number"
+                                  id="phone_number"
+                                  value="{{ $user->phone_number}}"
                                 />
                               </div>
                             </div>
@@ -136,7 +129,7 @@
                             <div class="col text-right">
                               <button
                                 type="submit"
-                                class="btn btn-success px-5"
+                                class="btn btn-info px-5"
                               >
                                 Simpan
                               </button>
@@ -151,14 +144,18 @@
             </div>
           </div>
 
-@push('addons-script')
+@endsection
+
+@push('addon-script')
+<script src="/vendor/vue/vue.js"></script>
+<script src="https://unpkg.com/vue-toasted"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-<<<<<<< Updated upstream
     $("#menu-toggle").click(function (e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
     });
-=======
+
   var locations = new Vue({
     el: "#locations",
     mounted() {
@@ -171,6 +168,7 @@
       regencies: null,
       provinces_id: {{ $user->provinces_id }},
       regencies_id: {{ $user->regencies_id }},
+
     },
     methods: {
       getProvincesData() {
@@ -197,8 +195,5 @@
     }
 
   });
->>>>>>> Stashed changes
 </script>
 @endpush
-
-@endsection

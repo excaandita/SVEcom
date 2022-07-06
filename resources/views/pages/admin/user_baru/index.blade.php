@@ -52,10 +52,10 @@
                     <td scope="row" class="text-center">{{$user->roles}}</td>
                     <td scope="row" class="text-center">
                           @if($user->is_active == 0)
-                      <a href="{{route ('update-status-baru', ['id' => $user->id, 'status_code' => 1]) }}" class="btn btn-danger mb-3" >Tidak Aktif<i class="fas fa-ban"></i></a>
-                      @else
-                      <a href="{{route ('update-status-baru', ['id' => $user->id, 'status_code' => 0]) }}" class="btn btn-success m-3" >Aktif<i class="fas fa-check"></i></a>
-                      @endif
+                            <a href="{{route ('update-status-baru', ['id' => $user->id, 'status_code' => 1]) }}" class="btn btn-danger mb-3" >Tidak Aktif<i class="fas fa-ban"></i></a>
+                          @else
+                            <a href="{{route ('update-status-baru', ['id' => $user->id, 'status_code' => 0]) }}" class="btn btn-success m-3" >Aktif<i class="fas fa-check"></i></a>
+                          @endif
                     </td>
                     <td scope="row" class="text-center">
                       <a href="{{ route('user-baru.edit', $user->id) }}" class="btn btn-primary" >Edit<i class="fas fa-pencil-alt"></i></a>

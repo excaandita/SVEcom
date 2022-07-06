@@ -3,33 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Kavist\RajaOngkir\Facades\RajaOngkir;
 
 class CartController extends Controller
 {
-    public function index() {
-        $carts = Cart::with(['product.galleries', 'user'])
-                ->where('users_id', Auth::user()->id)
+    public function index()                     //index untuk menampilkan di halaman utama cart
+    {
+        // varible untuk menampilkan data di cart
+        $carts = Cart::with(['product.galleries', 'user']) //megambil data relasi di bagian cart untuk product & user
+                ->where('users_id', Auth::user()->id) //melihat cart bedasarkan user yang sedang aktif
                 ->get();
         return view('pages.cart', [
             'carts' => $carts,
         ]);
     }
 
-    public function delete(Request $request, $id)
+    public function delete(Request $request, $id)  //fungsi untuk mengahpus data cart
     {
-        $cart = Cart::findOrFail($id);
+        $cart = Cart::findOrFail($id);          //mencari data dari cart berdasarkan idnya
 
-        $cart->delete();
+        $cart->delete();            //mengahpus data cart padda id yang dicari diatas
         return redirect()->route('cart');
     }
 
     public function success() {
         return view('pages.success');
     }
-<<<<<<< Updated upstream
-=======
+
 
     public function updateQuantity(Request $request, Cart $cart) // fungsi untuk mengupdate jumlah produk pada cart
     {
@@ -51,6 +55,7 @@ class CartController extends Controller
     public function cekOngkir(Request $request, $regencies_id) {
         // Menghitung berapa jumlah toko dalam cart
         $jumlah_toko = DB::table('carts')
+
             ->where('carts.users_id', Auth::user()->id)
             ->join('products', 'carts.products_id', '=', 'products.id') // buat join tabel produk sm carts fk di tabel carts pk di tabel produk
             ->selectRaw('count(products.users_id)') //hitung jumlah users produknya ada brp users
@@ -69,5 +74,5 @@ class CartController extends Controller
 
         return $ongkir * $jumlah_toko; // menghitung total ongkos kirim
     }
->>>>>>> Stashed changes
+
 }

@@ -17,13 +17,10 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a href="/index.html" class="nav-link">Home</a>
+              <a href="{{ route('/') }}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="/categories.html" class="nav-link">Categories</a>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">Rewards</a>
+              <a href="{{ route('categories')}}" class="nav-link">Categories</a>
             </li>
           </ul>
           <!--Desktop Menu-->
@@ -41,10 +38,10 @@
                   alt=""
                   class="rounded-circle mr-2 profile-picture"
                 />
-                Hi, Siapa anda?
+                Hi, {{ Auth::user()->name }}
               </a>
               <div class="dropdown-menu">
-                <a href="/dashboard.html" class="dropdown-item">Dashboard</a>
+                <a href="{{route('/dashboard')}}" class="dropdown-item">Dashboard</a>
                 <a href="/dashboard-account.html" class="dropdown-item"
                   >Settings</a
                 >
@@ -61,7 +58,7 @@
 
           <ul class="navbar-nav d-block d-lg-none">
             <li class="nav-item" style="list-style: none">
-              <a href="#" class="nav-link"> Hi. Siapa anda? </a>
+              <a href="#" class="nav-link"> Hi, {{ Auth::user()->name }} </a>
             </li>
             <li class="nav-item" style="list-style: none">
               <a href="#" class="nav-link d-inline-block"> Cart </a>

@@ -19,47 +19,59 @@
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-12">
-                    <form action="">
+                    @if($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                    <form action="{{ route('dashboard-product-store')}}" method="POST" enctype="multipart/form-data">
+                      @csrf
+                      <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <div class="form-group">
                                 <label>Nama Produk</label>
-                                <input type="text" class="form-control" />
+                                <input type="text" class="form-control" name="name" />
                               </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                               <div class="form-group">
                                 <label>Harga Produk</label>
-                                <input type="number" class="form-control" />
+                                <input type="number" class="form-control" name="price" />
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Stok Produk</label>
+                                <input type="number" class="form-control" name="stock" />
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Kategori</label>
-                                <select type="category" class="form-control">
-                                  <option value="" disabled>
-                                    Select category
-                                  </option>
-                                </select>
+                                <select name="categories_id" class="form-control">
+                                  @foreach ($categories as $category)
+                                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                  @endforeach
+                              </select>
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Deskripsi Produk</label>
-                                <textarea name="editor" id="editor"></textarea>
+                                <textarea name="description" id="editor"></textarea>
                               </div>
                             </div>
                             <div class="col-md-12">
                               <div class="form-group">
-<<<<<<< Updated upstream
-                                <label>Gambar</label>
-                                <input type="file" class="form-control" />
-=======
                                 <label>Gambar Thumbnail</label>
                                 <input type="file" name="photo" class="form-control" />
->>>>>>> Stashed changes
                                 <p class="text-muted">
                                 </p>
                               </div>
