@@ -60,7 +60,7 @@
             </a>
             <a
             href="{{ route('slider.index')}}"
-            class="list-group-item list-group-item-action {{ (request()->is('admin/slider*')) ? 'active' : '' }}"
+            class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/slider*')) ? 'active' : '' }}"
             >
               Slider
             </a>
