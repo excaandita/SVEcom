@@ -5,76 +5,78 @@
 @endsection
 
 @section('content')
-    <div class="page-content page-details">
-        <section class="store-breadcrumbs" data-aos="fade-down" data-aos-delay="100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="/index.html">Home</a>
-                                </li>
-                                <li class="breadcrumb-item active">Product Details</li>
-                            </ol>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-
+<div class="page-content page-details">
+    <section
+      class="store-breadcrumbs"
+      data-aos="fade-down"
+      data-aos-delay="100"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <nav>
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/index.html">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Product Details</li>
+              </ol>
+            </nav>
           </div>
         </div>
       </div>
     </section>
 
-        </section>
-
-        <div class="store-details-container" data-aos="fade-out">
-            <section class="store-heading">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <h1>{{ $product->name }}</h1>
-                            <div class="stock">Stock : {{ number_format($product->stock) }}</div>
-                            <div class="stock">Terjual : {{ number_format($product->transactiondetail->count()) }}</div>
-                            <div class="owner">By
-                                <a href="{{ route('profile', $product->user->id) }}">{{ $product->user->store_name }}</a>
-
-
-        <section class="store-gallery mb-3" id="gallery">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8" data-aos="zoom-in">
-                        <transition name="slide-fade" mode="out-in">
-                            <img :src="photos[activePhoto].url" :key="photos[activePhoto].id" class="w-100 main-image"
-                                alt="" />
-                        </transition>
-                    </div>
-                    <div class="col-lg-2">
-                        <div class="row">
-                            <div class="col-3 col-lg-12 mt-2 mt-lg-0" v-for="(photo, index) in photos"
-                                :key="photo.id" data-aos="zoom-in" data-aos-delay="100">
-                                <a href="#" @click="changeActive(index)">
-                                    <img :src="photo.url" class="w-100 thumbnail-image"
-                                        :class="{ active: index == activePhoto }" alt="" />
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section class="store-gallery mb-3" id="gallery">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8" data-aos="zoom-in">
+            <transition name="slide-fade" mode="out-in">
+              <img
+                :src="photos[activePhoto].url"
+                :key="photos[activePhoto].id"
+                class="w-100 main-image"
+                alt=""
+              />
+            </transition>
+          </div>
+          <div class="col-lg-2">
+            <div class="row">
+              <div
+                class="col-3 col-lg-12 mt-2 mt-lg-0"
+                v-for="(photo, index) in photos"
+                :key="photo.id"
+                data-aos="zoom-in"
+                data-aos-delay="100"
+              >
+                <a href="#" @click="changeActive(index)">
+                  <img
+                    :src="photo.url"
+                    class="w-100 thumbnail-image"
+                    :class="{ active: index == activePhoto }"
+                    alt=""
+                  />
+                </a>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
         <div class="store-details-container" data-aos="fade-out">
             <section class="store-heading">
                 <div class="container">
-                    <div class="row">
-                        <div class="col-lg-8">
-                            <h1>{{ $product->name }}</h1>
+                <div class="row">
+                    <div class="col-lg-8">
+                    <h1>{{ $product->name }}</h1>
+                            <div class="row">
+                            <div class="col-md-3 stock">Stock : {{ number_format($product->stock) }}</div>
+                            <div class= "col-md-3 stock">Terjual : {{ number_format($product->transactiondetail->count()) }}</div></div>
                             <div class="owner">By
                                 <a href="{{ route('profile', $product->user->id) }}">{{ $product->user->store_name }}</a>
-
                             </div>
+                           
                             <div class="price">Rp. {{ number_format($product->price) }}</div>
                         </div>
                         <div class="col-lg-2" data-aos="zoom-in">
