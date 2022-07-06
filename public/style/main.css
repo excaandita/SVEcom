@@ -11384,13 +11384,28 @@ footer p {
 }
 
 .page-details .store-heading .price {
+
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #ff7158;
+  margin-bottom: 10px;
+
+}
+.page-details .store-heading .stock {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 27px;
+    color: rgb(71, 71, 71);
+    margin-bottom: 10px;
+
     font-weight: 500;
     font-size: 18px;
     line-height: 27px;
     color: #ff7158;
     margin-bottom: 10px;
-}
 
+}
 .page-details .store-gallery {
     margin-bottom: 20px;
 }

@@ -21,7 +21,25 @@
                     </div>
                 </div>
             </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
         </section>
+
+        <div class="store-details-container" data-aos="fade-out">
+            <section class="store-heading">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h1>{{ $product->name }}</h1>
+                            <div class="stock">Stock : {{ number_format($product->stock) }}</div>
+                            <div class="stock">Terjual : {{ number_format($product->transactiondetail->count()) }}</div>
+                            <div class="owner">By
+                                <a href="{{ route('profile', $product->user->id) }}">{{ $product->user->store_name }}</a>
+
 
         <section class="store-gallery mb-3" id="gallery">
             <div class="container">

@@ -64,9 +64,9 @@
                 <li class="list-group-item">
                 <b>Jumlah Produk</b> <a class="float-right">{{ $products_count }}</a>
                 </li>
-                <li class="list-group-item">
-                <b>Barang Terjual</b> <a class="float-right">{{ $sellTransactions}}</a>
-                </li>
+                {{-- <li class="list-group-item">
+                <b>Barang Terjual</b> <a class="float-right">{{ $products_}}</a>
+                </li> --}}
               </ul>
               <a href="#" class="btn btn-info btn-block"><b>Follow</b></a>
             </div>
@@ -74,7 +74,7 @@
 
           <div class="card card-info card-outline">
             <div class="card-header">
-              <h3 class="card-title">About Me</h3>
+              <h3 class="card-title">Deskripsi</h3>
             </div>
             
             <div class="card-body">
@@ -108,7 +108,47 @@
             </div>
           </div>
           <div class="row">
-            <!-- batasProduct-->
+            <div class="col-12 mt-2">
+                    <ul
+                      class="nav nav-pills mb-3"
+                      id="pills-tab"
+                      role="tablist"
+                    >
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link active"
+                          id="pills-home-tab"
+                          data-toggle="pill"
+                          href="#pills-home"
+                          role="tab"
+                          aria-controls="pills-home"
+                          aria-selected="true"
+                          >Semua Product</a
+                        >
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          id="pills-profile-tab"
+                          data-toggle="pill"
+                          href="#pills-profile"
+                          role="tab"
+                          aria-controls="pills-profile"
+                          aria-selected="false"
+                          >Produk Terbaru</a
+                        >
+                      </li>
+                    </ul>
+                    <div class="tab-content" id="pills-tabContent">
+                      <div
+                        class="tab-pane fade show active"
+                        id="pills-home"
+                        role="tabpanel"
+                        aria-labelledby="pills-home-tab"
+                      >
+                        <!-- view list barang  -->
+                        <!-- batasProduct-->
+
             @php $incrementProduct = 0 @endphp
             @forelse ($products as $product)
               <div
@@ -142,6 +182,44 @@
                   
                   
             <!-- batas Product-->
+
+                      </div>
+                      {{-- <div
+                        class="tab-pane fade"
+                        id="pills-profile"
+                        role="tabpanel"
+                        aria-labelledby="pills-profile-tab"
+                      >
+                        @foreach ($sellTransactions as $s_transaction)
+                          <a
+                            class="card card-list d-block"
+                            href="{{ route('dashboard-transaction-details', $s_transaction->id)}}"
+                          >
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-1">
+                                  <img
+                                    src="{{ Storage::url($s_transaction->product->galleries->first()->photos ?? '')}}"
+                                    class="w-50"
+                                    alt=""
+                                  />
+                                </div>
+                                <div class="col-md-4">{{ $s_transaction->product->name }}</div>
+                                <div class="col-md-3">{{ $s_transaction->transaction->user->name }}</div>
+                                <div class="col-md-3">{{ $s_transaction->created_at }}</div>
+                                <div class="col-md-1 d-none d-md-block">
+                                  <img
+                                    src="/images/dashboard-arrow-right.svg"
+                                    alt=""
+                                  />
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        @endforeach
+                      </div> --}}
+                    </div>
+                  </div>
           </div>
         </div>
       </div>

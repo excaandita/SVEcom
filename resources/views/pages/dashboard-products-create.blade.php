@@ -73,7 +73,6 @@
                                 <label>Gambar Thumbnail</label>
                                 <input type="file" name="photo" class="form-control" />
                                 <p class="text-muted">
-                                  Dapat upload lebih dari satu Gambar
                                 </p>
                               </div>
                             </div>

@@ -18,8 +18,8 @@ class ProfileController extends Controller
         $users = User::findOrFail($id);
         $products = Product::with(['galleries', 'user'])->where('users_id', $id)->get();
         $sellTransactions = TransactionDetail::with(['transaction.user']) //memanggil data DB dan relasi di model
-                            ->whereHas('product', function($product){ //mencari produk yang berhasil terjual
-                                $product->where('users_id', Auth::user()->id); //mencari transaksi pada user yang sedang login
+                            ->whereHas('transaction', function($transaction){ //mencari produk yang berhasil terjual
+                                $transaction->where('users_id', Auth::user()->id); //mencari transaksi pada user yang sedang login
                             })->get();
 
 
