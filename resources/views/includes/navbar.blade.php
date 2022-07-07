@@ -70,7 +70,9 @@
                 @if (auth()->user()->roles == 'ADMIN')
                 <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
                 @endif
+                @if (auth()->user()->roles =! 'ADMIN')
                 <a href="{{ route('dashboard')}}" class="dropdown-item">Dashboard</a>
+                @endif
                 <a href="{{ route('dashboard-setting-account')}}" class="dropdown-item"
                   >Pengaturan</a
                 >
