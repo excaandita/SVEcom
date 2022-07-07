@@ -16,13 +16,13 @@ class ProfileController extends Controller
     public function index(Request $request, $id)
     {
         $users = User::findOrFail($id);
-        $products = Product::with(['galleries', 'user'])->where('users_id', $id)->get();
-       
-
+        $products = Product::with(['galleries', 'user'])->latest()->where('users_id', $id)->get();
+        $products2 = Product::with(['galleries', 'user'])->where('users_id', $id)->get();
         return view('pages.profile',[
             'users' => $users,
             'products_count' => $products->count(),
             'products' => $products,
+            'products2' => $products2,
         ]);
     }
 

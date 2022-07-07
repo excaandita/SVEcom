@@ -22,6 +22,9 @@
             <li class="nav-item">
               <a href="{{ route('categories') }}" class="nav-link">Categories</a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('listproduct') }}" class="nav-link">Produk</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Portofolio
