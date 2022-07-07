@@ -132,8 +132,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/portofolio/experiences/create', [ExperiencesController::class, 'create'])->name('portofolio-experiences-create');
     Route::post('portofolio/experiences', [ExperiencesController::class, 'store'])->name('portofolio-experiences-store');
-    Route::get('/dashboard/experiences', [ExperiencesController::class, 'index'])->name('dashboard-experiences');
-    Route::get('/dashboard/experiences/detail', [ExperiencesController::class, 'detail'])->name('dashboard-experience-details');
+    Route::get('/portofolio/experiences', [ExperiencesController::class, 'index'])->name('dashboard-experiences');
     Route::get('/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit'); 
     Route::post('/portofolio/experiences/{id}', [ExperiencesController::class, 'update'])->name('portofolio-experiences-update'); 
 
