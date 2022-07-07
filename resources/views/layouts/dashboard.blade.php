@@ -58,8 +58,8 @@
               @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-withdraw')}}"
-                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
-                >
+                  class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
+                 >
                   Pengajuan Penarikan 
                 </a>
                 <li class="sidebar-dropdown">
@@ -83,13 +83,21 @@
                   Pengaturan Toko
                 </a>
               @endif
+               @if (auth()->user()->roles == 'BUYER')
+                <a
+                  href="{{ route('dashboard-refund')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/refund')) ? 'active' : '' }}"
+                >
+                  Pengembalian Dana
+                </a>
+              @endif
               <a
                 href="{{ route('dashboard-setting-account')}}"
                 class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
               >
                 Pengaturan Akun
               </a>
-              <a class="dropdown-item" href="{{ route('logout') }}"
+              <a class="list-group-item list-group-item-action list-group-item-info dropdown-item" href="{{ route('logout') }}"
                   onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();"
               >
@@ -150,10 +158,10 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('home')}}"
-                        >Back to Store</a
+                        >Home</a
                         >
                         <a class="dropdown-item" href="{{ url('dashboard/account')}}"
-                        >Settings</a
+                        >Pengaturan</a
                         >
                         <a class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
