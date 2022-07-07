@@ -68,11 +68,10 @@
                 <b>Barang Terjual</b> <a class="float-right">{{ $products_}}</a>
                 </li> --}}
               </ul>
-              <a href="#" class="btn btn-info btn-block"><b>Follow</b></a>
             </div>
           </div>
 
-          <div class="card card-info card-outline">
+          <div class="card card-info card-outline mt-3">
             <div class="card-header">
               <h3 class="card-title">Deskripsi</h3>
             </div>
@@ -104,7 +103,7 @@
         <div class="col-md-8">
           <div class="row">
             <div class="col-12" data-aos="fade-up">
-              <h5>All Products</h5>
+              <h5>Produk</h5>
             </div>
           </div>
           <div class="row">
@@ -139,51 +138,57 @@
                         >
                       </li>
                     </ul>
-                    <div class="tab-content" id="pills-tabContent">
-                      <div
-                        class="tab-pane fade show active"
-                        id="pills-home"
-                        role="tabpanel"
-                        aria-labelledby="pills-home-tab"
-                      >
-                        <!-- view list barang  -->
-                        <!-- batasProduct-->
-
-            @php $incrementProduct = 0 @endphp
-            @forelse ($products as $product)
-              <div
-              class="col-6 col-md-6 col-lg-4"
-              data-aos="fade-up"
-              data-aos-delay="{{ $incrementProduct+= 100 }}"
-              >
-                <a href="{{ route('detail', $product->slug)}}" class="component-products d-block">
-                  <div class="products-thumbnail">
-                    <div
-                      class="products-image"
-                      style="
-                        @if($product->galleries->count())
-                          background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
-                        @else
-                          background-color: #eee
-                        @endif" 
-                    >
-                    </div>
-                  </div>
-                  <div class="products-text">{{ $product->name }}</div>
-                  <div class="products-price">Rp. {{number_format($product->price) }}</div>
-                </a>
-              </div>
-            @empty
-              <div class="col-12 text-center py-5" data-aos="fade-up"
-                  data-aos-delay="100">
-                Tidak ada produk
-              </div>
-            @endforelse
-                  
-                  
-            <!-- batas Product-->
-
+                    
+                        <div class="tab-content" id="pills-tabContent">
+                          <div
+                            class="tab-pane fade show active"
+                            id="pills-home"
+                            role="tabpanel"
+                            aria-labelledby="pills-home-tab"
+                          >
+                            <!-- view list barang  -->
+                            <!-- batasProduct-->
+                              <div class="container">
+                                <div class="row">
+                              @php $incrementProduct = 0 @endphp
+                              @forelse ($products as $product)
+                                <div
+                                class="col-12 col-md-3 col-lg-4"
+                                data-aos="fade-up"
+                                data-aos-delay="{{ $incrementProduct+= 100 }}"
+                                >
+                                
+                                  <a href="{{ route('detail', $product->slug)}}" class="component-products d-block">
+                                    <div class="products-thumbnail">
+                                      
+                                      <div
+                                        class="products-image"
+                                        style="
+                                          @if($product->galleries->count())
+                                            background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
+                                          @else
+                                            background-color: #eee
+                                          @endif" 
+                                      >
+                                      
+                                      </div>
+                                    </div>
+                                    <div class="products-text">{{ $product->name }}</div>
+                                    <div class="products-price">Rp. {{number_format($product->price) }}</div>
+                                  </a>
+                                </div>
+                              @empty
+                                <div class="col-12 text-center py-5" data-aos="fade-up"
+                                    data-aos-delay="100">
+                                  Tidak ada produk
+                                </div>
+                              @endforelse
+                      
+                      
+                <!-- batas Product-->
+                        </div>
                       </div>
+                    </div>
                       {{-- <div
                         class="tab-pane fade"
                         id="pills-profile"
