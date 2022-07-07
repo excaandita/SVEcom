@@ -24,7 +24,12 @@
               </form>
             </div>
         </div>
-        
+        <div class="container">
+      <div class="row">
+        <div class="col-12" data-aos="fade-up">
+          <h5>Semua Produk</h5>
+        </div>
+      </div>
       <div class="row">
       <!-- batas new Product-->
         @php $incrementProduct = 0 @endphp
