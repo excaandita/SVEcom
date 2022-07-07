@@ -21,9 +21,7 @@ use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\DashboardWithdrawController;
-
 use App\Http\Controllers\DashboardRefundController;
 use App\Http\Controllers\Portofolio\BiodataController;
 use App\Http\Controllers\Portofolio\KepanitiaanController;
@@ -32,7 +30,6 @@ use App\Http\Controllers\Portofolio\PendidikanController;
 use App\Http\Controllers\Portofolio\ExperiencesController;
 use App\Http\Controllers\Portofolio\ProjectsController;
 use App\Http\Controllers\Portofolio\SkillController;
-
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -102,14 +99,15 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');
     Route::post('/dashboard/withdraw', [DashboardWithdrawController::class, 'store'])->name('dashboard-withdraw-store');
 
+
     Route::get('/dashboard/refund', [DashboardRefundController::class, 'index'])->name('dashboard-refund');
     Route::get('/dashboard/refund/create', [DashboardRefundController::class, 'create'])->name('dashboard-refund-create');
     Route::get('/dashboard/refund/edit/{id}', [DashboardRefundController::class, 'edit'])->name('dashboard-refund-edit');
     Route::post('/dashboard/refund', [DashboardRefundController::class, 'store'])->name('dashboard-refund-store');
 
-    
     Route::get('/portofolio/biodata/create', [BiodataController::class, 'create'])->name('portofolio-biodata-create');
     Route::post('portofolio/biodata', [BiodataController::class, 'store'])->name('portofolio-biodata-store');
+    Route::get('/portfolio/biodata', [BiodataController::class, 'index'])->name('portfolio-biodata');
 
     Route::get('portofolio/kepanitiaan', [KepanitiaanController::class, 'index'])->name('portofolio-kepanitiaan');
     Route::get('/portofolio/kepanitiaan/create', [KepanitiaanController::class, 'create'])->name('portofolio-kepanitiaan-create');
@@ -145,7 +143,6 @@ Route::group(['middleware' => ['auth']], function(){
     
     Route::get('/portofolio/skill/create', [SkillController::class, 'create'])->name('portofolio-skill-create');
     Route::post('portofolio/skill', [SkillController::class, 'store'])->name('portofolio-skill-store');
-
 
 });
 
