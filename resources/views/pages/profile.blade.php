@@ -186,42 +186,7 @@
                 <!-- batas Product-->
                         </div>
                       </div>
-                     <div class="row">
-                              @php $incrementProduct = 0 @endphp
-                              @forelse ($products2 as $product2)
-                                <div
-                                class="col-12 col-md-3 col-lg-4"
-                                data-aos="fade-up"
-                                data-aos-delay="{{ $incrementProduct+= 100 }}"
-                                >
-                                
-                                  <a href="{{ route('detail', $product2->slug)}}" class="component-products d-block">
-                                    <div class="products-thumbnail">
-                                      
-                                      <div
-                                        class="products-image"
-                                        style="
-                                          @if($product2->galleries->count())
-                                            background-image: url('{{ Storage::url($product2->galleries->first()->photos) }}')
-                                          @else
-                                            background-color: #eee
-                                          @endif" 
-                                      >
-                                      
-                                      </div>
-                                    </div>
-                                    <div class="products-text">{{ $product2->name }}</div>
-                                    <div class="products-price">Rp. {{number_format($product2->price) }}</div>
-                                  </a>
-                                </div>
-                              @empty
-                                <div class="col-12 text-center py-5" data-aos="fade-up"
-                                    data-aos-delay="100">
-                                  Tidak ada produk
-                                </div>
-                              @endforelse
-                <!-- batas Product-->
-                        </div>
+                     
                       </div>
                     </div>
                   </div>

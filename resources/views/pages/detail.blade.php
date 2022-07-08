@@ -91,9 +91,15 @@
                                         </div>
                                     </section>
                         <div class="col-lg-12" data-aos="zoom-in">
+                             @if($product->user->store_status==1)
                             @auth
+                          
+                            @if($product->user->store_status==0)
+                            <a href="#" class="btn btn-warning disabled px-4 text-white btn-block mb-3">
+                                    Toko Tutup
+                                </a>
                                 <!-- Memeriksa apakah stok produk lebih dari 0 -->
-                                @if ($product->stock >0)
+                                @elseif ($product->stock >0)
                                 <!-- Jika stok lebih dari 0, maka akan muncul button add to cart -->
                                 <form action="{{ route('detail-add', $product->id) }}" method="POST"
                                     enctype="multipart/form-data">
@@ -108,11 +114,18 @@
                                     Stok Habis
                                 </a>
                                 @endif
+                                
                             @else
                                 <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
                                     Sign In untuk membeli
                                 </a>
                             @endauth
+                            @else
+                             <a href="#" class="btn btn-warning disabled px-4 text-white btn-block mb-3">
+                                    Toko Tutup
+                                </a>
+                                
+                             @endif
                             <!-- Menampilkan pesan error jika ada -->
                             @if (session('error'))
                                 <div class="alert alert-danger">
