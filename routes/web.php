@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\TransactionController as AdminTransactionControll
 use App\Http\Controllers\Admin\UserBaruController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
+use App\Http\Controllers\API\testcontroller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
@@ -71,7 +72,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
     Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
-    
+
     Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
 
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
@@ -115,19 +116,19 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('portofolio/kepanitiaan', [KepanitiaanController::class, 'index'])->name('portofolio-kepanitiaan');
     Route::get('/portofolio/kepanitiaan/create', [KepanitiaanController::class, 'create'])->name('portofolio-kepanitiaan-create');
     Route::post('portofolio/kepanitiaan', [KepanitiaanController::class, 'store'])->name('portofolio-kepanitiaan-store');
-    Route::get('/portofolio/kepanitiaan/edit/{id}', [KepanitiaanController::class, 'edit'])->name('portofolio-kepanitiaan-edit'); 
+    Route::get('/portofolio/kepanitiaan/edit/{id}', [KepanitiaanController::class, 'edit'])->name('portofolio-kepanitiaan-edit');
     Route::post('/portofolio/kepanitiaan/{id}', [KepanitiaanController::class, 'update'])->name('portofolio-kepanitiaan-update');
     Route::post('/portofolio/kepanitiaan/delete/{id}', [KepanitiaanController::class, 'destroy'])->name('portofolio-kepanitiaan-delete');
 
     Route::get('/portofolio/organisasi/create', [OrganisasiController::class, 'create'])->name('portofolio-organisasi-create');
     Route::post('portofolio/organisasi', [OrganisasiController::class, 'store'])->name('portofolio-organisasi-store');
-    Route::get('/portofolio/organisasi/edit/{id}', [OrganisasiController::class, 'edit'])->name('portofolio-organisasi-edit'); 
+    Route::get('/portofolio/organisasi/edit/{id}', [OrganisasiController::class, 'edit'])->name('portofolio-organisasi-edit');
     Route::post('/portofolio/organisasi/{id}', [OrganisasiController::class, 'update'])->name('portofolio-organisasi-update');
     Route::post('/portofolio/organisasi/delete/{id}', [OrganisasiController::class, 'destroy'])->name('portofolio-organisasi-delete');
 
     Route::get('/portofolio/pendidikan/create', [PendidikanController::class, 'create'])->name('portofolio-pendidikan-create');
     Route::post('portofolio/pendidikan', [PendidikanController::class, 'store'])->name('portofolio-pendidikan-store');
-    Route::get('/portofolio/pendidikan/edit/{id}', [PendidikanController::class, 'edit'])->name('portofolio-pendidikan-edit'); 
+    Route::get('/portofolio/pendidikan/edit/{id}', [PendidikanController::class, 'edit'])->name('portofolio-pendidikan-edit');
     Route::post('/portofolio/pendidikan/{id}', [PendidikanController::class, 'update'])->name('portofolio-pendidikan-update');
     Route::post('/portofolio/pendidikan/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-pendidikan-delete');
 
@@ -135,15 +136,15 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('portofolio/experiences', [ExperiencesController::class, 'store'])->name('portofolio-experiences-store');
     Route::get('/dashboard/experiences', [ExperiencesController::class, 'index'])->name('dashboard-experiences');
     Route::get('/dashboard/experiences/detail', [ExperiencesController::class, 'detail'])->name('dashboard-experience-details');
-    Route::get('/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit'); 
-    Route::post('/portofolio/experiences/{id}', [ExperiencesController::class, 'update'])->name('portofolio-experiences-update'); 
+    Route::get('/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit');
+    Route::post('/portofolio/experiences/{id}', [ExperiencesController::class, 'update'])->name('portofolio-experiences-update');
 
     Route::get('/portofolio/projects/create', [ProjectsController::class, 'create'])->name('portofolio-projects-create');
     Route::post('portofolio/projects', [ProjectsController::class, 'store'])->name('portofolio-projects-store');
-    Route::get('/portofolio/project/edit/{id}', [ProjectsController::class, 'edit'])->name('portofolio-project-edit'); 
-    Route::post('/portofolio/project/{id}', [ProjectsController::class, 'update'])->name('portofolio-project-update'); 
+    Route::get('/portofolio/project/edit/{id}', [ProjectsController::class, 'edit'])->name('portofolio-project-edit');
+    Route::post('/portofolio/project/{id}', [ProjectsController::class, 'update'])->name('portofolio-project-update');
     Route::post('/portofolio/project/delete/{id}', [ProjectsController::class, 'destroy'])->name('portofolio-project-delete');
-    
+
     Route::get('/portofolio/skill/create', [SkillController::class, 'create'])->name('portofolio-skill-create');
     Route::post('portofolio/skill', [SkillController::class, 'store'])->name('portofolio-skill-store');
 
@@ -173,3 +174,4 @@ Route::prefix('admin')
 
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/test', [testcontroller::class, 'login']);
