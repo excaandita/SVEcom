@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class IsBuyer
+class IsSeller
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,10 @@ class IsBuyer
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user() && Auth::user()->roles == 'BUYER')
+        if(Auth::user() && Auth::user()->roles == 'SELLER')
         {
             return $next($request);
         }
-
         return redirect('/');
     }
 }

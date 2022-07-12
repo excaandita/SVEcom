@@ -7,9 +7,25 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
 use App\Http\Controllers\Admin\SertifikatController;
 use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
-use App\Http\Controllers\Admin\UserBaruController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
+use App\Http\Controllers\Admin\CategoryController as SellerCategoryController;
+use App\Http\Controllers\Admin\SliderController as SellerSliderController;
+use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
+use App\Http\Controllers\Admin\ProductController as SellerProductController;
+use App\Http\Controllers\Admin\ProductGalleryController as SellerProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController as SellerTransactionController;
+use App\Http\Controllers\Admin\UserController as SellerUserController;
+use App\Http\Controllers\Admin\WithdrawController as SellerWithdrawController;
+use App\Http\Controllers\Admin\CategoryController as BuyerCategoryController;
+use App\Http\Controllers\Admin\SliderController as BuyerSliderController;
+use App\Http\Controllers\Buyer\DashboardController as BuyerDashboardController;
+use App\Http\Controllers\Admin\ProductController as BuyerProductController;
+use App\Http\Controllers\Admin\ProductGalleryController as BuyerProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController as BuyerTransactionController;
+use App\Http\Controllers\Admin\UserController as BuyerUserController;
+use App\Http\Controllers\Admin\WithdrawController as BuyerWithdrawController;
+use App\Http\Controllers\Admin\UserBaruController;
 use App\Http\Controllers\API\testcontroller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -189,6 +205,28 @@ Route::prefix('admin')
         Route::resource('user-baru', UserBaruController::class);
         Route::get('/user-baru/status/{id}/{status_code}', [UserBaruController::class, 'updateStatus'])->name('update-status-baru');
         Route::resource('sertifikat', SertifikatController::class);
+    });
+
+Route::prefix('seller')
+    ->namespace('')
+    ->middleware(['auth', 'seller'])
+    ->group(function(){
+        Route::get('/', [SellerDashboardController::class, 'index'])->name('seller-dashboard');
+
+        //user baru
+        Route::resource('user-baru', UserBaruController::class);
+        Route::get('/user-baru/status/{id}/{status_code}', [UserBaruController::class, 'updateStatus'])->name('update-status-baru');
+    });
+
+Route::prefix('buyer')
+    ->namespace('')
+    ->middleware(['auth', 'buyer'])
+    ->group(function(){
+        Route::get('/', [BuyerDashboardController::class, 'index'])->name('buyer-dashboard');
+
+        //user baru
+        Route::resource('user-baru', UserBaruController::class);
+        Route::get('/user-baru/status/{id}/{status_code}', [UserBaruController::class, 'updateStatus'])->name('update-status-baru');
     });
 
 

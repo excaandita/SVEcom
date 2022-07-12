@@ -42,7 +42,7 @@
               >
             </li>
             @endguest
-         
+
 
           @auth
           <ul class="navbar-nav d-none d-lg-flex">
@@ -65,8 +65,11 @@
                 @if (auth()->user()->roles == 'ADMIN')
                 <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
                 @endif
-                @if (auth()->user()->roles != 'ADMIN')
-                <a href="{{ route('dashboard')}}" class="dropdown-item">Dashboard</a>
+                @if (auth()->user()->roles == 'SELLER')
+                <a href="{{ route('seller-dashboard')}}" class="dropdown-item">Dashboard</a>
+                @endif
+                @if (auth()->user()->roles == 'BUYER')
+                <a href="{{ route('buyer-dashboard')}}" class="dropdown-item">Dashboard</a>
                 @endif
                 <a href="{{ route('dashboard-setting-account')}}" class="dropdown-item"
                   >Pengaturan</a
@@ -93,7 +96,7 @@
                 @else
                   <img src="/images/icon-cart-empty.svg" alt="" />
                 @endif
-                
+
               </a>
             </li>
           </ul>

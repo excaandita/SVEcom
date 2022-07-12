@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.seller')
 
 @section('title')
 Dashboard-Sekolah Vokasi E-COM
@@ -9,8 +9,32 @@ Dashboard-Sekolah Vokasi E-COM
     <div class="section-content section-dashboard-home" data-aos="fade-up">
         <div class="container-fluid">
             <div class="dashboard-heading">
-                <h2 class="dashboard-title">Admin Dashboard</h2>
-                <p class="dashboard-subtitle">Sekolah Vokasi E-Commerce</p>
+                <h2 class="dashboard-title">Ringkasan statistik</h2>
+                <p class="dashboard-subtitle">Rutin pantau perkembangan toko untuk tingkatkan penjualanmu</p>
+            </div>
+            <div class="dashboard-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card text-white bg-info mb-3">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">Pendapatan</div>
+                                <div class="dashboard-card-subtitle">Rp. {{ number_format($pending) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card text-white bg-info mb-3">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">Pesanan Baru</div>
+                                <div class="dashboard-card-subtitle">Rp. {{ number_format($success)}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-heading">
+                <h2 class="dashboard-title">Aktivitas Hari ini</h2>
+                <p class="dashboard-subtitle">Aktivitas yang perlu kamu pantau untuk jaga kepuasan pembeli</p>
             </div>
             <div class="dashboard-content">
                 <div class="row">
@@ -40,18 +64,13 @@ Dashboard-Sekolah Vokasi E-COM
                     </div>
                 </div>
             </div>
-
+        </div>
+        <div class="container-fluid">
             <div class="dashboard-heading">
                 <h3 class="dashboard-title">Recent Transactions</h3>
+                <p class="dashboard-subtitle"></p>
             </div>
             <div class="dashboard-content">
-                {{-- <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Morbi leo risus</li>
-                    <li class="list-group-item">Porta ac consectetur ac</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
-                </ul> --}}
 
                 @foreach ($recentlytransaction as $item)
                 <ul class="list-group list-group-light">
@@ -86,32 +105,43 @@ Dashboard-Sekolah Vokasi E-COM
                 </ul>
                 @endforeach
             </div>
-
             <div class="dashboard-heading">
-                <h3 class="dashboard-title">Portofolio Update</h3>
+                <h3 class="dashboard-title">Produk Terlaris di Tokomu</h3>
+                <p class="dashboard-subtitle"></p>
             </div>
             <div class="dashboard-content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Portofolio Baru</div>
-                                <div class="dashboard-card-subtitle">{{ $pending }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Verifikasi Request</div>
-                                <div class="dashboard-card-subtitle">{{ $success}}</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Kategori</th>
+                                <th scope="col">Etalase</th>
+                                <th scope="col">Nama Produk</th>
+                                <th scope="col">Harga</th>
+                                <th scope="col">Terjual</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($bestselling as $item)
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>{{ $item->nama_kategori }}</td>
+                                <td>{{ $item->nama_kategori }}</td>
+                                <td>{{ $item->nama_produk }}</td>
+                                <td>Rp. {{ number_format($item->price) }}</td>
+                                <td>{{ $item->count }}</td>
+                                {{-- <td>Rp. 1.600.000</td> --}}
+                                {{-- <td>500</td> --}}
+                                <td>Aktif</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 @endsection
