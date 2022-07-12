@@ -17,6 +17,14 @@ use App\Http\Controllers\Admin\ProductGalleryController as SellerProductGalleryC
 use App\Http\Controllers\Admin\TransactionController as SellerTransactionController;
 use App\Http\Controllers\Admin\UserController as SellerUserController;
 use App\Http\Controllers\Admin\WithdrawController as SellerWithdrawController;
+use App\Http\Controllers\Admin\CategoryController as BuyerCategoryController;
+use App\Http\Controllers\Admin\SliderController as BuyerSliderController;
+use App\Http\Controllers\Buyer\DashboardController as BuyerDashboardController;
+use App\Http\Controllers\Admin\ProductController as BuyerProductController;
+use App\Http\Controllers\Admin\ProductGalleryController as BuyerProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController as BuyerTransactionController;
+use App\Http\Controllers\Admin\UserController as BuyerUserController;
+use App\Http\Controllers\Admin\WithdrawController as BuyerWithdrawController;
 use App\Http\Controllers\Admin\UserBaruController;
 use App\Http\Controllers\API\testcontroller;
 use App\Http\Controllers\Auth\LoginController;
@@ -204,14 +212,6 @@ Route::prefix('seller')
     ->middleware(['auth', 'seller'])
     ->group(function(){
         Route::get('/', [SellerDashboardController::class, 'index'])->name('seller-dashboard');
-        Route::resource('category', AdminCategoryController::class);
-        Route::resource('slider', AdminSliderController::class);
-        Route::resource('user', AdminUserController::class);
-        Route::resource('slider', AdminSliderController::class);
-        Route::resource('product', AdminProductController::class);
-        Route::resource('product-gallery', AdminProductGalleryController::class);
-        Route::resource('transaction', AdminTransactionController::class);
-        Route::resource('withdraw', AdminWithdrawController::class);
 
         //user baru
         Route::resource('user-baru', UserBaruController::class);
@@ -222,15 +222,7 @@ Route::prefix('buyer')
     ->namespace('')
     ->middleware(['auth', 'buyer'])
     ->group(function(){
-        Route::get('/', [AdminDashboardController::class, 'index'])->name('buyer-dashboard');
-        Route::resource('category', AdminCategoryController::class);
-        Route::resource('slider', AdminSliderController::class);
-        Route::resource('user', AdminUserController::class);
-        Route::resource('slider', AdminSliderController::class);
-        Route::resource('product', AdminProductController::class);
-        Route::resource('product-gallery', AdminProductGalleryController::class);
-        Route::resource('transaction', AdminTransactionController::class);
-        Route::resource('withdraw', AdminWithdrawController::class);
+        Route::get('/', [BuyerDashboardController::class, 'index'])->name('buyer-dashboard');
 
         //user baru
         Route::resource('user-baru', UserBaruController::class);
