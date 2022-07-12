@@ -84,7 +84,6 @@ Dashboard-Sekolah Vokasi E-COM
                                                     <div class="col-md-10">
                                                         <div class="col">
                                                             <h4 class="fw-bold">{{ $item->products_name }}</h4>
-                                                            <p class="text-muted mb-0">Putih, 123</p>
                                                             <p class="text-muted mb-0">1 x Rp.{{
                                                                 number_format($item->price) }}</p>
                                                         </div>

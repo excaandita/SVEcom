@@ -38,15 +38,8 @@
                 href="{{ route('seller-dashboard')}}"
                 class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('seller-dashboard')) ? 'active' : '' }}"
               >
-              Dashboard Seller
+              Dashboard
           </a>
-              @else
-              <a
-                href="{{ route('buyer-dashboard')}}"
-                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('buyer-dashboard')) ? 'active' : '' }}"
-              >
-                Dashboard
-              </a>
               @endif
               <!-- fungsi if untuk memisah dan menampilkan kolom produk jika roles yang sedang login adalah user-->
               @if (auth()->user()->roles == 'USER')

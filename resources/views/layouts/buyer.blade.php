@@ -33,12 +33,15 @@
             <img src="/images/dashboard-store-logo.svg" class="my-4" alt="" />
           </div>
           <div class="list-group list-group-flush">
+             @if (auth()->user()->roles == 'BUYER')
               <a
-                href="{{ route('dashboard')}}"
-                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard')) ? 'active' : '' }}"
+                href="{{ route('buyer-dashboard')}}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('buyer-dashboard')) ? 'active' : '' }}"
               >
-                Dashboard
-              </a>
+              Dashboard
+          </a>
+              
+              @endif
               <!-- fungsi if untuk memisah dan menampilkan kolom produk jika roles yang sedang login adalah user-->
               @if (auth()->user()->roles == 'USER')
                 <a
