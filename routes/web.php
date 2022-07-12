@@ -57,6 +57,7 @@ use App\Models\Category;
 use App\Models\Pendidikan;
 use App\Models\Prodi;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
