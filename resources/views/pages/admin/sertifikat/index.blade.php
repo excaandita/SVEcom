@@ -12,7 +12,7 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - User</h2>
+            <h2 class="dashboard-title">Admin Dashboard - Sertifikat</h2>
             <p class="dashboard-subtitle">Sekolah Vokasi E-Commerce</p>
         </div>
         <div class="dashboard-content">

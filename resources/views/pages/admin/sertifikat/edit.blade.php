@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    User-Sekolah Vokasi E-COM
+    Sertifikat-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
@@ -12,8 +12,8 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - User</h2>
-            <p class="dashboard-subtitle">Edit User</p>
+            <h2 class="dashboard-title">Admin Dashboard - Sertifikat</h2>
+            <p class="dashboard-subtitle">Edit Sertifikat</p>
         </div>
         <div class="dashboard-content">
             <div class="row">
