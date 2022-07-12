@@ -11,8 +11,8 @@
     <div class="container-fluid" data-aos="fade-up">
         <div class="row">
             <div class="col-md-8 offset-md-2 mb-3">
-              <h2 class="text-center display-4">PRODUK</h2>
-             <form action="{{ route('listproduct') }}" method="GET">
+              <h2 class="text-center display-4">PRODUK</h2> 
+              <form action="{{ route('listproduct') }}" method="GET">
                 <div class="input-group">
                   <input type="search" name="search" value="{{ request()->get('search') }}" class="form-control form-control-lg" placeholder="Cari Produk Pilihanmu">
                     <div class="input-group-append">
@@ -21,7 +21,6 @@
                     </button>
                     </div>
                 </div>
-     
               </form>
             </div>
         </div>

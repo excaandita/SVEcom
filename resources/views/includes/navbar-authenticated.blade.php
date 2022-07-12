@@ -22,6 +22,9 @@
             <li class="nav-item">
               <a href="{{ route('categories')}}" class="nav-link">Categories</a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('listproduct')}}" class="nav-link">Produk</a>
+            </li>
           </ul>
           <!--Desktop Menu-->
           <ul class="navbar-nav d-none d-lg-flex">

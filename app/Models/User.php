@@ -40,7 +40,7 @@ class User extends Authenticatable
         'prodis_id',
         'fakultas',
         'angkatan',
-        'is_active'
+        'is_active',
         'deskripsi'
     ];
 

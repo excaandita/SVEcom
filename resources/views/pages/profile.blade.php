@@ -60,23 +60,20 @@ Kategori - Sekolah Vokasi E-COM
                 <li class="list-group-item">
                   <b>Jumlah Produk</b> <a class="float-right">{{ $products_count }}</a>
                 </li>
+
                 <li class="list-group-item">
                   <b>Total Terjual</b> <a class="float-right">{{ $totalProductSold }}</a>
                 </li>
-<<<<<<< Updated upstream
                 <li class="list-group-item">
-                <b>Barang Terjual</b> <a class="float-right">{{ $sellTransactions}}</a>
+                  <b>Barang Terjual</b> <a class="float-right">{{ $sellTransactions}}</a>
                 </li>
-=======
->>>>>>> Stashed changes
               </ul>
-              <a href="#" class="btn btn-info btn-block"><b>Follow</b></a>
             </div>
           </div>
 
-          <div class="card card-info card-outline">
+          <div class="card card-info card-outline mt-3">
             <div class="card-header">
-              <h3 class="card-title">About Me</h3>
+              <h3 class="card-title">Deskripsi</h3>
             </div>
 
             <div class="card-body">
@@ -107,11 +104,10 @@ Kategori - Sekolah Vokasi E-COM
         <div class="col-md-8">
           <div class="row">
             <div class="col-12" data-aos="fade-up">
-              <h5>All Products</h5>
+              <h5>Produk</h5>
             </div>
           </div>
           <div class="row">
-<<<<<<< Updated upstream
             <!-- batasProduct-->
             @php $incrementProduct = 0 @endphp
             @forelse ($products as $product)
@@ -131,6 +127,81 @@ Kategori - Sekolah Vokasi E-COM
                           background-color: #eee
                         @endif" 
                     >
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link active"
+                          id="pills-home-tab"
+                          data-toggle="pill"
+                          href="#pills-home"
+                          role="tab"
+                          aria-controls="pills-home"
+                          aria-selected="true"
+                          >Produk Terbaru</a
+                        >
+                      </li>
+                      <li class="nav-item" role="presentation">
+                        <a
+                          class="nav-link"
+                          id="pills-profile-tab"
+                          data-toggle="pill"
+                          href="#pills-profile"
+                          role="tab"
+                          aria-controls="pills-profile"
+                          aria-selected="false"
+                          >Produk Terlaris</a
+                        >
+                      </li>
+                    </ul>
+                    
+                        <div class="tab-content" id="pills-tabContent">
+                          <div
+                            class="tab-pane fade show active"
+                            id="pills-home"
+                            role="tabpanel"
+                            aria-labelledby="pills-home-tab"
+                          >
+                            <!-- view list barang  -->
+                            <!-- batasProduct-->
+                              <div class="container">
+                                <div class="row">
+                              @php $incrementProduct = 0 @endphp
+                              @forelse ($products as $product)
+                                <div
+                                class="col-12 col-md-3 col-lg-4"
+                                data-aos="fade-up"
+                                data-aos-delay="{{ $incrementProduct+= 100 }}"
+                                >
+                                
+                                  <a href="{{ route('detail', $product->slug)}}" class="component-products d-block">
+                                    <div class="products-thumbnail">
+                                      
+                                      <div
+                                        class="products-image"
+                                        style="
+                                          @if($product->galleries->count())
+                                            background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
+                                          @else
+                                            background-color: #eee
+                                          @endif" 
+                                      >
+                                      
+                                      </div>
+                                    </div>
+                                    <div class="products-text">{{ $product->name }}</div>
+                                    <div class="products-price">Rp. {{number_format($product->price) }}</div>
+                                  </a>
+                                </div>
+                              @empty
+                                <div class="col-12 text-center py-5" data-aos="fade-up"
+                                    data-aos-delay="100">
+                                  Tidak ada produk
+                                </div>
+                              @endforelse
+                <!-- batas Product-->
+                        </div>
+                      </div>
+                     
+                      </div>
                     </div>
                   </div>
                   <div class="products-text">{{ $product->name }}</div>
@@ -146,7 +217,6 @@ Kategori - Sekolah Vokasi E-COM
                   
                   
             <!-- batas Product-->
-=======
             <div class="col-12 mt-2">
               <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -233,7 +303,6 @@ Kategori - Sekolah Vokasi E-COM
 
               </div>
             </div>
->>>>>>> Stashed changes
           </div>
         </div>
       </div>
