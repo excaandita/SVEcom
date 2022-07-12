@@ -65,10 +65,14 @@
                 @if (auth()->user()->roles == 'ADMIN')
                 <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
                 @endif
-                @if (auth()->user()->roles != 'ADMIN')
-                <a href="{{ route('dashboard')}}" class="dropdown-item">Dashboard</a>
+                @if (auth()->user()->roles == 'USER')
+                <a href="{{ route('seller-dashboard')}}" class="dropdown-item">Dashboard</a>
                 @endif
-                
+                @if (auth()->user()->roles == 'BUYER')
+                <a href="{{ route('buyer-dashboard')}}" class="dropdown-item">Dashboard</a>
+                @endif
+
+
                 <a href="{{ route('dashboard-setting-account')}}" class="dropdown-item"
                   >Pengaturan</a
                 >

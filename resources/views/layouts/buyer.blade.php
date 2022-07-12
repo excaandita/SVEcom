@@ -66,7 +66,7 @@
                   <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
                   <div class="sidebar-submenu">
                     <ul>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('portfolio/biodata')) ? 'active' : '' }}" href="{{ route('portfolio-biodata') }}">Biodata</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('portfolio/biodata')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
                       <a class="nav-link list-group-item-action list-group-item-info" href="#">Kepanitiaan</a>
                       <a class="nav-link list-group-item-action list-group-item-info" href="#">Organisasi</a>
                       <a class="nav-link list-group-item-action list-group-item-info" href="#">Pendidikan</a>
