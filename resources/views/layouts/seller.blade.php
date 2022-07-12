@@ -13,9 +13,8 @@
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
-    <link href="/style/main.scss" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
- 
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -31,71 +30,86 @@
         <!--sideebar-->
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
-            <img src="/images/admin.png" class="my-4" style="max-width: 100px" alt="" />
+            <img src="/images/dashboard-store-logo.svg" class="my-4" alt="" />
           </div>
           <div class="list-group list-group-flush">
-            <a
-              href="{{ route('admin-dashboard')}}"
-              class="list-group-item list-group-item-action list-group-item-info"
-            >
-              Dashboard
-            </a>
-            <a
-              href="{{ route('product.index')}}"
-              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/product')) ? 'active' : '' }}"
-            >
-              Produk
-            </a>
-            <a
-              href="{{ route('product-gallery.index')}}"
-              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}"
-            >
-              Produk Galeri
-            </a>
-            <a
-              href="{{ route('category.index')}}"
-              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/category*')) ? 'active' : '' }}"
-            >
-              Kategori
-            </a>
-            <a
-              href="{{ route('slider.index')}}"
-              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/slider*')) ? 'active' : '' }}"
-            >
-              Slider
-            </a>
-            <a
-              href="{{ route('transaction.index')}}"
-              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/transaction*')) ? 'active' : '' }}"
-            >
-              Transaksi
-            </a>
-            <a
-              href="{{ route('withdraw.index')}}"
-              class="list-group-item list-group-item-action list-group-item-info{{ (request()->is('admin/withdraw*')) ? 'active' : '' }}"
-            >
-              Penarikan 
-            </a>
-            <a
-              href="{{ route('user.index')}}"
-              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/user*')) ? 'active' : '' }}"
-            >
-              Pengguna
-            </a>
-            <a
-              href="#"
-              class="list-group-item list-group-item-action list-group-item-info"
-            >
-              Pengaturan Akun
-            </a>
-            <a
-              href="/index.html"
-              class="list-group-item list-group-item-action list-group-item-info"
-            >
-              Sign Out
-            </a>
+              <a
+                href="{{ route('dashboard')}}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard')) ? 'active' : '' }}"
+              >
+                Dashboard
+              </a>
+              <!-- fungsi if untuk memisah dan menampilkan kolom produk jika roles yang sedang login adalah user-->
+              @if (auth()->user()->roles == 'USER')
+                <a
+                  href="{{ route('dashboard-product')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/products')) ? 'active' : '' }}"
+                >
+                  Produk
+                </a>
+              @endif
+              <a
+                href="{{ route('dashboard-transaction')}}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
+              >
+                Transaksi
+              </a>
+              <!-- fungsi if untuk memisah dan menampilkan kolom setting-store jika roles yang sedang login adalah user-->
+              @if (auth()->user()->roles == 'USER')
+                <a
+                  href="{{ route('dashboard-withdraw')}}"
+                  class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
+                 >
+                  Pengajuan Penarikan
+                </a>
+                <li class="sidebar-dropdown">
+                  <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
+                  <div class="sidebar-submenu">
+                    <ul>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('portfolio/biodata')) ? 'active' : '' }}" href="{{ route('portfolio-biodata') }}">Biodata</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Kepanitiaan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Organisasi</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Pendidikan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Experience</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Project</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Skills</a>
+                    </ul>
+                  </div>
+                </li>
+                <a
+                  href="{{ route('dashboard-setting-store')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
+                >
+                  Pengaturan Toko
+                </a>
+              @endif
+               @if (auth()->user()->roles == 'BUYER')
+                <a
+                  href="{{ route('dashboard-refund')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/refund')) ? 'active' : '' }}"
+                >
+                  Pengembalian Dana
+                </a>
+              @endif
+              <a
+                href="{{ route('dashboard-setting-account')}}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
+              >
+                Pengaturan Akun
+              </a>
+              <a class="list-group-item list-group-item-action list-group-item-info dropdown-item" href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"
+              >
+                Log Out
+              </a>
+
           </div>
         </div>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+          @csrf
+        </form>
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
@@ -143,15 +157,41 @@
                         Hi, {{ Auth::user()->name }}
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/">Logout</a>
+                        <a class="dropdown-item" href="{{ route('home')}}"
+                        >Home</a
+                        >
+                        <a class="dropdown-item" href="{{ url('dashboard/account')}}"
+                        >Pengaturan</a
+                        >
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                          onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                          Log Out
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </div>
                     </li>
-                    
+                    <li class="nav-item" style="list-style: none">
+                      <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
+                        @php
+                          $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                        @endphp
+                        @if ($carts > 0)
+                          <img src="/images/icon-cart-filled.svg" alt="" />
+                          <div class="cart-badge">{{ $carts }}</div>
+                        @else
+                          <img src="/images/icon-cart-empty.svg" alt="" />
+                        @endif
+
+                      </a>
+                    </li>
                 </ul>
                 <!-- Mobile Menu -->
                 <ul class="navbar-nav d-block d-lg-none mt-3">
                     <li class="nav-item">
-                    <a class="nav-link" href="#"> Hi, Siapa anda? </a>
+                    <a class="nav-link" href="#"> Hi, {{ Auth::user()->name }} </a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link d-inline-block" href="#"> Cart </a>
@@ -170,6 +210,7 @@
   </body>
   <!-- Bootstrap core JavaScript -->
   @stack('prepend-script')
+
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -181,6 +222,28 @@
     $("#menu-toggle").click(function (e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
+    });
+
+    $(".sidebar-dropdown > a").click(function() {
+      $(".sidebar-submenu").slideUp(250);
+      if (
+        $(this)
+          .parent()
+          .hasClass("active")
+      ) {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .parent()
+          .removeClass("active");
+      } else {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .next(".sidebar-submenu")
+          .slideDown(250);
+        $(this)
+          .parent()
+          .addClass("active");
+      }
     });
   </script>
    @stack('addon-script')
