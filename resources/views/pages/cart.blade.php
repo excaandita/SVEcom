@@ -111,14 +111,14 @@
                             <div class="form-group">
                                 <label for="address_one">Alamat 1</label>
                                 <input type="text" class="form-control" name="address_one" id="address_one"
-                                    value="Jl. Ir Sutami No.18" />
+                                    />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address_two">Alamat 2</label>
                                 <input type="text" class="form-control" name="address_two" id="address_two"
-                                    value="Jl. Ir Sutami No.26" />
+                                     />
                             </div>
                         </div>
                         <div class="col-md-4">

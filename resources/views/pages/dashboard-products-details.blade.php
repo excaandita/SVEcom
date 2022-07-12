@@ -32,6 +32,45 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          @foreach ($product->galleries as $gallery)
+                            <div class="col-md-4">
+                              <div class="gallery-container">
+                                <img
+                                  src="{{ Storage::url($gallery->photos ?? '') }}"
+                                  alt=""
+                                  class="w-100"
+                                />
+                                <a href="{{ route('dashboard-product-gallery-delete', $gallery->id )}}" class="delete-gallery">
+                                  <img src="/images/icon-delete.svg" alt="" />
+                                </a>
+                              </div>
+                            </div>
+                          @endforeach
+
+                          <div class="col-12">
+                            <form action="{{ route('dashboard-product-gallery-upload') }}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              <input type="hidden" name="products_id" value="{{ $product->id }}">
+                              <input
+                                type="file"
+                                id="file"
+                                name="photos"
+                                style="display: none"
+                                onchange="form.submit()"
+                              />
+                              <button
+                                type="button"
+                                class="btn btn-secondary btn-block mt-3 mb-4"
+                                onclick="thisFileUpload()"
+                              >
+                                Tambah Gambar
+                              </button>
+                            </form> 
+                          </div>
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label>Nama Produk</label>
@@ -83,6 +122,12 @@
                               </div>
                             </div>
                           </div>
+                         
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                           <div class="row">
                             <div class="col">
                               <button
@@ -93,62 +138,21 @@
                               </button>
                             </div>
                           </div>
+                          <div class="row">
+                             <div class="col">
+                              <a href="{{ route('dashboard-product-delete', $product->id )}}" 
+                                 class="btn btn-danger btn-block mt-3">Hapus Produk
+                              </a>
+                            </div>
+                          </div>
+                            
+                          </div>
                         </div>
                       </div>
                     </form>
                   </div>
                 </div>
-                <div class="row mt-2">
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row">
-
-                          @foreach ($product->galleries as $gallery)
-                            <div class="col-md-4">
-                              <div class="gallery-container">
-                                <img
-                                  src="{{ Storage::url($gallery->photos ?? '') }}"
-                                  alt=""
-                                  class="w-100"
-                                />
-                                <a href="{{ route('dashboard-product-gallery-delete', $gallery->id )}}" class="delete-gallery">
-                                  <img src="/images/icon-delete.svg" alt="" />
-                                </a>
-                              </div>
-                            </div>
-                          @endforeach
-
-                          <div class="col-12">
-                            <form action="{{ route('dashboard-product-gallery-upload') }}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                              <input type="hidden" name="products_id" value="{{ $product->id }}">
-                              <input
-                                type="file"
-                                id="file"
-                                name="photos"
-                                style="display: none"
-                                onchange="form.submit()"
-                              />
-                              <button
-                                type="button"
-                                class="btn btn-secondary btn-block mt-3"
-                                onclick="thisFileUpload()"
-                              >
-                                Tambah Gambar
-                              </button>
-                              <div>
-                              <a href="{{ route('dashboard-product-delete', $product->id )}}" 
-                                 class="btn btn-danger btn-block mt-3">Hapus Produk
-                              </a>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+               
               </div>
             </div>
           </div>
