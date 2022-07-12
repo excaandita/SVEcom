@@ -16,7 +16,7 @@ class BiodataController extends Controller
     public function create(){
         $user = Auth::user();
         $prodis = Prodi::all();
-         return view('pages.portofolio.biodata-create', [
+        return view('pages.portofolio.biodata-create', [
             'user' => $user,
             'prodis'=>$prodis
         ]);
@@ -34,6 +34,7 @@ class BiodataController extends Controller
             'angkatan' => 'nullable|integer',
             'fakultas' => 'nullable|string|max:255',
             'deskripsi' => 'nullable',
+            'prodis_id' => 'integer'
         ]);
 
         if ($validator->fails()) {
@@ -52,19 +53,24 @@ class BiodataController extends Controller
         $user['angkatan'] = $request['angkatan'];
         $user['fakultas'] = $request['fakultas'];
         $user['deskripsi'] = $request['deskripsi'];
+        $user['prodis_id'] = $request['prodis_id'];
         $user['updated_at'] = Carbon::now();
 
         $user->save();
+        $prodi = Prodi::where('id', $user->prodis_id)->first();
 
         return view('pages.portofolio.biodata', [
-            'user' => $user
+            'user' => $user,
+            'prodi' => $prodi
         ]);
     }
 
     public function index() {
         $user = Auth::user();
+        $prodi = Prodi::where('id', $user->prodis_id)->first();
         return view('pages.portofolio.biodata', [
-            'user' => $user
+            'user' => $user,
+            'prodi' => $prodi
         ]);
     }
     

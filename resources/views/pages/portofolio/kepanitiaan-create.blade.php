@@ -1,4 +1,4 @@
-@extends('layouts.portofolio')
+@extends('layouts.dashboard')
 
 @section('title')
     Tambah Riwayat Kepanitiaan Mahasiswa Sekolah Vokasi

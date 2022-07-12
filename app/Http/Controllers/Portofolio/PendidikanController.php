@@ -6,9 +6,18 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Pendidikan;
+use Illuminate\Support\Facades\Auth;
 
 class PendidikanController extends Controller
 {
+    public function index()
+    {
+        $pendidikans = Pendidikan::where('users_id', Auth::user()->id)->get();
+        return view('pages.portofolio.pendidikan', [
+            'pendidikans' => $pendidikans
+        ]);
+    }
+
     public function create(){ //fungsi menambahkan riwayat pendidikan
         $users = User::all();
         return view ('pages.portofolio.pendidikan-create',[

@@ -33,6 +33,9 @@
                 <a class="dropdown-item" href="#">Tutorial Bootstrap</a>
               </div>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('portofolio') }}" class="nav-link">Portofolio</a>
+            </li>
           </ul>
           <ul class="navbar-nav ml-auto">
             @guest

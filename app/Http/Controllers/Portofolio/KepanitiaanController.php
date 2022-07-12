@@ -7,24 +7,51 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Kepanitiaan;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rule;
 
 class KepanitiaanController extends Controller
 {
-    public function create(){
-        $users = User::all();
-        return view ('pages.portofolio.kepanitiaan-create',[
-            'users'=> $users
+    public function index()
+    {
+        $kepanitiaans = Kepanitiaan::where('users_id', Auth::user()->id)->get();
+        return view('pages.portofolio.kepanitiaan',[
+            'kepanitiaans' => $kepanitiaans
         ]);
     }
-     public function store(Request $request)
+
+    public function detail(Request $request)
     {
-        $data = $request->all();
+        $kepanitiaan = Kepanitiaan::where('id', $request->id)->first();
 
-        $kepanitiaan = Kepanitiaan::create($data);
+        return view('pages.portofolio.kepanitiaan-detail', [
+            'kepanitiaan' => $kepanitiaan
+        ]);
+    }
 
-        return redirect()->route('portofolio.dashboard');
+    public function create(){
+        return view('pages.portofolio.kepanitiaan-create');
+    }
+    
+    public function store(Request $request)
+    {
+        $validator = Validator::make($request->all(),[
+            'penyelenggara' => 'string|max:255',
+            'nama_acara' => 'string|max:255',
+            'nama_jabatan' => 'string|max:255',
+            'divisi' => 'string|max:255',
+            'waktu_mulai' => 'date',
+            'waktu_selesai' => 'date',
+            'lokasi' => 'string|max:255',
+            'deskripsi' => 'nullable'
+        ]);
+
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
+
+        $kepanitiaan = Kepanitiaan::create($request->toArray());
+        return redirect()->route('portofolio-kepanitiaan-detail', $kepanitiaan->id);
     }
     /**
      * Show the form for editing the specified resource.
@@ -79,14 +106,13 @@ class KepanitiaanController extends Controller
 
         $kepanitiaan->save();
 
-        return redirect()->route('dashboard-kepanitiaan');
+        return redirect()->route('portofolio-kepanitiaan-detail', $kepanitiaan->id);
     }
     public function destroy($id)
     {
         $item = Kepanitiaan::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('transaction.index');
+        return redirect()->route('portofolio-kepanitiaan');
     }
-
 }

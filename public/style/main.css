@@ -11947,3 +11947,33 @@ footer p {
     opacity: 0.5;
 }
 /*# sourceMappingURL=main.css.map */
+
+.tabs .nav-pills > li > a {
+  border-radius: 4px 4px 0 0;
+  padding: 5px 15px;
+  color: black;
+}
+
+.tabs .nav-pills > li > a:hover {
+    background-color: whitesmoke;
+    text-decoration: none;
+    padding: 5px 15px 1.5px 15px;
+}
+
+.tabs .nav-pills > li.active > a {
+    border-radius: 4px 4px 0 0;
+    background-color: #428bca;
+    color: white;
+}
+
+.tabs .nav-pills > li.active > a:hover {
+    border-radius: 4px 4px 0 0;
+    background-color: #428bca;
+}
+
+.tabs .tab-content {
+  color: white;
+  background-color: #428bca;
+  padding: 5px 15px;
+  border-radius: 0 0 4px 4px;
+}
