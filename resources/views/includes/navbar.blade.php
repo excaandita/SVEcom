@@ -25,17 +25,6 @@
             <li class="nav-item">
               <a href="{{ route('listproduct') }}" class="nav-link">Produk</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Portofolio
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Tutorial HTML</a>
-                <a class="dropdown-item" href="#">Tutorial CSS</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Tutorial Bootstrap</a>
-              </div>
-            </li>
             <li class="nav-item">
               <a href="{{ route('portofolio') }}" class="nav-link">Portofolio</a>
             </li>
