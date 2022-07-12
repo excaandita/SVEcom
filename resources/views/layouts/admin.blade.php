@@ -83,6 +83,12 @@
               Pengguna
             </a>
             <a
+              href="{{ route('sertifikat.index') }}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/sertifikat*')) ? 'active' : '' }}"
+            >
+              Sertifikat
+            </a>
+            <a
               href="#"
               class="list-group-item list-group-item-action list-group-item-info"
             >

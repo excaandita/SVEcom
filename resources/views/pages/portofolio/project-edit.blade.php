@@ -1,4 +1,4 @@
-@extends('layouts.portofolio')
+@extends('layouts.dashboard')
 
 @section('title')
    Update Project Mahasiswa Sekolah Vokasi
@@ -38,7 +38,7 @@
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Judul</label>
-                                <input type="text" class="form-control" name="nama" value="{{ $item->judul }}" />
+                                <input type="text" class="form-control" name="judul" value="{{ $item->judul }}" />
                               </div>
                             </div>
                             <div class="col-md-4">

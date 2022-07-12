@@ -6,28 +6,44 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Skill;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class SkillController extends Controller
 {
-    public function create(){
-        $users = User::all();
-        return view ('pages.portofolio.skill-create',[
-            'users'=> $users
+    public function index()
+    {
+        $skills = Skill::where('users_id', Auth::user()->id)->get();
+        return view('pages.portofolio.skills', [
+            'skills' => $skills
         ]);
+    }
+
+    public function create(){
+        return view('pages.portofolio.skill-create');
     }
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'jenis' => 'string|max:255',
+            'no_sertifikat' => 'string|max:255',
+            'lembaga' => 'string|max:255',
+            'tanggal' => 'date',
+            'tanggal_expired' => 'date|nullable',
+        ]);
 
-        $skills = Skill::create($data);
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
 
-        return redirect()->route('portofolio.dashboard');
+        $skill = Skill::create($request->toArray());
+        return redirect()->route('portofolio-skills');
     }
     public function destroy($id)
     {
         $item = Skill::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('transaction.index');
+        return redirect()->route('portofolio-skills');
     }
 }

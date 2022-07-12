@@ -6,22 +6,50 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Whoops\Run;
 
 class ProjectsController extends Controller
 {
-    public function create(){
-        $users = User::all();
-        return view ('pages.portofolio.project-create',[
-            'users'=> $users
+    public function index()
+    {
+        $projects = Project::where('users_id', Auth::user()->id)->get();
+
+        return view('pages.portofolio.projects', [
+            'projects' => $projects
         ]);
+    }
+
+    public function detail(Request $request)
+    {
+        $project = Project::where('id', $request->id)->first();
+
+        return view('pages.portofolio.project-detail', [
+            'project' => $project
+        ]);
+    }
+
+    public function create(){
+        return view ('pages.portofolio.project-create');
     }
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'judul' => 'string|max:255',
+            'status' => 'string|max:255',
+            'tanggal_mulai' => 'date',
+            'tanggal_selesai' => 'date',
+            'deskripsi' => 'nullable'
+        ]);
 
-        $projects = Project::create($data);
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
 
-        return redirect()->route('portofolio.dashboard');
+        $project = Project::create($request->toArray());
+        return redirect()->route('portofolio-projects-detail', $project->id);
     }
      /**
      * Show the form for editing the specified resource.
@@ -45,21 +73,38 @@ class ProjectsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'judul' => 'string|max:255',
+            'status' => 'string|max:255',
+            'tanggal_mulai' => 'date',
+            'tanggal_selesai' => 'date',
+            'deskripsi' => 'nullable'
+        ]);
 
-        $item = Project::findOrFail($id);
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
 
-        $item->update($data);
+        $project = Project::where('id', $request->id)->first();
 
-        return redirect()->route('dashboard-kepanitiaan');
+        $project['judul'] = $request['judul'];
+        $project['status'] = $request['status'];
+        $project['tanggal_mulai'] = $request['tanggal_mulai'];
+        $project['tanggal_selesai'] = $request['tanggal_selesai'];
+        $project['deskripsi'] = $request['deskripsi'];
+        $project['updated_at'] = Carbon::now();
+
+        $project->save();
+
+        return redirect()->route('portofolio-projects-detail', $project->id);
     }
     public function destroy($id)
     {
         $item = Project::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('transaction.index');
+        return redirect()->route('portofolio-projects');
     }
 }

@@ -6,22 +6,50 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Organisasi;
 use App\Models\User;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class OrganisasiController extends Controller
 {
-    public function create(){
-        $users = User::all();
-        return view ('pages.portofolio.organisasi-create',[
-            'users'=> $users
+    public function index()
+    {
+        $organisasis = Organisasi::where('users_id', Auth::user()->id)->get();
+        return view('pages.portofolio.organisasi',[
+            'organisasis' => $organisasis
         ]);
     }
+
+    public function detail(Request $request)
+    {
+        $organisasi = Organisasi::where('id', $request->id)->first();
+
+        return view('pages.portofolio.organisasi-detail', [
+            'organisasi' => $organisasi
+        ]);
+    }
+
+    public function create(){
+        return view('pages.portofolio.organisasi-create');
+    }
+    
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'nama' => 'string|max:255',
+            'jabatan' => 'string|max:255',
+            'divisi' => 'string|max:255',
+            'waktu_mulai' => 'date',
+            'waktu_selesai' => 'date',
+            'deskripsi' => 'nullable'
+        ]);
 
-        $organisasis = Organisasi::create($data);
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
 
-        return redirect()->route('portofolio.dashboard');
+        $organisasi = Organisasi::create($request->toArray());
+        return redirect()->route('portofolio-organisasi-detail', $organisasi->id);
     }
     /**
      * Show the form for editing the specified resource.
@@ -47,19 +75,38 @@ class OrganisasiController extends Controller
      */
      public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'nama' => 'string|max:255',
+            'jabatan' => 'string|max:255',
+            'divisi' => 'string|max:255',
+            'waktu_mulai' => 'date',
+            'waktu_selesai' => 'date',
+            'deskripsi' => 'nullable'
+        ]);
 
-        $item = Organisasi::findOrFail($id);
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
 
-        $item->update($data);
+        $organisasi = Organisasi::where('id', $request->id)->first();
 
-        return redirect()->route('dashboard-kepanitiaan');
+        $organisasi['nama'] = $request['nama'];
+        $organisasi['jabatan'] = $request['jabatan'];
+        $organisasi['divisi'] = $request['divisi'];
+        $organisasi['waktu_mulai'] = $request['waktu_mulai'];
+        $organisasi['waktu_selesai'] = $request['waktu_selesai'];
+        $organisasi['deskripsi'] = $request['deskripsi'];
+        $organisasi['updated_at'] = Carbon::now();
+
+        $organisasi->save();
+
+        return redirect()->route('portofolio-organisasi-detail', $organisasi->id);
     }
     public function destroy($id)
     {
         $item = Organisasi::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('transaction.index');
+        return redirect()->route('portofolio-organisasi');
     }
 }

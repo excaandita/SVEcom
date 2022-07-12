@@ -1,4 +1,4 @@
-@extends('layouts.portofolio')
+@extends('layouts.dashboard')
 
 @section('title')
     Tambah Project Mahasiswa Sekolah Vokasi

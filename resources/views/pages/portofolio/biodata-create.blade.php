@@ -1,4 +1,4 @@
-@extends('layouts.portofolio')
+@extends('layouts.dashboard')
 
 @section('title')
     Tambah Biodata Mahasiswa Sekolah Vokasi
