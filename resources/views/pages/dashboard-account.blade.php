@@ -77,7 +77,7 @@
                                   <option v-for="province in provinces" :value="province.id"> @{{ province.name }} </option>
                                 </select>
                                 <select v-else class="form-control"></select>
-                              </div> 
+                              </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
@@ -151,11 +151,6 @@
 <script src="https://unpkg.com/vue-toasted"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
-    $("#menu-toggle").click(function (e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-    });
-
   var locations = new Vue({
     el: "#locations",
     mounted() {
@@ -166,9 +161,8 @@
     data: {
       provinces: null,
       regencies: null,
-      provinces_id: {{ $user->provinces_id }},
-      regencies_id: {{ $user->regencies_id }},
-
+      provinces_id: {{ $user->provinces_id ?? "null" }},
+      regencies_id: {{ $user->regencies_id ?? "null" }},
     },
     methods: {
       getProvincesData() {
@@ -189,7 +183,6 @@
     },
     watch: {
       provinces_id: function(val, oldVal) {
-        this.regencies_id = null;
         this.getRegenciesData();
       }
     }
