@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
+use App\Http\Controllers\Admin\SertifikatController;
 use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
@@ -30,6 +31,9 @@ use App\Http\Controllers\Portofolio\ProjectsController;
 use App\Http\Controllers\Portofolio\SkillController;
 use App\Http\Controllers\Portofolio\SettingController;
 use App\Models\Category;
+use App\Models\Pendidikan;
+use App\Models\Prodi;
+use App\Models\Project;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -121,23 +125,28 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/dashboard/portofolio/pendidikan', [PendidikanController::class, 'store'])->name('portofolio-pendidikan-store');
     Route::get('/dashboard/portofolio/pendidikan/edit/{id}', [PendidikanController::class, 'edit'])->name('portofolio-pendidikan-edit'); 
     Route::post('/dashboard/portofolio/pendidikan/{id}', [PendidikanController::class, 'update'])->name('portofolio-pendidikan-update');
-    Route::post('/dashboard/portofolio/pendidikan/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-pendidikan-delete');
+    Route::get('/dashboard/portofolio/pendidikan/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-pendidikan-delete');
 
-    Route::get('/portofolio/experiences/create', [ExperiencesController::class, 'create'])->name('portofolio-experiences-create');
-    Route::post('portofolio/experiences', [ExperiencesController::class, 'store'])->name('portofolio-experiences-store');
-    Route::get('/dashboard/experiences', [ExperiencesController::class, 'index'])->name('dashboard-experiences');
-    Route::get('/dashboard/experiences/detail', [ExperiencesController::class, 'detail'])->name('dashboard-experience-details');
-    Route::get('/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit'); 
-    Route::post('/portofolio/experiences/{id}', [ExperiencesController::class, 'update'])->name('portofolio-experiences-update'); 
+    Route::get('/dashboard/portofolio/experiences', [ExperiencesController::class, 'index'])->name('portofolio-experiences');
+    Route::get('/dashboard/portofolio/experiences/{id}', [ExperiencesController::class, 'detail'])->name('portofolio-experiences-detail');
+    Route::get('/dashboard/portfolio/experiences/create', [ExperiencesController::class, 'create'])->name('portofolio-experiences-create');
+    Route::post('/dashboard/portofolio/experiences', [ExperiencesController::class, 'store'])->name('portofolio-experiences-store');
+    Route::get('/dashboard/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit'); 
+    Route::post('/dashboard/portofolio/experiences/{id}', [ExperiencesController::class, 'update'])->name('portofolio-experiences-update');
+    Route::get('/dashboard/portoffolio/experiences/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-experiences-delete');
 
-    Route::get('/portofolio/projects/create', [ProjectsController::class, 'create'])->name('portofolio-projects-create');
-    Route::post('portofolio/projects', [ProjectsController::class, 'store'])->name('portofolio-projects-store');
-    Route::get('/portofolio/project/edit/{id}', [ProjectsController::class, 'edit'])->name('portofolio-project-edit'); 
-    Route::post('/portofolio/project/{id}', [ProjectsController::class, 'update'])->name('portofolio-project-update'); 
-    Route::post('/portofolio/project/delete/{id}', [ProjectsController::class, 'destroy'])->name('portofolio-project-delete');
+    Route::get('/dashboard/portofolio/projects', [ProjectsController::class, 'index'])->name('portofolio-projects');
+    Route::get('/dashboard/portofolio/projects/{id}', [ProjectsController::class, 'detail'])->name('portofolio-projects-detail'); 
+    Route::get('/dashboard/portfolio/projects/create', [ProjectsController::class, 'create'])->name('portofolio-projects-create');
+    Route::post('/dashboard/portofolio/projects', [ProjectsController::class, 'store'])->name('portofolio-projects-store');
+    Route::get('/dashboard/portofolio/project/edit/{id}', [ProjectsController::class, 'edit'])->name('portofolio-project-edit'); 
+    Route::post('/dashboard/portofolio/project/{id}', [ProjectsController::class, 'update'])->name('portofolio-project-update'); 
+    Route::get('/dashboard/portofolio/project/delete/{id}', [ProjectsController::class, 'destroy'])->name('portofolio-project-delete');
     
-    Route::get('/portofolio/skill/create', [SkillController::class, 'create'])->name('portofolio-skill-create');
-    Route::post('portofolio/skill', [SkillController::class, 'store'])->name('portofolio-skill-store');
+    Route::get('/dashboard/portofolio/skills', [SkillController::class, 'index'])->name('portofolio-skills');
+    Route::get('/dashboard/portfolio/skill/create', [SkillController::class, 'create'])->name('portofolio-skill-create');
+    Route::post('/dashboard/portofolio/skill', [SkillController::class, 'store'])->name('portofolio-skill-store');
+    Route::get('/dashboard/portofolio/skill/delete/{id}', [SkillController::class, 'destroy'])->name('portofolio-skill-delete');
 
     Route::get('/dashboard/portofolio/setting', [SettingController::class,'index'])->name('portofolio-setting');
     Route::post('/dashboard/portofolio/setting/update', [SettingController::class, 'update'])->name('portofolio-setting-update');
@@ -155,6 +164,7 @@ Route::prefix('admin')
         Route::resource('product-gallery', AdminProductGalleryController::class);
         Route::resource('transaction', AdminTransactionController::class);
         Route::resource('withdraw', AdminWithdrawController::class);
+        Route::resource('sertifikat', SertifikatController::class);
     });
 
 Auth::routes();

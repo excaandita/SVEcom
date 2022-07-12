@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsVerifiedToUsersTable extends Migration
+class AddStatusToSkillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddIsVerifiedToUsersTable extends Migration
     public function up()
     {
         Schema::table('skills', function (Blueprint $table) {
-            $table->boolean('isVerified');
+            $table->string('status')->default('pending');
         });
     }
 
@@ -26,7 +26,7 @@ class AddIsVerifiedToUsersTable extends Migration
     public function down()
     {
         Schema::table('skills', function (Blueprint $table) {
-            $table->dropColumn('isVerified');
+            $table->dropColumn('status');
         });
     }
 }

@@ -11,6 +11,23 @@ use App\Models\User;
 
 class ExperiencesController extends Controller
 {
+    public function index()
+    {
+        $experiences = Experience::where('users_id', Auth::user()->id)->get();
+        return view('pages.portofolio.experiences', [
+            'experiences' => $experiences
+        ]);
+    }
+
+    public function detail(Request $request)
+    {
+        $experience = Experience::where('id', $request->id)->first();
+
+        return view('pages.portofolio.experience-detail', [
+            'experience' => $experience
+        ]);
+    }
+
     public function create(){
         $user = Auth::user();
         $jabatans = Jabatan::all();
@@ -26,16 +43,6 @@ class ExperiencesController extends Controller
         $experiences = Experience::create($data);
 
         return redirect()->route('dashboard-experiences');
-    }
-    public function index()
-    {                           
-        // varible untuk menampilkan data di cart
-        $experiences = Experience::with(['jabatan', 'user']) //megambil data relasi di bagian cart untuk product & user
-                ->where('users_id', Auth::user()->id) //melihat cart bedasarkan user yang sedang aktif
-                ->get();
-        return view('pages.portofolio.dashboard-experiences', [
-            'experiences' => $experiences,
-        ]);
     }
     /**
      * Show the form for editing the specified resource.

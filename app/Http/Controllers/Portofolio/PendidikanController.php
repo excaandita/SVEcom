@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Pendidikan;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class PendidikanController extends Controller
 {
@@ -19,18 +21,25 @@ class PendidikanController extends Controller
     }
 
     public function create(){ //fungsi menambahkan riwayat pendidikan
-        $users = User::all();
-        return view ('pages.portofolio.pendidikan-create',[
-            'users'=> $users
-        ]);
+        return view ('pages.portofolio.pendidikan-create');
     }
     public function store(Request $request)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'jenjang' => 'string|max:255',
+            'nama' => 'string|max:255',
+            'jurusan' => 'string|max:255',
+            'masuk' => 'integer',
+            'keluar' => 'integer',
+        ]);
 
-        $pendidikans = Pendidikan::create($data);
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
 
-        return redirect()->route('portofolio.dashboard');
+        $pendidikan = Pendidikan::create($request->toArray());
+
+        return redirect()->route('portofolio-pendidikan');
     }
      /**
      * Show the form for editing the specified resource.
@@ -56,19 +65,36 @@ class PendidikanController extends Controller
      */
      public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $validator = Validator::make($request->all(),[
+            'jenjang' => 'string|max:255',
+            'nama' => 'string|max:255',
+            'jurusan' => 'string|max:255',
+            'masuk' => 'integer',
+            'keluar' => 'integer',
+        ]);
 
-        $item =Pendidikan::findOrFail($id);
+        if ($validator->fails()) {
+            return response(['errors'=>$validator->errors()->all()], 422);
+        }
 
-        $item->update($data);
+        $pendidikan = Pendidikan::where('id', $request->id)->first();
 
-        return redirect()->route('dashboard-kepanitiaan');
+        $pendidikan['jenjang'] = $request['jenjang'];
+        $pendidikan['nama'] = $request['nama'];
+        $pendidikan['jurusan'] = $request['jurusan'];
+        $pendidikan['masuk'] = $request['masuk'];
+        $pendidikan['keluar'] = $request['keluar'];
+        $pendidikan['updated_at'] = Carbon::now();
+
+        $pendidikan->save();
+
+        return redirect()->route('portofolio-pendidikan');
     }
     public function destroy($id)
     {
         $item = Pendidikan::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('transaction.index');
+        return redirect()->route('portofolio-pendidikan');
     }
 }
