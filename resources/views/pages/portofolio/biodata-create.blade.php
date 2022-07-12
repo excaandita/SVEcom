@@ -107,7 +107,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label>Fakultas</label>
-                                <input type="text" class="form-control" name="fakultas" value="{{ $user->fakultas }}" />
+                                <input type="text" class="form-control" name="fakultas" value="Sekolah Vokasi" disabled />
                               </div>
                             </div>
                             <div class="col-md-12">
