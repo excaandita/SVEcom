@@ -21,8 +21,8 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
-                                    <thead>
+                                <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
+                                    <thead class="bg-info">
                                         <tr>
                                             <th>Kode Transaksi</th>
                                             <th>Nama</th>

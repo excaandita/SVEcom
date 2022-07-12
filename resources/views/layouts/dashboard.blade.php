@@ -35,7 +35,7 @@
           <div class="list-group list-group-flush">
               <a
                 href="{{ route('dashboard')}}"
-                class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard')) ? 'active' : '' }}"
               >
                 Dashboard
               </a>
@@ -43,14 +43,14 @@
               @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-product')}}"
-                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/products')) ? 'active' : '' }}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/products')) ? 'active' : '' }}"
                 >
                   Produk
                 </a>
               @endif
               <a
                 href="{{ route('dashboard-transaction')}}"
-                class="list-group-item list-group-item-action {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
               >
                 Transaksi
               </a>
@@ -62,9 +62,24 @@
                  >
                   Pengajuan Penarikan 
                 </a>
+                <li class="sidebar-dropdown">
+                  <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
+                  <div class="sidebar-submenu">
+                    <ul>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/biodata*')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Experience</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/setting*') ? 'active' : '') }}" href="{{ route('portofolio-setting') }}">Pengaturan Portofolio</a>
+                    </ul>
+                  </div>
+                </li>
                 <a
                   href="{{ route('dashboard-setting-store')}}"
-                  class="list-group-item list-group-item-action {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
                 >
                   Pengaturan Toko
                 </a>
@@ -79,7 +94,7 @@
               @endif
               <a
                 href="{{ route('dashboard-setting-account')}}"
-                class="list-group-item list-group-item-action {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/account*')) ? 'active' : '' }}"
               >
                 Pengaturan Akun
               </a>
@@ -208,6 +223,28 @@
     $("#menu-toggle").click(function (e) {
       e.preventDefault();
       $("#wrapper").toggleClass("toggled");
+    });
+
+    $(".sidebar-dropdown > a").click(function() {
+      $(".sidebar-submenu").slideUp(250);
+      if (
+        $(this)
+          .parent()
+          .hasClass("active")
+      ) {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .parent()
+          .removeClass("active");
+      } else {
+        $(".sidebar-dropdown").removeClass("active");
+        $(this)
+          .next(".sidebar-submenu")
+          .slideDown(250);
+        $(this)
+          .parent()
+          .addClass("active");
+      }
     });
   </script>
    @stack('addon-script')

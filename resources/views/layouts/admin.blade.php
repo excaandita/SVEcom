@@ -36,25 +36,25 @@
           <div class="list-group list-group-flush">
             <a
               href="{{ route('admin-dashboard')}}"
-              class="list-group-item list-group-item-action"
+              class="list-group-item list-group-item-action list-group-item-info"
             >
               Dashboard
             </a>
             <a
               href="{{ route('product.index')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/product')) ? 'active' : '' }}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/product')) ? 'active' : '' }}"
             >
               Produk
             </a>
             <a
               href="{{ route('product-gallery.index')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/product-gallery*')) ? 'active' : '' }}"
             >
               Produk Galeri
             </a>
             <a
               href="{{ route('category.index')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/category*')) ? 'active' : '' }}"
             >
               Kategori
             </a>
@@ -72,19 +72,25 @@
             </a>
             <a
               href="{{ route('user.index')}}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/user*')) ? 'active' : '' }}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/user*')) ? 'active' : '' }}"
             >
               Pengguna
             </a>
             <a
+              href="{{ route('sertifikat.index') }}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/sertifikat*')) ? 'active' : '' }}"
+            >
+              Sertifikat
+            </a>
+            <a
               href="#"
-              class="list-group-item list-group-item-action"
+              class="list-group-item list-group-item-action list-group-item-info"
             >
               Pengaturan Akun
             </a>
             <a
               href="/index.html"
-              class="list-group-item list-group-item-action"
+              class="list-group-item list-group-item-action list-group-item-info"
             >
               Sign Out
             </a>

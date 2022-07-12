@@ -1,5 +1,5 @@
 <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark navbar-store fixed-top navbar-fixed-top"
+      class="navbar navbar-expand-lg navbar-light bg-light navbar-store fixed-top navbar-fixed-top"
       data-aos="fade-up-left"
     >
       <div class="container">
@@ -33,6 +33,9 @@
                 <a class="dropdown-item" href="#">Tutorial Bootstrap</a>
               </div>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('portofolio') }}" class="nav-link">Portofolio</a>
+            </li>
           </ul>
           <ul class="navbar-nav ml-auto">
             @guest
@@ -42,7 +45,7 @@
             <li class="nav-item ">
               <a
                 href="{{ route('login')}}"
-                class="btn btn-info nav-link px-5 text-white"
+                class="btn btn-dark nav-link px-5 text-white"
                 >Sign-In</a
               >
             </li>
@@ -62,7 +65,7 @@
                 <img
                   src="/images/icon-user.png"
                   alt=""
-                  class="rounded-circle mr-2 profile-picture"
+                  class="rounded-circle mr-3 profile-picture"
                 />
                 {{ Auth::user()->name }}
               </a>
