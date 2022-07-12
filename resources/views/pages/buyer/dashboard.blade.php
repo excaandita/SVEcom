@@ -95,7 +95,6 @@ Dashboard-Sekolah Vokasi E-COM
                                                 {{-- <div class="col-md-12" style="text-align:left;padding-left: 10px">
                                                     --}}
                                                     <h5 class="fw-bold mb-1">{{ $item->store_name }}</h5>
-                                                    <p class="text-muted mb-0">Putih, 123</p>
                                                     {{--
                                                 </div> --}}
                                             </div>
@@ -166,7 +165,6 @@ Dashboard-Sekolah Vokasi E-COM
                                                 {{-- <div class="col-md-12" style="text-align:left;padding-left: 10px">
                                                     --}}
                                                     <h5 class="fw-bold mb-1">{{ $item->store_name }}</h5>
-                                                    <p class="text-muted mb-0">Putih, 123</p>
                                                     {{--
                                                 </div> --}}
                                             </div>
@@ -237,7 +235,6 @@ Dashboard-Sekolah Vokasi E-COM
                                                 {{-- <div class="col-md-12" style="text-align:left;padding-left: 10px">
                                                     --}}
                                                     <h5 class="fw-bold mb-1">{{ $item->store_name }}</h5>
-                                                    <p class="text-muted mb-0">{{ $item->products_name }}</p>
                                                     {{--
                                                 </div> --}}
                                             </div>
