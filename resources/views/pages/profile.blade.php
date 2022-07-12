@@ -235,21 +235,12 @@ Kategori - Sekolah Vokasi E-COM
                   <!-- batasProduct-->
                   <div class="container">
                     <div class="row">
-                      @php $incrementProduct = 0 @endphp
-                      @forelse ($products as $product)
-                      <div class="col-12 col-md-3 col-lg-4" data-aos="fade-up"
-                        data-aos-delay="{{ $incrementProduct+= 100 }}">
-
-                        <a href="{{ route('detail', $product->slug)}}" class="component-products d-block">
-                          <div class="products-thumbnail">
-
-                            <div class="products-image" style="
-                            @if($product->galleries->count())
-                                background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
-                            @else
-                                background-color: #eee
-                            @endif">
-
+                           <div class="col-12 mt-2">
+                                <ul 
+                                   class="nav nav-pills mb-3"
+                                   id="pills-tab"
+                                   role="tablist"
+                                 >
                             </div>
                           </div>
                           <div class="products-text">{{ $product->name }}</div>
