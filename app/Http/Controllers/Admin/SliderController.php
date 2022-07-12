@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
-use App\Models\Category;
-use App\Models\User;
-use Illuminate\Support\Str;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
-use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Requests\Admin\SliderRequest;
 use Yajra\DataTables\DataTables as DataTablesDataTables;
 
-class ProductController extends Controller
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,23 +21,23 @@ class ProductController extends Controller
     {
         if(request()->ajax())
         {
-            $query = Product::with(['user','category'])->withCount('transactiondetail');
+            $query = Slider::query();
 
             return DataTablesDataTables::of($query)
                 ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-info dropdown=toggle mr-1 mb-1"
+                                <button class="btn btn-primary dropdown=toggle mr-1 mb-1"
                                         type="button"
                                         data-toggle="dropdown">
                                         Aksi
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('product.edit', $item->id) .'">
+                                    <a class="dropdown-item" href="' . route('slider.edit', $item->id) .'">
                                         Edit
                                     </a>
-                                    <form action="'. route('product.destroy', $item->id) .'" method="POST">
+                                    <form action="'. route('slider.destroy', $item->id) .'" method="POST">
                                         '. method_field('delete').  csrf_field() .'
                                         <button type="submit" class="dropdown-item text-danger">
                                             Hapus
@@ -51,11 +48,14 @@ class ProductController extends Controller
                         </div>
                     ';
                 })
+                ->editColumn('photo', function($item){
+                    return $item->photo ? '<img src="'. Storage::url($item->photo) .'" style="max-height: 40px" />' : '';
+                })
                 ->rawColumns(['action','photo'])
                 ->make();
         }
 
-        return view('pages.admin.product.index');
+        return view('pages.admin.slider.index');
     }
 
     /**
@@ -65,13 +65,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        $categories = Category::all();
-        
-        return view('pages.admin.product.create', [
-            'users' => $users,
-            'categories' => $categories,
-        ]);
+        return view('pages.admin.slider.create');
     }
 
     /**
@@ -80,15 +74,15 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(SliderRequest $request)
     {
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
+        $data['photo'] = $request->file('photo')->store('assets/slider', 'public');
 
-        Product::create($data);
+        Slider::create($data);
 
-        return redirect()->route('product.index');
+        return redirect()->route('slider.index');
     }
 
     /**
@@ -110,14 +104,10 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $item = Product::findOrFail($id);
-        $users = User::all();
-        $categories = Category::all();
+        $item = Slider::findOrFail($id);
 
-        return view('pages.admin.product.edit',[
+        return view('pages.admin.slider.edit',[
             'item' => $item,
-            'users' => $users,
-            'categories' => $categories,
         ]);
     }
 
@@ -128,17 +118,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(SliderRequest $request, $id)
     {
         $data = $request->all();
 
-        $item = Product::findOrFail($id);
+        $data['photo'] = $request->file('photo')->store('assets/slider', 'public');
 
-        $data['slug'] = Str::slug($request->name);
+        $item = Slider::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('product.index');
+        return redirect()->route('slider.index');
     }
 
     /**
@@ -149,10 +139,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $item = Product::findOrFail($id);
+        $item = Slider::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('product.index');
+        return redirect()->route('slider.index');
     }
 }
-

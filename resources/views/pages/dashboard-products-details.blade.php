@@ -32,67 +32,10 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Nama Produk</label>
-                                <input
-                                  type="text"
-                                  name="name"
-                                  class="form-control"
-                                  value="{{$product->name }}"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Harga Produk</label>
-                                <input
-                                  type="number"
-                                  name="price"
-                                  class="form-control"
-                                  value="{{ $product->price }}"
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Kategori</label>
-                                <select name="categories_id" class="form-control">
-                                  <option value="{{ $product->categories_id }}">{{ $product->category->name }}</option>
-                                  @foreach ($categories as $category)
-                                      <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                  @endforeach
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Deskripsi Produk</label>
-                                <textarea name="description" id="editor">{!! $product->description !!}</textarea>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="row">
-                            <div class="col">
-                              <button
-                                type="submit"
-                                class="btn btn-success col-md-12"
-                              >
-                                Update Produk
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-                <div class="row mt-2">
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
                         <div class="row">
-
                           @foreach ($product->galleries as $gallery)
                             <div class="col-md-4">
                               <div class="gallery-container">
@@ -121,23 +64,95 @@
                               />
                               <button
                                 type="button"
-                                class="btn btn-secondary btn-block mt-3"
+                                class="btn btn-secondary btn-block mt-3 mb-4"
                                 onclick="thisFileUpload()"
                               >
                                 Tambah Gambar
                               </button>
-                              <div>
-                              <a href="{{ route('dashboard-product-delete', $product->id )}}" 
-                                 class="btn btn-danger btn-block mt-3">Hapus Produk
-                              </a>
-                              </div>
-                            </form>
+                            </form> 
                           </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Nama Produk</label>
+                                <input
+                                  type="text"
+                                  name="name"
+                                  class="form-control"
+                                  value="{{$product->name }}"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Harga Produk</label>
+                                <input
+                                  type="number"
+                                  name="price"
+                                  class="form-control"
+                                  value="{{ $product->price }}"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Stok Produk</label>
+                                <input
+                                  type="number"
+                                  name="stock"
+                                  class="form-control"
+                                  value="{{ $product->stock }}"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Kategori</label>
+                                <select name="categories_id" class="form-control">
+                                  <option value="{{ $product->categories_id }}">{{ $product->category->name }}</option>
+                                  @foreach ($categories as $category)
+                                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Deskripsi Produk</label>
+                                <textarea name="description" id="editor">{!! $product->description !!}</textarea>
+                              </div>
+                            </div>
+                          </div>
+                         
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
+                          <div class="row">
+                            <div class="col">
+                              <button
+                                type="submit"
+                                class="btn btn-success col-md-12"
+                              >
+                                Update Produk
+                              </button>
+                            </div>
+                          </div>
+                          <div class="row">
+                             <div class="col">
+                              <a href="{{ route('dashboard-product-delete', $product->id )}}" 
+                                 class="btn btn-danger btn-block mt-3">Hapus Produk
+                              </a>
+                            </div>
+                          </div>
+                            
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+               
               </div>
             </div>
           </div>

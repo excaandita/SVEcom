@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Produk-Sekolah Vokasi E-COM
+    Dashboard-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - Product</h2>
+            <h2 class="dashboard-title">Admin Dashboard - Slider</h2>
             <p class="dashboard-subtitle">Sekolah Vokasi E-Commerce</p>
         </div>
         <div class="dashboard-content">
@@ -20,20 +20,18 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('product.create')}}" class="btn btn-info mb-3">
-                                Tambah Produk
+                            <a href="{{ route('slider.create')}}" class="btn btn-primary mb-3">
+                                Tambah Slider
                             </a>
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
-                                    <thead class="bg-info">
+                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                    <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Nama</th>
-                                            <th>User</th>
-                                            <th>Kategori</th>
-                                            <th>Harga</th>
-                                            <th>Stok</th>
-                                            <th>Terjual</th>
+                                            <th>Gambar</th>
+                                            <th>Status</th>
+                                            <th>alt</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -61,12 +59,10 @@
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
-                { data: 'user.name', name: 'user.name' },
-                { data: 'category.name', name: 'category.name' },
-                { data: 'price', name: 'price' },
-                { data: 'stock', name: 'stock' },
-                { data: 'transactiondetail_count', name: 'transactiondetail_count' },
-                {
+                { data: 'photo', name: 'photo' },
+                { data: 'status', name: 'status' },
+                { data: 'alt', name: 'alt' },
+                { 
                     data: 'action',
                     name: 'action',
                     orderable: false,

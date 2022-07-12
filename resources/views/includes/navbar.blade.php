@@ -22,6 +22,9 @@
             <li class="nav-item">
               <a href="{{ route('categories') }}" class="nav-link">Categories</a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('listproduct') }}" class="nav-link">Produk</a>
+            </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Portofolio
@@ -73,7 +76,9 @@
                 @if (auth()->user()->roles == 'ADMIN')
                 <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
                 @endif
+                @if (auth()->user()->roles != 'ADMIN')
                 <a href="{{ route('dashboard')}}" class="dropdown-item">Dashboard</a>
+                @endif
                 <a href="{{ route('dashboard-setting-account')}}" class="dropdown-item"
                   >Pengaturan</a
                 >
@@ -91,7 +96,7 @@
             <li class="nav-item" style="list-style: none">
               <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
                 @php
-                  $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                  $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity');
                 @endphp
                 @if ($carts > 0)
                   <img src="/images/icon-cart-filled.svg" alt="" />

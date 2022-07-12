@@ -4,11 +4,11 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class SliderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
+     * UNTUK MEMBUAT VALIDASI CONTROLLER TANPA MEMBUAT VALIDASI DI TIAP FUNCTIONNYA
      * @return bool
      */
     public function authorize()
@@ -24,12 +24,10 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'users_id' => 'required|exists:users,id',
-            'categories_id' => 'required|exists:categories,id',
-            'price' => 'required|integer',
-            'description' => 'required',
-            'stock' => 'required|min:0'
+            'name' => 'required|string',
+            'status' => '',
+            'alt' => 'string',
+            'photo' => 'required|image',
         ];
     }
 }

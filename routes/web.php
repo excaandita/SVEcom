@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\SliderController as AdminSliderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
@@ -9,10 +10,12 @@ use App\Http\Controllers\Admin\TransactionController as AdminTransactionControll
 use App\Http\Controllers\Admin\UserBaruController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
+use App\Http\Controllers\API\testcontroller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ListProductController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
@@ -26,6 +29,7 @@ use App\Http\Controllers\DashboardWithdrawController;
 use App\Http\Controllers\DashboardRefundController;
 
 use App\Http\Controllers\PortofolioController;
+use App\Http\Controllers\DashboardRefundController;
 use App\Http\Controllers\Portofolio\BiodataController;
 use App\Http\Controllers\Portofolio\KepanitiaanController;
 use App\Http\Controllers\Portofolio\OrganisasiController;
@@ -58,8 +62,10 @@ Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('cat
 Route::get('/portofolio', [PortofolioController::class, 'index'])->name('portofolio');
 Route::get('/portofolio/{id}', [PortofolioController::class, 'detail'])->name('portofolio-detail');
 
+Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
+
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
-Route::post('/details/{id}', [DetailController::class, 'add'])->name('detail-add');
+Route::post('/details/{product}', [DetailController::class, 'add'])->name('detail-add');
 
 Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile');
 
@@ -74,7 +80,10 @@ Route::get('/register/success', [RegisterController::class, 'success'])->name('r
 Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
     Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
+
+    Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
 
     Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
 
@@ -86,22 +95,24 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/products/{id}', [DashboardProductController::class, 'details'])->name('dashboard-product-details');
     Route::post('/dashboard/products/{id}', [DashboardProductController::class, 'update'])->name('dashboard-product-update');
     Route::get('/dashboard/products/delete/{id}', [DashboardProductController::class, 'delete'])->name('dashboard-product-delete');
-    
+
     Route::post('/dashboard/products/gallery/upload', [DashboardProductController::class, 'uploadGallery'])->name('dashboard-product-gallery-upload');
     Route::get('/dashboard/products/gallery/delete/{id}', [DashboardProductController::class, 'deleteGallery'])->name('dashboard-product-gallery-delete');
-    
+
     Route::get('/dashboard/setting', [DashboardSettingController::class, 'store'])->name('dashboard-setting-store');
     Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
     Route::post('/dashboard/account/{redirect}', [DashboardSettingController::class, 'update'])->name('dashboard-setting-redirect');
 
-    Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction'); 
-    Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details'); 
-    Route::post('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'update'])->name('dashboard-transaction-update'); 
+    Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
+    Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details');
+    Route::post('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'update'])->name('dashboard-transaction-update');
+
 
     Route::get('/dashboard/withdraw', [DashboardWithdrawController::class, 'index'])->name('dashboard-withdraw');
     Route::get('/dashboard/withdraw/create', [DashboardWithdrawController::class, 'create'])->name('dashboard-withdraw-create');
     Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');
     Route::post('/dashboard/withdraw', [DashboardWithdrawController::class, 'store'])->name('dashboard-withdraw-store');
+
 
     Route::get('/dashboard/refund', [DashboardRefundController::class, 'index'])->name('dashboard-refund');
     Route::get('/dashboard/refund/create', [DashboardRefundController::class, 'create'])->name('dashboard-refund-create');
@@ -167,6 +178,7 @@ Route::prefix('admin')
     ->group(function(){
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
         Route::resource('category', AdminCategoryController::class);
+        Route::resource('slider', AdminSliderController::class);
         Route::resource('user', AdminUserController::class);
         Route::resource('slider', AdminSliderController::class);
         Route::resource('product', AdminProductController::class);
@@ -184,3 +196,4 @@ Route::prefix('admin')
 
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/test', [testcontroller::class, 'login']);
