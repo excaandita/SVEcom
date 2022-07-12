@@ -17,6 +17,7 @@ class CartController extends Controller
         $carts = Cart::with(['product.galleries', 'user']) //megambil data relasi di bagian cart untuk product & user
                 ->where('users_id', Auth::user()->id) //melihat cart bedasarkan user yang sedang aktif
                 ->get();
+        
         return view('pages.cart', [
             'carts' => $carts,
         ]);
