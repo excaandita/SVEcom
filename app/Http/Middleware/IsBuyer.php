@@ -21,7 +21,7 @@ class IsBuyer
         {
             return $next($request);
         }
-        
+
         return redirect('/');
     }
 }
