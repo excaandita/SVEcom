@@ -191,6 +191,25 @@ Route::prefix('admin')
         Route::resource('sertifikat', SertifikatController::class);
     });
 
+<<<<<<< Updated upstream
+=======
+Route::prefix('seller')
+    ->namespace('')
+    ->middleware(['auth', 'seller'])
+    ->group(function(){
+        Route::get('/', [SellerDashboardController::class, 'index'])->name('seller-dashboard');
+
+    });
+
+Route::prefix('buyer')
+    ->namespace('')
+    ->middleware(['auth', 'buyer'])
+    ->group(function(){
+        Route::get('/', [BuyerDashboardController::class, 'index'])->name('buyer-dashboard');
+        Route::get('detail', [BuyerDashboardController::class, 'detail'])->name('buyer-detail');
+    });
+
+>>>>>>> Stashed changes
 
 
 Auth::routes();
