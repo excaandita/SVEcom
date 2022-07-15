@@ -11969,13 +11969,15 @@ footer p {
 .tabs .nav-pills > li > a:hover {
     background-color: whitesmoke;
     text-decoration: none;
-    padding: 5px 15px 1.5px 15px;
+    padding: 6px 15px 6px 15px;
 }
 
 .tabs .nav-pills > li.active > a {
     border-radius: 4px 4px 0 0;
     background-color: #428bca;
     color: white;
+    font-size: larger;
+    font-weight: 600;
 }
 
 .tabs .nav-pills > li.active > a:hover {
@@ -11988,4 +11990,16 @@ footer p {
   background-color: #428bca;
   padding: 5px 15px;
   border-radius: 0 0 4px 4px;
+}
+
+.more {
+    display: none;
+}
+
+.myBtn {
+    display: block;
+    border: none;
+    outline: none;
+    background-color: #F8F9FA;
+    border-radius: 5px;
 }

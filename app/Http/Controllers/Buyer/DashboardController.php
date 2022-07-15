@@ -21,9 +21,9 @@ class DashboardController extends Controller
         ->join('products', 'products.id', 'transaction_details.products_id')
         ->join('product_galleries','product_galleries.id','products.id')
         ->join('users','users.id','products.users_id')
-        ->select('*','users.name as store_name','products.name as products_name')
+        ->select('*','users.name as store_name','products.name as products_name','transactions.id as id_transaksi')
         ->get();
-        // dd($recentlytransaction);
+
 
         return view('pages.buyer.dashboard', [
             'customer' => $customer,
@@ -32,5 +32,23 @@ class DashboardController extends Controller
             'recentlytransaction' => $recentlytransaction,
 
         ]);
+    }
+    public function detail(Request $request)
+    {
+        $customer = User::count();
+        $revenue = Transaction::sum('total_price');
+        $transaction = Transaction::count();
+        $detail = TransactionDetail::where('transactions_id',$request->id)
+        ->join('products','transaction_details.products_id','products.id')->get();
+
+        return view('pages.buyer.detail', [
+            'customer' => $customer,
+            'revenue' => $revenue,
+            'transaction' => $transaction,
+            'detail' => $detail,
+
+        ]);
+
+
     }
 }

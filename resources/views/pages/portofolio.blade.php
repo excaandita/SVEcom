@@ -8,7 +8,7 @@
     <div style="margin-top: 80px">
         <div class="container">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 mt-4">
                     <h5>All Portofolios</h5>
                 </div>
             </div>

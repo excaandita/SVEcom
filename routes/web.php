@@ -221,7 +221,9 @@ Route::prefix('buyer')
     ->middleware(['auth', 'buyer'])
     ->group(function(){
         Route::get('/', [BuyerDashboardController::class, 'index'])->name('buyer-dashboard');
+        Route::get('detail', [BuyerDashboardController::class, 'detail'])->name('buyer-detail');
     });
+
 
 
 
