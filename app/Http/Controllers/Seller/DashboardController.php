@@ -24,7 +24,7 @@ class DashboardController extends Controller
         // $bestselling = DB::select("SELECT *, (select count(*) from transaction_details where products.id = transaction_details.products_id) AS count FROM products ORDER BY count DESC");
         $bestselling = DB::select("SELECT *,products.name as nama_produk, categories.name as nama_kategori, (select count(*) from transaction_details where products.id = transaction_details.products_id) AS count FROM products JOIN categories ON products.categories_id = categories.id
         ORDER BY count DESC;");
-        // dd($bestselling);
+
         return view('pages.seller.dashboard', [
             'customer' => $customer,
             'revenue' => $revenue,
