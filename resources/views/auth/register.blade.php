@@ -18,7 +18,7 @@
                 <input id="name" type="text"
                   v-model="name" 
                   class="form-control @error('name') is-invalid @enderror" 
-                  name="name" 
+                  name="name"  placeholder="Masukkan Nama Lengkap"
                   value="{{ old('name') }}" 
                   required autocomplete="name" autofocus>
                     @error('name')
@@ -26,6 +26,7 @@
                             <strong>{{ $message }}</strong>
                         </span>
                      @enderror
+                     
               </div>
 
               <div class="form-group">
@@ -204,8 +205,8 @@
     },
     data() {
       return {
-        name: "Exca Muchlis Andita",
-        email: "exca@test.test",
+        // name: "Exca Muchlis Andita",
+        // email: "exca@test.test",
         is_store_open: true,
         store_name: "",
         email_unavailable: false,

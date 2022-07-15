@@ -57,6 +57,10 @@ data-aos="fade-up"
                       <div class="product-title">Total Harga</div>
                       <div class="product-subtitle">Rp. {{ number_format($transaction->transaction->total_price)}}</div>
                     </div>
+                     <div class="col-12 col-md-6">
+                      <div class="product-title">Jumlah Barang</div>
+                      <div class="product-subtitle"> {{$transaction->quantity}}</div>
+                    </div>
                     <div class="col-12 col-md-6">
                       <div class="product-title">Telfon</div>
                       <div class="product-subtitle">{{ $transaction->transaction->user->phone_number }}</div>
@@ -168,12 +172,21 @@ data-aos="fade-up"
                 </div>
                 <div class="row mt-4">
                   <div class="col-12">
+                   @if (auth()->user()->roles == 'USER')
                     <button
                       class="btn btn-success btn-block mt-4"
                       type="submit"
                     >
                       Simpan Data
                     </button>
+                    @else 
+                    <button
+                      class="btn btn-success btn-block mt-4"
+                      type="submit"
+                    >
+                      Barang diterima
+                    </button>
+                    @endif
                   </div>
                 </div>
               </form>
