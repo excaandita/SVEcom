@@ -25,17 +25,6 @@
             <li class="nav-item">
               <a href="{{ route('listproduct') }}" class="nav-link">Produk</a>
             </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Portofolio
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Tutorial HTML</a>
-                <a class="dropdown-item" href="#">Tutorial CSS</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Tutorial Bootstrap</a>
-              </div>
-            </li>
             <li class="nav-item">
               <a href="{{ route('portofolio') }}" class="nav-link">Portofolio</a>
             </li>
@@ -53,7 +42,7 @@
               >
             </li>
             @endguest
-         
+
 
           @auth
           <ul class="navbar-nav d-none d-lg-flex">
@@ -76,9 +65,14 @@
                 @if (auth()->user()->roles == 'ADMIN')
                 <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
                 @endif
-                @if (auth()->user()->roles != 'ADMIN')
-                <a href="{{ route('dashboard')}}" class="dropdown-item">Dashboard</a>
+                @if (auth()->user()->roles == 'USER')
+                <a href="{{ route('seller-dashboard')}}" class="dropdown-item">Dashboard</a>
                 @endif
+                @if (auth()->user()->roles == 'BUYER')
+                <a href="{{ route('buyer-dashboard')}}" class="dropdown-item">Dashboard</a>
+                @endif
+
+
                 <a href="{{ route('dashboard-setting-account')}}" class="dropdown-item"
                   >Pengaturan</a
                 >
@@ -104,7 +98,7 @@
                 @else
                   <img src="/images/icon-cart-empty.svg" alt="" />
                 @endif
-                
+
               </a>
             </li>
           </ul>

@@ -24,6 +24,7 @@ class DashboardController extends Controller
         ->select('*','users.name as store_name','products.name as products_name','transactions.id as id_transaksi')
         ->get();
 
+
         return view('pages.buyer.dashboard', [
             'customer' => $customer,
             'revenue' => $revenue,

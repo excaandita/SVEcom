@@ -17,13 +17,22 @@ class DashboardController extends Controller
     {
         $customer = User::count();
         $revenue = Transaction::sum('total_price');
-        $transaction = Transaction::count(); 
+        $transaction = Transaction::count();
+        $pending = Transaction::where('transaction_status', 'PENDING')->count();
+        $success = Transaction::where('transaction_status', 'SUCCESS')->count();
+        $canceled = Transaction::where('transaction_status', 'CANCELLED')->count();
+        $recentlytransaction=Transaction::orderBy('transactions.updated_at', 'desc')->join('users','users.id','transactions.users_id')->limit(3)->get();
+
 
         return view('pages.admin.dashboard', [
             'customer' => $customer,
             'revenue' => $revenue,
             'transaction' => $transaction,
-            
+            'pending' => $pending,
+            'success' => $success,
+            'canceled' => $canceled,
+            'recentlytransaction'=>$recentlytransaction,
+
         ]);
     }
 }

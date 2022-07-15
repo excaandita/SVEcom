@@ -73,12 +73,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\IsAdmin::class,
         'buyer' => \App\Http\Middleware\IsBuyer::class,
-<<<<<<< Updated upstream
-=======
-        'seller' => \App\Http\Middleware\IsSeller::class,
-        
-        
->>>>>>> Stashed changes
+        'seller' => \App\Http\Middleware\IsSeller::class,   
     ];
     
 }

@@ -29,7 +29,6 @@ class ProfileController extends Controller
             'users' => $users,
             'products_count' => $products->count(),
             'products' => $products,
-            'sellTransactions' => $sellTransactions->count(),
             'bestSellerProducts' => $bestSellerProducts,
             'totalProductSold'=>$totalProductSold
         ]);

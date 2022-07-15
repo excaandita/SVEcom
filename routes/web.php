@@ -7,9 +7,25 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
 use App\Http\Controllers\Admin\SertifikatController;
 use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
-use App\Http\Controllers\Admin\UserBaruController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
+use App\Http\Controllers\Admin\CategoryController as SellerCategoryController;
+use App\Http\Controllers\Admin\SliderController as SellerSliderController;
+use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
+use App\Http\Controllers\Admin\ProductController as SellerProductController;
+use App\Http\Controllers\Admin\ProductGalleryController as SellerProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController as SellerTransactionController;
+use App\Http\Controllers\Admin\UserController as SellerUserController;
+use App\Http\Controllers\Admin\WithdrawController as SellerWithdrawController;
+use App\Http\Controllers\Admin\CategoryController as BuyerCategoryController;
+use App\Http\Controllers\Admin\SliderController as BuyerSliderController;
+use App\Http\Controllers\Buyer\DashboardController as BuyerDashboardController;
+use App\Http\Controllers\Admin\ProductController as BuyerProductController;
+use App\Http\Controllers\Admin\ProductGalleryController as BuyerProductGalleryController;
+use App\Http\Controllers\Admin\TransactionController as BuyerTransactionController;
+use App\Http\Controllers\Admin\UserController as BuyerUserController;
+use App\Http\Controllers\Admin\WithdrawController as BuyerWithdrawController;
+use App\Http\Controllers\Admin\UserBaruController;
 use App\Http\Controllers\API\testcontroller;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -41,6 +57,7 @@ use App\Models\Category;
 use App\Models\Pendidikan;
 use App\Models\Prodi;
 use App\Models\Project;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -117,7 +134,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/refund/create', [DashboardRefundController::class, 'create'])->name('dashboard-refund-create');
     Route::get('/dashboard/refund/edit/{id}', [DashboardRefundController::class, 'edit'])->name('dashboard-refund-edit');
     Route::post('/dashboard/refund', [DashboardRefundController::class, 'store'])->name('dashboard-refund-store');
-    
+
     Route::get('/dashboard/portofolio/biodata/create', [BiodataController::class, 'create'])->name('portofolio-biodata-create');
     Route::post('/dashboard/portofolio/biodata', [BiodataController::class, 'store'])->name('portofolio-biodata-store');
     Route::get('/dashboard/portofolio/biodata', [BiodataController::class, 'index'])->name('portofolio-biodata');
@@ -126,7 +143,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/portofolio/kepanitiaan/{id}', [KepanitiaanController::class, 'detail'])->name('portofolio-kepanitiaan-detail');
     Route::get('/dashboard/portfolio/kepanitiaan/create', [KepanitiaanController::class, 'create'])->name('portofolio-kepanitiaan-create');
     Route::post('/dashboard/portofolio/kepanitiaan', [KepanitiaanController::class, 'store'])->name('portofolio-kepanitiaan-store');
-    Route::get('/dashboard/portofolio/kepanitiaan/edit/{id}', [KepanitiaanController::class, 'edit'])->name('portofolio-kepanitiaan-edit'); 
+    Route::get('/dashboard/portofolio/kepanitiaan/edit/{id}', [KepanitiaanController::class, 'edit'])->name('portofolio-kepanitiaan-edit');
     Route::post('/dashboard/portofolio/kepanitiaan/{id}', [KepanitiaanController::class, 'update'])->name('portofolio-kepanitiaan-update');
     Route::get('/dashboard/portofolio/kepanitiaan/delete/{id}', [KepanitiaanController::class, 'destroy'])->name('portofolio-kepanitiaan-delete');
 
@@ -134,14 +151,14 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/portofolio/organisasi/{id}', [OrganisasiController::class, 'detail'])->name('portofolio-organisasi-detail');
     Route::get('/dashboard/portfolio/organisasi/create', [OrganisasiController::class, 'create'])->name('portofolio-organisasi-create');
     Route::post('/dashboard/portofolio/organisasi', [OrganisasiController::class, 'store'])->name('portofolio-organisasi-store');
-    Route::get('/dashboard/portofolio/organisasi/edit/{id}', [OrganisasiController::class, 'edit'])->name('portofolio-organisasi-edit'); 
+    Route::get('/dashboard/portofolio/organisasi/edit/{id}', [OrganisasiController::class, 'edit'])->name('portofolio-organisasi-edit');
     Route::post('/dashboard/portofolio/organisasi/{id}', [OrganisasiController::class, 'update'])->name('portofolio-organisasi-update');
     Route::get('/dashboard/portofolio/organisasi/delete/{id}', [OrganisasiController::class, 'destroy'])->name('portofolio-organisasi-delete');
 
     Route::get('/dashboard/portofolio/pendidikan', [PendidikanController::class, 'index'])->name('portofolio-pendidikan');
     Route::get('/dashboard/portfolio/pendidikan/create', [PendidikanController::class, 'create'])->name('portofolio-pendidikan-create');
     Route::post('/dashboard/portofolio/pendidikan', [PendidikanController::class, 'store'])->name('portofolio-pendidikan-store');
-    Route::get('/dashboard/portofolio/pendidikan/edit/{id}', [PendidikanController::class, 'edit'])->name('portofolio-pendidikan-edit'); 
+    Route::get('/dashboard/portofolio/pendidikan/edit/{id}', [PendidikanController::class, 'edit'])->name('portofolio-pendidikan-edit');
     Route::post('/dashboard/portofolio/pendidikan/{id}', [PendidikanController::class, 'update'])->name('portofolio-pendidikan-update');
     Route::get('/dashboard/portofolio/pendidikan/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-pendidikan-delete');
 
@@ -149,18 +166,18 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/portofolio/experiences/{id}', [ExperiencesController::class, 'detail'])->name('portofolio-experiences-detail');
     Route::get('/dashboard/portfolio/experiences/create', [ExperiencesController::class, 'create'])->name('portofolio-experiences-create');
     Route::post('/dashboard/portofolio/experiences', [ExperiencesController::class, 'store'])->name('portofolio-experiences-store');
-    Route::get('/dashboard/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit'); 
+    Route::get('/dashboard/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit');
     Route::post('/dashboard/portofolio/experiences/{id}', [ExperiencesController::class, 'update'])->name('portofolio-experiences-update');
     Route::get('/dashboard/portoffolio/experiences/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-experiences-delete');
 
     Route::get('/dashboard/portofolio/projects', [ProjectsController::class, 'index'])->name('portofolio-projects');
-    Route::get('/dashboard/portofolio/projects/{id}', [ProjectsController::class, 'detail'])->name('portofolio-projects-detail'); 
+    Route::get('/dashboard/portofolio/projects/{id}', [ProjectsController::class, 'detail'])->name('portofolio-projects-detail');
     Route::get('/dashboard/portfolio/projects/create', [ProjectsController::class, 'create'])->name('portofolio-projects-create');
     Route::post('/dashboard/portofolio/projects', [ProjectsController::class, 'store'])->name('portofolio-projects-store');
-    Route::get('/dashboard/portofolio/project/edit/{id}', [ProjectsController::class, 'edit'])->name('portofolio-project-edit'); 
-    Route::post('/dashboard/portofolio/project/{id}', [ProjectsController::class, 'update'])->name('portofolio-project-update'); 
+    Route::get('/dashboard/portofolio/project/edit/{id}', [ProjectsController::class, 'edit'])->name('portofolio-project-edit');
+    Route::post('/dashboard/portofolio/project/{id}', [ProjectsController::class, 'update'])->name('portofolio-project-update');
     Route::get('/dashboard/portofolio/project/delete/{id}', [ProjectsController::class, 'destroy'])->name('portofolio-project-delete');
-    
+
     Route::get('/dashboard/portofolio/skills', [SkillController::class, 'index'])->name('portofolio-skills');
     Route::get('/dashboard/portfolio/skill/create', [SkillController::class, 'create'])->name('portofolio-skill-create');
     Route::post('/dashboard/portofolio/skill', [SkillController::class, 'store'])->name('portofolio-skill-store');
@@ -191,8 +208,6 @@ Route::prefix('admin')
         Route::resource('sertifikat', SertifikatController::class);
     });
 
-<<<<<<< Updated upstream
-=======
 Route::prefix('seller')
     ->namespace('')
     ->middleware(['auth', 'seller'])
@@ -209,7 +224,7 @@ Route::prefix('buyer')
         Route::get('detail', [BuyerDashboardController::class, 'detail'])->name('buyer-detail');
     });
 
->>>>>>> Stashed changes
+
 
 
 Auth::routes();

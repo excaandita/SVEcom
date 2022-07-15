@@ -14,7 +14,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
-    
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -32,21 +32,14 @@
           <div class="sidebar-heading text-center">
             <img src="/images/dashboard-store-logo.svg" class="my-4" alt="" />
           </div>
-          <div class="list-group list-group-flush">
+         <div class="list-group list-group-flush">
              @if (auth()->user()->roles == 'USER')
               <a
                 href="{{ route('seller-dashboard')}}"
                 class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('seller-dashboard')) ? 'active' : '' }}"
               >
-              Dashboard Seller
+              Dashboard
           </a>
-              @else
-              <a
-                href="{{ route('buyer-dashboard')}}"
-                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('buyer-dashboard')) ? 'active' : '' }}"
-              >
-                Dashboard
-              </a>
               @endif
               <!-- fungsi if untuk memisah dan menampilkan kolom produk jika roles yang sedang login adalah user-->
               @if (auth()->user()->roles == 'USER')
@@ -69,20 +62,19 @@
                   href="{{ route('dashboard-withdraw')}}"
                   class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
                  >
-                  Pengajuan Penarikan 
+                  Pengajuan Penarikan
                 </a>
                 <li class="sidebar-dropdown">
                   <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
                   <div class="sidebar-submenu">
                     <ul>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/biodata*')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('portfolio/biodata')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Kepanitiaan</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Organisasi</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Pendidikan</a>
                       <a class="nav-link list-group-item-action list-group-item-info" href="#">Experience</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/setting*') ? 'active' : '') }}" href="{{ route('portofolio-setting') }}">Pengaturan Portofolio</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Project</a>
+                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Skills</a>
                     </ul>
                   </div>
                 </li>
@@ -113,7 +105,7 @@
               >
                 Log Out
               </a>
-            
+
           </div>
         </div>
 
@@ -194,7 +186,7 @@
                         @else
                           <img src="/images/icon-cart-empty.svg" alt="" />
                         @endif
-                        
+
                       </a>
                     </li>
                 </ul>
@@ -220,7 +212,7 @@
   </body>
   <!-- Bootstrap core JavaScript -->
   @stack('prepend-script')
-  
+
   <script src="/vendor/jquery/jquery.min.js"></script>
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

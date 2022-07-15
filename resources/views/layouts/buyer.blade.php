@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -11,6 +12,7 @@
     @stack('prepend-style')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -203,6 +205,7 @@
           .addClass("active");
       }
     });
+
     function redirect(id) {
         var url = '{{ route('buyer-detail'); }}?id=' + id;
         window.location.href = url;
