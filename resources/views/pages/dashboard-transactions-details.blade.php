@@ -127,6 +127,31 @@ data-aos="fade-up"
                               disabled
                             />
                           </div>
+                          <div class="col-md-3">
+                            <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              <input type="hidden" value="SUCCESS" name="shipping_status">
+                              <button
+                                class="btn btn-success btn-block mt-4"
+                                type="submit"
+                              >
+                              Barang Diterima
+                              </button>
+                            </form>
+                          </div>
+                        </template>
+                        <template v-if="status == 'SUCCESS'">
+                          <div class="col-md-3">
+                            <form action="#" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              <button
+                                class="btn btn-success btn-block mt-4"
+                                type="submit"
+                              >
+                              Beri Komentar!!!
+                              </button>
+                            </form>
+                          </div>
                         </template>
                       @endif
 
@@ -172,21 +197,12 @@ data-aos="fade-up"
                 </div>
                 <div class="row mt-4">
                   <div class="col-12">
-                   @if (auth()->user()->roles == 'USER')
                     <button
                       class="btn btn-success btn-block mt-4"
                       type="submit"
                     >
                       Simpan Data
                     </button>
-                    @else 
-                    <button
-                      class="btn btn-success btn-block mt-4"
-                      type="submit"
-                    >
-                      Barang diterima
-                    </button>
-                    @endif
                   </div>
                 </div>
               </form>
