@@ -97,23 +97,15 @@ Dashboard-Sekolah Vokasi E-COM
             </div>
 
             <div class="dashboard-heading">
-                <h3 class="dashboard-title">Portofolio Update</h3>
+                <h3 class="dashboard-title">Verifikasi Request</h3>
             </div>
             <div class="dashboard-content">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="card text-white bg-info mb-3">
                             <div class="card-body">
                                 <div class="dashboard-card-title">Portofolio Baru</div>
                                 <div class="dashboard-card-subtitle">{{ $portofoliobaru }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Verifikasi Request</div>
-                                <div class="dashboard-card-subtitle">{{ $portofolioverified}}</div>
                             </div>
                         </div>
                     </div>
