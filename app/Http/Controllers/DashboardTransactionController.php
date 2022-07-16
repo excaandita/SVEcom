@@ -50,4 +50,8 @@ class DashboardTransactionController extends Controller
 
         return redirect()->route('dashboard-transaction-details', $id); //redirect ke dalam route transaksi detail 
     }
+
+    public function review(){
+        return view('pages.dashboard-review');
+    }
 }

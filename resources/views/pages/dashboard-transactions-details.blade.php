@@ -195,16 +195,6 @@ data-aos="fade-up"
                     </div>
                   </div>
                 </div>
-                <div class="row mt-4">
-                  <div class="col-12">
-                    <button
-                      class="btn btn-success btn-block mt-4"
-                      type="submit"
-                    >
-                      Simpan Data
-                    </button>
-                  </div>
-                </div>
               </form>
             </div>
           </div>
