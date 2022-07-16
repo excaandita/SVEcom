@@ -15,7 +15,20 @@ class DashboardController extends Controller
     public function index()
     {
         $customer = User::count();
-        $revenue = Transaction::sum('total_price');
+        $revenue = Transaction::
+        join('transaction_details','transactions.id','transaction_details.products_id')
+        ->join('products','products.id','transaction_details.products_id')
+        ->where('products.users_id', auth()->user()->id)
+        ->sum('transactions.total_price')
+        ;
+        $newrevenue = Transaction::
+        join('transaction_details','transactions.id','transaction_details.products_id')
+        ->join('products','products.id','transaction_details.products_id')
+        ->where('products.users_id', auth()->user()->id)
+        ->where('transactions.transaction_status', 'PENDING')
+        ->sum('transactions.total_price')
+        ;
+
         $transaction = Transaction::count();
         $pending = Transaction::where('transaction_status', 'PENDING')
         ->join('transaction_details','transactions.id','transaction_details.products_id')
@@ -54,6 +67,7 @@ class DashboardController extends Controller
             'recentlytransaction'=>$recentlytransaction,
             'bestselling'=>$bestselling,
             'done'=>$done,
+            'newrevenue'=>$newrevenue,
 
         ]);
     }
