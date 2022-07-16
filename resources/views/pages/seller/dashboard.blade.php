@@ -80,7 +80,7 @@ Dashboard-Sekolah Vokasi E-COM
             </div>
             <div class="dashboard-content">
 
-                @foreach ($recentlytransaction as $item)
+                @forelse ($recentlytransaction as $item)
                 <ul class="list-group list-group-light">
                     <li class="list-group-item list-group-item-action justify-content-between align-items-center">
                         <div class="row">
@@ -99,7 +99,7 @@ Dashboard-Sekolah Vokasi E-COM
                                 <small class="text-muted mb-0">{{ $item->email }}</small>
                             </div>
                             <div class="col-md-2">
-                                <h5 class="fw-bold mb-1">Admin</h4>
+                                <h5 class="fw-bold mb-1">{{ $item->roles }}</h4>
                             </div>
                             <div class="col-md-2">
                                 <h5 class="fw-bold mb-1">{{ $item->transaction_status }}</h4>
@@ -111,7 +111,28 @@ Dashboard-Sekolah Vokasi E-COM
                     </li>
 
                 </ul>
-                @endforeach
+                @empty
+                <ul class="list-group list-group-light">
+                    <li class="list-group-item list-group-item-action justify-content-between align-items-center">
+                        <div class="row">
+                            <div class="col-md-1">
+                                {{-- <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt=""
+                                    style="width: 70px; height: 70px" class="rounded-circle" /> --}}
+                                {{-- <i class="bi bi-person" style="width: 70px; height: 70px"></i> --}}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="70px" height="70px" fill="currentColor"
+                                    class="bi bi-person" viewBox="0 0 16 16">
+                                    <path
+                                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
+                                </svg>
+                            </div>
+                            <div class="col-md-3">
+                                <h5 class="fw-bold mb-1">Transaksi Kosong</h5>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                @endforelse
             </div>
             <div class="dashboard-heading">
                 <h3 class="dashboard-title">Produk Terlaris di Tokomu</h3>
@@ -123,8 +144,6 @@ Dashboard-Sekolah Vokasi E-COM
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Kategori</th>
-                                <th scope="col">Etalase</th>
                                 <th scope="col">Nama Produk</th>
                                 <th scope="col">Harga</th>
                                 <th scope="col">Terjual</th>
@@ -132,19 +151,25 @@ Dashboard-Sekolah Vokasi E-COM
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($bestselling as $item)
+                            @php
+                            $i=0;
+                            @endphp
+                            @forelse ($bestselling as $item)
+                            @php
+                            $i++;
+                            @endphp
                             <tr>
-                                <th scope="row">1</th>
-                                <td>{{ $item->nama_kategori }}</td>
-                                <td>{{ $item->nama_kategori }}</td>
-                                <td>{{ $item->nama_produk }}</td>
+                                <th scope="row">{{ $i }}</th>
+                                <td>{{ $i }}</td>
                                 <td>Rp. {{ number_format($item->price) }}</td>
                                 <td>{{ $item->count }}</td>
-                                {{-- <td>Rp. 1.600.000</td> --}}
-                                {{-- <td>500</td> --}}
                                 <td>Aktif</td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td>Produk Kosong</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

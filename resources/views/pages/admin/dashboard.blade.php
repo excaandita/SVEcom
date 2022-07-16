@@ -14,7 +14,7 @@ Dashboard-Sekolah Vokasi E-COM
             </div>
             <div class="dashboard-content">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card text-white bg-info mb-3">
                             <div class="card-body">
                                 <div class="dashboard-card-title">Pesanan Diproses</div>
@@ -22,7 +22,7 @@ Dashboard-Sekolah Vokasi E-COM
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="card text-white bg-info mb-3">
                             <div class="card-body">
                                 <div class="dashboard-card-title">Pesanan Dikirim</div>
@@ -30,7 +30,15 @@ Dashboard-Sekolah Vokasi E-COM
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                        <div class="card text-white bg-info mb-3">
+                            <div class="card-body">
+                                <div class="dashboard-card-title">Pesanan Diselesaikan</div>
+                                <div class="dashboard-card-subtitle">{{ $done }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
                         <div class="card text-white bg-info mb-3">
                             <div class="card-body">
                                 <div class="dashboard-card-title">Pesanan Dibatalkan</div>
@@ -38,6 +46,7 @@ Dashboard-Sekolah Vokasi E-COM
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 

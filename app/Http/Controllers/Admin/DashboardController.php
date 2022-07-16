@@ -21,6 +21,7 @@ class DashboardController extends Controller
         $pending = Transaction::where('transaction_status', 'PENDING')->count();
         $success = Transaction::where('transaction_status', 'SUCCESS')->count();
         $canceled = Transaction::where('transaction_status', 'CANCELLED')->count();
+        $done = Transaction::where('transaction_status', 'DONE')->count();
         $recentlytransaction=Transaction::orderBy('transactions.updated_at', 'desc')->join('users','users.id','transactions.users_id')->limit(3)->get();
 
 
@@ -31,6 +32,7 @@ class DashboardController extends Controller
             'pending' => $pending,
             'success' => $success,
             'canceled' => $canceled,
+            'done' => $done,
             'recentlytransaction'=>$recentlytransaction,
 
         ]);
