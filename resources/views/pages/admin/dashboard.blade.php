@@ -119,8 +119,86 @@ Dashboard-Sekolah Vokasi E-COM
                     </div>
                 </div>
             </div>
+
+
+            <div class="dashboard-heading">
+                <h3 class="dashboard-title">Portofolio Update</h3>
+            </div>
+            <div class="dashboard-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
+                                        <thead class="bg-info">
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nama</th>
+                                                <th>Jenis</th>
+                                                <th>Lembaga</th>
+                                                <th>No Sertifikat</th>
+                                                <th>Status</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <div class="btn-group">
+                                                <div class="dropdown">
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="' . route('sertifikat.edit', $item->id) .'">
+                                                            Edit
+                                                        </a>
+                                                        <form action="'. route('sertifikat.destroy', $item->id) .'" method="POST">
+                                                            '. method_field('delete').  csrf_field() .'
+                                                            <button type="submit" class="dropdown-item text-danger">
+                                                                Hapus
+                                                            </button>
+
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 </div>
 @endsection
+
+
+
+@push('addon-script')
+    <script>
+        var datatable = $('#crudTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ordering: true,
+            ajax: {
+                url: '{!! url()->current() !!}',
+            },
+            columns: [
+                { data: 'id_skill', name: 'id_skill' },
+                { data: 'name', name: 'name' },
+                { data: 'jenis', name: 'jenis' },
+                { data: 'lembaga', name: 'lembaga' },
+                { data: 'no_sertifikat', name: 'no_sertifikat' },
+                { data: 'status', name: 'status' },
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: false,
+                    searchable:false,
+                    widht: '15%',
+                },
+            ]
+        })
+    </script>
+@endpush

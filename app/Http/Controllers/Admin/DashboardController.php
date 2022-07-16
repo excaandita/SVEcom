@@ -7,6 +7,7 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Skill;
+use Yajra\DataTables\DataTables as DataTablesDataTables;
 
 class DashboardController extends Controller
 {
@@ -22,6 +23,26 @@ class DashboardController extends Controller
         $recentlytransaction=Transaction::orderBy('transactions.updated_at', 'desc')->join('users','users.id','transactions.users_id')->limit(3)->get();
         $portofoliobaru = Skill::where('status', 'pending')->count();
         $portofolioverifikasi = Skill::where('status', 'verified')->count();
+
+        if(request()->ajax())
+        {
+            $query = Skill::query()->join('users','users.id','skills.users_id')->select('*','skills.id as id_skill');
+
+            return DataTablesDataTables::of($query)
+                ->addColumn('action', function($item){
+                    return '
+                        <div class="btn-group">
+                        <a class="btn btn-info dropdown=toggle mr-1 mb-1" href="'.route('sertifikat.index').'">
+                        >
+                        </a>
+
+                        </div>
+                    ';
+                })
+                ->rawColumns(['action','photo'])
+                ->make();
+        }
+
 
 
         return view('pages.admin.dashboard', [
