@@ -26,7 +26,7 @@ Dashboard-Sekolah Vokasi E-COM
                         <div class="card text-white bg-info mb-3">
                             <div class="card-body">
                                 <div class="dashboard-card-title">Pesanan Baru</div>
-                                <div class="dashboard-card-subtitle">Rp. {{ number_format($newrevenue)}}</div>
+                                <div class="dashboard-card-subtitle">{{ $newrevenue}}</div>
                             </div>
                         </div>
                     </div>

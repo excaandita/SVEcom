@@ -26,7 +26,7 @@ class DashboardController extends Controller
         ->join('products','products.id','transaction_details.products_id')
         ->where('products.users_id', auth()->user()->id)
         ->where('transactions.transaction_status', 'PENDING')
-        ->sum('transactions.total_price')
+        ->count()
         ;
 
         $transaction = Transaction::count();
