@@ -97,14 +97,14 @@ Dashboard-Sekolah Vokasi E-COM
             </div>
 
             <div class="dashboard-heading">
-                <h3 class="dashboard-title">Verifikasi Request</h3>
+                <h3 class="dashboard-title">Portofolio Update</h3>
             </div>
             <div class="dashboard-content">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card text-white bg-info mb-3">
                             <div class="card-body">
-                                <div class="dashboard-card-title">Portofolio Baru</div>
+                                <div class="dashboard-card-title">Verifikasi Request</div>
                                 <div class="dashboard-card-subtitle">{{ $portofoliobaru }}</div>
                             </div>
                         </div>
@@ -113,16 +113,14 @@ Dashboard-Sekolah Vokasi E-COM
             </div>
 
 
-            <div class="dashboard-heading">
-                <h3 class="dashboard-title">Portofolio Update</h3>
-            </div>
             <div class="dashboard-content">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
+                                    <table class="table table-hover table-bordered scroll-horizontal-vertical w-100"
+                                        id="crudTable">
                                         <thead class="bg-info">
                                             <tr>
                                                 <th>ID</th>
@@ -138,11 +136,13 @@ Dashboard-Sekolah Vokasi E-COM
                                             <div class="btn-group">
                                                 <div class="dropdown">
                                                     <div class="dropdown-menu">
-                                                        <a class="dropdown-item" href="' . route('sertifikat.edit', $item->id) .'">
+                                                        <a class="dropdown-item"
+                                                            href="' . route('sertifikat.edit', $item->id) .'">
                                                             Edit
                                                         </a>
-                                                        <form action="'. route('sertifikat.destroy', $item->id) .'" method="POST">
-                                                            '. method_field('delete').  csrf_field() .'
+                                                        <form action="'. route('sertifikat.destroy', $item->id) .'"
+                                                            method="POST">
+                                                            '. method_field('delete'). csrf_field() .'
                                                             <button type="submit" class="dropdown-item text-danger">
                                                                 Hapus
                                                             </button>
@@ -168,11 +168,12 @@ Dashboard-Sekolah Vokasi E-COM
 
 
 @push('addon-script')
-    <script>
-        var datatable = $('#crudTable').DataTable({
+<script>
+    var datatable = $('#crudTable').DataTable({
             processing: true,
             serverSide: true,
-            ordering: true,
+            ordering: [[6, "desc"],true],
+            searching: false,
             ajax: {
                 url: '{!! url()->current() !!}',
             },
@@ -192,5 +193,5 @@ Dashboard-Sekolah Vokasi E-COM
                 },
             ]
         })
-    </script>
+</script>
 @endpush
