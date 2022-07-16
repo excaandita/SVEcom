@@ -17,10 +17,23 @@ class DashboardController extends Controller
         $customer = User::count();
         $revenue = Transaction::sum('total_price');
         $transaction = Transaction::count();
-        $pending = Transaction::where('transaction_status', 'PENDING')->count();
-        $success = Transaction::where('transaction_status', 'SUCCESS')->count();
-        $canceled = Transaction::where('transaction_status', 'CANCELLED')->count();
-        $done = Transaction::where('transaction_status', 'DONE')->count();
+        $pending = Transaction::where('transaction_status', 'PENDING')
+        ->join('transaction_details','transactions.id','transaction_details.products_id')
+        ->join('products','products.id','transaction_details.products_id')
+        ->where('products.users_id', auth()->user()->id)->count();
+        $success = Transaction::where('transaction_status', 'SUCCESS')
+        ->join('transaction_details','transactions.id','transaction_details.products_id')
+        ->join('products','products.id','transaction_details.products_id')
+        ->where('products.users_id', auth()->user()->id)->count();
+        $canceled = Transaction::where('transaction_status', 'CANCELLED')
+        ->join('transaction_details','transactions.id','transaction_details.products_id')
+        ->join('products','products.id','transaction_details.products_id')
+        ->where('products.users_id', auth()->user()->id)->count();
+        $done = Transaction::where('transaction_status', 'DONE')
+        ->join('transaction_details','transactions.id','transaction_details.products_id')
+        ->join('products','products.id','transaction_details.products_id')
+        ->where('products.users_id', auth()->user()->id)->count();
+
         $recentlytransaction=Transaction::orderBy('transactions.updated_at', 'desc')
         ->join('users','users.id','transactions.users_id')
         ->join('transaction_details','transactions.id','transaction_details.products_id')

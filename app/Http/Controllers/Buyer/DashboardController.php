@@ -22,6 +22,7 @@ class DashboardController extends Controller
         ->join('product_galleries','product_galleries.id','products.id')
         ->join('users','users.id','products.users_id')
         ->select('*','users.name as store_name','products.name as products_name','transactions.id as id_transaksi')
+        ->where('users.id',auth()->user()->id)
         ->get();
 
 
