@@ -105,7 +105,7 @@ Dashboard-Sekolah Vokasi E-COM
                         <div class="card text-white bg-info mb-3">
                             <div class="card-body">
                                 <div class="dashboard-card-title">Portofolio Baru</div>
-                                <div class="dashboard-card-subtitle">{{ $pending }}</div>
+                                <div class="dashboard-card-subtitle">{{ $portofoliobaru }}</div>
                             </div>
                         </div>
                     </div>
@@ -113,7 +113,7 @@ Dashboard-Sekolah Vokasi E-COM
                         <div class="card text-white bg-info mb-3">
                             <div class="card-body">
                                 <div class="dashboard-card-title">Verifikasi Request</div>
-                                <div class="dashboard-card-subtitle">{{ $success}}</div>
+                                <div class="dashboard-card-subtitle">{{ $portofolioverified}}</div>
                             </div>
                         </div>
                     </div>
