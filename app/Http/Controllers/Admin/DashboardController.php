@@ -26,7 +26,11 @@ class DashboardController extends Controller
 
         if(request()->ajax())
         {
-            $query = Skill::query()->join('users','users.id','skills.users_id')->select('*','skills.id as id_skill');
+            $query = Skill::query()
+            ->join('users','users.id','skills.users_id')
+            ->select('users.name','skills.jenis','skills.lembaga','skills.no_sertifikat','skills.status','skills.id as id_skill')
+            ->orderBy('skills.status', 'asc')
+            ;
 
             return DataTablesDataTables::of($query)
                 ->addColumn('action', function($item){
