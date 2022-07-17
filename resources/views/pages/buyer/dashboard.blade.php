@@ -1,4 +1,4 @@
-@extends('layouts.buyer')
+@extends('layouts.dashboard')
 
 @section('title')
 Dashboard-Sekolah Vokasi E-COM
