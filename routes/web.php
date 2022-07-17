@@ -169,7 +169,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/dashboard/portofolio/experiences', [ExperiencesController::class, 'store'])->name('portofolio-experiences-store');
     Route::get('/dashboard/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit');
     Route::post('/dashboard/portofolio/experiences/{id}', [ExperiencesController::class, 'update'])->name('portofolio-experiences-update');
-    Route::get('/dashboard/portoffolio/experiences/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-experiences-delete');
+    Route::get('/dashboard/portofolio/experiences/delete/{id}', [ExperiencesController::class, 'destroy'])->name('portofolio-experiences-delete');
 
     Route::get('/dashboard/portofolio/projects', [ProjectsController::class, 'index'])->name('portofolio-projects');
     Route::get('/dashboard/portofolio/projects/{id}', [ProjectsController::class, 'detail'])->name('portofolio-projects-detail');

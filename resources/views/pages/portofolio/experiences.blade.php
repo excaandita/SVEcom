@@ -12,54 +12,53 @@
             <div class="container-fluid">
               <div class="dashboard-heading">
                 <h2 class="dashboard-title">Pengalaman Kerja</h2>
-                <p class="dashboard-subtitle">Riwayat Kerja</p>
+                <p class="dashboard-subtitle">
+                    <a class="btn btn-info px-5" href="{{ route('portofolio-experiences-create') }}" role="button">
+                        Add Experience
+                    </a>
+                </p>
               </div>
               <div class="dashboard-content">
                 <div class="row">
-                  <div class="col-12 mt-2">
-                    
-                    <div class="tab-content" id="pills-tabContent">
-                      <div
-                        class="tab-pane fade show active"
-                        id="pills-home"
-                        role="tabpanel"
-                        aria-labelledby="pills-home-tab"
-                      >
-                        <!-- view list barang  -->
-                        @foreach ($experiences as $p)
-                          <a
-                            class="card card-list d-block"
-                            href="{{ route('portofolio-experiences-edit', $p->id)}}"
-                          >
-                          <div class="card text-white bg-info mb-3">
-                            <div class="card-header">  </div>
-                            <div class="card-body">
-                              <div class="row">
-                                <div class="col-md-2">{{ $p->perusahaan}}</div>
-                                <div class="col-md-2">{{ $p->jabatan }}</div>
-                                <div class="col-md-2">{{ $p->status }}</div>
-                                <div class="col-md-2">{{ $p->bidang}}</div>
-                                <div class="col-md-2">{{ $p->lokasi_perusahaan}}</div>
-                                
-                                <div class="col-md-1 d-none d-md-block">
-                                  <img
-                                    src="/images/dashboard-arrow-right.svg"
-                                    alt=""
-                                  />
+                    @php $incrementExperiences = 0 @endphp
+                    @forelse ($experiences as $experience)
+                        <div
+                            class="col-6 col-md-3 col-lg-3"
+                            data-aos="fade-up"
+                            data-aos-delay="{{ $incrementExperiences+= 100 }}"
+                        >
+                            <a href="{{ route('portofolio-experiences-detail', $experience->id) }}" class="text-decoration-none text-body">
+                                <div class="card p-3 card-list">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <h6>{{ $experience->jabatan }}</h6>
+                                        <a href="{{ route('portofolio-experiences-delete', $experience->id )}}" class="delete-gallery">
+                                            <img src="/images/icon-delete.svg" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="d-flex flex-row">
+                                        <p>{{ $experience->perusahaan }}</p>
+                                        @for ($i = 0; $i < count($jabatans); $i++)
+                                            @if ($experience->jabatans_id == $jabatans[$i]->id)
+                                              <p class="ml-2">{{ $jabatans[$i]->status }}</p>
+                                            @endif
+                                        @endfor
+                                    </div>
+                                    @if (Str::length($experience->deskripsi) > 100)
+                                        <div>{!! Str::substr($experience->deskripsi, 0, 100), "..." !!}</div>
+                                    @else
+                                        <div>{!! $experience->deskripsi !!}</div>
+                                    @endif
                                 </div>
-                              </div>
-                            </div>
-                          </div>
-                          </a>
-                        @endforeach
-
-                        
-
-                      </div>
-                    </div>
-                  </div>
+                            </a>
+                        </div>
+                    @empty
+                        <div class="col-12 text-center py-5" data-aos="fade-up"
+                            data-aos-delay="100">
+                            Tidak Ada experience
+                        </div>
+                    @endforelse
                 </div>
-              </div>
+            </div>
             </div>
           </div>
 @endsection

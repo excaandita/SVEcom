@@ -101,7 +101,7 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label>Angkatan</label>
-                                <input type="number" class="form-control" name="angkatan" value="{{ $user->angkatan}}" />
+                                <input type="number" class="form-control" name="angkatan" value="{{ $user->angkatan }}" />
                               </div>
                             </div>
                             <div class="col-md-4">
