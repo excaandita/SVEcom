@@ -77,6 +77,12 @@
               Penarikan 
             </a>
             <a
+            href="{{ route('refund.index')}}"
+            class="list-group-item list-group-item-action list-group-item-info{{ (request()->is('admin/refund*')) ? 'active' : '' }}"
+            >
+              Pengembalian Dana 
+            </a>
+            <a
               href="{{ route('user.index')}}"
               class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/user*')) ? 'active' : '' }}"
             >

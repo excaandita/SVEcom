@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SertifikatController;
 use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
+use App\Http\Controllers\Admin\RefundController as AdminRefundController;
 use App\Http\Controllers\Admin\CategoryController as SellerCategoryController;
 use App\Http\Controllers\Admin\SliderController as SellerSliderController;
 use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
@@ -202,10 +203,8 @@ Route::prefix('admin')
         Route::resource('product-gallery', AdminProductGalleryController::class);
         Route::resource('transaction', AdminTransactionController::class);
         Route::resource('withdraw', AdminWithdrawController::class);
+        Route::resource('refund', AdminRefundController::class);
 
-        //user baru
-        Route::resource('user-baru', UserBaruController::class);
-        Route::get('/user-baru/status/{id}/{status_code}', [UserBaruController::class, 'updateStatus'])->name('update-status-baru');
         Route::resource('sertifikat', SertifikatController::class);
     });
 
