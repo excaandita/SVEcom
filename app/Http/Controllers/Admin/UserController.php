@@ -49,7 +49,22 @@ class UserController extends Controller
                         </div>
                     ';
                 })
-                ->rawColumns(['action','photo'])
+                ->addColumn('suspend', function($item){
+                   
+                    if($item->is_active == '1' ){
+                        $bt ='
+                            <a class="btn btn-success" href="' . route('update-active', ['id' => $item->id, 'status_code' => 0] ) .'">
+                                AKTIF
+                            </a>';
+                    } else {
+                        $bt ='
+                            <a class="btn btn-danger" href="' . route('update-active',['id' => $item->id, 'status_code' => 1] ) .'">
+                                TIDAK AKTIF
+                            </a>';
+                    }
+                    return $bt;
+                })
+                ->rawColumns(['action', 'suspend'])
                 ->make();
         }
 
@@ -146,6 +161,16 @@ class UserController extends Controller
     {
         $item = User::findOrFail($id);
         $item->delete();
+
+        return redirect()->route('user.index');
+    }
+
+    public function updateActive($id, $status_code)
+    {
+        $item = User::findOrFail($id);
+        $item->update([
+            'is_active' => $status_code
+        ]);
 
         return redirect()->route('user.index');
     }

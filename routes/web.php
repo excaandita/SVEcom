@@ -196,6 +196,7 @@ Route::prefix('admin')
         Route::resource('category', AdminCategoryController::class);
         Route::resource('slider', AdminSliderController::class);
         Route::resource('user', AdminUserController::class);
+        Route::get('/user/status/{id}/{status_code}', [AdminUserController::class, 'updateActive'])->name('update-active');
         Route::resource('slider', AdminSliderController::class);
         Route::resource('product', AdminProductController::class);
         Route::resource('product-gallery', AdminProductGalleryController::class);

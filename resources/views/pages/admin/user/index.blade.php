@@ -31,6 +31,7 @@
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th>Roles</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -60,6 +61,7 @@
                 { data: 'name', name: 'name' },
                 { data: 'email', name: 'email' },
                 { data: 'roles', name: 'roles' },
+                { data: 'suspend', name: 'suspend' },
                 { 
                     data: 'action',
                     name: 'action',
