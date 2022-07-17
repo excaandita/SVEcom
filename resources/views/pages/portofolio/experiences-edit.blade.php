@@ -63,7 +63,11 @@
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label>Status</label>
-                                <input type="text" class="form-control" name="jabatans_id" value="1" />
+                                <select name="jabatans_id" class="form-control" value="{{ $item->jabatans_id }}">
+                                  @foreach ($jabatans as $p)
+                                      <option value="{{ $p->id }}">{{ $p->status }}</option>
+                                  @endforeach
+                                </select>
                               </div>
                             </div>
                             <div class="col-md-6">

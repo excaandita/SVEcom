@@ -70,7 +70,7 @@
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
-                      <a class="nav-link list-group-item-action list-group-item-info" href="#">Experience</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experiences*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/setting*') ? 'active' : '') }}" href="{{ route('portofolio-setting') }}">Pengaturan Portofolio</a>
