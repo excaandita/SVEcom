@@ -51,7 +51,7 @@ class BiodataController extends Controller
         $user['address_one'] = $request['address_one'];
         $user['alamat_solo'] = $request['alamat_solo'];
         $user['angkatan'] = $request['angkatan'];
-        $user['fakultas'] = $request['fakultas'];
+        $user['fakultas'] = 'Sekolah Vokasi';
         $user['deskripsi'] = $request['deskripsi'];
         $user['prodis_id'] = $request['prodis_id'];
         $user['updated_at'] = Carbon::now();
