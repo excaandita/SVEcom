@@ -26,9 +26,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('user-baru.create')}}" class="btn btn-info mb-3">
-                                Tambah User
-                            </a>
+                            
                             <div class="table-responsive">
                                 <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead class="bg-info">
@@ -38,7 +36,7 @@
                                             <th>Email</th>
                                             <th>Roles</th>
                                             <th>Status</th>
-                                            <th>Aksi</th>
+                                           
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -57,20 +55,7 @@
                             <a href="{{route ('update-status-baru', ['id' => $user->id, 'status_code' => 0]) }}" class="btn btn-success m-3" >Aktif<i class="fas fa-check"></i></a>
                           @endif
                     </td>
-                    <td scope="row" class="text-center">
-                      <a href="{{ route('user-baru.edit', $user->id) }}" class="btn btn-primary" >Edit<i class="fas fa-pencil-alt"></i></a>
-
-
-                      <form action="{{ route('user-baru.destroy', $user->id) }}" method="POST">
-                          @method('Delete')
-                          @csrf
-                                        <button type="submit" class="btn btn-danger">
-                                            Hapus
-                                        </button>
-                                    </form>
-                      {{-- <a href={{ route('user-baru.destroy', $user->id) }} class="btn btn-danger" user-id="{{$user->id}}" user-num="{{$loop->iteration}}"><i class="fas fa-trash-alt"></i></a> --}}
-                      
-                    </td>
+                  
                   </tr>
                   @endforeach
 
