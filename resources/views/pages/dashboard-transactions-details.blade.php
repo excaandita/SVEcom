@@ -153,6 +153,19 @@ data-aos="fade-up"
                             </form>
                           </div>
                         </template>
+                        <template v-if="status == 'PENDING'">
+                          <div class="col-md-3">
+                            <form action="{{ route('dashboard-refund-create', $transaction->id)}}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              <button
+                                class="btn btn-success btn-block mt-4"
+                                type="submit"
+                              >
+                              REFUND
+                              </button>
+                            </form>
+                          </div>
+                        </template>
                       @endif
 
                       @if (auth()->user()->roles == 'USER')

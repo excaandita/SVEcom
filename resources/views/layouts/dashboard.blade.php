@@ -34,19 +34,12 @@
           </div>
           <div class="list-group list-group-flush">
              @if (auth()->user()->roles == 'USER')
-              <a
+             <a
                 href="{{ route('seller-dashboard')}}"
                 class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('seller-dashboard')) ? 'active' : '' }}"
               >
-              Dashboard Seller
+              Dashboard
           </a>
-              @else
-              <a
-                href="{{ route('buyer-dashboard')}}"
-                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('buyer-dashboard')) ? 'active' : '' }}"
-              >
-                Dashboard
-              </a>
               @endif
               <!-- fungsi if untuk memisah dan menampilkan kolom produk jika roles yang sedang login adalah user-->
               @if (auth()->user()->roles == 'USER')
@@ -55,6 +48,14 @@
                   class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/products')) ? 'active' : '' }}"
                 >
                   Produk
+                </a>
+              @endif
+              @if (auth()->user()->roles == 'BUYER')
+                <a
+                  href="{{ route('buyer-dashboard')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/refund')) ? 'active' : '' }}"
+                >
+                  Dashboard
                 </a>
               @endif
               <a
@@ -67,9 +68,9 @@
               @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-withdraw')}}"
-                  class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
+                  class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('buyer-dashboard')) ? 'active' : '' }}"
                  >
-                  Pengajuan Penarikan 
+                  Pengajuan Penarikan
                 </a>
                 <li class="sidebar-dropdown">
                   <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
@@ -79,7 +80,7 @@
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experiences*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experience*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/setting*') ? 'active' : '') }}" href="{{ route('portofolio-setting') }}">Pengaturan Portofolio</a>

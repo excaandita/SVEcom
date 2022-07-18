@@ -32,14 +32,10 @@
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
-                                      <div class="form-group">
-                                        <label>Kode Transaksi</label>
-                                        <select name="transaction_details_id" class="form-control" required>
-                                            @foreach ($buyTransactions as $transaction)
-                                              <option value="{{ $transaction->code }}">{{ $transaction->code }}</option>
-                                            @endforeach
-                                        </select>
-                                      </div>
+                                        <div class="form-group">
+                                          <label>Kode Transaksi</label>
+                                          <input type="text" name="transaction_details_id" class="form-control" value="{{ $codeTransactions->code }}" required>
+                                        </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
@@ -53,7 +49,7 @@
                                     <div class="col-md-12">
                                       <div class="form-group">
                                           <label>Total Penarikan</label>
-                                          <input type="number" name="total" class="form-control" required>
+                                          <input type="number" name="total" class="form-control" value="{{ $codeTransactions->transaction->total_price }}" required>
                                       </div>
                                     </div>
                                     <div class="col-md-12">
