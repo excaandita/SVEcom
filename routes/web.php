@@ -132,7 +132,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 
     Route::get('/dashboard/refund', [DashboardRefundController::class, 'index'])->name('dashboard-refund');
-    Route::get('/dashboard/refund/create', [DashboardRefundController::class, 'create'])->name('dashboard-refund-create');
+    Route::post('/dashboard/refund/create/{id}', [DashboardRefundController::class, 'create'])->name('dashboard-refund-create');
     Route::get('/dashboard/refund/edit/{id}', [DashboardRefundController::class, 'edit'])->name('dashboard-refund-edit');
     Route::post('/dashboard/refund', [DashboardRefundController::class, 'store'])->name('dashboard-refund-store');
 

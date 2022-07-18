@@ -60,15 +60,14 @@ class DashboardRefundController extends Controller
         }
         return view('pages.dashboard-refund');
     }
-    public function create()
+    public function create($id)
     {
-        $buyTransactions = TransactionDetail::with(['transaction.user']) //memanggil data DB dan relasi di model
-                            ->whereHas('transaction', function($transaction){ //mencari produk yang berhasil terjual
-                                $transaction->where('users_id', Auth::user()->id); //mencari transaksi pada user yang sedang login
-                            })->get();
         
+        $transaction = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                        ->findOrFail($id);                    
+
         return view('pages.dashboard-refund-create', [
-            'buyTransactions' => $buyTransactions,
+            'codeTransactions' => $transaction
         ]);
     }
     public function store(Request $request)

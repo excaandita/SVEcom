@@ -35,7 +35,7 @@
                                      <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Nama Rekening Pengaju </label>
-                                            <input type="number" name="total" class="form-control" value="{{ $item->nama}}" required disabled>
+                                            <input type="number" name="total" class="form-control" value="{{ $item->nama }}" required disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -68,19 +68,6 @@
                                                     <option value="BTN">BTN</option>
                                                     <option value="BCA">BCA</option>
                                                     <option value="BSI">BSI</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Status Penarikan</label>
-                                            <select name="status" class="form-control">
-                                                <option value="{{ $item->status }}" selected>{{ $item->status }}</option>
-                                                    <option value="" disabled>--------------------</option>
-                                                    <option value="PENDING">PENDING</option>
-                                                    <option value="PROCESS">PROCESS</option>
-                                                    <option value="SUCCESS">SUCCESS</option>
-                                                    <option value="CANCELLED">CANCELLED</option>
                                             </select>
                                         </div>
                                     </div>
