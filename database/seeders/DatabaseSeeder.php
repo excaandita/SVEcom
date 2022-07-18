@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             IndoRegionSeeder::class,
             IndoRegionProvinceSeeder::class,
-            IndoRegionRegencySeeder::class
+            IndoRegionRegencySeeder::class,
+            JabatanSeeder::class
         ]);
     }
 }
