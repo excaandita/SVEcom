@@ -20,15 +20,6 @@ class KepanitiaanController extends Controller
         ]);
     }
 
-    public function detail(Request $request)
-    {
-        $kepanitiaan = Kepanitiaan::where('id', $request->id)->first();
-
-        return view('pages.portofolio.kepanitiaan-detail', [
-            'kepanitiaan' => $kepanitiaan
-        ]);
-    }
-
     public function create(){
         return view('pages.portofolio.kepanitiaan-create');
     }
@@ -51,7 +42,7 @@ class KepanitiaanController extends Controller
         }
 
         $kepanitiaan = Kepanitiaan::create($request->toArray());
-        return redirect()->route('portofolio-kepanitiaan-detail', $kepanitiaan->id);
+        return redirect()->route('portofolio-kepanitiaan');
     }
     /**
      * Show the form for editing the specified resource.
@@ -106,7 +97,7 @@ class KepanitiaanController extends Controller
 
         $kepanitiaan->save();
 
-        return redirect()->route('portofolio-kepanitiaan-detail', $kepanitiaan->id);
+        return redirect()->route('portofolio-kepanitiaan');
     }
     public function destroy($id)
     {

@@ -12003,3 +12003,21 @@ footer p {
     background-color: #F8F9FA;
     border-radius: 5px;
 }
+
+.icon {
+    padding: 0.5rem;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete {
+    background-color: #F8F2EA;
+}
+
+.edit {
+    background-color: #E2F8F3;
+}

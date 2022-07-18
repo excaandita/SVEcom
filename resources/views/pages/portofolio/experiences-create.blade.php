@@ -1,4 +1,4 @@
-@extends('layouts.portofolio')
+@extends('layouts.dashboard')
 
 @section('title')
     Tambah Riwayat Pengalaman Kerja Mahasiswa Sekolah Vokasi
