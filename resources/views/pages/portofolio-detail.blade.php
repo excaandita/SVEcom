@@ -32,7 +32,7 @@
                     </li>
                 </ul>
 
-                <div class="tab-content clearfix">
+                <div class="tab-content color clearfix">
                     <div class="tab-pane active" id="biodata">
                         <div class="row mt-2">
                             <div class="col-12">
@@ -102,8 +102,9 @@
                                         data-aos="fade-up"
                                         data-aos-delay="{{ $incrementKepanitiaans+= 100 }}"
                                     >
-                                        <h5 class="my-0">{{ $kepanitiaan->nama_jabatan }} {{ $kepanitiaan->divisi }}</h5>
-                                        <p class="my-0">{{ $kepanitiaan->nama_acara }} · {{ $kepanitiaan->penyelenggara }} · {{ $kepanitiaan->lokasi }}</p>
+                                        <h5 class="my-0">{{ $kepanitiaan->nama_acara }}</h5>
+                                        <p class="my-0">{{ $kepanitiaan->nama_jabatan }} {{ $kepanitiaan->divisi }}</p>
+                                        <p class="my-0">{{ $kepanitiaan->penyelenggara }} · {{ $kepanitiaan->lokasi }}</p>
                                         @php
                                             $start = new DateTime($kepanitiaan->waktu_mulai);
                                             $end = new DateTime($kepanitiaan->waktu_selesai);
@@ -112,14 +113,19 @@
                                             $months = $diff->format('%r%m');
                                             $totalMonths = $yearsInMonths + $months;
                                         @endphp
-                                        <p class="my-0">{{ date('d M Y', strtotime($kepanitiaan->waktu_mulai))  }} - {{ date('d M Y', strtotime($kepanitiaan->waktu_selesai)) }} · {{ $totalMonths }} Bulan</p>
+                                        <p >{{ date('d M Y', strtotime($kepanitiaan->waktu_mulai))  }} - {{ date('d M Y', strtotime($kepanitiaan->waktu_selesai)) }} · {{ $totalMonths }} Bulan</p>
                                         <div class="post">
-                                            {!! substr($kepanitiaan->deskripsi, 0, 100) !!}
-                                            <span id="dots" class="dots">...</span>
-                                            <span id="more" class="more">{{ substr($kepanitiaan->deskripsi, 100)  }}</span>
-                                            <button id="myBtn" class="myBtn">Read more</button>
+                                            @if (Str::length($kepanitiaan->deskripsi) > 100)
+                                                {!! substr($kepanitiaan->deskripsi, 0, 100) !!}
+                                                <span id="dots" class="dots">...</span>
+                                                <span id="more" class="more">{{ substr($kepanitiaan->deskripsi, 100)  }}</span>
+                                                <button id="myBtn" class="myBtn">Read more</button>
+                                            @else
+                                                <p>{!! $kepanitiaan->deskripsi !!}</p>
+                                            @endif
                                         </div>
                                     </div>
+                                    <hr class="border border-2">
                                 @empty
                                     <div class="col-12 text-center py-5" data-aos="fade-up"
                                         data-aos-delay="100">
@@ -151,12 +157,17 @@
                                         @endphp
                                         <p class="my-0">{{ date('d M Y', strtotime($organisasi->waktu_mulai))  }} - {{ date('d M Y', strtotime($organisasi->waktu_selesai)) }} · {{ $totalMonths }} Bulan</p>
                                         <div class="post">
-                                            {!! substr($organisasi->deskripsi, 0, 100) !!}
-                                            <span id="dots" class="dots">...</span>
-                                            <span id="more" class="more">{{ substr($organisasi->deskripsi, 100)  }}</span>
-                                            <button id="myBtn" class="myBtn">Read more</button>
+                                            @if (Str::length($organisasi->deskripsi) > 100)
+                                                {!! substr($organisasi->deskripsi, 0, 100) !!}
+                                                <span id="dots" class="dots">...</span>
+                                                <span id="more" class="more">{{ substr($organisasi->deskripsi, 100)  }}</span>
+                                                <button id="myBtn" class="myBtn">Read more</button>
+                                            @else
+                                                <p>{!! $organisasi->deskripsi !!}</p>
+                                            @endif
                                         </div>
                                     </div>
+                                    <hr class="border border-2">
                                 @empty
                                     <div class="col-12 text-center py-5" data-aos="fade-up"
                                         data-aos-delay="100">
@@ -180,6 +191,7 @@
                                         <p class="my-0">{{ $pendidikan->jenjang }} · {{ $pendidikan->jurusan }}</p>
                                         <p class="my-0">{{ $pendidikan->masuk  }} - {{ $pendidikan->keluar }}</p>
                                     </div>
+                                    <hr class="border border-2">
                                 @empty
                                     <div class="col-12 text-center py-5" data-aos="fade-up"
                                         data-aos-delay="100">
@@ -192,10 +204,44 @@
                     <div class="tab-pane" id="experience">
                         <div class="row mt-2">
                             <div class="col-12">
-                                <div class="col-12 text-center py-5" data-aos="fade-up"
-                                    data-aos-delay="100">
-                                    Tidak Ada Experience
-                                </div>
+                                @php
+                                    $incrementExperiences = 0
+                                @endphp
+                                @forelse ($experiences as $experience)
+                                    <div
+                                    class="mb-3"
+                                        data-aos="fade-up"
+                                        data-aos-delay="{{ $incrementExperiences+= 100 }}"
+                                    >
+                                        <h5 class="my-0">{{ $experience->jabatan }}</h5>
+                                        <p class="my-0">{{ $experience->perusahaan }} · {{ $experience->lokasi_perusahaan }} · {{ $experience->bidang }}</p>
+                                        @php
+                                            $start = new DateTime($experience->waktu_mulai);
+                                            $end = new DateTime($experience->waktu_selesai);
+                                            $diff = $start->diff($end);
+                                            $yearsInMonths = $diff->format('%r%y') * 12;
+                                            $months = $diff->format('%r%m');
+                                            $totalMonths = $yearsInMonths + $months;
+                                        @endphp
+                                        <p class="my-0">{{ date('d M Y', strtotime($experience->waktu_mulai))  }} - {{ date('d M Y', strtotime($experience->waktu_selesai)) }} · {{ $totalMonths }} Bulan</p>
+                                        <div class="post">
+                                            @if (Str::length($experience->deskripsi) > 100)
+                                                {!! substr($experience->deskripsi, 0, 100) !!}
+                                                <span id="dots" class="dots">...</span>
+                                                <span id="more" class="more">{{ substr($experience->deskripsi, 100)  }}</span>
+                                                <button id="myBtn" class="myBtn">Read more</button>
+                                            @else
+                                                <p>{!! $experience->deskripsi !!}</p>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <hr class="border border-2">
+                                @empty
+                                    <div class="col-12 text-center py-5" data-aos="fade-up"
+                                        data-aos-delay="100">
+                                        Tidak Ada Experience
+                                    </div>
+                                @endforelse
                             </div>
                         </div>
                     </div>
@@ -227,16 +273,17 @@
                                         @endphp
                                         <p class="my-0">{{ date('d M Y', strtotime($project->tanggal_mulai))  }} - {{ date('d M Y', strtotime($project->tanggal_selesai)) }} · {{ $totalMonths }} Bulan</p>
                                         <div class="post">
-                                            @if (strlen($project->deskripsi) > 100)
+                                            @if (Str::length($project->deskripsi) > 100)
                                                 {!! substr($project->deskripsi, 0, 100) !!}
                                                 <span id="dots" class="dots">...</span>
                                                 <span id="more" class="more">{{ substr($project->deskripsi, 100)  }}</span>
                                                 <button id="myBtn" class="myBtn">Read more</button>
                                             @else
-                                                <span>{!! $project->deskripsi !!}</span>
+                                                <p>{!! $project->deskripsi !!}</p>
                                             @endif
                                         </div>
                                     </div>
+                                    <hr class="border border-2">
                                 @empty
                                     <div class="col-12 text-center py-5" data-aos="fade-up"
                                         data-aos-delay="100">
@@ -277,6 +324,7 @@
                                         </div>
                                         <p class="my-0">Nomor Sertifikat {{ $skill->no_sertifikat }}</p>
                                     </div>
+                                    <hr class="border border-2">
                                 @empty
                                     <div class="col-12 text-center py-5" data-aos="fade-up"
                                         data-aos-delay="100">
