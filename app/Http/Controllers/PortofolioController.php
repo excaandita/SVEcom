@@ -21,7 +21,7 @@ class PortofolioController extends Controller
      */
     public function index()
     {
-        $users = User::where('isPublic', 1)->join('prodis', 'users.prodis_id', '=', 'prodis.id')->get();
+        $users = Prodi::join('users', 'prodis.id', '=', 'users.prodis_id')->where('isPublic', 1)->get();
         $skills = null;
         return view('pages.portofolio', [
             'users' => $users,
