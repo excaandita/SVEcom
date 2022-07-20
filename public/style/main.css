@@ -12049,3 +12049,7 @@ footer p {
 .edit {
     background-color: #E2F8F3;
 }
+
+.portfolio {
+    min-height: 11rem;
+}

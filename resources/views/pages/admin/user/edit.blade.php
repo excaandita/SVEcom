@@ -60,6 +60,7 @@
                                                 <option value="ADMIN">Admin</option>
                                                 <option value="USER">User</option>
                                                 <option value="BUYER">Buyer</option>
+                                                <option value="MAHASISWA">Mahasiswa</option>
                                             </select>
                                         </div>
                                     </div>

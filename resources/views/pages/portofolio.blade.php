@@ -55,7 +55,7 @@
                             data-aos-delay="{{ $incrementUsers+= 100 }}"
                         >
                             <a href="{{ route('portofolio-detail', $user->id) }}" class="text-decoration-none text-body">
-                                <div class="card p-3 card-list">
+                                <div class="card p-3 card-list portfolio">
                                     <h6>{{ $user->name }}</h6>
                                     <div class="d-flex flex-row justify-content-between">
                                         <p>{{ $user->nama }}</p>

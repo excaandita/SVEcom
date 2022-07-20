@@ -74,8 +74,6 @@
                  >
                   Pengajuan Penarikan
                 </a>
-              @endif
-              @if (auth()->user()->roles == 'USER' || auth()->user()->roles == 'MAHASISWA')
                 <li class="sidebar-dropdown">
                   <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
                   <div class="sidebar-submenu">
@@ -91,14 +89,22 @@
                     </ul>
                   </div>
                 </li>
-              @endif
-              @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-setting-store')}}"
                   class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
                 >
                   Pengaturan Toko
                 </a>
+              @endif
+              @if (auth()->user()->roles == 'MAHASISWA')
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/biodata*')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experience*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/setting*') ? 'active' : '') }}" href="{{ route('portofolio-setting') }}">Pengaturan Portofolio</a>
               @endif
                @if (auth()->user()->roles == 'BUYER')
                 <a
