@@ -11986,10 +11986,13 @@ footer p {
 }
 
 .tabs .tab-content {
-  color: white;
-  background-color: #428bca;
   padding: 5px 15px;
   border-radius: 0 0 4px 4px;
+}
+
+.tabs .color {
+    color: white;
+    background-color: #428bca;
 }
 
 .more {
