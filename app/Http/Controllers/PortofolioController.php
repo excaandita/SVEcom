@@ -38,7 +38,7 @@ class PortofolioController extends Controller
         $pendidikans = Pendidikan::where('users_id', $request->id)->get();
         $experiences = Experience::where('users_id', $request->id)->get();
         $projects = Project::where('users_id', $request->id)->get();
-        $skills = Skill::where('users_id', $request->id)->get();
+        $skills = Skill::where('users_id', $request->id)->where('status', 'verified')->get();
 
         if($user == null) {
             return response(redirect(url('/')), 404);
