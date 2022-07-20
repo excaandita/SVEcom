@@ -18,7 +18,7 @@
     
   </head>
 
-  <body>
+  <body class="vh-100">
     <!-- Page Content-->
     @yield('content')
 

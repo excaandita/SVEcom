@@ -78,6 +78,7 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('categories-detail');
 Route::get('/portofolio', [PortofolioController::class, 'index'])->name('portofolio');
 Route::get('/portofolio/{id}', [PortofolioController::class, 'detail'])->name('portofolio-detail');
+Route::get('/search', [PortofolioController::class, 'search'])->name('')->name('portofolio-search');
 
 Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
 

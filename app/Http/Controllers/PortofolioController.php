@@ -21,9 +21,11 @@ class PortofolioController extends Controller
      */
     public function index()
     {
-        $users = User::where('isPublic', 1)->get();
+        $users = User::where('isPublic', 1)->join('prodis', 'users.prodis_id', '=', 'prodis.id')->get();
+        $skills = null;
         return view('pages.portofolio', [
             'users' => $users,
+            'skills' => $skills
         ]);
     }
 
@@ -49,6 +51,20 @@ class PortofolioController extends Controller
             'pendidikans' => $pendidikans,
             'experiences' => $experiences,
             'projects' => $projects,
+            'skills' => $skills,
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        $search_query = $request['query'];
+        if ($search_query == "") {
+            return redirect('/portofolio');
+        }
+        $skills = User::where('isPublic', 1)->join('skills', 'users.id', '=', 'skills.users_id')->join('prodis', 'prodis.id', '=', 'users.prodis_id')->where('skills.jenis', 'LIKE', '%'.$search_query.'%')->get();
+        $users = User::where('isPublic', 1)->join('prodis', 'users.prodis_id', '=', 'prodis.id')->get();
+        return view('pages.portofolio', [
+            'users' => $users,
             'skills' => $skills,
         ]);
     }
