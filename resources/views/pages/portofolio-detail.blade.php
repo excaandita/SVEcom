@@ -49,44 +49,72 @@
                                 <p>{!! $user->deskripsi !!}</p>
                                 <div class="row">
                                     <div class="col-6">
-                                        <div class="d-flex">
-                                            <h6>Tempat Lahir: </h6>
-                                            <p class="ml-2">{{ $user->tempat_lahir }}</p>
-                                        </div>
-                                        <div class="d-flex">
-                                            <h6>Tanggal Lahir: </h6>
-                                            <p class="ml-2">{{ $user->tanggal_lahir }}</p>
-                                        </div>
-                                        <div class="d-flex">
-                                            <h6>Alamat KTP: </h6>
-                                            <p class="ml-2">{{ $user->address_one }}</p>
-                                        </div>
-                                        <div class="d-flex">
-                                            <h6>Angkatan: </h6>
-                                            <p class="ml-2">{{ $user->angkatan }}</p>
-                                        </div>
+                                        @guest
+                                            <div class="d-flex">
+                                                <h6>Fakultas: </h6>
+                                                <p class="ml-2">{{ $user->fakultas }}</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>Angkatan: </h6>
+                                                <p class="ml-2">{{ $user->angkatan }}</p>
+                                            </div>
+                                        @endguest
+                                        @auth
+                                            <div class="d-flex">
+                                                <h6>Tempat Lahir: </h6>
+                                                <p class="ml-2">{{ $user->tempat_lahir }}</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>Tanggal Lahir: </h6>
+                                                <p class="ml-2">{{ $user->tanggal_lahir }}</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>Alamat KTP: </h6>
+                                                <p class="ml-2">{{ $user->address_one }}</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>Angkatan: </h6>
+                                                <p class="ml-2">{{ $user->angkatan }}</p>
+                                            </div>
+                                        @endauth
                                     </div>
                                     <div class="col-6">
-                                        <div class="d-flex">
-                                            <h6>Fakultas: </h6>
-                                            <p class="ml-2">{{ $user->fakultas }}</p>
-                                        </div>
-                                        <div class="d-flex">
-                                            <h6>Program Studi: </h6>
-                                            @if ($prodi == null)
-                                                <p class="ml-2">Belum ada Program Studi</p>
-                                            @else
-                                                <p class="ml-2">{{ $prodi->nama }}</p>
-                                            @endif
-                                        </div>
-                                        <div class="d-flex">
-                                            <h6>Alamat Solo: </h6>
-                                            <p class="ml-2">{{ $user->alamat_solo }}</p>
-                                        </div>
-                                        <div class="d-flex">
-                                            <h6>NIM: </h6>
-                                            <p class="ml-2">{{ $user->nim }}</p>
-                                        </div>
+                                        @guest
+                                            <div class="d-flex">
+                                                <h6>Program Studi: </h6>
+                                                @if ($prodi == null)
+                                                    <p class="ml-2">Belum ada Program Studi</p>
+                                                @else
+                                                    <p class="ml-2">{{ $prodi->nama }}</p>
+                                                @endif
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>NIM: </h6>
+                                                <p class="ml-2">{{ $user->nim }}</p>
+                                            </div>
+                                        @endguest
+                                        @auth
+                                            <div class="d-flex">
+                                                <h6>Fakultas: </h6>
+                                                <p class="ml-2">{{ $user->fakultas }}</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>Program Studi: </h6>
+                                                @if ($prodi == null)
+                                                    <p class="ml-2">Belum ada Program Studi</p>
+                                                @else
+                                                    <p class="ml-2">{{ $prodi->nama }}</p>
+                                                @endif
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>Alamat Solo: </h6>
+                                                <p class="ml-2">{{ $user->alamat_solo }}</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>NIM: </h6>
+                                                <p class="ml-2">{{ $user->nim }}</p>
+                                            </div>
+                                        @endauth
                                     </div>
                                 </div>
                             </div>

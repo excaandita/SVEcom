@@ -44,7 +44,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardWithdrawController;
 
 use App\Http\Controllers\DashboardRefundController;
-
+use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\Portofolio\BiodataController;
 use App\Http\Controllers\Portofolio\KepanitiaanController;
@@ -93,7 +93,9 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
-
+// Route::group(['middleware' => ['auth', 'mahasiswa']], function () {
+//     Route::get('/', [PortofolioController::class, 'index'])->name('home-mahasiswa');
+// });
 
 Route::group(['middleware' => ['auth']], function(){
 
@@ -222,7 +224,12 @@ Route::prefix('buyer')
     });
 
 
-
+Route::prefix('mahasiswa')
+    ->namespace('')
+    ->middleware(['auth', 'mahasiswa'])
+    ->group(function(){
+        Route::get('/', [MahasiswaDashboardController::class, 'index'])->name('mahasiswa-dashboard');
+    });
 
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

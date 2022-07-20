@@ -58,12 +58,14 @@
                   Dashboard
                 </a>
               @endif
-              <a
-                href="{{ route('dashboard-transaction')}}"
-                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
-              >
-                Transaksi
-              </a>
+              @if (auth()->user()->roles != 'MAHASISWA')
+                <a
+                  href="{{ route('dashboard-transaction')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
+                >
+                  Transaksi
+                </a>
+              @endif
               <!-- fungsi if untuk memisah dan menampilkan kolom setting-store jika roles yang sedang login adalah user-->
               @if (auth()->user()->roles == 'USER')
                 <a
@@ -72,6 +74,8 @@
                  >
                   Pengajuan Penarikan
                 </a>
+              @endif
+              @if (auth()->user()->roles == 'USER' || auth()->user()->roles == 'MAHASISWA')
                 <li class="sidebar-dropdown">
                   <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
                   <div class="sidebar-submenu">
@@ -87,6 +91,8 @@
                     </ul>
                   </div>
                 </li>
+              @endif
+              @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-setting-store')}}"
                   class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/settings*')) ? 'active' : '' }}"
@@ -184,20 +190,22 @@
                         </form>
                     </div>
                     </li>
-                    <li class="nav-item" style="list-style: none">
-                      <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
-                        @php
-                          $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
-                        @endphp
-                        @if ($carts > 0)
-                          <img src="/images/icon-cart-filled.svg" alt="" />
-                          <div class="cart-badge">{{ $carts }}</div>
-                        @else
-                          <img src="/images/icon-cart-empty.svg" alt="" />
-                        @endif
-                        
-                      </a>
-                    </li>
+                    @if (auth()->user()->roles != 'MAHASISWA')
+                      <li class="nav-item" style="list-style: none">
+                        <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
+                          @php
+                            $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                          @endphp
+                          @if ($carts > 0)
+                            <img src="/images/icon-cart-filled.svg" alt="" />
+                            <div class="cart-badge">{{ $carts }}</div>
+                          @else
+                            <img src="/images/icon-cart-empty.svg" alt="" />
+                          @endif
+                          
+                        </a>
+                      </li>
+                    @endif
                 </ul>
                 <!-- Mobile Menu -->
                 <ul class="navbar-nav d-block d-lg-none mt-3">
@@ -211,7 +219,9 @@
                 </div>
             </div>
           </nav>
-
+            @if (auth()->user()->roles == 'MAHASISWA')
+                
+            @endif
             {{--content--}}
             @yield('content')
 
