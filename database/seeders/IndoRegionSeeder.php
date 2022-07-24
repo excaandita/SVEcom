@@ -18,6 +18,7 @@ class IndoRegionSeeder extends Seeder
      *
      * @return void
      */
+    //digunakan untuk memanggil class dari seedtsb ke databaseeder
     public function run()
     {
         $this->call(IndoRegionProvinceSeeder::class);

@@ -44,8 +44,8 @@
                                             <label>Pemilik Produk</label>
                                             <select name="users_id" class="form-control">
                                                 <option value="{{ $item->users_id }}" selected>{{ $item->user->name}}</option>
-                                                @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @foreach ($users as $p)
+                                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -55,8 +55,8 @@
                                             <label>Kategori Produk</label>
                                             <select name="categories_id" class="form-control">
                                                 <option value="{{ $item->categories_id }}" selected>{{ $item->category->name}}</option>
-                                                @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @foreach ($categories as $p)
+                                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -76,7 +76,7 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Deksripsi Produk</label>
-                                            <textarea name="description" id="editor"> {!! $item->description !!} </textarea>
+                                            <textarea name="description" id="deskripsi"> {!! $item->description !!} </textarea> <!--memnagil html dekripsi menggunakan !!-->
                                         </div>
                                     </div>
 
@@ -101,7 +101,7 @@
 @push('addon-script')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor.create(document.querySelector("#editor"))
+        ClassicEditor.create(document.querySelector("#deskripsi"))
           .then((editor) => {
             console.log(editor);
           })

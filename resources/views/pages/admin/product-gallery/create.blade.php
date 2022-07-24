@@ -37,8 +37,8 @@
                                         <div class="form-group">
                                             <label>Produk</label>
                                             <select name="products_id" class="form-control">
-                                                @foreach ($products as $product)
-                                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                                @foreach ($products as $p)
+                                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -53,7 +53,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
-                                        <button type="submit" class="btn btn-success px-5">
+                                        <button type="submit" class="btn btn-primary px-5">
                                             Simpan
                                         </button>
                                     </div>
@@ -68,15 +68,3 @@
 </div>
 @endsection
 
-@push('addon-script')
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
-    <script>
-        ClassicEditor.create(document.querySelector("#editor"))
-          .then((editor) => {
-            console.log(editor);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      </script>
-@endpush

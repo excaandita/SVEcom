@@ -24,7 +24,7 @@
                                 Tambah User
                             </a>
                             <div class="table-responsive">
-                                <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
+                                <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="tabeluser">
                                     <thead class="bg-info">
                                         <tr>
                                             <th>ID</th>
@@ -48,18 +48,23 @@
 
 @push('addon-script')
     <script>
-        var datatable = $('#crudTable').DataTable({
+        var datatable = $('#tabeluser').DataTable({
             processing: true,
             serverSide: true,
             ordering: true,
             ajax: {
-                url: '{!! url()->current() !!}',
+                url: '{!! url()->current() !!}', //Panggil url untuk data table makanya pake ajax, dikasi url dari halaman itu sendiri
             },
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
                 { data: 'email', name: 'email' },
                 { data: 'roles', name: 'roles' },
+<<<<<<< Updated upstream
+=======
+                { data: 'suspend', name: 'suspend',orderable: false,
+                    searchable:false, },
+>>>>>>> Stashed changes
                 { 
                     data: 'action',
                     name: 'action',

@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    User-Sekolah Vokasi E-COM
+    User-Marketplace Sekolah Vokasi
 @endsection
 
 @section('content')
@@ -12,8 +12,8 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - User</h2>
-            <p class="dashboard-subtitle">Edit User</p>
+            <h2 class="dashboard-title">Admin Dashboard - Pengguna</h2>
+            <p class="dashboard-subtitle">Edit Pengguna</p>
         </div>
         <div class="dashboard-content">
             <div class="row">
@@ -30,24 +30,24 @@
                     <div class="card">
                         <div class="card-body">
                             <form action="{{ route('user.update', $item->id) }}" method="POST" enctype="multipart/form-data">
-                                @method('PUT')
+                                @method('PUT')<!-- untuk update data emg hrs pke put/patch-->
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Nama User</label>
+                                            <label>Nama Pengguna</label>
                                             <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Email User</label>
+                                            <label>Email Pengguna</label>
                                             <input type="email" name="email" class="form-control" value="{{ $item->email }}" required >
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Password User</label>
+                                            <label>Password Pengguna</label>
                                             <input type="password" name="password" class="form-control" >
                                             <small>Kosongkan jika tidak ingin mengganti password</small>
                                         </div>
@@ -60,6 +60,7 @@
                                                 <option value="ADMIN">Admin</option>
                                                 <option value="USER">User</option>
                                                 <option value="BUYER">Buyer</option>
+                                                <option value="MAHASISWA">Mahasiswa</option>
                                             </select>
                                         </div>
                                     </div>

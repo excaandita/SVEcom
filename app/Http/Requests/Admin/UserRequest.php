@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
         return [
             'name' => 'required|string|max:50',
             'email' => 'required|email',
-            'roles' => 'nullable|string|in:ADMIN,USER,BUYER',
+            'roles' => 'nullable|string|in:ADMIN,USER,BUYER,MAHASISWA',
         ];
     }
 }

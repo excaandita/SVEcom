@@ -10,8 +10,8 @@ class Product extends Model
 {
     use HasFactory;
     use SoftDeletes;
-
-    protected $fillable = [
+//field apa saja yang akan disimpan menggunakan mass assignment
+    protected $fillable = [ 
         'name',
         'users_id',
         'categories_id',
@@ -25,19 +25,19 @@ class Product extends Model
 
     ];
 
-    public function galleries()
+    public function galleries()//satu produk banyak galeri (buat tau produk itu fotonya apa aja)
     {
         return $this->hasMany(ProductGallery::class, 'products_id', 'id');
     }
 
-    public function user()
+    public function user()//satu user banyak galeri (buat tau produk itu yang punya siapa/user yang bikin)
     {
-        return $this->hasOne(User::class, 'id', 'users_id');
+        return $this->hasOne(User::class, 'id', 'users_id');//id=relasi users_id=foreignkey
     }
 
-    public function category()
+    public function category() //pengen tau produk itu masuk kategori mana
     {
-        return $this->belongsTo(Category::class, 'categories_id', 'id');
+        return $this->belongsTo(Category::class, 'categories_id', 'id'); //kategori cuma satu tiap produk
     }
      public function transactiondetail()
     {

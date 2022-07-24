@@ -108,6 +108,7 @@
           </div>
         </div>
         <div class="row">
+          <!--looping pke forelse-->
           @php $incrementProduct = 0 @endphp
           @forelse ($products as $product )
             <div
@@ -120,10 +121,12 @@
                   <div
                     class="products-image"
                     style="
-                      @if($product->galleries->count())
-                        background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
+                    
+                      @if($product->galleries->count()) 
+                
+                        background-image: url('{{ Storage::url($product->galleries->first()->photos) }}') 
                       @else
-                        background-color: #eee
+                        background-color: #17A2B8
                       @endif
                     "
                   ></div>
@@ -135,7 +138,7 @@
           @empty
             <div class="col-12 text-center py-5" data-aos="fade-up"
             data-aos-delay="100">
-              Tidak ada produk
+              Tidak ada produk ditemukan
             </div>
           @endforelse
 

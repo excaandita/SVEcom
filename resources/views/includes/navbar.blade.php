@@ -16,14 +16,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a href="{{ route('home') }}" class="nav-link">Home</a>
+            <li class="nav-item ">
+              <a href="{{ route('home') }}" class="nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('categories') }}" class="nav-link">Categories</a>
+              <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Categories</a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('listproduct') }}" class="nav-link">Produk</a>
+              <a href="{{ route('listproduct') }}" class="nav-link {{ (request()->is('listproduct')) ? 'active' : '' }}">Produk</a>
             </li>
             <li class="nav-item">
               <a href="{{ route('portofolio') }}" class="nav-link">Portofolio</a>
@@ -90,7 +90,7 @@
             <li class="nav-item" style="list-style: none">
               <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
                 @php
-                  $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity');
+                  $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity'); //untuk nampilin data cart
                 @endphp
                 @if ($carts > 0)
                   <img src="/images/icon-cart-filled.svg" alt="" />

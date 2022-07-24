@@ -14,7 +14,7 @@ class CartController extends Controller
     public function index()                     //index untuk menampilkan di halaman utama cart
     {
         // varible untuk menampilkan data di cart
-        $carts = Cart::with(['product.galleries', 'user']) //megambil data relasi di bagian cart untuk product & user
+        $carts = Cart::with(['product.galleries', 'user']) //megambil data relasi di bagian cart untuk product beserta gallerynya & user
                 ->where('users_id', Auth::user()->id) //melihat cart bedasarkan user yang sedang aktif
                 ->get();
         

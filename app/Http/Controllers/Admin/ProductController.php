@@ -22,11 +22,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-        if(request()->ajax())
+        if(request()->ajax()) 
         {
-            $query = Product::with(['user','category'])->withCount('transactiondetail');
+            //query datatable
+            $query = Product::with(['user','category'])->withSum('transactiondetail','quantity'); //manggil sm relasinya
 
-            return DataTablesDataTables::of($query)
+            return DataTablesDataTables::of($query) //bentuk json buat balikin data dataable
                 ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
@@ -37,11 +38,11 @@ class ProductController extends Controller
                                         Aksi
                                 </button>
                                 <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('product.edit', $item->id) .'">
+                                    <a class="dropdown-item" href="' . route('product.edit', $item->id) .'"> 
                                         Edit
                                     </a>
                                     <form action="'. route('product.destroy', $item->id) .'" method="POST">
-                                        '. method_field('delete').  csrf_field() .'
+                                        '. method_field('delete').  csrf_field() .' 
                                         <button type="submit" class="dropdown-item text-danger">
                                             Hapus
                                         </button>
@@ -82,9 +83,9 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $data = $request->all();
+        $data = $request->all(); //variable data isinya semua data yang masuk
 
-        $data['slug'] = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->name); //slug digunakan untuk menamai urlnya. menggunakan str slug. tulisan apa yang mau dibentuk slug kalo pada produk ini namanya 
 
         Product::create($data);
 
@@ -134,7 +135,7 @@ class ProductController extends Controller
 
         $item = Product::findOrFail($id);
 
-        $data['slug'] = Str::slug($request->name);
+        $data['slug'] = Str::slug($request->name); //biar wktu update nama, slugnya jg ke update
 
         $item->update($data);
 

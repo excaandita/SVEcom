@@ -24,9 +24,9 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:255',
-            'users_id' => 'required|exists:users,id',
-            'categories_id' => 'required|exists:categories,id',
+            'name' => 'required|max:100',
+            'users_id' => 'required|exists:users,id', //harus ada user nya siapa
+            'categories_id' => 'required|exists:categories,id', // saat milih kategori, kategorinya harus ada 
             'price' => 'required|integer',
             'description' => 'required',
             'stock' => 'required|min:0'

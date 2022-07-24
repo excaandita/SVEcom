@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
@@ -66,8 +69,10 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
-    "repositories": [{
-        "type": "vcs",
-        "url": "https://github.com/akbarhmu/rajaongkir"
-    }]
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/rizqunazs/rajaongkir"
+        }
+    ]
 }

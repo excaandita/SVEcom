@@ -19,7 +19,7 @@
                 <li class="breadcrumb-item">
                   <a href="/index.html">Home</a>
                 </li>
-                <li class="breadcrumb-item active">Product Details</li>
+                <li class="breadcrumb-item active">Detail Produk</li>
               </ol>
             </nav>
           </div>
@@ -30,12 +30,13 @@
         <div class="row">
             <div class="col-md-8">
     <section class="store-gallery mb-3" id="gallery">
-      <div class="container">
         <div class="row">
           <div class="col-lg-10" data-aos="zoom-in">
-            <transition name="slide-fade" mode="out-in">
-              <img
-                :src="photos[activePhoto].url"
+            <transition name="slide-fade" mode="out-in"> <!--vue js transisition-->
+              <!--src ambil dari variable dibawah. ambil object photo 
+            ambil object photos kemudian ambil array photos yg pertama. url = url foto tsb karena dibawah bentuknya url-->
+            <img
+                v-bind:src="photos[activePhoto].url" 
                 :key="photos[activePhoto].id"
                 class="w-100 main-image"
                 alt=""
@@ -43,16 +44,22 @@
             </transition>
           
           <div class="row">
+              <!-- v for adalah lopping divue js
+                v-for="(photo, index) in photos" mksdnya objek yang ada di photos dipecah menjadi variable photo dan index(indexnya=key array tsb(0,1,2,3))/datanya diakses di photo, arraynya di index
+                key="photo.id" idnya tu sama aja dgn index/diambil dari v-for
+                -->
+    
               <div
                 class="col-3 col-lg-3 col-md-3 mt-3"
                 v-for="(photo, index) in photos"
                 :key="photo.id"
-                data-aos="zoom-in"
+                data-aos="zoom-out"
                 data-aos-delay="100"
               >
-                <a href="#" @click="changeActive(index)">
+              <!--class="{ active: index == activePhoto }" mksudnya indexnya itu = activephoto bukan kalo iya keadaan aactive bakalan true maka class yg w-100 tu bakalan ada-->
+                <a href="#" v-on:click="changeActive(index)"> <!--action saat gambar diklik jd gambar gedenya gnti sesuai dgn index yg diklik -->
                   <img
-                    :src="photo.url"
+                    v-bind:src="photo.url"
                     class="w-100 thumbnail-image"
                     :class="{ active: index == activePhoto }"
                     alt=""
@@ -76,7 +83,7 @@
                                     <a href="{{ route('profile', $product->user->id) }}">{{ $product->user->store_name }}</a>
                                 </div>
                                 <div class="col-md-6 mb-2 stock">Stock : {{ number_format($product->stock) }}</div>
-                                <div class= "col-md-6 mb-2 stock">Terjual : {{ number_format($product->transactiondetail->count()) }}</div>
+                                <div class= "col-md-6 mb-2 stock">Terjual : {{ number_format($product->transactiondetail->sum('quantity')) }}</div>
                                 <div class="col-md-12 price">Rp. {{ number_format($product->price) }}</div>
                         
                                     <section class="store-description">
@@ -103,7 +110,7 @@
                                 <!-- Jika stok lebih dari 0, maka akan muncul button add to cart -->
                                 <form action="{{ route('detail-add', $product->id) }}" method="POST"
                                     enctype="multipart/form-data">
-                                    @csrf
+                                    @csrf <!--unntuk bisa mengirim form-->
                                     <button type="submit" class="btn btn-primary px-4 text-white btn-block mb-3">
                                         Add to Cart
                                     </button>
@@ -188,15 +195,15 @@
 @push('addon-script')
     <script src="/vendor/vue/vue.js"></script>
     <script>
-        var gallery = new Vue({
-            el: "#gallery",
-            mounted() {
-                AOS.init();
+        var gallery = new Vue({ //inisialisasi dalam satu variable bernama galerry didalamnya menginisialisasikan vue baru 
+            el: "#gallery", //elemen yang ditarget yaitu galeri berarti diatas id=gallery
+            mounted() { // mounted ini script yang akan dijalankan ketika vuejs muncul
+                AOS.init(); //manggil animasi aos, aos emg hrs diinisialisasikan di vue
             },
-            data: {
-                activePhoto: 0,
+            data: { //objek data, menyimpan variable yang variablenya tesimpan dijavascript(vue berjalan diclient side)
+                activePhoto: 0, //active photo ngmbil dari gmbar yg aray pertama
                 photos: [
-                    @foreach ($product->galleries as $gallery)
+                    @foreach ($product->galleries as $gallery) // ngelooping agleri dalam bentuk objek dalam vue
                         {
                             id: {{ $gallery->id }},
                             url: "{{ Storage::url($gallery->photos) }}",
@@ -204,8 +211,9 @@
                     @endforeach
                 ],
             },
+            //membuat fungsi
             methods: {
-                changeActive(id) {
+                changeActive(id) { //(id berbentuk array)buat gnti difoto yg besar itu kalo diklik,ngecek dari array data fotonya
                     this.activePhoto = id;
                 },
             },
