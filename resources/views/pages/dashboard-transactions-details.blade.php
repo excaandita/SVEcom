@@ -4,6 +4,47 @@
   Detail Transaksi-Sekolah Vokasi E-COM
 @endsection
 
+@push('addon-style')
+<style>
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+</style>
+    
+@endpush
+
 @section('content')
 <div
 class="section-content section-dashboard-home"
@@ -141,18 +182,49 @@ data-aos="fade-up"
                           </div>
                         </template>
                         <template v-if="status == 'SUCCESS'">
-                          <div class="col-md-3">
-                            <form action="#" method="POST" enctype="multipart/form-data">
-                              @csrf
-                              <button
-                                class="btn btn-success btn-block mt-4"
-                                type="submit"
-                              >
-                              Beri Komentar!!!
-                              </button>
-                            </form>
-                          </div>
+                          <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            <div class="row">
+                              <div class="col-12">
+                                <div class="row">
+                                  <!-- Rating Star -->
+                                  <div class="col-md-6">
+                                    <div class="product-title">Rating produk</div>
+                                    <div class="rate">
+                                      <input type="radio" id="star5" name="rating" value="5" />
+                                      <label for="star5" title="text">5 stars</label>
+                                      <input type="radio" id="star4" name="rating" value="4" />
+                                      <label for="star4" title="text">4 stars</label>
+                                      <input type="radio" id="star3" name="rating" value="3" />
+                                      <label for="star3" title="text">3 stars</label>
+                                      <input type="radio" id="star2" name="rating" value="2" />
+                                      <label for="star2" title="text">2 stars</label>
+                                      <input type="radio" id="star1" name="rating" value="1" />
+                                      <label for="star1" title="text">1 star</label>
+                                    </div>
+                                  </div>
+                                  <!-- kolom komentar -->
+                                  <div class="col-md-8">
+                                    <div class="form-group">
+                                      <div class="product-title">Kolom Komentar</div>
+                                      <textarea name="komentar" id="editor"></textarea>
+                                    </div>
+                                  </div>
+                                  <!-- tombol Submit Komen rating-->
+                                  <div class="col-md-3">
+                                    <button
+                                      class="btn btn-success btn-block mt-4"
+                                      type="submit"
+                                    >
+                                      Beri Komentar!!!
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
                         </template>
+
                         <template v-if="status == 'PENDING'">
                           <div class="col-md-3">
                             <form action="{{ route('dashboard-refund-create', $transaction->id)}}" method="POST" enctype="multipart/form-data">
@@ -228,5 +300,21 @@ data-aos="fade-up"
       resi: "{{ $transaction->resi }}",
     },
   });
+</script>
+@endpush
+
+@push('addon-script')
+<script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor.create(document.querySelector("#editor"))
+        .then((editor) => {
+            console.log(editor);
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+</script>
+<script>
+    ckeditor.replace("editor");
 </script>
 @endpush

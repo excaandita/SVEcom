@@ -3,6 +3,18 @@
 @section('title')
     Detail - Sekolah Vokasi E-COM
 @endsection
+@push('addon-style')
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+  color: orange;
+}
+
+</style>
+
+@endpush
+
 
 @section('content')
 <div class="page-content page-details">
@@ -77,6 +89,53 @@
                                 </div>
                                 <div class="col-md-6 mb-2 stock">Stock : {{ number_format($product->stock) }}</div>
                                 <div class= "col-md-6 mb-2 stock">Terjual : {{ number_format($product->transactiondetail->count()) }}</div>
+                                <section class="store-description">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-2">
+                                                <!-- Rating -->
+                                                @if ($ratingCount == '1')
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                @elseif ($ratingCount == '2')
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                @elseif ($ratingCount == '3')
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                @elseif ($ratingCount == '4')
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>   
+                                                    <span class="fa fa-star "></span>
+                                                @elseif ($ratingCount == '5')
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>     
+                                                @else
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>
+                                                    <span class="fa fa-star "></span>   
+                                                @endif
+                                                 {{ $ratingCount }} / 5
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
                                 <div class="col-md-12 price">Rp. {{ number_format($product->price) }}</div>
                         
                                     <section class="store-description">
@@ -90,6 +149,8 @@
                                             </div>
                                         </div>
                                     </section>
+                                    
+                                    
                         <div class="col-lg-12" data-aos="zoom-in">
                              @if($product->user->store_status==1)
                             @auth
@@ -142,38 +203,63 @@
             <section class="store-review">
                 <div class="container">
                     <div class="row">
-                        <div class="col-12 col-lg-8 mb-3 mt-3">
-                            <h3>Customer Review (3)</h3>
+                        <div class="col-12 col-lg-12 mb-3 mt-3">
+                            <h3>Customer Review ( {{$comment->count()}} )</h3>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12 col-lg-8">
+                        <div class="col-12 col-lg-12">
                             <ul class="list-unstyled">
-                                <li class="media">
-                                    <img src="/images/icons-testimonial-1.png" class="mr-3 rounded-circle" alt="" />
-                                    <div class="media-body">
-                                        <h5 class="mt-2 mb-1">Fulan</h5>
-                                        Hello guys, aku beli kursi ini bagus banget pas duduk
-                                        rasanya sampe mau meninggal. mantap banget susah rusak
-                                        dinjek dibakar juga ga rusak
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img src="/images/icons-testimonial-2.png" class="mr-3 rounded-circle" alt="" />
-                                    <div class="media-body">
-                                        <h5 class="mt-2 mb-1">akhirusalam</h5>
-                                        Hello guys, aku beli kursi ini bagus banget pas duduk
-                                        rasanya sampe mau meninggal.
-                                    </div>
-                                </li>
-                                <li class="media">
-                                    <img src="/images/icons-testimonial-3.png" class="mr-3 rounded-circle" alt="" />
-                                    <div class="media-body">
-                                        <h5 class="mt-2 mb-1">Uwowuwuwuw</h5>
-                                        Hello guys, aku beli kursi ini bagus banget pas duduk
-                                        rasanya sampe mau meninggal.
-                                    </div>
-                                </li>
+                                @foreach ($comment as $com)
+                                    <li class="media md-6">
+                                        <img src="/images/icons-testimonial-1.png" class="mr-3 rounded-circle" alt="" />
+                                        <div class="media-body">
+                                            <!-- nama -->
+                                            <h5 class="mt-3 mb-1">{{ $com->transaction->user->name }}</h5>
+                                            <!-- Rating -->
+                                            @if ($com->rating == '1')
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                            @elseif ($com->rating == '2')
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                            @elseif ($com->rating == '3')
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                            @elseif ($com->rating == '4')
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>   
+                                                <span class="fa fa-star "></span>
+                                            @elseif ($com->rating == '5')
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>
+                                                <span class="fa fa-star checked"></span>     
+                                            @else
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>
+                                                <span class="fa fa-star "></span>   
+                                            @endif
+                                            
+                                            <!-- Isi komen -->
+                                            <div class="col-md-12">{!! $com->komentar !!}</div>
+                                        </div>
+                                    </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
