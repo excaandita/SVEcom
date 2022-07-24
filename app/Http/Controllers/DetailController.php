@@ -18,7 +18,12 @@ class DetailController extends Controller
                     ->whereNotNull('rating')
                     ->get();
 
-        $ratingCount = $rating->sum('rating') / $rating->count(); 
+        if( $rating->sum('rating') > 0 && $rating->count() > 0){
+            $ratingCount = $rating->sum('rating') / $rating->count(); 
+        } else {
+            $ratingCount = 0;
+        }
+        
 
         $comment = TransactionDetail::where('products_id', $product->id)
                     ->whereNotNull('komentar')

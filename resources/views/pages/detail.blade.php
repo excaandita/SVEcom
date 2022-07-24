@@ -94,31 +94,31 @@
                                         <div class="row">
                                             <div class="col-md-12 mb-2">
                                                 <!-- Rating -->
-                                                @if ($ratingCount == '1')
+                                                @if (round($ratingCount) == '1')
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star "></span>
                                                     <span class="fa fa-star "></span>
                                                     <span class="fa fa-star "></span>
                                                     <span class="fa fa-star "></span>
-                                                @elseif ($ratingCount == '2')
+                                                @elseif (round($ratingCount) == '2')
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star "></span>
                                                     <span class="fa fa-star "></span>
                                                     <span class="fa fa-star "></span>
-                                                @elseif ($ratingCount == '3')
+                                                @elseif (round($ratingCount) == '3')
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star "></span>
                                                     <span class="fa fa-star "></span>
-                                                @elseif ($ratingCount == '4')
+                                                @elseif (round($ratingCount) == '4')
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>   
                                                     <span class="fa fa-star "></span>
-                                                @elseif ($ratingCount == '5')
+                                                @elseif (round($ratingCount) == '5')
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
                                                     <span class="fa fa-star checked"></span>
@@ -131,7 +131,7 @@
                                                     <span class="fa fa-star "></span>
                                                     <span class="fa fa-star "></span>   
                                                 @endif
-                                                 {{ $ratingCount }} / 5
+                                                 {{ round($ratingCount, 1) }} / 5
                                             </div>
                                         </div>
                                     </div>
