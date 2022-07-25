@@ -181,11 +181,12 @@ data-aos="fade-up"
                             </form>
                           </div>
                         </template>
+                    </div>
                         <template v-if="status == 'SUCCESS'">
                           <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row">
-                              <div class="col-12">
+                              <div class="col-12 mt-3">
                                 <div class="row">
                                   <!-- Rating Star -->
                                   <div class="col-md-6">
@@ -204,14 +205,16 @@ data-aos="fade-up"
                                     </div>
                                   </div>
                                   <!-- kolom komentar -->
-                                  <div class="col-md-8">
+                                  <div class="col-md-12">
                                     <div class="form-group">
                                       <div class="product-title">Kolom Komentar</div>
                                       <textarea name="komentar" id="editor"></textarea>
                                     </div>
                                   </div>
+                                  </div>
                                   <!-- tombol Submit Komen rating-->
-                                  <div class="col-md-3">
+                                  <div class="row justify-content-center">
+                                    <div class="col-md-4">
                                     <button
                                       class="btn btn-success btn-block mt-4"
                                       type="submit"
