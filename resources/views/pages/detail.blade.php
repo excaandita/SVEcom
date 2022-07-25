@@ -219,7 +219,7 @@
                             <ul class="list-unstyled">
                                 @foreach ($comment as $com)
                                     <li class="media md-6">
-                                        <img src="/images/icons-testimonial-1.png" class="mr-3 rounded-circle" alt="" />
+                                        <img src="/images/icons-testimonial-2.png" class="mr-3 rounded-circle" alt="" />
                                         <div class="media-body">
                                             <!-- nama -->
                                             <h5 class="mt-3 mb-1">{{ $com->transaction->user->name }}</h5>
