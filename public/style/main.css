@@ -11986,10 +11986,38 @@ footer p {
 }
 
 .tabs .tab-content {
-  color: white;
-  background-color: #428bca;
   padding: 5px 15px;
   border-radius: 0 0 4px 4px;
+}
+
+.tabs .color {
+    color: white;
+    background-color: #428bca;
+}
+
+.tabs .nav-pills-regist > li > a {
+  border-radius: 4px;
+  padding: 5px 15px;
+  color: black;
+}
+
+.tabs .nav-pills-regist > li > a:hover {
+    background-color: whitesmoke;
+    text-decoration: none;
+    padding: 6px 15px 6px 15px;
+}
+
+.tabs .nav-pills-regist > li.active > a {
+    border-radius: 4px;
+    background-color: #adb5bd;
+    color: black;
+    font-size: larger;
+    font-weight: 600;
+}
+
+.tabs .nav-pills-regist > li.active > a:hover {
+    border-radius: 4px;
+    background-color: #adb5bd;
 }
 
 .more {
@@ -12002,4 +12030,26 @@ footer p {
     outline: none;
     background-color: #F8F9FA;
     border-radius: 5px;
+}
+
+.icon {
+    padding: 0.5rem;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete {
+    background-color: #F8F2EA;
+}
+
+.edit {
+    background-color: #E2F8F3;
+}
+
+.portfolio {
+    min-height: 11rem;
 }

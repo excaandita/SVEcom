@@ -36,12 +36,7 @@ class SertifikatController extends Controller
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="' . route('sertifikat.edit', $item->id) .'">
                                         Edit
-                                    </a>
-                                    <form action="'. route('sertifikat.destroy', $item->id) .'" method="POST">
-                                        '. method_field('delete').  csrf_field() .'
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            Hapus
-                                        </button>
+    
                                     </form>
                                 </div>
                             </div>
@@ -112,19 +107,5 @@ class SertifikatController extends Controller
         $skill->save();
 
         return redirect()->route('sertifikat.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $item = Skill::findOrFail($id);
-        $item->delete();
-
-        return redirect()->route('user.index');
     }
 }

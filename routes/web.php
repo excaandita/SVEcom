@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\SertifikatController;
 use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
+use App\Http\Controllers\Admin\RefundController as AdminRefundController;
 use App\Http\Controllers\Admin\CategoryController as SellerCategoryController;
 use App\Http\Controllers\Admin\SliderController as SellerSliderController;
 use App\Http\Controllers\Seller\DashboardController as SellerDashboardController;
@@ -43,7 +44,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardWithdrawController;
 
 use App\Http\Controllers\DashboardRefundController;
-
+use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\Portofolio\BiodataController;
 use App\Http\Controllers\Portofolio\KepanitiaanController;
@@ -77,6 +78,7 @@ Route::get('/categories', [CategoryController::class, 'index'])->name('categorie
 Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('categories-detail');
 Route::get('/portofolio', [PortofolioController::class, 'index'])->name('portofolio');
 Route::get('/portofolio/{id}', [PortofolioController::class, 'detail'])->name('portofolio-detail');
+Route::get('/search', [PortofolioController::class, 'search'])->name('')->name('portofolio-search');
 
 Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
 
@@ -91,7 +93,9 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
-
+// Route::group(['middleware' => ['auth', 'mahasiswa']], function () {
+//     Route::get('/', [PortofolioController::class, 'index'])->name('home-mahasiswa');
+// });
 
 Route::group(['middleware' => ['auth']], function(){
 
@@ -116,7 +120,7 @@ Route::group(['middleware' => ['auth']], function(){
 
 
     Route::get('/dashboard/refund', [DashboardRefundController::class, 'index'])->name('dashboard-refund');
-    Route::get('/dashboard/refund/create', [DashboardRefundController::class, 'create'])->name('dashboard-refund-create');
+    Route::post('/dashboard/refund/create/{id}', [DashboardRefundController::class, 'create'])->name('dashboard-refund-create');
     Route::get('/dashboard/refund/edit/{id}', [DashboardRefundController::class, 'edit'])->name('dashboard-refund-edit');
     Route::post('/dashboard/refund', [DashboardRefundController::class, 'store'])->name('dashboard-refund-store');
 
@@ -125,7 +129,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/portofolio/biodata', [BiodataController::class, 'index'])->name('portofolio-biodata');
 
     Route::get('/dashboard/portofolio/kepanitiaan', [KepanitiaanController::class, 'index'])->name('portofolio-kepanitiaan');
-    Route::get('/dashboard/portofolio/kepanitiaan/{id}', [KepanitiaanController::class, 'detail'])->name('portofolio-kepanitiaan-detail');
     Route::get('/dashboard/portfolio/kepanitiaan/create', [KepanitiaanController::class, 'create'])->name('portofolio-kepanitiaan-create');
     Route::post('/dashboard/portofolio/kepanitiaan', [KepanitiaanController::class, 'store'])->name('portofolio-kepanitiaan-store');
     Route::get('/dashboard/portofolio/kepanitiaan/edit/{id}', [KepanitiaanController::class, 'edit'])->name('portofolio-kepanitiaan-edit');
@@ -133,7 +136,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/portofolio/kepanitiaan/delete/{id}', [KepanitiaanController::class, 'destroy'])->name('portofolio-kepanitiaan-delete');
 
     Route::get('/dashboard/portofolio/organisasi', [OrganisasiController::class, 'index'])->name('portofolio-organisasi');
-    Route::get('/dashboard/portofolio/organisasi/{id}', [OrganisasiController::class, 'detail'])->name('portofolio-organisasi-detail');
     Route::get('/dashboard/portfolio/organisasi/create', [OrganisasiController::class, 'create'])->name('portofolio-organisasi-create');
     Route::post('/dashboard/portofolio/organisasi', [OrganisasiController::class, 'store'])->name('portofolio-organisasi-store');
     Route::get('/dashboard/portofolio/organisasi/edit/{id}', [OrganisasiController::class, 'edit'])->name('portofolio-organisasi-edit');
@@ -148,7 +150,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/portofolio/pendidikan/delete/{id}', [PendidikanController::class, 'destroy'])->name('portofolio-pendidikan-delete');
 
     Route::get('/dashboard/portofolio/experiences', [ExperiencesController::class, 'index'])->name('portofolio-experiences');
-    Route::get('/dashboard/portofolio/experiences/{id}', [ExperiencesController::class, 'detail'])->name('portofolio-experiences-detail');
     Route::get('/dashboard/portfolio/experiences/create', [ExperiencesController::class, 'create'])->name('portofolio-experiences-create');
     Route::post('/dashboard/portofolio/experiences', [ExperiencesController::class, 'store'])->name('portofolio-experiences-store');
     Route::get('/dashboard/portofolio/experiences/edit/{id}', [ExperiencesController::class, 'edit'])->name('portofolio-experiences-edit');
@@ -156,7 +157,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/portofolio/experiences/delete/{id}', [ExperiencesController::class, 'destroy'])->name('portofolio-experiences-delete');
 
     Route::get('/dashboard/portofolio/projects', [ProjectsController::class, 'index'])->name('portofolio-projects');
-    Route::get('/dashboard/portofolio/projects/{id}', [ProjectsController::class, 'detail'])->name('portofolio-projects-detail');
     Route::get('/dashboard/portfolio/projects/create', [ProjectsController::class, 'create'])->name('portofolio-projects-create');
     Route::post('/dashboard/portofolio/projects', [ProjectsController::class, 'store'])->name('portofolio-projects-store');
     Route::get('/dashboard/portofolio/project/edit/{id}', [ProjectsController::class, 'edit'])->name('portofolio-project-edit');
@@ -204,15 +204,14 @@ Route::prefix('admin')
         Route::resource('category', AdminCategoryController::class);
         Route::resource('slider', AdminSliderController::class);
         Route::resource('user', AdminUserController::class);
+        Route::get('/user/status/{id}/{status_code}', [AdminUserController::class, 'updateActive'])->name('update-active');
         Route::resource('slider', AdminSliderController::class);
         Route::resource('product', AdminProductController::class);
         Route::resource('product-gallery', AdminProductGalleryController::class);
         Route::resource('transaction', AdminTransactionController::class);
         Route::resource('withdraw', AdminWithdrawController::class);
+        Route::resource('refund', AdminRefundController::class);
 
-        //user baru
-        Route::resource('user-baru', UserBaruController::class);
-        Route::get('/user-baru/status/{id}/{status_code}', [UserBaruController::class, 'updateStatus'])->name('update-status-baru');
         Route::resource('sertifikat', SertifikatController::class);
     });
 
@@ -233,7 +232,12 @@ Route::prefix('buyer')
     });
 
 
-
+Route::prefix('mahasiswa')
+    ->namespace('')
+    ->middleware(['auth', 'mahasiswa'])
+    ->group(function(){
+        Route::get('/', [MahasiswaDashboardController::class, 'index'])->name('mahasiswa-dashboard');
+    });
 
 Auth::routes();
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');

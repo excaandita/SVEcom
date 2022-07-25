@@ -18,7 +18,7 @@
     
   </head>
 
-  <body>
+  <body class="vh-100">
     <!-- NAVBAR -->
     @include('includes.navbar-auth')
     

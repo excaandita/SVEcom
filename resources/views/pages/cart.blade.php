@@ -108,14 +108,14 @@
                     <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="address_one">Alamat 1</label>
+                                <label for="address_one">Alamat Detail</label>
                                 <input type="text" class="form-control" name="address_one" id="address_one"
                                     />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="address_two">Alamat 2</label>
+                                <label for="address_two">Detail Patokan</label>
                                 <input type="text" class="form-control" name="address_two" id="address_two"
                                      />
                             </div>

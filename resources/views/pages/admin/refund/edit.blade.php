@@ -1,18 +1,19 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('title')
-    Tambah Pengembalian Dana Transaksi Sekolah Vokasi E-COM
+    Transaksi-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
+
 <div
     class="section-content section-dashboard-home"
     data-aos="fade-up"
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - Transaksi</h2>
-            <p class="dashboard-subtitle">Edit Transaksi</p>
+            <h2 class="dashboard-title">Admin Dashboard - Pengembalian Dana</h2>
+            <p class="dashboard-subtitle">Edit Pengembalian</p>
         </div>
         <div class="dashboard-content">
             <div class="row">
@@ -32,22 +33,16 @@
                                 @method('PUT')
                                 @csrf
                                 <div class="row">
-                                     <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Nama Rekening Pengaju </label>
-                                            <input type="number" name="total" class="form-control" value="{{ $item->nama }}" required disabled>
-                                        </div>
-                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Kode Transaksi</label>
-                                            <input type="text" name="transaction_details_id" class="form-control" value="{{ $item->transaction_details_id}}" required disabled>
+                                            <input type="text" name="name" class="form-control" value="{{ $item->transaction_details_id}}" required disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Total Penarikan </label>
-                                            <input type="number" name="total" class="form-control" value="{{ $item->total}}" required disabled>
+                                            <label>Total Pengembalian </label>
+                                            <input type="number" name="total" class="form-control" value="{{ $item->total }}" required disabled>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -71,6 +66,19 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Status Penarikan</label>
+                                            <select name="status" class="form-control">
+                                                <option value="{{ $item->status }}" selected>{{ $item->status }}</option>
+                                                    <option value="" disabled>--------------------</option>
+                                                    <option value="PENDING">PENDING</option>
+                                                    <option value="PROCESS">PROCESS</option>
+                                                    <option value="SUCCESS">SUCCESS</option>
+                                                    <option value="CANCELLED">CANCELLED</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
@@ -88,3 +96,16 @@
     </div>
 </div>
 @endsection
+
+@push('addon-script')
+    <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor.create(document.querySelector("#editor"))
+          .then((editor) => {
+            console.log(editor);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      </script>
+@endpush

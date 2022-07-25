@@ -20,15 +20,6 @@ class OrganisasiController extends Controller
         ]);
     }
 
-    public function detail(Request $request)
-    {
-        $organisasi = Organisasi::where('id', $request->id)->first();
-
-        return view('pages.portofolio.organisasi-detail', [
-            'organisasi' => $organisasi
-        ]);
-    }
-
     public function create(){
         return view('pages.portofolio.organisasi-create');
     }
@@ -49,7 +40,7 @@ class OrganisasiController extends Controller
         }
 
         $organisasi = Organisasi::create($request->toArray());
-        return redirect()->route('portofolio-organisasi-detail', $organisasi->id);
+        return redirect()->route('portofolio-organisasi');
     }
     /**
      * Show the form for editing the specified resource.
@@ -100,7 +91,7 @@ class OrganisasiController extends Controller
 
         $organisasi->save();
 
-        return redirect()->route('portofolio-organisasi-detail', $organisasi->id);
+        return redirect()->route('portofolio-organisasi');
     }
     public function destroy($id)
     {

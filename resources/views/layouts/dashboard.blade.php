@@ -34,19 +34,12 @@
           </div>
           <div class="list-group list-group-flush">
              @if (auth()->user()->roles == 'USER')
-              <a
+             <a
                 href="{{ route('seller-dashboard')}}"
                 class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('seller-dashboard')) ? 'active' : '' }}"
               >
-              Dashboard Seller
+              Dashboard
           </a>
-              @else
-              <a
-                href="{{ route('buyer-dashboard')}}"
-                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('buyer-dashboard')) ? 'active' : '' }}"
-              >
-                Dashboard
-              </a>
               @endif
               <!-- fungsi if untuk memisah dan menampilkan kolom produk jika roles yang sedang login adalah user-->
               @if (auth()->user()->roles == 'USER')
@@ -57,19 +50,29 @@
                   Produk
                 </a>
               @endif
-              <a
-                href="{{ route('dashboard-transaction')}}"
-                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
-              >
-                Transaksi
-              </a>
+              @if (auth()->user()->roles == 'BUYER')
+                <a
+                  href="{{ route('buyer-dashboard')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/refund')) ? 'active' : '' }}"
+                >
+                  Dashboard
+                </a>
+              @endif
+              @if (auth()->user()->roles != 'MAHASISWA')
+                <a
+                  href="{{ route('dashboard-transaction')}}"
+                  class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('dashboard/transactions')) ? 'active' : '' }}"
+                >
+                  Transaksi
+                </a>
+              @endif
               <!-- fungsi if untuk memisah dan menampilkan kolom setting-store jika roles yang sedang login adalah user-->
               @if (auth()->user()->roles == 'USER')
                 <a
                   href="{{ route('dashboard-withdraw')}}"
-                  class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('dashboard/withdraw')) ? 'active' : '' }}"
+                  class="list-group-item list-group-item-action list-group-item-info  {{ (request()->is('buyer-dashboard')) ? 'active' : '' }}"
                  >
-                  Pengajuan Penarikan 
+                  Pengajuan Penarikan
                 </a>
                 <li class="sidebar-dropdown">
                   <a class="nav-link list-group-item list-group-item-action list-group-item-info" href="#">Portofolio</a>
@@ -79,7 +82,7 @@
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experiences*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experience*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/setting*') ? 'active' : '') }}" href="{{ route('portofolio-setting') }}">Pengaturan Portofolio</a>
@@ -92,6 +95,16 @@
                 >
                   Pengaturan Toko
                 </a>
+              @endif
+              @if (auth()->user()->roles == 'MAHASISWA')
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/biodata*')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experience*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/setting*') ? 'active' : '') }}" href="{{ route('portofolio-setting') }}">Pengaturan Portofolio</a>
               @endif
                @if (auth()->user()->roles == 'BUYER')
                 <a
@@ -183,20 +196,22 @@
                         </form>
                     </div>
                     </li>
-                    <li class="nav-item" style="list-style: none">
-                      <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
-                        @php
-                          $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
-                        @endphp
-                        @if ($carts > 0)
-                          <img src="/images/icon-cart-filled.svg" alt="" />
-                          <div class="cart-badge">{{ $carts }}</div>
-                        @else
-                          <img src="/images/icon-cart-empty.svg" alt="" />
-                        @endif
-                        
-                      </a>
-                    </li>
+                    @if (auth()->user()->roles != 'MAHASISWA')
+                      <li class="nav-item" style="list-style: none">
+                        <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
+                          @php
+                            $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->count();
+                          @endphp
+                          @if ($carts > 0)
+                            <img src="/images/icon-cart-filled.svg" alt="" />
+                            <div class="cart-badge">{{ $carts }}</div>
+                          @else
+                            <img src="/images/icon-cart-empty.svg" alt="" />
+                          @endif
+                          
+                        </a>
+                      </li>
+                    @endif
                 </ul>
                 <!-- Mobile Menu -->
                 <ul class="navbar-nav d-block d-lg-none mt-3">
@@ -210,7 +225,9 @@
                 </div>
             </div>
           </nav>
-
+            @if (auth()->user()->roles == 'MAHASISWA')
+                
+            @endif
             {{--content--}}
             @yield('content')
 

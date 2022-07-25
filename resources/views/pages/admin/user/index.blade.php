@@ -31,6 +31,7 @@
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th>Roles</th>
+                                            <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -60,11 +61,12 @@
                 { data: 'name', name: 'name' },
                 { data: 'email', name: 'email' },
                 { data: 'roles', name: 'roles' },
-<<<<<<< Updated upstream
-=======
-                { data: 'suspend', name: 'suspend',orderable: false,
-                    searchable:false, },
->>>>>>> Stashed changes
+                { 
+                    data: 'suspend', 
+                    name: 'suspend',
+                    orderable: false,
+                    searchable:false, 
+                },
                 { 
                     data: 'action',
                     name: 'action',

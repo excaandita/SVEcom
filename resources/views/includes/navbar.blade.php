@@ -16,18 +16,41 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item ">
-              <a href="{{ route('home') }}" class="nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Categories</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('listproduct') }}" class="nav-link {{ (request()->is('listproduct')) ? 'active' : '' }}">Produk</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('portofolio') }}" class="nav-link">Portofolio</a>
-            </li>
+
+            @guest
+              <li class="nav-item ">
+                <a href="{{ route('home') }}" class="nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Categories</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('listproduct') }}" class="nav-link {{ (request()->is('listproduct')) ? 'active' : '' }}">Produk</a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('portofolio') }}" class="nav-link">Portofolio</a>
+              </li>
+            @endguest
+            @auth
+              @if (auth()->user()->roles == 'MAHASISWA')
+                  <li class="nav-item active">
+                    <a href="{{ route('home') }}" class="nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
+                  </li>
+              @else
+                <li class="nav-item active">
+                  <a href="{{ route('home') }}" class="nav-link  {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Categories</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('listproduct') }}" class="nav-link {{ (request()->is('listproduct')) ? 'active' : '' }}">Produk</a>
+                </li>
+                <li class="nav-item">
+                  <a href="{{ route('portofolio') }}" class="nav-link {{ (request()->is('portofolio')) ? 'active' : '' }}">Portofolio</a>
+                </li>
+              @endif
+            @endauth
           </ul>
           <ul class="navbar-nav ml-auto">
             @guest
@@ -63,13 +86,16 @@
               </a>
               <div class="dropdown-menu">
                 @if (auth()->user()->roles == 'ADMIN')
-                <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
+                  <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
                 @endif
                 @if (auth()->user()->roles == 'USER')
-                <a href="{{ route('seller-dashboard')}}" class="dropdown-item">Dashboard</a>
+                  <a href="{{ route('seller-dashboard')}}" class="dropdown-item">Dashboard</a>
                 @endif
                 @if (auth()->user()->roles == 'BUYER')
-                <a href="{{ route('buyer-dashboard')}}" class="dropdown-item">Dashboard</a>
+                  <a href="{{ route('buyer-dashboard')}}" class="dropdown-item">Dashboard</a>
+                @endif
+                @if (auth()->user()->roles == 'MAHASISWA')
+                    <a href="{{ route('mahasiswa-dashboard')}}" class="dropdown-item">Dashboard</a>
                 @endif
 
 
@@ -87,6 +113,7 @@
                 </form>
               </div>
             </li>
+            @if (auth()->user()->roles != 'MAHASISWA')
             <li class="nav-item" style="list-style: none">
               <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
                 @php
@@ -98,9 +125,9 @@
                 @else
                   <img src="/images/icon-cart-empty.svg" alt="" />
                 @endif
-
               </a>
             </li>
+            @endif
           </ul>
 
           <ul class="navbar-nav d-block d-lg-none">

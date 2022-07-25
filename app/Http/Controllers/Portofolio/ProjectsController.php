@@ -22,15 +22,6 @@ class ProjectsController extends Controller
         ]);
     }
 
-    public function detail(Request $request)
-    {
-        $project = Project::where('id', $request->id)->first();
-
-        return view('pages.portofolio.project-detail', [
-            'project' => $project
-        ]);
-    }
-
     public function create(){
         return view ('pages.portofolio.project-create');
     }
@@ -49,7 +40,7 @@ class ProjectsController extends Controller
         }
 
         $project = Project::create($request->toArray());
-        return redirect()->route('portofolio-projects-detail', $project->id);
+        return redirect()->route('portofolio-projects');
     }
      /**
      * Show the form for editing the specified resource.
@@ -98,7 +89,7 @@ class ProjectsController extends Controller
 
         $project->save();
 
-        return redirect()->route('portofolio-projects-detail', $project->id);
+        return redirect()->route('portofolio-projects');
     }
     public function destroy($id)
     {

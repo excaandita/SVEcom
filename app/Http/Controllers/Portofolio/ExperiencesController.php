@@ -24,17 +24,6 @@ class ExperiencesController extends Controller
         ]);
     }
 
-    public function detail(Request $request)
-    {
-        $experience = Experience::where('id', $request->id)->first();
-        $jabatan = Jabatan::where('id', $experience->jabatans_id)->first();
-
-        return view('pages.portofolio.experience-detail', [
-            'experience' => $experience,
-            'jabatan' => $jabatan
-        ]);
-    }
-
     public function create(){
         $user = Auth::user();
         $jabatans = Jabatan::all();
@@ -63,7 +52,7 @@ class ExperiencesController extends Controller
 
         $experiences = Experience::create($request->toArray());
 
-        return redirect()->route('portofolio-experiences-detail', $experiences->id);
+        return redirect()->route('portofolio-experiences');
     }
     /**
      * Show the form for editing the specified resource.
@@ -120,7 +109,7 @@ class ExperiencesController extends Controller
 
         $experience->save();
 
-        return redirect()->route('portofolio-experiences-detail', $experience->id);
+        return redirect()->route('portofolio-experiences');
     }
     public function destroy($id)
     {

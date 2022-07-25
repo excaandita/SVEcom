@@ -17,6 +17,8 @@ class TransactionDetail extends Model
         'resi',
         'code',
         'quantity',
+        'rating',
+        'komentar',
     ];
 
     protected $hidden = [
