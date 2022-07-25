@@ -126,7 +126,7 @@
                                 <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" 
                                     v-model="provinces_id"> <!-- v-if="provinces" klo data provinsi ada baru dimunculin, klo gada ya ga. 
                                         v-model:provinces_id datanya bisa dibaca divuejs-->
-                                    <option v-for="province in provinces" :value="province.id"> @{{ province.name }} <!--klo mau output vue tu pke et{{  }} soalnya biar ga kebaca sebagai output blade karena vue js dan blad utput variable hampir sama  -->
+                                    <option v-for="province in provinces" :value="province.id"> @{{ province.name }} <!--klo mau output vue tu pke etsoalnya biar ga kebaca sebagai output blade karena vue js dan blad utput variable hampir sama  -->
                                     </option>
                                 </select>
                                 <select v-else class="form-control"></select>
