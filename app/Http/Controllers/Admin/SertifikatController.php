@@ -26,20 +26,10 @@ class SertifikatController extends Controller
             return DataTablesDataTables::of($query)
                 ->addColumn('action', function($item){
                     return '
-                        <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn btn-info dropdown=toggle mr-1 mb-1"
-                                        type="button"
-                                        data-toggle="dropdown">
-                                        Aksi
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('sertifikat.edit', $item->id) .'">
+                        <div>
+                                    <a href="' . route('sertifikat.edit', $item->id) .'" class="btn btn-info">
                                         Edit
-    
-                                    </form>
-                                </div>
-                            </div>
+                                    </a>
                         </div>
                     ';
                 })
