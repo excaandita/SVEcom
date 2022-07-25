@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-@extends('layouts.cart')
-=======
 @extends('layouts.app1')
->>>>>>> Stashed changes
 
 @section('title')
     Cart - Sekolah Vokasi E-COM
