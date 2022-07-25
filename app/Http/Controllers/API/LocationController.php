@@ -9,12 +9,12 @@ use App\Http\Controllers\Controller;
 
 class LocationController extends Controller
 {
-    public function provinces(Request $request)
+    public function provinces(Request $request) //langsung nampilin semua provinsi
     {
         return Province::all();
     }
 
-    public function regencies(Request $request, $provinces_id)
+    public function regencies(Request $request, $provinces_id) //ditampilin klo udh milih provinsi
     {
         return Regency::where('province_id', $provinces_id)->get();
     }

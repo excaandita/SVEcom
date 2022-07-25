@@ -80,7 +80,7 @@ class CategoryController extends Controller
         $data = $request->all();
 
         $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/category', 'public');
+        $data['photo'] = $request->file('photo')->store('assets/category', 'public'); //manggil data foto proses upload disini.request file dari field yg bernama photo kemudian disimpen di folder 'assets/category' dan dibuat public jd bisa dibuka dari mana saja. jangan lupa 'php artisan storage:link' buat koneksiin gambarnya biar muncul
 
         Category::create($data);
 

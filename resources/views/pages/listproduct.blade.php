@@ -35,7 +35,7 @@
         @php $incrementProduct = 0 @endphp
           @forelse ($products as $product )
             <div
-            class="col-4 col-md-4 col-lg-2 mt-3"
+            class="col-4 col-md-4 col-lg-3 mt-3"
             data-aos="fade-up"
             data-aos-delay="{{ $incrementProduct+= 100 }}"
             >
@@ -47,7 +47,7 @@
                       @if($product->galleries->count())
                         background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
                       @else
-                        background-color: #eee
+                        background-color: #17A2B8
                       @endif
                     "
                   ></div>

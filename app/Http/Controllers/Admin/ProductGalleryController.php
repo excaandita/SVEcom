@@ -49,10 +49,12 @@ class ProductGalleryController extends Controller
                         </div>
                     ';
                 })
-                ->editColumn('photos', function($item){
-                    return $item->photos ? '<img src="'. Storage::url($item->photos) .'" style="max-height: 80px" />' : '';
+                ->editColumn('photos', function($item){ //nama fungsinya adalah editColum mau ngedit kolom yang udah ada yaitu photo(buat nampilin fotondari url img)
+                    return $item->photos ? '<img src="'. Storage::url($item->photos) .'" style="max-height: 80px" />' : ''; //dikembalikan dalam bentuk url dibuat menggunakan ternary function
+                //ngecek ada foto apa ga, kalo ada munculin gambar klo gada kosongan
+                    //disimpan img src, memanggil url storage dari foto itu sndiri
                 })
-                ->rawColumns(['action','photos'])
+                ->rawColumns(['action','photos']) //kalo ga dikasi photos munculnya urlnya
                 ->make();
         }
 
@@ -81,9 +83,9 @@ class ProductGalleryController extends Controller
      */
     public function store(ProductGalleryRequest $request)
     {
-        $data = $request->all();
+        $data = $request->all(); //variable data isinya semua data yang masuk
 
-        $data['photos'] = $request->file('photos')->store('assets/product', 'public');
+        $data['photos'] = $request->file('photos')->store('assets/product', 'public'); //manggil data foto buat proses upload disini.request file dari field yg bernama photo kemudian disimpen di folder 'assets/product' dan dibuat public jd bisa dibuka dari mana saja. jangan lupa 'php artisan storage:link' buat koneksiin gambarnya biar muncul
 
         ProductGallery::create($data);
 

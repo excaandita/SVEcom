@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.cart')
 
 @section('title')
     Cart - Sekolah Vokasi E-COM
@@ -13,7 +13,7 @@
                         <nav>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item">
-                                    <a href="/index.html">Home</a>
+                                    <a href="/">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active">Cart</li>
                             </ol>
@@ -43,11 +43,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $totalPrice = 0 @endphp
+                                @php $totalPrice = 0 @endphp  <!--variable kosong di isi 0 soalnya kan awalnya gada totalnya alias datanya nol-->
                                 @foreach ($carts as $cart)
                                     <tr>
                                         <td style="width: 20%">
-                                            @if ($cart->product->galleries)
+                                            @if ($cart->product->galleries) <!--kalo da gambar maka gambar akan muncul dgn ngambil dari storage, variabel cart ke objek produk ke objek galleri berdasarkan foto pertama -->
                                                 <img src="{{ Storage::url($cart->product->galleries->first()->photos ?? '') }}"
                                                     class="cart-image" alt="" />
                                             @endif
@@ -60,7 +60,6 @@
                                         <td style="width: 20%">
                                             <div class="product-title">Rp. {{ number_format($cart->product->price) }}
                                             </div>
-                                            <div class="product-subtitle">Rupiah</div>
                                         </td>
                                         <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
                                             @csrf
@@ -76,17 +75,17 @@
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td style="width: 20%">
-                                                <button type="submit" class="btn btn-success"> Update Jumlah </button>
+                                            <td style="width: 50%">
+                                                <button type="submit" class="btn btn-success"> Update</button>
                                         </form>
                                         <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-remove-cart"> Remove </button>
+                                            <button type="submit" class="btn btn-remove-cart"> Hapus </button>
                                         </form>
                                         </td>
                                     </tr>
-                                    @php $totalPrice += $cart->product->price * $cart->quantity @endphp
+                                    @php $totalPrice += $cart->product->price * $cart->quantity @endphp <!--buat ngitung total harga produk(harga*quantity)-->
                                 @endforeach
 
                             </tbody>
@@ -124,9 +123,10 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="provinces_id">Provinsi </label>
-                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces"
-                                    v-model="provinces_id">
-                                    <option v-for="province in provinces" :value="province.id"> @{{ province.name }}
+                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" 
+                                    v-model="provinces_id"> <!-- v-if="provinces" klo data provinsi ada baru dimunculin, klo gada ya ga. 
+                                        v-model:provinces_id datanya bisa dibaca divuejs-->
+                                    <option v-for="province in provinces" :value="province.id"> @{{ province.name }} <!--klo mau output vue tu pke et{{  }} soalnya biar ga kebaca sebagai output blade karena vue js dan blad utput variable hampir sama  -->
                                     </option>
                                 </select>
                                 <select v-else class="form-control"></select>
@@ -146,27 +146,25 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="zip_code">Kode POS</label>
-                                <input type="text" class="form-control" name="zip_code" id="zip_code"
-                                    value=" 17562" />
+                                <input type="text" class="form-control" name="zip_code" id="zip_code" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="country">Negara</label>
                                 <input type="text" class="form-control" name="country" id="country"
-                                    value="Indonesia" />
+                                    value="Indonesia" disabled />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="phone_number">Nomor Telpon</label>
-                                <input type="text" class="form-control" name="phone_number" id="phone_number"
-                                    value="+62 81222221212" />
+                                <input type="text" class="form-control" name="phone_number" id="phone_number" />
                             </div>
                         </div>
                     </div>
                     <!--Payment Info-->
-                    <div class="row" data-aos="fade-up" data-aos-delay="150">
+                    <div class="row" >
                         <div class="col-12">
                             <hr />
                         </div>
@@ -174,9 +172,9 @@
                             <h2 class="mb-2">Pembayaran</h2>
                         </div>
                     </div>
-                    <div class="row" data-aos="fade-up" data-aos-delay="200">
+                    <div class="row" >
                         <div class="col-4 col-md-3">
-                            <div class="product-title" id="totalproduct-text">Rp.{{ number_format($totalPrice ?? 0) }}</div>
+                            <div class="product-title" id="totalproduct_text">Rp.{{ number_format($totalPrice ?? 0) }}</div><!-- ?? 0 mksudnya kalo gada datanya ga akan eror soalnya jd 0, klo $totalprice itu variable diatas yg buat ngitung harga produk-->
                             <div class="product-subtitle">Total Harga Produk</div>
                         </div>
                         <div class="col-4 col-md-3">
@@ -204,39 +202,41 @@
     <script src="/vendor/vue/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        var locations = new Vue({
-            el: "#locations",
+        var locations = new Vue({ //inisialisasi dalam satu variable bernama location didalamnya menginisialisasikan vue baru 
+            el: "#locations", // element location ini buat id:locations di atas dibagian form
             mounted() {
                 AOS.init();
-                this.getProvincesData();
+                this.getProvincesData(); //panggil methods dibawah saat hal ditampilkan dan vue js terpanggil
             },
-            data: {
+            data: { //data kosongan, untuk menympan data provinsi dan data kabupaten xisimpen berdasarkan idnya itu sendiri 
                 provinces: null,
                 regencies: null,
                 provinces_id: null,
                 regencies_id: null,
             },
-            methods: {
+            methods: { //untuk nampilin data perlu axios
                 getProvincesData() {
-                    var self = this;
-                    axios.get('{{ route('api-provinces') }}')
-                        .then(function(response) {
+                    var self = this; //biar bisa baca variable ini diaxios
+                    axios.get('{{ route('api-provinces') }}') //panggil route
+                        .then(function(response) { //panggil 
+                            //data respon dari api itu sendiri
                             self.provinces = response.data;
                         })
                 },
 
-                getRegenciesData() {
+                getRegenciesData() { //dipanggil berdasarkan perubahan pd provinsi
                     var self = this;
-                    axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+                    axios.get('{{ url('api/regencies') }}/' + self.provinces_id)//ngambil provinces_id pada methods getprovincesdata diatas
                         .then(function(response) {
                             self.regencies = response.data;
                         })
                 },
             },
-            watch: {
+            watch: {  //digunaan buat ngeliat data klo ada perubahan klo variable provinces_id berubah maka memanggil getregenciesdata baru
+                //caranya panggil provinces_id kemudaian bikin function(val,old val) mksudnya klo butuh value lama, nah value barunya ada disini
                 provinces_id: function(val, oldVal) {
-                    this.regencies_id = null;
-                    this.getRegenciesData();
+                    this.regencies_id = null; //ini fungsinya kalo gnti provinsi data kabupatennya null atau ke reset
+                    this.getRegenciesData(); //ambil data 
                 }
             }
 
@@ -253,7 +253,7 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(res) {
-                    $('#totalproduct-text').text('Rp. ' + total_product); 
+                    $('#totalproduct_text').text('Rp. ' + total_product); //menampilkan harga total produk
                     $('#ongkir-text').text('Rp. ' + res); // menampilkan harga ongkir
                     $('#total-text').text('Rp. ' + (total_product + res)); // menampilkan total harga
                     $('#total_price').val(total_product + res); // merubah value form total harga

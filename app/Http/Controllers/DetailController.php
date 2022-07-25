@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DetailController extends Controller
 {
-    public function index(Request $request, $id)
+    public function index(Request $request, $id) //parameternya = id tp idnya bebentuk slug bukan int
     {
         $product = Product::with(['galleries', 'user','transactiondetail'])->where('slug', $id)->firstOrFail();
         

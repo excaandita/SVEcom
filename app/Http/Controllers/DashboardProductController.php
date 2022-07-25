@@ -9,12 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\ProductGallery;
-
+use App\Models\TransactionDetail;
 class DashboardProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['galleries','category'])
+        $products = Product::with(['galleries','category','transactiondetail'])
                     ->where('users_id', Auth::user()->id)
                     ->get();
 

@@ -26,13 +26,13 @@ class IndoRegionProvinceSeeder extends Seeder
      */
     public function run()
     {
-        // Get Data
+        // Get Data untuk mendapatkan seluruh data dari data provinsi raja ongkir 
         $provinces = RajaOngkir::provinsi()->all();
 
-        // Insert Data to Database
+        // diproses dalam perulangan untuk proses Insert Data to tabel provinsi
         foreach($provinces as $province){
             Province::create([
-                'id' => $province['province_id'],
+                'id' => $province['province_id'], //id = id pada tabel provinsi
                 'name' => $province['province']
             ]);
         }

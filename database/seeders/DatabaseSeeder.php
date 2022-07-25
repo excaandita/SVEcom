@@ -11,6 +11,7 @@ class DatabaseSeeder extends Seeder
      *
      * @return void
      */
+    ///digunakan untuk memanggil class dari seed tsb ke databaseeder
     public function run()
     {
         $this->call([

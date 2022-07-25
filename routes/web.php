@@ -109,16 +109,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/dashboard/products', [DashboardProductController::class, 'index'])->name('dashboard-product');
-    Route::get('/dashboard/products/create', [DashboardProductController::class, 'create'])->name('dashboard-product-create');
-    Route::post('/dashboard/products', [DashboardProductController::class, 'store'])->name('dashboard-product-store');
-    Route::get('/dashboard/products/{id}', [DashboardProductController::class, 'details'])->name('dashboard-product-details');
-    Route::post('/dashboard/products/{id}', [DashboardProductController::class, 'update'])->name('dashboard-product-update');
-    Route::get('/dashboard/products/delete/{id}', [DashboardProductController::class, 'delete'])->name('dashboard-product-delete');
-
-    Route::post('/dashboard/products/gallery/upload', [DashboardProductController::class, 'uploadGallery'])->name('dashboard-product-gallery-upload');
-    Route::get('/dashboard/products/gallery/delete/{id}', [DashboardProductController::class, 'deleteGallery'])->name('dashboard-product-gallery-delete');
-
+   
     Route::get('/dashboard/setting', [DashboardSettingController::class, 'store'])->name('dashboard-setting-store');
     Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
     Route::post('/dashboard/account/{redirect}', [DashboardSettingController::class, 'update'])->name('dashboard-setting-redirect');
@@ -126,12 +117,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
     Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details');
     Route::post('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'update'])->name('dashboard-transaction-update');
-
-
-    Route::get('/dashboard/withdraw', [DashboardWithdrawController::class, 'index'])->name('dashboard-withdraw');
-    Route::get('/dashboard/withdraw/create', [DashboardWithdrawController::class, 'create'])->name('dashboard-withdraw-create');
-    Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');
-    Route::post('/dashboard/withdraw', [DashboardWithdrawController::class, 'store'])->name('dashboard-withdraw-store');
 
 
     Route::get('/dashboard/refund', [DashboardRefundController::class, 'index'])->name('dashboard-refund');
@@ -186,6 +171,29 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/dashboard/portofolio/setting', [SettingController::class,'index'])->name('portofolio-setting');
     Route::post('/dashboard/portofolio/setting/update', [SettingController::class, 'update'])->name('portofolio-setting-update');
 });
+
+
+Route::prefix('user')
+    ->namespace('')
+    ->middleware(['auth', 'user'])
+    ->group(function(){
+
+    Route::get('/dashboard/products', [DashboardProductController::class, 'index'])->name('dashboard-product');
+    Route::get('/dashboard/products/create', [DashboardProductController::class, 'create'])->name('dashboard-product-create');
+    Route::post('/dashboard/products', [DashboardProductController::class, 'store'])->name('dashboard-product-store');
+    Route::get('/dashboard/products/{id}', [DashboardProductController::class, 'details'])->name('dashboard-product-details');
+    Route::post('/dashboard/products/{id}', [DashboardProductController::class, 'update'])->name('dashboard-product-update');
+    Route::get('/dashboard/products/delete/{id}', [DashboardProductController::class, 'delete'])->name('dashboard-product-delete');
+
+    Route::post('/dashboard/products/gallery/upload', [DashboardProductController::class, 'uploadGallery'])->name('dashboard-product-gallery-upload');
+    Route::get('/dashboard/products/gallery/delete/{id}', [DashboardProductController::class, 'deleteGallery'])->name('dashboard-product-gallery-delete');
+    
+    Route::get('/dashboard/withdraw', [DashboardWithdrawController::class, 'index'])->name('dashboard-withdraw');
+    Route::get('/dashboard/withdraw/create', [DashboardWithdrawController::class, 'create'])->name('dashboard-withdraw-create');
+    Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');
+    Route::post('/dashboard/withdraw', [DashboardWithdrawController::class, 'store'])->name('dashboard-withdraw-store');
+
+         });
 
 
 Route::prefix('admin')

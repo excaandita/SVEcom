@@ -26,6 +26,54 @@
                             </ul>
                         </div>
                     @endif
+                    <div class="row mt-2">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+
+                          @foreach ($product->galleries as $gallery)
+                            <div class="col-md-4">
+                              <div class="gallery-container">
+                                <img
+                                  src="{{ Storage::url($gallery->photos ?? '') }}"
+                                  alt=""
+                                  class="w-100"
+                                />
+                                <a href="{{ route('dashboard-product-gallery-delete', $gallery->id )}}" class="delete-gallery">
+                                  <img src="/images/icon-delete.svg" alt="" />
+                                </a>
+                              </div>
+                            </div>
+                          @endforeach
+
+                          <div class="col-12">
+                            <form action="{{ route('dashboard-product-gallery-upload') }}" method="POST" enctype="multipart/form-data">
+                              @csrf
+                              <input type="hidden" name="products_id" value="{{ $product->id }}">
+                              <!--onchange="form.submit() kalo ngeklik photonya lgsg ke save"-->
+                              <input
+                                type="file"
+                                id="file"
+                                name="photos"
+                                style="display: none"
+                                onchange="form.submit()" 
+                              />
+                              <!--tambahin type button biar ga lgsg ke submit-->
+                              <button
+                                type="button"
+                                class="btn btn-secondary btn-block mt-3"
+                                onclick="thisFileUpload()"
+                              >
+                                Tambah Gambar
+                              </button>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                     <form action="{{ route('dashboard-product-update', $product->id)}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
@@ -104,52 +152,7 @@
                     </form>
                   </div>
                 </div>
-                <div class="row mt-2">
-                  <div class="col-12">
-                    <div class="card">
-                      <div class="card-body">
-                        <div class="row">
-
-                          @foreach ($product->galleries as $gallery)
-                            <div class="col-md-4">
-                              <div class="gallery-container">
-                                <img
-                                  src="{{ Storage::url($gallery->photos ?? '') }}"
-                                  alt=""
-                                  class="w-100"
-                                />
-                                <a href="{{ route('dashboard-product-gallery-delete', $gallery->id )}}" class="delete-gallery">
-                                  <img src="/images/icon-delete.svg" alt="" />
-                                </a>
-                              </div>
-                            </div>
-                          @endforeach
-
-                          <div class="col-12">
-                            <form action="{{ route('dashboard-product-gallery-upload') }}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                              <input type="hidden" name="products_id" value="{{ $product->id }}">
-                              <input
-                                type="file"
-                                id="file"
-                                name="photos"
-                                style="display: none"
-                                onchange="form.submit()"
-                              />
-                              <button
-                                type="button"
-                                class="btn btn-secondary btn-block mt-3"
-                                onclick="thisFileUpload()"
-                              >
-                                Tambah Gambar
-                              </button>
-                            </form>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

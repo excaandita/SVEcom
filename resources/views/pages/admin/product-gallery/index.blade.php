@@ -20,7 +20,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{ route('product-gallery.create')}}" class="btn btn-info mb-3">
+                            <a href="{{ route('product-gallery.create')}}" class="btn btn-dark mb-3">
                                 Tambah Galeri Produk
                             </a>
                             <div class="table-responsive">

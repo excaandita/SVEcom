@@ -22,9 +22,10 @@ class UserController extends Controller
     {
         if(request()->ajax())
         {
+            //query datatable
             $query = User::query();
 
-            return DataTablesDataTables::of($query)
+            return DataTablesDataTables::of($query) //bentuk json buat balikin data dataable
                 ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
@@ -91,7 +92,7 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        $data['password'] = bcrypt($request->password);
+        $data['password'] = bcrypt($request->password); //dipake laravel untuk membuat password ambil dari library laravel. di enksripsi biar ga kebaca .menggunakan bcrypt karena lebih kuat daripda md5 (md5 mengenkripsi hingga 32 ) sedangkan bcrypt 60 
 
         User::create($data);
 
@@ -117,7 +118,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $item = User::findOrFail($id);
+        $item = User::findOrFail($id); // buat manggil modelnya. findor fail itu fungsinya buat manggil datanya kalo bmisal ga ketmu id yang diminta nampilin 404
 
         return view('pages.admin.user.edit',[
             'item' => $item,
@@ -133,17 +134,17 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, $id)
     {
-        $data = $request->all();
+        $data = $request->all(); //variable data isinya semua data yang masuk
 
         $item = User::findOrFail($id);
         
-        if($request->password)
+        if($request->password) // jika ada password
         {
-            $data['password'] = bcrypt($request->password);
+            $data['password'] = bcrypt($request->password); //maka data password = di bcrypt
         } 
-        else 
+        else  
         {
-            unset($data['password']);
+            unset($data['password']); //kosongin datanya
         }
 
         $item->update($data);
@@ -159,7 +160,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $item = User::findOrFail($id);
+        $item = User::findOrFail($id); // buat manggil datanya
         $item->delete();
 
         return redirect()->route('user.index');

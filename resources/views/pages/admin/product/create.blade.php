@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Product-Sekolah Vokasi E-COM
+    Product-Marketplace Sekolah Vokasi
 @endsection
 
 @section('content')
@@ -29,7 +29,7 @@
                     @endif
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data"> <!--maksudnya enctype="multipart/form-data biar bisa upload file-->
                                 @csrf
                                 <div class="row">
                                     <div class="col-md-12">
@@ -42,8 +42,8 @@
                                         <div class="form-group">
                                             <label>Pemilik Produk</label>
                                             <select name="users_id" class="form-control">
-                                                @foreach ($users as $user)
-                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @foreach ($users as $p)
+                                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -52,8 +52,8 @@
                                         <div class="form-group">
                                             <label>Kategori Produk</label>
                                             <select name="categories_id" class="form-control">
-                                                @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @foreach ($categories as $p)
+                                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -73,14 +73,14 @@
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Deksripsi Produk</label>
-                                            <textarea name="description" id="editor"></textarea>
+                                            <textarea name="description" id="deskripsi"></textarea>
                                         </div>
                                     </div>
 
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
-                                        <button type="submit" class="btn btn-success px-5">
+                                        <button type="submit" class="btn btn-info px-5">
                                             Simpan
                                         </button>
                                     </div>
@@ -94,11 +94,11 @@
     </div>
 </div>
 @endsection
-
+<!--manggil ck editor 5 ngambil dri cdn ck editor-->
 @push('addon-script')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
     <script>
-        ClassicEditor.create(document.querySelector("#editor"))
+        ClassicEditor.create(document.querySelector("#deskripsi"))
           .then((editor) => {
             console.log(editor);
           })

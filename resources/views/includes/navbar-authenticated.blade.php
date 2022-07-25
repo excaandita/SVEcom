@@ -48,9 +48,17 @@
                 <a href="/dashboard-account.html" class="dropdown-item"
                   >Settings</a
                 >
-                <div class="dropdown-divider"></div>
-                <a href="/" class="dropdown-item">Logout</a>
+                <<div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                   Log Out
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
               </div>
+      
             </li>
             <li class="nav-item" style="list-style: none">
               <a href="#" class="nav-link d-inline-block mt-2">

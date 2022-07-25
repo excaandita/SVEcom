@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Dashboard-Sekolah Vokasi E-COM
+    Dashboard Marketplace Sekolah Vokasi 
 @endsection
 
 @section('content')
@@ -13,7 +13,7 @@
     <div class="container-fluid">
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Admin Dashboard - Pengguna</h2>
-            <p class="dashboard-subtitle">Tambah User Baru</p>
+            <p class="dashboard-subtitle">Tambah Pengguna Baru</p>
         </div>
         <div class="dashboard-content">
             <div class="row">
@@ -34,19 +34,19 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>Nama User</label>
+                                            <label>Nama Pengguna : </label>
                                             <input type="text" name="name" class="form-control" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-8">
                                         <div class="form-group">
-                                            <label>Email User</label>
+                                            <label>Email Pengguna : </label>
                                             <input type="email" name="email" class="form-control" required>
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Password User</label>
+                                            <label>Password Pengguna</label>
                                             <input type="password" name="password" class="form-control" required>
                                         </div>
                                     </div>
@@ -56,14 +56,16 @@
                                             <select name="roles" required id="roles" class="form-control">
                                                 <option value="ADMIN">Admin</option>
                                                 <option value="USER">User</option>
+                                                <option value="BUYER">Buyer</option>
+                                                <option value="Mahasiswa">Mahasiswa</option>
                                             </select>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                                 <div class="row">
-                                    <div class="col text-right">
-                                        <button type="submit" class="btn btn-success px-5">
+                                    <div class="col text-center">
+                                        <button type="submit" class="btn btn-info px-5">
                                             Simpan
                                         </button>
                                     </div>
