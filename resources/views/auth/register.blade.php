@@ -187,7 +187,7 @@
                         @change="checkForEmailAvailability()"
                         class="form-control @error('email') is-invalid @enderror"
                         :class="{ 'is-invalid' : this.email_unavailable }" 
-                        name="email" 
+                        name="email" placeholder="Masukkan Email"
                         value="{{ old('email') }}" 
                         required autocomplete="email">
                             @error('email')
@@ -202,6 +202,7 @@
                       <input id="password" type="password" 
                         class="form-control @error('password') is-invalid @enderror" 
                         name="password" required 
+                        placeholder="Password"
                         autocomplete="new-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -216,6 +217,7 @@
                         type="password" 
                         class="form-control @error('password_confirmation') is-invalid @enderror" 
                         name="password_confirmation" required 
+                        placeholder="Masukkan Ulang Password"
                         autocomplete="new-password">
                             @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
@@ -230,17 +232,8 @@
                       Daftar Sekarang
                     </button>
                     <a href="{{route('login')}}" class="btn btn-signup btn-block mt-4"
-                      >Sign In Kembali
-                    </a>
+                      >Sign In
                   </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-</div>
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
