@@ -23,7 +23,7 @@
                     @php
                         $incrementSkills = 0
                     @endphp
-                    @forelse ($skills as $skill)
+                    @forelse ($skills as $skill) 
                         <div
                             data-aos="fade-up"
                             data-aos-delay="{{ $incrementSkills+= 100 }}"
@@ -68,10 +68,17 @@
                                                 <p class="ml-2">Tidak ada Tanggal Expired</p>
                                             @endif
                                         </div>
+                                        <div class="card-body skill-image">
+                                        <img
+                                            src="{{ Storage::url($skill->galleries->first()->photos ?? '') }}"
+                                            alt=""
+                                            class="w-100 mb-2 "
+                                        />
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
                     @empty
                         <div class="col-12 text-center py-5" data-aos="fade-up"
                             data-aos-delay="100">

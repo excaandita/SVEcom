@@ -64,9 +64,14 @@
                                 <input type="date" class="form-control" name="tanggal_expired" />
                               </div>
                             </div>
-                            
-                           
-                            
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Sertifikat</label>
+                                <input type="file" name="photo" class="form-control" />
+                                <p class="text-muted">
+                                </p>
+                              </div>
+                            </div>
                           </div>
                           <div class="row">
                             <div class="col">

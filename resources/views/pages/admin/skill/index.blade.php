@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Dashboard-Sekolah Vokasi E-COM
+    Sertifikat Skill Galeri - Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
@@ -12,7 +12,7 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - Sertifikat</h2>
+            <h2 class="dashboard-title">Admin Dashboard - Galeri Sertifikat</h2>
             <p class="dashboard-subtitle">Sekolah Vokasi E-Commerce</p>
         </div>
         <div class="dashboard-content">
@@ -20,17 +20,13 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <div class="table-responsive">
+                           <div class="table-responsive">
                                 <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead class="bg-info">
                                         <tr>
                                             <th>ID</th>
-                                            <th>Jenis</th>
-                                            <th>Lembaga</th>
-                                            <th>No Sertifikat</th>
                                             <th>Sertifikat</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
+                                            <th>Foto</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -56,11 +52,8 @@
             },
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'jenis', name: 'jenis' },
-                { data: 'lembaga', name: 'lembaga' },
-                { data: 'no_sertifikat', name: 'no_sertifikat' },                
+                { data: 'skill.name', name: 'skill.name' },
                 { data: 'photos', name: 'photos' },
-                { data: 'status', name: 'status' },
                 { 
                     data: 'action',
                     name: 'action',
