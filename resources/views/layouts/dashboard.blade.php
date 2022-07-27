@@ -79,9 +79,9 @@
                   <div class="sidebar-submenu">
                     <ul>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/biodata*')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experience*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
@@ -98,9 +98,9 @@
               @endif
               @if (auth()->user()->roles == 'MAHASISWA')
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/biodata*')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
-                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experience*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
