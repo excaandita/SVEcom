@@ -95,7 +95,7 @@
                   <a href="{{ route('buyer-dashboard')}}" class="dropdown-item">Dashboard</a>
                 @endif
                 @if (auth()->user()->roles == 'MAHASISWA')
-                    <a href="{{ route('mahasiswa-dashboard')}}" class="dropdown-item">Dashboard</a>
+                    <a href="{{ route('mahasiswa-dashboard')}}" class="dropdown-item">Profile</a>
                 @endif
 
 

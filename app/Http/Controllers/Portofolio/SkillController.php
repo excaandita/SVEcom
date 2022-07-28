@@ -19,6 +19,17 @@ class SkillController extends Controller
         ]);
     }
 
+    public function uploadGallery(Request $request)
+    {
+        $data = $request->all();
+
+        $data['photos'] = $request->file('photos')->store('assets/skill', 'public');
+
+        SkillGallery::create($data);
+
+        return redirect()->route('dashboard-product-details', $request->products_id);
+    }
+
     public function create(){
         return view('pages.portofolio.skill-create');
     }

@@ -28,6 +28,7 @@
                                             <th>Jenis</th>
                                             <th>Lembaga</th>
                                             <th>No Sertifikat</th>
+                                            <th>Sertifikat</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -57,7 +58,8 @@
                 { data: 'id', name: 'id' },
                 { data: 'jenis', name: 'jenis' },
                 { data: 'lembaga', name: 'lembaga' },
-                { data: 'no_sertifikat', name: 'no_sertifikat' },
+                { data: 'no_sertifikat', name: 'no_sertifikat' },                
+                { data: 'photos', name: 'photos' },
                 { data: 'status', name: 'status' },
                 { 
                     data: 'action',

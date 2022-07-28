@@ -12,6 +12,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
+
         $customer = User::count();
         $revenue = Transaction::sum('total_price');
         $transaction = Transaction::count();
@@ -24,6 +25,21 @@ class DashboardController extends Controller
         ->select('*','users.name as store_name','products.name as products_name','transactions.id as id_transaksi')
         ->where('users.id',auth()->user()->id)
         ->get();
+
+        // $recentlytransaction = TransactionDetail::with(['transaction', 'product'])
+        // Transaction::With('TransactionDetail')
+        // ->orderBy('transactions.updated_at', 'desc')
+        // ->join('transaction_details','transaction_details.transactions_id','transactions.id')
+        // ->join('products', 'products.id', 'transaction_details.products_id')
+        // ->join('product_galleries','product_galleries.id','products.id')
+        // ->join('users','users.id','products.users_id')
+        // ->select('*','users.name as store_name','products.name as products_name','transactions.id as id_transaksi')
+        // ->where('users.id',auth()->user()->id)
+        // ->get()
+        // ->get()
+        // ;
+        // dd($recentlytransaction);
+
 
 
         return view('pages.buyer.dashboard', [

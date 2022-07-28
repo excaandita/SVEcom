@@ -95,6 +95,12 @@
               Sertifikat
             </a>
             <a
+              href="{{ route('skill.index') }}"
+              class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('admin/skill*')) ? 'active' : '' }}"
+            >
+              Sertifikat Galeri
+            </a>
+            <a
               href="#"
               class="list-group-item list-group-item-action list-group-item-info"
             >

@@ -119,6 +119,30 @@
                                 </div>
                             </div>
                         </div>
+                    </div>                    
+                    <div class="tab-pane" id="pendidikan">
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                @php $incrementPendidikans = 0 @endphp
+                                @forelse ($pendidikans as $pendidikan)
+                                    <div
+                                        class="mb-3"
+                                        data-aos="fade-up"
+                                        data-aos-delay="{{ $incrementPendidikans+= 100 }}"
+                                    >
+                                        <h5 class="my-0">{{ $pendidikan->nama }}</h5>
+                                        <p class="my-0">{{ $pendidikan->jenjang }} · {{ $pendidikan->jurusan }}</p>
+                                        <p class="my-0">{{ $pendidikan->masuk  }} - {{ $pendidikan->keluar }}</p>
+                                    </div>
+                                    <hr class="border border-2">
+                                @empty
+                                    <div class="col-12 text-center py-5" data-aos="fade-up"
+                                        data-aos-delay="100">
+                                        Tidak Ada Pendidikan
+                                    </div>
+                                @endforelse
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane" id="kepanitiaan">
                         <div class="row mt-2">
@@ -205,30 +229,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane" id="pendidikan">
-                        <div class="row mt-2">
-                            <div class="col-12">
-                                @php $incrementPendidikans = 0 @endphp
-                                @forelse ($pendidikans as $pendidikan)
-                                    <div
-                                        class="mb-3"
-                                        data-aos="fade-up"
-                                        data-aos-delay="{{ $incrementPendidikans+= 100 }}"
-                                    >
-                                        <h5 class="my-0">{{ $pendidikan->nama }}</h5>
-                                        <p class="my-0">{{ $pendidikan->jenjang }} · {{ $pendidikan->jurusan }}</p>
-                                        <p class="my-0">{{ $pendidikan->masuk  }} - {{ $pendidikan->keluar }}</p>
-                                    </div>
-                                    <hr class="border border-2">
-                                @empty
-                                    <div class="col-12 text-center py-5" data-aos="fade-up"
-                                        data-aos-delay="100">
-                                        Tidak Ada Pendidikan
-                                    </div>
-                                @endforelse
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="tab-pane" id="experience">
                         <div class="row mt-2">
                             <div class="col-12">

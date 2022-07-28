@@ -33,9 +33,9 @@ class PortofolioController extends Controller
     {
         $user = User::where('id', $request->id)->where('isPublic', 1)->first();
         $prodi = Prodi::where('id', $user->prodis_id)->first();
+        $pendidikans = Pendidikan::where('users_id', $request->id)->get();
         $kepanitiaans = Kepanitiaan::where('users_id', $request->id)->get();
         $organisasis = Organisasi::where('users_id', $request->id)->get();
-        $pendidikans = Pendidikan::where('users_id', $request->id)->get();
         $experiences = Experience::where('users_id', $request->id)->get();
         $projects = Project::where('users_id', $request->id)->get();
         $skills = Skill::where('users_id', $request->id)->where('status', 'verified')->get();
@@ -46,9 +46,9 @@ class PortofolioController extends Controller
         return view('pages.portofolio-detail', [
             'user' => $user,
             'prodi' => $prodi,
+            'pendidikans' => $pendidikans,
             'kepanitiaans' => $kepanitiaans,
             'organisasis' => $organisasis,
-            'pendidikans' => $pendidikans,
             'experiences' => $experiences,
             'projects' => $projects,
             'skills' => $skills,
