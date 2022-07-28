@@ -83,7 +83,6 @@ Route::get('/search', [PortofolioController::class, 'search'])->name('')->name('
 Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
-Route::post('/details/{product}', [DetailController::class, 'add'])->name('detail-add');
 
 Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile');
 
@@ -172,6 +171,21 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/dashboard/portofolio/setting/update', [SettingController::class, 'update'])->name('portofolio-setting-update');
 });
 
+Route::prefix('campur')
+    ->namespace('')
+    ->middleware(['auth', 'campur'])
+    ->group(function(){
+        
+    Route::post('/details/{product}', [DetailController::class, 'add'])->name('detail-add');
+    
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
+    Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
+
+    Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
+
+    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
+         });
 
 Route::prefix('user')
     ->namespace('')

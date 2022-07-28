@@ -69,7 +69,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12">
-            <h5>Trend Categories</h5>
+            <h5>Kategori</h5>
           </div>
         </div>
         <div class="row">
@@ -118,12 +118,11 @@
             >
               <a href="{{ route('detail', $product->slug)}}" class="component-products d-block">
                 <div class="products-thumbnail">
+                  <!-- if($product->galleries->count()) = pengecekan jika produk galeri ada datanya mata manggil data  -->
                   <div
                     class="products-image"
                     style="
-                    
                       @if($product->galleries->count()) 
-                
                         background-image: url('{{ Storage::url($product->galleries->first()->photos) }}') 
                       @else
                         background-color: #17A2B8

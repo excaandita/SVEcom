@@ -139,15 +139,6 @@
                                 </span>
                             @enderror
                     </div>
-                    <div class="form-group" v-if="is_store_open">
-                      <label>Kategori</label>
-                      <select type="category" class="form-control" name="categories_id">
-                        <option value="" disabled>Select category</option>
-                        @foreach ($categories as $category)
-                          <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                      </select>
-                    </div>
                     <button type="submit" 
                       class="btn btn-success btn-block mt-4"
                       :disabled="this.email_unavailable"

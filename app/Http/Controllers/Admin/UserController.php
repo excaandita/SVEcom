@@ -38,7 +38,7 @@ class UserController extends Controller
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item" href="' . route('user.edit', $item->id) .'">
                                         Edit
-                                    </a>
+                                    </a>  
                                     <form action="'. route('user.destroy', $item->id) .'" method="POST">
                                         '. method_field('delete').  csrf_field() .'
                                         <button type="submit" class="dropdown-item text-danger">
@@ -93,7 +93,7 @@ class UserController extends Controller
         $data = $request->all();
 
         $data['password'] = bcrypt($request->password); //dipake laravel untuk membuat password ambil dari library laravel. di enksripsi biar ga kebaca .menggunakan bcrypt karena lebih kuat daripda md5 (md5 mengenkripsi hingga 32 ) sedangkan bcrypt 60 
-
+        $data['is_active']= 1;
         User::create($data);
 
         return redirect()->route('user.index');

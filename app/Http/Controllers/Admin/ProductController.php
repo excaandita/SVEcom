@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
+use App\Models\ProductGallery;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\ProductRequest;
 use Yajra\DataTables\DataTables as DataTablesDataTables;
 
@@ -52,7 +54,7 @@ class ProductController extends Controller
                         </div>
                     ';
                 })
-                ->rawColumns(['action','photo'])
+                ->rawColumns(['action'])
                 ->make();
         }
 
@@ -66,7 +68,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $users = User::all();
+        $users = User::select("*")
+                        ->where("roles", "=", 'USER')
+                        ->get();
+            
+        // $users = User::all();
         $categories = Category::all();
         
         return view('pages.admin.product.create', [
@@ -112,7 +118,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $item = Product::findOrFail($id);
-        $users = User::all();
+        $users = User::select("*")
+                        ->where("roles", "=", 'USER')
+                        ->get();
         $categories = Category::all();
 
         return view('pages.admin.product.edit',[
@@ -151,6 +159,15 @@ class ProductController extends Controller
     public function destroy($id)
     {
         $item = Product::findOrFail($id);
+
+        $productGalleries = ProductGallery::where('products_id', $id)->get();
+
+        foreach ($productGalleries as $productGallery) {
+            if (File::delete(public_path('storage/'.$productGallery->photos))) {
+                $productGallery->delete();
+            }
+        }
+
         $item->delete();
 
         return redirect()->route('product.index');

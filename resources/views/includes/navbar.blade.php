@@ -22,7 +22,7 @@
                 <a href="{{ route('home') }}" class="nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Categories</a>
+                <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Kategori</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('listproduct') }}" class="nav-link {{ (request()->is('listproduct')) ? 'active' : '' }}">Produk</a>
