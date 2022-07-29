@@ -52,7 +52,13 @@
                                 <input type="number" class="form-control" name="stock" />
                               </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Berat Produk</label>
+                                <input type="number" class="form-control" name="weight" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Kategori</label>
                                 <select name="categories_id" class="form-control">

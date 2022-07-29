@@ -38,12 +38,14 @@
                                     <td>Gambar</td>
                                     <td>Barang & Penjual</td>
                                     <td>Harga</td>
+                                    <td>Berat Barang</td>
                                     <td>Jumlah</td>
                                     <td>Menu</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $totalPrice = 0 @endphp  <!--variable kosong di isi 0 soalnya kan awalnya gada totalnya alias datanya nol-->
+                                @php $totalWeight = 0 @endphp
                                 @foreach ($carts as $cart)
                                     <tr>
                                         <td style="width: 20%">
@@ -59,6 +61,12 @@
                                         </td>
                                         <td style="width: 20%">
                                             <div class="product-title">Rp. {{ number_format($cart->product->price) }}
+                                            </div>
+                                        </td>
+                                        
+                                        @php $totalWeight += $cart->product->weight * $cart->quantity @endphp
+                                        <td style="width: 20%">
+                                            <div class="product-title">{{$totalWeight}} gram
                                             </div>
                                         </td>
                                         <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
@@ -139,6 +147,17 @@
                                     v-if="regencies" v-model="regencies_id">
                                     <option v-for="regency in regencies" :value="regency.id"> @{{ regency.name }}
                                     </option>
+                                </select>
+                                <select v-else class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label >Kurir </label>
+                                <select name="couriers" class="form-control">
+                                    @foreach ($couriers as $item)
+                                        <option value="{{ $item->kode}}">{{ $item->title }}</option>
+                                    @endforeach
                                 </select>
                                 <select v-else class="form-control"></select>
                             </div>

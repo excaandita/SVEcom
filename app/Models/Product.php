@@ -18,7 +18,8 @@ class Product extends Model
         'price',
         'description',
         'slug',
-        'stock'
+        'stock',
+        'weight'
     ];
 
     protected $hidden = [
