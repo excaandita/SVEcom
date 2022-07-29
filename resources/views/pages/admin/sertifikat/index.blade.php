@@ -25,6 +25,7 @@
                                     <thead class="bg-info">
                                         <tr>
                                             <th>ID</th>
+                                            <th>User</th>
                                             <th>Jenis</th>
                                             <th>Lembaga</th>
                                             <th>No Sertifikat</th>
@@ -56,12 +57,14 @@
             },
             columns: [
                 { data: 'id', name: 'id' },
+                { data: 'id', name: 'id' },
                 { data: 'jenis', name: 'jenis' },
                 { data: 'lembaga', name: 'lembaga' },
-                { data: 'no_sertifikat', name: 'no_sertifikat' },                
-                { data: 'photos', name: 'photos' },
+                { data: 'no_sertifikat', name: 'no_sertifikat' },
+                // { data: 'path_url_photo', name: 'path_url_photo' },
+                { data: 'photo', name: 'photo'},
                 { data: 'status', name: 'status' },
-                { 
+                {
                     data: 'action',
                     name: 'action',
                     orderable: false,

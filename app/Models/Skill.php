@@ -14,6 +14,7 @@ class Skill extends Model
         'tanggal_expired',
         'no_sertifikat',
         'users_id',
+        'path_url_photo'
     ];
 
     protected $hidden = [
