@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Cart;
 use App\Models\Skill;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Yajra\DataTables\DataTables as DataTablesDataTables;
 
@@ -19,21 +20,29 @@ class SertifikatController extends Controller
      */
     public function index()
     {
-        if(request()->ajax())
-        {
+        if (request()->ajax()) {
             $query = Skill::query();
+            
 
             return DataTablesDataTables::of($query)
-                ->addColumn('action', function($item){
+                ->addColumn('photo', function ($skill) {
+                    $url = $skill->path_url_photo ? Storage::url($skill->path_url_photo) : '';
+                    return '
+                    <div>
+                    <img src="' . $url . '" border="0" width="100" class="img img-fluid img-rounded" align="center" />
+                    </div>
+                ';
+                })
+                ->addColumn('action', function ($item) {
                     return '
                         <div>
-                                    <a href="' . route('sertifikat.edit', $item->id) .'" class="btn btn-info">
+                                    <a href="' . route('sertifikat.edit', $item->id) . '" class="btn btn-info">
                                         Edit
                                     </a>
                         </div>
                     ';
                 })
-                ->rawColumns(['action','photo'])
+                ->rawColumns(['action', 'photo'])
                 ->make();
         }
 
@@ -67,7 +76,7 @@ class SertifikatController extends Controller
     {
         $item = Skill::findOrFail($id);
 
-        return view('pages.admin.sertifikat.edit',[
+        return view('pages.admin.sertifikat.edit', [
             'item' => $item,
         ]);
     }
@@ -81,12 +90,12 @@ class SertifikatController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'status' => 'string|max:255',
         ]);
 
         if ($validator->fails()) {
-            return response(['errors'=>$validator->errors()->all()], 422);
+            return response(['errors' => $validator->errors()->all()], 422);
         }
 
         $skill = Skill::where('id', $id)->first();

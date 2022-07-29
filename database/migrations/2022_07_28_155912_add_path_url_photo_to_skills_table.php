@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSertificateGalleriesTable extends Migration
+class AddPathUrlPhotoToSkillsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,8 @@ class CreateSertificateGalleriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sertificate_galleries', function (Blueprint $table) {
-            $table->id();
-            $table->string('photos');
-            $table->integer('skills_id');
-            $table->timestamps();
+        Schema::table('skills', function (Blueprint $table) {
+            $table->string('path_url_photo')->nullable();
         });
     }
 
@@ -28,6 +25,8 @@ class CreateSertificateGalleriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sertificate_galleries');
+        Schema::table('skills', function (Blueprint $table) {
+            $table->dropColumn('path_url_photo');
+        });
     }
 }

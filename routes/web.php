@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
 use App\Http\Controllers\Admin\SertifikatController;
-use App\Http\Controllers\Admin\SkillGalleryController as AdminSkillGalleryController;
 use App\Http\Controllers\Admin\TransactionController as AdminTransactionController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\WithdrawController as AdminWithdrawController;
@@ -228,7 +227,6 @@ Route::prefix('admin')
         Route::resource('refund', AdminRefundController::class);
 
         Route::resource('sertifikat', SertifikatController::class);
-        Route::resource('skill', AdminSkillGalleryController::class);
     });
 
 Route::prefix('seller')

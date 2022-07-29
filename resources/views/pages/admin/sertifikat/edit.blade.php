@@ -1,15 +1,12 @@
 @extends('layouts.admin')
 
 @section('title')
-    Sertifikat-Sekolah Vokasi E-COM
+Sertifikat-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
 
-<div
-    class="section-content section-dashboard-home"
-    data-aos="fade-up"
-    >
+<div class="section-content section-dashboard-home" data-aos="fade-up">
     <div class="container-fluid">
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Admin Dashboard - Sertifikat</h2>
@@ -19,17 +16,18 @@
             <div class="row">
                 <div class="col-md-12">
                     @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
                     <div class="card">
                         <div class="card-body">
-                            <form action="{{ route('sertifikat.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('sertifikat.update', $item->id) }}" method="POST"
+                                enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
                                 <div class="row">
@@ -37,12 +35,17 @@
                                         <div class="form-group">
                                             <label>Status</label>
                                             <select name="status" required id="status" class="form-control">
-                                                <option value="{{ $item->status }}" selected>Tidak Berubah ({{ $item->status }})</option>
+                                                <option value="{{ $item->status }}" selected>Tidak Berubah ({{
+                                                    $item->status }})</option>
                                                 <option value="verified">Verified</option>
                                                 <option value="pending">Pending</option>
                                                 <option value="rejected">Rejected</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <img src="{{ Storage::url($item->path_url_photo ?? '') }}" alt=""
+                                            class="img img-fluid"/>
                                     </div>
                                 </div>
                                 <div class="row">
