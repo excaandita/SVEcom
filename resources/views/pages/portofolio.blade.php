@@ -42,10 +42,33 @@
                             </a>
                         </div>
                     @empty
-                        <div class="col-12 text-center py-5" data-aos="fade-up"
-                            data-aos-delay="100">
-                            Skill Tidak Ditemukan
-                        </div>
+                        @forelse ($users as $user)
+                            <div
+                                class="col-6 col-md-3 col-lg-3"
+                                data-aos="fade-up"
+                                data-aos-delay="{{ $incrementUsers+= 100 }}"
+                            >
+                                <a href="{{ route('portofolio-detail', $user->id) }}" class="text-decoration-none text-body">
+                                    <div class="card p-3 card-list portfolio">
+                                        <h6>{{ $user->name }}</h6>
+                                        <div class="d-flex flex-row justify-content-between">
+                                            <p>{{ $user->nama }}</p>
+                                            <p>{{ $user->angkatan }}</p>
+                                        </div>
+                                        @if (Str::length($user->deskripsi) > 70)
+                                            <div>{!! Str::substr($user->deskripsi, 0, 70), "..." !!}</div>
+                                        @else
+                                            <div>{!! $user->deskripsi !!}</div>
+                                        @endif
+                                    </div>
+                                </a>
+                            </div>
+                        @empty
+                            <div class="col-12 text-center py-5" data-aos="fade-up"
+                                data-aos-delay="100">
+                                Tidak Ada Portofolio
+                            </div>
+                        @endforelse
                     @endforelse
                 @else
                     @forelse ($users as $user)
@@ -74,8 +97,8 @@
                             data-aos-delay="100">
                             Tidak Ada Portofolio
                         </div>
-                    @endforelse
-                @endif
+                    @endforelse 
+                @endif 
             </div>
         </div>
     </div>

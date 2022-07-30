@@ -21,7 +21,7 @@ class SertifikatController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Skill::query();
+            $query = Skill::with(['user']);
             
 
             return DataTablesDataTables::of($query)
