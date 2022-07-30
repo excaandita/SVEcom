@@ -56,8 +56,11 @@
                 url: '{!! url()->current() !!}',
             },
             columns: [
-                { data: 'id', name: 'id' },
-                { data: 'id', name: 'id' },
+                { "data" : null, "sortable":false,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;}
+                },
+                { data: 'user.name', name: 'user.name' },
                 { data: 'jenis', name: 'jenis' },
                 { data: 'lembaga', name: 'lembaga' },
                 { data: 'no_sertifikat', name: 'no_sertifikat' },
