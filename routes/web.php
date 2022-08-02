@@ -35,6 +35,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ListProductController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\DaftarProdukController;
+use App\Http\Controllers\DetailProdukController;
+use App\Http\Controllers\CartProdukController;
+
+
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
@@ -73,7 +78,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/detailsproduk/{id}', [DetailProdukController::class, 'index'])->name('detailproduk');
+
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+
+Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('categories-detail');
@@ -82,6 +96,7 @@ Route::get('/portofolio/{id}', [PortofolioController::class, 'detail'])->name('p
 Route::get('/search', [PortofolioController::class, 'search'])->name('')->name('portofolio-search');
 
 Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
+Route::get('/daftarproduct', [DaftarProdukController::class, 'index'])->name('daftarproduct');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
 
@@ -99,13 +114,7 @@ Route::get('/register/success', [RegisterController::class, 'success'])->name('r
 
 Route::group(['middleware' => ['auth']], function(){
 
-    Route::get('/cart', [CartController::class, 'index'])->name('cart');
-    Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
-    Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
-
-    Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
-
-    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
+  
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -177,7 +186,13 @@ Route::prefix('campur')
     ->middleware(['auth', 'campur'])
     ->group(function(){
         
+
+ Route::get('/cartproduk', [CartProdukController::class, 'index'])->name('cartproduk');
+    Route::patch('/cartproduk/{cart}', [CartProdukController::class, 'updateQuantity'])->name('cartproduk-update-quantity');
+    Route::delete('/cartproduk/{id}', [CartProdukController::class, 'delete'])->name('cartproduk-delete');
+        
     Route::post('/details/{product}', [DetailController::class, 'add'])->name('detail-add');
+    
     
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
