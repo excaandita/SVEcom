@@ -34,7 +34,7 @@ class BiodataController extends Controller
             'angkatan' => 'nullable|integer',
             'fakultas' => 'nullable|string|max:255',
             'deskripsi' => 'nullable',
-            'prodis_id' => 'integer'
+            'phone_number' => 'nullable|string|max:225'
         ]);
 
         if ($validator->fails()) {
@@ -54,10 +54,11 @@ class BiodataController extends Controller
         $user['fakultas'] = 'Sekolah Vokasi';
         $user['deskripsi'] = $request['deskripsi'];
         $user['prodis_id'] = $request['prodis_id'];
+        $user['phone_number'] = $request['phone_number'];
         $user['updated_at'] = Carbon::now();
 
         $user->save();
-        $prodi = Prodi::where('id', $user->prodis_id)->first();
+        $prodi = Prodi::where('id', $user->prodis_id)->first(); ///untuk nyari nama prodi
 
         return view('pages.portofolio.biodata', [
             'user' => $user,

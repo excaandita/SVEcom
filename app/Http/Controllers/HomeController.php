@@ -19,9 +19,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        if(Auth::user() != null && Auth::user()->roles == "MAHASISWA") {
-            $users = Prodi::join('users', 'prodis.id', '=', 'users.prodis_id')->where('isPublic', 1)->get();
-            $skills = null;
+        if(Auth::user() != null && Auth::user()->roles == "MAHASISWA") { 
+            $users = Prodi::join('users', 'prodis.id', '=', 'users.prodis_id')->where('isPublic', 1)->get(); /*Jika login sbg mahasiswa, maka akan dicari dari tabel prodi yang akan dijoin dg users.prodis_id, yang isPublis=1 */
+            $skills = null; /*dibuat null krn di pages portofolio dibutuhkan skills */
             return view('pages.portofolio', [
                 'users' => $users,
                 'skills' => $skills

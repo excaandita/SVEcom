@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Courier;
 use App\Models\Product;
-use App\Models\courier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +21,7 @@ class CartController extends Controller
         $couriers = Courier::all();
         return view('pages.cart', [
             'carts' => $carts,
+            'couriers'=>$couriers,
         ]);
     }
 

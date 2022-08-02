@@ -61,10 +61,11 @@ class PortofolioController extends Controller
         if ($search_query == "") {
             return redirect('/portofolio');
         }
-        $skills = User::where('isPublic', 1)->join('skills', 'users.id', '=', 'skills.users_id')->join('prodis', 'prodis.id', '=', 'users.prodis_id')->where('skills.jenis', 'LIKE', '%'.$search_query.'%')->where('skills.status', 'verified')->get();
-        $users = User::where('isPublic', 1)->join('prodis', 'users.prodis_id', '=', 'prodis.id')->get();
+        $skills = User::where('isPublic', 1)->join('skills', 'users.id', '=', 'skills.users_id')->join('prodis', 'prodis.id', '=', 'users.prodis_id')->where('skills.jenis', 'LIKE', '%'.$search_query.'%')->where('skills.status', 'verified')->get(); /*dia akan ngequery dr tabel users yg ispublic nya 1, sesuai dg skill yg dicari, yg sudah verified */
+        $users = User::where('isPublic', 1)->join('prodis', 'users.prodis_id', '=', 'prodis.id')->where('users.name', 'LIKE', '%'.$search_query.'%')->get(); /*dia akan ngequery dr tabel users yg ispublic nya 1, sesuai dg user yg dicari */
+        
         return view('pages.portofolio', [
-            'users' => $users,
+            'users' => $users, 
             'skills' => $skills,
         ]);
     }

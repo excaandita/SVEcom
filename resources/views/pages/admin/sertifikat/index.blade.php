@@ -24,7 +24,8 @@
                                 <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead class="bg-info">
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
+                                            <th>User</th>
                                             <th>Jenis</th>
                                             <th>Lembaga</th>
                                             <th>No Sertifikat</th>
@@ -55,13 +56,18 @@
                 url: '{!! url()->current() !!}',
             },
             columns: [
-                { data: 'id', name: 'id' },
+                { "data" : null, "sortable":false,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;}
+                },
+                { data: 'user.name', name: 'user.name' },
                 { data: 'jenis', name: 'jenis' },
                 { data: 'lembaga', name: 'lembaga' },
-                { data: 'no_sertifikat', name: 'no_sertifikat' },                
-                { data: 'photos', name: 'photos' },
+                { data: 'no_sertifikat', name: 'no_sertifikat' },
+                // { data: 'path_url_photo', name: 'path_url_photo' },
+                { data: 'photo', name: 'photo'},
                 { data: 'status', name: 'status' },
-                { 
+                {
                     data: 'action',
                     name: 'action',
                     orderable: false,

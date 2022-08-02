@@ -49,7 +49,7 @@
                                 <p>{!! $user->deskripsi !!}</p>
                                 <div class="row">
                                     <div class="col-6">
-                                        @guest
+                                        @guest <!-- jika tidak login maka ditampikan (kiri) -->
                                             <div class="d-flex">
                                                 <h6>Fakultas: </h6>
                                                 <p class="ml-2">{{ $user->fakultas }}</p>
@@ -58,8 +58,12 @@
                                                 <h6>Angkatan: </h6>
                                                 <p class="ml-2">{{ $user->angkatan }}</p>
                                             </div>
+                                            <div class="d-flex">
+                                                <h6>No Telepon: </h6>
+                                                <p class="ml-2">{{ $user->phone_number }}</p>
+                                            </div>
                                         @endguest
-                                        @auth
+                                        @auth <!-- jika login maka ditampikan -->
                                             <div class="d-flex">
                                                 <h6>Tempat Lahir: </h6>
                                                 <p class="ml-2">{{ $user->tempat_lahir }}</p>
@@ -76,10 +80,14 @@
                                                 <h6>Angkatan: </h6>
                                                 <p class="ml-2">{{ $user->angkatan }}</p>
                                             </div>
+                                            <div class="d-flex">
+                                                <h6>No Telepon: </h6>
+                                                <p class="ml-2">{{ $user->phone_number }}</p>
+                                            </div>
                                         @endauth
                                     </div>
                                     <div class="col-6">
-                                        @guest
+                                        @guest <!-- jika tidak login maka ditampikan (kanan) -->
                                             <div class="d-flex">
                                                 <h6>Program Studi: </h6>
                                                 @if ($prodi == null)
@@ -92,8 +100,12 @@
                                                 <h6>NIM: </h6>
                                                 <p class="ml-2">{{ $user->nim }}</p>
                                             </div>
+                                            <div class="d-flex">
+                                                <h6>Email: </h6>
+                                                <p class="ml-2">{{ $user->email }}</p>
+                                            </div>
                                         @endguest
-                                        @auth
+                                        @auth <!-- jika login maka ditampikan (kanan) -->
                                             <div class="d-flex">
                                                 <h6>Fakultas: </h6>
                                                 <p class="ml-2">{{ $user->fakultas }}</p>
@@ -113,6 +125,10 @@
                                             <div class="d-flex">
                                                 <h6>NIM: </h6>
                                                 <p class="ml-2">{{ $user->nim }}</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <h6>Email: </h6>
+                                                <p class="ml-2">{{ $user->email }}</p>
                                             </div>
                                         @endauth
                                     </div>
@@ -166,16 +182,7 @@
                                             $totalMonths = $yearsInMonths + $months;
                                         @endphp
                                         <p >{{ date('d M Y', strtotime($kepanitiaan->waktu_mulai))  }} - {{ date('d M Y', strtotime($kepanitiaan->waktu_selesai)) }} · {{ $totalMonths }} Bulan</p>
-                                        <div class="post">
-                                            @if (Str::length($kepanitiaan->deskripsi) > 100)
-                                                {!! substr($kepanitiaan->deskripsi, 0, 100) !!}
-                                                <span id="dots" class="dots">...</span>
-                                                <span id="more" class="more">{{ substr($kepanitiaan->deskripsi, 100)  }}</span>
-                                                <button id="myBtn" class="myBtn">Read more</button>
-                                            @else
-                                                <p>{!! $kepanitiaan->deskripsi !!}</p>
-                                            @endif
-                                        </div>
+                                        <p>{!! $kepanitiaan->deskripsi !!}</p>
                                     </div>
                                     <hr class="border border-2">
                                 @empty
@@ -208,16 +215,7 @@
                                             $totalMonths = $yearsInMonths + $months;
                                         @endphp
                                         <p class="my-0">{{ date('d M Y', strtotime($organisasi->waktu_mulai))  }} - {{ date('d M Y', strtotime($organisasi->waktu_selesai)) }} · {{ $totalMonths }} Bulan</p>
-                                        <div class="post">
-                                            @if (Str::length($organisasi->deskripsi) > 100)
-                                                {!! substr($organisasi->deskripsi, 0, 100) !!}
-                                                <span id="dots" class="dots">...</span>
-                                                <span id="more" class="more">{{ substr($organisasi->deskripsi, 100)  }}</span>
-                                                <button id="myBtn" class="myBtn">Read more</button>
-                                            @else
-                                                <p>{!! $organisasi->deskripsi !!}</p>
-                                            @endif
-                                        </div>
+                                        <p>{!! $organisasi->deskripsi !!}</p>
                                     </div>
                                     <hr class="border border-2">
                                 @empty
@@ -253,16 +251,7 @@
                                             $totalMonths = $yearsInMonths + $months;
                                         @endphp
                                         <p class="my-0">{{ date('d M Y', strtotime($experience->waktu_mulai))  }} - {{ date('d M Y', strtotime($experience->waktu_selesai)) }} · {{ $totalMonths }} Bulan</p>
-                                        <div class="post">
-                                            @if (Str::length($experience->deskripsi) > 100)
-                                                {!! substr($experience->deskripsi, 0, 100) !!}
-                                                <span id="dots" class="dots">...</span>
-                                                <span id="more" class="more">{{ substr($experience->deskripsi, 100)  }}</span>
-                                                <button id="myBtn" class="myBtn">Read more</button>
-                                            @else
-                                                <p>{!! $experience->deskripsi !!}</p>
-                                            @endif
-                                        </div>
+                                        <p>{!! $experience->deskripsi !!}</p>
                                     </div>
                                     <hr class="border border-2">
                                 @empty
@@ -301,16 +290,7 @@
                                             $totalMonths = $yearsInMonths + $months;
                                         @endphp
                                         <p class="my-0">{{ date('d M Y', strtotime($project->tanggal_mulai))  }} - {{ date('d M Y', strtotime($project->tanggal_selesai)) }} · {{ $totalMonths }} Bulan</p>
-                                        <div class="post">
-                                            @if (Str::length($project->deskripsi) > 100)
-                                                {!! substr($project->deskripsi, 0, 100) !!}
-                                                <span id="dots" class="dots">...</span>
-                                                <span id="more" class="more">{{ substr($project->deskripsi, 100)  }}</span>
-                                                <button id="myBtn" class="myBtn">Read more</button>
-                                            @else
-                                                <p>{!! $project->deskripsi !!}</p>
-                                            @endif
-                                        </div>
+                                        <p>{!! $project->deskripsi !!}</p>                                        
                                     </div>
                                     <hr class="border border-2">
                                 @empty
@@ -357,7 +337,7 @@
                                 @empty
                                     <div class="col-12 text-center py-5" data-aos="fade-up"
                                         data-aos-delay="100">
-                                        Tidak Ada Project
+                                        Tidak Ada Skill
                                     </div>
                                 @endforelse
                             </div>

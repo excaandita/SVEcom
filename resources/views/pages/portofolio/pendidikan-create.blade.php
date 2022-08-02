@@ -39,8 +39,8 @@
                                 <label>Jenjang</label>
                                     <select name="jenjang" required id="jenjang" class="form-control">
                                       <option value="SMP">SMP</option>
-                                      <option value="SMA">SMA</option>
-                                      <option value="KULIAH">KULIAH</option>
+                                      <option value="SMA">SMA</option>                                      
+                                      <option value="SMK">SMK</option>
                                     </select>
                               </div>
                             </div>
@@ -64,7 +64,7 @@
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label>Tahun Keluar</label>
+                                <label>Tahun Keluar</label> 
                                 <input type="number" class="form-control" name="keluar" />
                               </div>
                             </div>

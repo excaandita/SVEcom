@@ -4,7 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
+
 class CreateCouriersTable extends Migration
+
 {
     /**
      * Run the migrations.
@@ -13,13 +15,9 @@ class CreateCouriersTable extends Migration
      */
     public function up()
     {
-Schema::create('couriers', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');
-            $table->string('title');
-            $table->timestamps();
-
-         });
+        Schema::table('skills', function (Blueprint $table) {
+            $table->string('path_url_photo')->nullable();
+});
     }
 
     /**
@@ -29,8 +27,8 @@ Schema::create('couriers', function (Blueprint $table) {
      */
     public function down()
     {
- Schema::dropIfExists('couriers');
-
-        
-}
+ 
+        Schema::table('skills', function (Blueprint $table) {
+            $table->dropColumn('path_url_photo');
+        }); }
 }
