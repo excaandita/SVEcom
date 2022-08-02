@@ -150,10 +150,12 @@
                     </a>
                   </form>
                 </div>
-                <div class="tab-pane" id="portofolio">
+                <!-- end market -->
+
+                <div class="tab-pane" id="portofolio"> <!-- tab untuk pilih portofolio -->
                   <form method="POST" action="{{ route('register') }}" class="mt-3">
                     @csrf
-                    <input type="hidden" name="is_store_open" :value="false">
+                    <input type="hidden" name="is_store_open" :value="false"> <!--pake input type hidden spy ((false)) karna ada pengecekan, mahasiswa ga buka toko -->
                     <input type="hidden" name="roles" :value="'MAHASISWA'">
                     <div class="form-group">
                       <label>Nama Lengkap</label>
@@ -162,25 +164,24 @@
                         class="form-control @error('name') is-invalid @enderror" 
                         name="name"  placeholder="Masukkan Nama Lengkap"
                         value="{{ old('name') }}" 
-                        required autocomplete="name" autofocus>
+                        required autocomplete="name" autofocus> <!-- ngecek apakah nama sudah ada atau belum-->
                           @error('name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
                           @enderror
-                          
                     </div>
 
                     <div class="form-group">
                       <label>E-mail</label>
                       <input id="email" type="email"
                         v-model="email" 
-                        @change="checkForEmailAvailability()"
+                        @change="checkForEmailAvailability()"                          
                         class="form-control @error('email') is-invalid @enderror"
                         :class="{ 'is-invalid' : this.email_unavailable }" 
                         name="email" placeholder="Masukkan Email"
                         value="{{ old('email') }}" 
-                        required autocomplete="email">
+                        required autocomplete="email"> <!-- ngecek apakah email sudah ada atau belum-->
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -224,8 +225,19 @@
                     </button>
                     <a href="{{route('login')}}" class="btn btn-signup btn-block mt-4"
                       >Sign In
+                  </a>
                   </form>
+                </div> 
+                <!-- end porto -->
+              </div>
+                <!-- end tab content -->
 
+            </div> <!-- end tabs -->
+          </div> <!-- end col-lg-5 -->
+        </div>
+      </div>
+    </div>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

@@ -21,7 +21,7 @@ class Skill extends Model
 
     ];
     
-    public function user()//satu user banyak galeri (buat tau produk itu yang punya siapa/user yang bikin)
+    public function user()//satu user satu foto (buat tau produk itu yang punya siapa/user yang bikin)
     {
         return $this->hasOne(User::class, 'id', 'users_id');//id=relasi users_id=foreignkey
     }

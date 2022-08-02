@@ -52,6 +52,10 @@
                                             <h5>Angkatan: </h5>
                                             <p class="ml-2">{{ $user->angkatan }}</p>
                                         </div>
+                                        <div class="d-flex">
+                                            <h5>No Telepon: </h5>
+                                            <p class="ml-2">{{ $user->phone_number }}</p>
+                                        </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="d-flex">
@@ -73,6 +77,10 @@
                                         <div class="d-flex">
                                             <h5>NIM: </h5>
                                             <p class="ml-2">{{ $user->nim }}</p>
+                                        </div>
+                                        <div class="d-flex">
+                                            <h5>Email: </h5>
+                                            <p class="ml-2">{{ $user->email }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -28,7 +28,7 @@ class PendidikanController extends Controller
         $validator = Validator::make($request->all(),[
             'jenjang' => 'string|max:255',
             'nama' => 'string|max:255',
-            'jurusan' => 'string|max:255',
+            'jurusan' => 'nullable',
             'masuk' => 'integer',
             'keluar' => 'integer',
         ]);
@@ -68,7 +68,7 @@ class PendidikanController extends Controller
         $validator = Validator::make($request->all(),[
             'jenjang' => 'string|max:255',
             'nama' => 'string|max:255',
-            'jurusan' => 'string|max:255',
+            'jurusan' => 'nullable',
             'masuk' => 'integer',
             'keluar' => 'integer',
         ]);

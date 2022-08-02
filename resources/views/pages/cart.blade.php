@@ -153,17 +153,6 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label >Kurir </label>
-                                <select name="couriers" class="form-control">
-                                    @foreach ($couriers as $item)
-                                        <option value="{{ $item->kode}}">{{ $item->title }}</option>
-                                    @endforeach
-                                </select>
-                                <select v-else class="form-control"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
                                 <label for="zip_code">Kode POS</label>
                                 <input type="text" class="form-control" name="zip_code" id="zip_code" />
                             </div>

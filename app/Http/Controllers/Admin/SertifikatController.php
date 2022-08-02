@@ -20,23 +20,23 @@ class SertifikatController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = Skill::with(['user']);
+        if (request()->ajax()) { //manggil data di dalam tabel
+            $query = Skill::with(['user']); //untuk nampilin model skill yang berelasi dg user
             
 
             return DataTablesDataTables::of($query)
                 ->addColumn('photo', function ($skill) {
-                    $url = $skill->path_url_photo ? Storage::url($skill->path_url_photo) : '';
+                    $url = $skill->path_url_photo ? Storage::url($skill->path_url_photo) : ''; //untuk manggil photo di tabel skill
                     return '
                     <div>
                     <img src="' . $url . '" border="0" width="100" class="img img-fluid img-rounded" align="center" />
                     </div>
                 ';
                 })
-                ->addColumn('action', function ($item) {
+                ->addColumn('action', function ($item) { //untuk buat button edit mengarah ke edit sertifikat
                     return '
                         <div>
-                                    <a href="' . route('sertifikat.edit', $item->id) . '" class="btn btn-info">
+                                    <a href="' . route('sertifikat.edit', $item->id) . '" class="btn btn-info"> 
                                         Edit
                                     </a>
                         </div>
@@ -49,24 +49,7 @@ class SertifikatController extends Controller
         return view('pages.admin.sertifikat.index');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $data = $request->all();
-
-        $data['password'] = bcrypt($request->password);
-
-        Skill::create($data);
-
-        return redirect()->route('user.index');
-    }
-
-    /**
+        /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id

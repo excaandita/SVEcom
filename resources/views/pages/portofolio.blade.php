@@ -23,8 +23,8 @@
             </div>
             <div class="row">
                 @php $incrementUsers = 0 @endphp
-                @if (request()->is('search') )
-                    @forelse ($skills as $skill)
+                @if (request()->is('search') )  
+                    @forelse ($skills as $skill) <!-- dia akan ngeloop sebanyak skill yg dicari -->
                         <div
                             class="col-6 col-md-3 col-lg-3"
                             data-aos="fade-up"
@@ -41,7 +41,7 @@
                                 </div>
                             </a>
                         </div>
-                    @empty
+                    @empty <!-- ketika dia ga nemu search by skill, maka dia akan cari by user -->
                         @forelse ($users as $user)
                             <div
                                 class="col-6 col-md-3 col-lg-3"

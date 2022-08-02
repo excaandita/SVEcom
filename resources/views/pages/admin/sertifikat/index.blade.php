@@ -24,7 +24,7 @@
                                 <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead class="bg-info">
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
                                             <th>User</th>
                                             <th>Jenis</th>
                                             <th>Lembaga</th>

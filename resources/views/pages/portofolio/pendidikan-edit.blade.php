@@ -35,18 +35,18 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Jenjang</label>
                                   <select name="jenjang" required id="jenjang" class="form-control">
                                     <option value="{{ $item->jenjang }}" selected>Tidak Berubah ({{ $item->jenjang }})</option>
                                     <option value="SMP">SMP</option>
                                     <option value="SMA">SMA</option>
-                                    <option value="KULIAH">KULIAH</option>
+                                    <option value="SMK">SMK</option>
                                   </select>
                               </div>
                             </div>
-                            <div class="col-md-5">
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Nama Sekolah</label>
                                 <input type="text" class="form-control" name="nama" value="{{ $item->nama }}" />
@@ -57,14 +57,14 @@
                                 <label>Jurusan</label>
                                 <input type="text" class="form-control" name="jurusan" value="{{ $item->jurusan}}" />
                               </div>
-                            </div>
-                            <div class="col-md-3">
+                            </div>                            
+                            <div class="col-md-4">
                               <div class="form-group">
                                 <label>Tahun Masuk</label>
                                 <input type="number" class="form-control" name="masuk" value="{{ $item->masuk}}"/>
                               </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                               <div class="form-group">
                                 <label>Tahun Keluar</label>
                                 <input type="number" class="form-control" name="keluar" value="{{ $item->keluar}}" />

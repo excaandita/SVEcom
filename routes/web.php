@@ -92,9 +92,7 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
-// Route::group(['middleware' => ['auth', 'mahasiswa']], function () {
-//     Route::get('/', [PortofolioController::class, 'index'])->name('home-mahasiswa');
-// });
+
 
 Route::group(['middleware' => ['auth']], function(){
 

@@ -30,16 +30,29 @@ Sertifikat-Sekolah Vokasi E-COM
                                 enctype="multipart/form-data">
                                 @method('PUT')
                                 @csrf
+                                
+                                                            
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label>Status</label>
-                                            <select name="status" required id="status" class="form-control">
-                                                <option value="{{ $item->status }}" selected>Tidak Berubah ({{
-                                                    $item->status }})</option>
-                                                <option value="verified">Verified</option>
-                                                <option value="pending">Pending</option>
-                                                <option value="rejected">Rejected</option>
+                                            <!-- <select name="status" required id="status" class="custom-control-input"> --> 
+                                                <!-- <option value="{{ $item->status }}" selected>Tidak Berubah ({{
+                                                    $item->status }})</option> --> 
+
+                                    <!-- <div class="status">Status</div> -->
+
+
+                                    
+                                    <div class="status">
+                                      <input type="radio" id="verified" name="status" value="verified" />
+                                      <label for="verified" title="text">Verified</label>
+                                      <input type="radio" id="rejected" name="status" value="rejected" />
+                                      <label for="rejected" title="text">Reject</label>
+                                      <input type="radio" id="pending" name="status" value="pending" />
+                                      <label for="pending" title="pending">Pending</label>
+                                    </div>
+                                  </div>
                                             </select>
                                         </div>
                                     </div>
@@ -50,7 +63,7 @@ Sertifikat-Sekolah Vokasi E-COM
                                 </div>
                                 <div class="row">
                                     <div class="col text-right">
-                                        <button type="submit" class="btn btn-success px-5">
+                                        <button type="submit" class="btn btn-success mt-3 px-5">
                                             Simpan
                                         </button>
                                     </div>
