@@ -119,13 +119,8 @@
               </div>
             </div>
             <div class="row">
-<<<<<<< Updated upstream
-            @forelse ($products as $product )
-              <div class="col-lg-4 col-md-6 col-sm-6">
-=======
-                @foreach ($products as $product )
+                @forelse ($products as $product )
               <div class="col-lg-4 col-md-4 col-sm-6">
->>>>>>> Stashed changes
                <div class="product__item">
                  <div class="image-content">
                    <div
