@@ -16,6 +16,23 @@
                   <a href="{{ route('register')}}">Sign Up</a>
                   <a href="{{ route('login')}}">Sign In</a>
                   @endguest
+                  @auth
+                  <a
+                    href="#"
+                    class="nav-link"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                  >
+                    <img
+                      src="/images/icon-user.png"
+                      alt=""
+                      class="rounded-circle mr-3 profile-picture"
+                    />
+                  </a>
+                  <a href="/dashboard"> Hi, {{ Auth::user()->name }}</a>
+                    
+                  @endauth
                 </div>
               </div>
             </div>
@@ -26,17 +43,17 @@
         <div class="row">
           <div class="col-lg-3 col-md-3">
             <div class="header__logo">
-              <a href="./index.html"><img src="img/logo.png" alt="" /></a>
+              <a href="{{ route('home')}}""><img src="/images/image_sv.png" alt="" /></a>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <nav class="header__menu mobile-menu">
               <ul>
                 @guest
-                <li><a href="{{ route('home') }}">Home</a></li>
+                <li class="{{ (request()->is('/')) ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                 <li class="{{ (request()->is('listproduct')) ? 'active' : '' }}"><a href="{{ route('listproduct') }}">Produk</a></li>
                 <li><a href="{{ route('portofolio') }}">Portofolio</a></li>
-                <li><a href="{{ route('categories') }}">Kategori</a></li>
+                <li class="{{ (request()->is('categories')) ? 'active' : '' }}"><a href="{{ route('categories') }}">Kategori</a></li>
                 <li>
                   <a href="#">Pages</a>
                   <ul class="dropdown">
@@ -50,12 +67,12 @@
                 @endguest
                 @auth
                 @if (auth()->user()->roles == 'MAHASISWA')
-                <li><a href="{{ route('home') }}">Home</a></li>
+                <li class="{{ (request()->is('/')) ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                 @else
-                <li><a href="{{ route('home') }}">Home</a></li>
+                <li class="{{ (request()->is('/')) ? 'active' : '' }}"><a href="{{ route('home') }}">Home</a></li>
                 <li class="{{ (request()->is('listproduct')) ? 'active' : '' }}"><a href="{{ route('listproduct') }}">Produk</a></li>
                 <li><a href="{{ route('portofolio') }}">Portofolio</a></li>
-                <li><a href="{{ route('categories') }}">Kategori</a></li>
+                <li class="{{ (request()->is('categories')) ? 'active' : '' }}"><a href="{{ route('categories') }}">Kategori</a></li>
                 @endif
                 @endauth
               </ul>

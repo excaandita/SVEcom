@@ -53,15 +53,9 @@
                       <div class="card-body">
                         <div class="shop__sidebar__categories">
                           <ul class="nice-scroll">
-                            <li><a href="#">Men (20)</a></li>
-                            <li><a href="#">Women (20)</a></li>
-                            <li><a href="#">Bags (20)</a></li>
-                            <li><a href="#">Clothing (20)</a></li>
-                            <li><a href="#">Shoes (20)</a></li>
-                            <li><a href="#">Accessories (20)</a></li>
-                            <li><a href="#">Kids (20)</a></li>
-                            <li><a href="#">Kids (20)</a></li>
-                            <li><a href="#">Kids (20)</a></li>
+                            @foreach ($categories as $category)
+                            <li><a href="{{ route('product-categories', $category->slug) }}">{{ $category->name }}</a></li>
+                            @endforeach
                           </ul>
                         </div>
                       </div>
@@ -125,7 +119,7 @@
               </div>
             </div>
             <div class="row">
-                @foreach ($products as $product )
+            @forelse ($products as $product )
               <div class="col-lg-4 col-md-6 col-sm-6">
                <div class="product__item">
                   <div
@@ -142,7 +136,13 @@
                   </div>
                 </div>
               </div>
-           @endforeach
+            @empty
+              <div class="col-12 text-center py-5" data-aos="fade-up"
+                  data-aos-delay="100">
+                  Tidak ada produk
+              </div>
+           @endforelse
+           
             </div>
             <div class="row">
               <div class="col-lg-12 text-right">

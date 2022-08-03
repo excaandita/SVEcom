@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCouriersTable extends Migration
+class AddReasonAtTransactionDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,9 @@ class CreateCouriersTable extends Migration
      */
     public function up()
     {
-Schema::create('couriers', function (Blueprint $table) {
-            $table->id();
-            $table->string('code');
-            $table->string('title');
-            $table->timestamps();
-
-         });
+        Schema::table('transaction_details', function (Blueprint $table) {
+            $table->longText('reason');
+            });
     }
 
     /**
@@ -29,8 +25,8 @@ Schema::create('couriers', function (Blueprint $table) {
      */
     public function down()
     {
- Schema::dropIfExists('couriers');
-
-        
-}
+        Schema::table('transaction_details', function (Blueprint $table) {
+            $table->dropColumn('reason');
+        });
+    }
 }

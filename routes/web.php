@@ -96,6 +96,7 @@ Route::get('/portofolio/{id}', [PortofolioController::class, 'detail'])->name('p
 Route::get('/search', [PortofolioController::class, 'search'])->name('')->name('portofolio-search');
 
 Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
+Route::get('/listproduct/{id}', [ListProductController::class, 'detail'])->name('product-categories');
 Route::get('/daftarproduct', [DaftarProdukController::class, 'index'])->name('daftarproduct');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');

@@ -117,7 +117,7 @@ data-aos="fade-up"
                         </div>
                       </div>
                       
-                      <div class="col-1"></div>
+                      
                       <div class="col-5">
                         <div class="row">
                           <p class="lead">Order ID: <b>{{ $transaction->transaction->code }}</b></p>
@@ -224,7 +224,7 @@ data-aos="fade-up"
                                       <div class="col-sm-12">
                                         <div class="form-group">
                                           <div class="product-title">Kolom Komentar</div>
-                                          <textarea name="komentar" id="editor"></textarea>
+                                          <textarea name="komentar" id="editor">{{ $transaction->komentar ?? '-' }}</textarea>
                                         </div>
                                       </div>
                                       </div>
@@ -245,16 +245,27 @@ data-aos="fade-up"
                             </template>
     
                             <template v-if="status == 'PENDING'">
-                              <div class="col-md-3">
-                                <form action="{{ route('dashboard-refund-create', $transaction->id)}}" method="POST" enctype="multipart/form-data">
-                                  @csrf
-                                  <button
-                                    class="btn btn-success btn-block mt-4"
-                                    type="submit"
-                                  >
-                                  REFUND
-                                  </button>
-                                </form>
+                              <div class="row">
+                                <div class="col-sm-4">
+                                  <form action="{{ route('dashboard-refund-create', $transaction->id)}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <button
+                                      class="btn btn-success btn-block mt-2"
+                                      type="submit"
+                                    >
+                                    REFUND
+                                    </button>
+                                  </form>
+                                </div>
+                              </div>
+                            </template>
+
+                            <template v-if="status == 'CANCELLED'">
+                              <div class="row">
+                                  <div class="col-sm-12 mt-2">
+                                    <div class="product-title mt-2">Alasan Pembatalan</div>
+                                    <div class="product-subtitle">{!! $transaction->reason ?? '-' !!}</div>
+                                  </div>
                               </div>
                             </template>
                           @endif
@@ -272,6 +283,7 @@ data-aos="fade-up"
                               <option value="PENDING">Pending</option>
                               <option value="SHIPPING">Shipping</option>
                               <option value="SUCCESS">Success</option>
+                              <option value="CANCELLED">Cancelled</option>
                             </select>
                           </div>
                           <template v-if="status == 'SHIPPING'">
@@ -290,6 +302,22 @@ data-aos="fade-up"
                                 class="btn btn-success btn-block mt-4"
                               >
                                 Update Resi
+                              </button>
+                            </div>
+                          </template>
+                          <template v-if="status == 'CANCELLED'">
+                            <div class="col-sm-12">
+                              <div class="product-title">Alasan Pembatalan Pesanan</div>
+                                  <textarea name="reason" id="editor">{{ $transaction->reason ?? '-' }}</textarea>
+                              </div>
+                            </div>
+                              <!-- tombol Submit Komen rating-->
+                            <div class="col-md-6">
+                              <button
+                                type="submit"
+                                class="btn btn-success btn-block mt-4"
+                              >
+                                Update Data
                               </button>
                             </div>
                           </template>
