@@ -18,7 +18,7 @@ class CartController extends Controller
         $carts = Cart::with(['product.galleries', 'user']) //megambil data relasi di bagian cart untuk product beserta gallerynya & user
                 ->where('users_id', Auth::user()->id) //melihat cart bedasarkan user yang sedang aktif
                 ->get();
-        $couriers= Courier::all();
+        $couriers = Courier::all();
         return view('pages.cart', [
             'carts' => $carts,
             'couriers'=>$couriers,
@@ -63,19 +63,50 @@ class CartController extends Controller
             ->join('products', 'carts.products_id', '=', 'products.id') // buat join tabel produk sm carts fk di tabel carts pk di tabel produk
             ->selectRaw('count(products.users_id)') //hitung jumlah users produknya ada brp users
             ->groupBy('products.users_id') // fungsinya klo masukin produk yg sama dri toko yg sama digroup gt ga dipisah jadi cuma ditambah qty nya
-            ->get()->count();
+            ->get()->count();  
+        // Menghitung berat
+        $weight = DB::table('carts')
+            ->where('carts.users_id', Auth::user()->id)
+            ->join('products', 'carts.products_id', '=', 'products.id')
+            ->selectRaw('sum(products.weight * carts.quantity) as weight')->first()->weight;
 
-        // Menghitung ongkos kirim
-        $cost = RajaOngkir::ongkosKirim([
+        // Menghitung ongkos kirim dari pos
+        $data_pos = RajaOngkir::ongkosKirim([
             'origin' => 445, // regency id kota surakarta
             'destination' => $regencies_id, // regency id kota pembeli
-            'weight' => 1000, // berat dalam gram
+            'weight' => $weight, // berat dalam gram
+            'courier' => 'pos' // kurir pengiriman
+        ]);
+
+        // Menghitung ongkos kirim dari jne
+        $data_jne = RajaOngkir::ongkosKirim([
+            'origin' => 445, // regency id kota surakarta
+            'destination' => $regencies_id, // regency id kota pembeli
+            'weight' => $weight, // berat dalam gram
             'courier' => 'jne' // kurir pengiriman
         ]);
 
-        $ongkir = $cost->result[0]['costs'][1]['cost'][0]['value']; // mengambil ongkos kirim dari hasil pengambilan data dari RajaOngkir (JNE Reguler)
+        // Menghitung ongkos kirim dari tiki
+        $data_tiki = RajaOngkir::ongkosKirim([
+            'origin' => 445, // regency id kota surakarta
+            'destination' => $regencies_id, // regency id kota pembeli
+            'weight' => $weight, // berat dalam gram
+            'courier' => 'tiki' // kurir pengiriman
+        ]);
 
-        return $ongkir * $jumlah_toko; // menghitung total ongkos kirim
+        foreach($data_jne->result[0]['costs'] as $value){
+            $data_ongkir["JNE ".$value['description']] = $value['cost'][0]['value'] * $jumlah_toko;
+        }
+
+        foreach($data_pos->result[0]['costs'] as $value){
+            $data_ongkir["POS ".$value['description']] = $value['cost'][0]['value'] * $jumlah_toko;
+        }
+
+        foreach($data_tiki->result[0]['costs'] as $value){
+            $data_ongkir["TIKI ".$value['description']] = $value['cost'][0]['value'] * $jumlah_toko;
+        }
+
+        return $data_ongkir;
     }
 
 }

@@ -110,6 +110,18 @@
                                 <input type="text" class="form-control" name="fakultas" value="Sekolah Vokasi" disabled />
                               </div>
                             </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Nomor Telepon</label>
+                                <input type="text" class="form-control" name="phone_number" value="{{ $user->phone_number}}" />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" class="form-control" name="email" value="{{ $user->email }}" />
+                              </div>
+                            </div>
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Deskripsi</label>

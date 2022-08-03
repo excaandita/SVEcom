@@ -81,7 +81,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'roles' => $data['roles'] == 'MAHASISWA' ? "MAHASISWA" : "BUYER",
+            'roles' => $data['roles'] == 'MAHASISWA' ? "MAHASISWA" : "BUYER",  /* jika roles yang masuk mahasiswa, maka jd mahasiswa, kl ga, buyer */
             'password' => Hash::make($data['password']),
             'store_name' => isset($data['store_name']) ? $data['store_name'] : '',
             'categories_id' => isset($data['categories_id']) ? $data['categories_id'] : NULL,

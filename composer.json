@@ -13,14 +13,15 @@
         "doctrine/dbal": "^3.3",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "intervention/image": "^2.7",
+        "kavist/rajaongkir": "dev-master",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.4",
         "midtrans/midtrans-php": "^2.5",
         "sentry/sentry-laravel": "^2.12",
-        "yajra/laravel-datatables-oracle": "~9.0",
-        "kavist/rajaongkir": "dev-master"
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

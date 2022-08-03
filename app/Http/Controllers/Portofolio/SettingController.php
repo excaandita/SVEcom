@@ -22,7 +22,7 @@ class SettingController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'isPublic' => 'required|boolean'
-        ]);
+        ]); //dari pilihan publik/tdk 
 
         if ($validator->fails()) {
             return response(['errors'=>$validator->errors()->all()], 422);

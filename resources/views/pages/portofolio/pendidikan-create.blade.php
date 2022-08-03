@@ -38,10 +38,11 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Jenjang</label>
-                                    <select name="jenjang" v-model="is_jenjang_smp" required id="jenjang" class="form-control">
-                                      <option :value="false" value="SMP">SMP</option>
-                                      <option :value="true" value="SMA">SMA</option>
-                                      <option :value="true" value="KULIAH">KULIAH</option>
+
+                                    <select name="jenjang" required id="jenjang" class="form-control">
+                                      <option value="SMP">SMP</option>
+                                      <option value="SMA">SMA</option>                                      
+                                      <option value="SMK">SMK</option>
                                     </select>
                               </div>
                             </div>
@@ -76,7 +77,7 @@
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label>Tahun Keluar</label>
+                                <label>Tahun Keluar</label> 
                                 <input type="number" class="form-control" name="keluar" />
                               </div>
                             </div>

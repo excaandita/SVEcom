@@ -34,31 +34,13 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Nama Produk</label>
                                 <input type="text" class="form-control" name="name" />
                               </div>
                             </div>
-                            <div class="col-md-4">
-                              <div class="form-group">
-                                <label>Harga Produk</label>
-                                <input type="number" class="form-control" name="price" />
-                              </div>
-                            </div>
-                            <div class="col-md-4">
-                              <div class="form-group">
-                                <label>Stok Produk</label>
-                                <input type="number" class="form-control" name="stock" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label>Berat Produk</label>
-                                <input type="number" class="form-control" name="weight" />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
+                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Kategori</label>
                                 <select name="categories_id" class="form-control">
@@ -68,6 +50,26 @@
                               </select>
                               </div>
                             </div>
+                            
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Harga Produk</label>
+                                <input type="number" class="form-control" name="price" />
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Berat Produk</label>
+                                <input type="number" class="form-control" name="weight" />
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label>Stok Produk</label>
+                                <input type="number" class="form-control" name="stock" />
+                              </div>
+                            </div>
+                           
                             <div class="col-md-12">
                               <div class="form-group">
                                 <label>Deskripsi Produk</label>

@@ -23,5 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('register/check', [RegisterController::class, 'check'])->name('api-register-check');
 Route::get('provinces', [LocationController::class, 'provinces'])->name('api-provinces');
+Route::get('couriers', [LocationController::class, 'couriers'])->name('api-couriers');
 Route::get('regencies/{provinces_id}', [LocationController::class, 'regencies'])->name('api-regencies');
 

@@ -12,7 +12,7 @@
                     <span class="input-group-text" id="basic-addon1">
                         <img src="/images/search.svg" alt="">
                     </span>
-                    <input name="query" class="form-control" type="search" placeholder="Mau Cari Apa?" aria-describedby="basic-addon1">
+                    <input name="query" class="form-control" type="search" placeholder="Mau Cari Apa?" aria-describedby="basic-addon1" value="{{ Request::get('query') ?? '' }}">
                 </div>
             </form>
 
@@ -24,7 +24,7 @@
             <div class="row">
                 @php $incrementUsers = 0 @endphp
                 @if (request()->is('search') )
-                    @forelse ($skills as $skill)
+                    @forelse ($skills as $skill) <!-- dia akan ngeloop sebanyak skill yg dicari -->
                         <div
                             class="col-6 col-md-3 col-lg-3"
                             data-aos="fade-up"
@@ -41,7 +41,7 @@
                                 </div>
                             </a>
                         </div>
-                    @empty
+                    @empty <!-- ketika dia ga nemu search by skill, maka dia akan cari by user -->
                         @forelse ($users as $user)
                             <div
                                 class="col-6 col-md-3 col-lg-3"
@@ -97,8 +97,8 @@
                             data-aos-delay="100">
                             Tidak Ada Portofolio
                         </div>
-                    @endforelse 
-                @endif 
+                    @endforelse
+                @endif
             </div>
         </div>
     </div>

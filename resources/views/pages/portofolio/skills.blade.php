@@ -54,6 +54,12 @@
                                             <h5>Tanggal Sertifikasi: </h5>
                                             <p class="ml-2">{{ $skill->tanggal }}</p>
                                         </div>
+                                        @if ($skill->status == "rejected")
+                                            <div class="d-flex">
+                                                <h5>Alasan Penolakan: </h5>
+                                                <p class="ml-2">{{ $skill->alasan }}</p>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="col-6">
                                         <div class="d-flex">
