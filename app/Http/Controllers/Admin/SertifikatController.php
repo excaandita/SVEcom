@@ -22,7 +22,7 @@ class SertifikatController extends Controller
     {
         if (request()->ajax()) { //manggil data di dalam tabel
             $query = Skill::with(['user']); //untuk nampilin model skill yang berelasi dg user
-            
+
 
             return DataTablesDataTables::of($query)
                 ->addColumn('photo', function ($skill) {
@@ -36,7 +36,7 @@ class SertifikatController extends Controller
                 ->addColumn('action', function ($item) { //untuk buat button edit mengarah ke edit sertifikat
                     return '
                         <div>
-                                    <a href="' . route('sertifikat.edit', $item->id) . '" class="btn btn-info"> 
+                                    <a href="' . route('sertifikat.edit', $item->id) . '" class="btn btn-info">
                                         Edit
                                     </a>
                         </div>
@@ -46,7 +46,14 @@ class SertifikatController extends Controller
                 ->make();
         }
 
-        return view('pages.admin.sertifikat.index');
+        $data_sertifikat = [
+            'total' => Skill::count(),
+            'approved' => Skill::where('status', 'verified')->count(),
+            'rejected' => Skill::where('status', 'rejected')->count(),
+            'pending' => Skill::where('status', 'pending')->count(),
+        ];
+
+        return view('pages.admin.sertifikat.index', compact('data_sertifikat'));
     }
 
         /**
@@ -75,6 +82,7 @@ class SertifikatController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'status' => 'string|max:255',
+            'alasan' => 'required_if:status,rejected'
         ]);
 
         if ($validator->fails()) {
@@ -84,6 +92,7 @@ class SertifikatController extends Controller
         $skill = Skill::where('id', $id)->first();
 
         $skill['status'] = $request['status'];
+        $skill['alasan'] = $request['alasan'];
         $skill['updated_at'] = Carbon::now();
 
         $skill->save();

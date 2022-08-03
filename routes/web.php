@@ -44,6 +44,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardWithdrawController;
 
 use App\Http\Controllers\DashboardRefundController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\Portofolio\BiodataController;
@@ -92,7 +93,7 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
-
+Route::get('/profile/{user}/phone-image',[ImageController::class, 'phone'])->name('profile.phone-image');
 
 Route::group(['middleware' => ['auth']], function(){
 
@@ -106,7 +107,7 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-   
+
     Route::get('/dashboard/setting', [DashboardSettingController::class, 'store'])->name('dashboard-setting-store');
     Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
     Route::post('/dashboard/account/{redirect}', [DashboardSettingController::class, 'update'])->name('dashboard-setting-redirect');
@@ -173,9 +174,9 @@ Route::prefix('campur')
     ->namespace('')
     ->middleware(['auth', 'campur'])
     ->group(function(){
-        
+
     Route::post('/details/{product}', [DetailController::class, 'add'])->name('detail-add');
-    
+
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
     Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
@@ -199,7 +200,7 @@ Route::prefix('user')
 
     Route::post('/dashboard/products/gallery/upload', [DashboardProductController::class, 'uploadGallery'])->name('dashboard-product-gallery-upload');
     Route::get('/dashboard/products/gallery/delete/{id}', [DashboardProductController::class, 'deleteGallery'])->name('dashboard-product-gallery-delete');
-    
+
     Route::get('/dashboard/withdraw', [DashboardWithdrawController::class, 'index'])->name('dashboard-withdraw');
     Route::get('/dashboard/withdraw/create', [DashboardWithdrawController::class, 'create'])->name('dashboard-withdraw-create');
     Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');

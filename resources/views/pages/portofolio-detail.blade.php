@@ -7,7 +7,7 @@
 @section('content')
     <div style="margin-top: 80px">
         <div class="container"><h2>Portofolio {{ $user->name }}</h2></div>
-            <div class="container tabs mt-4">	
+            <div class="container tabs mt-4">
                 <ul class="nav nav-pills">
                     <li class="active">
                         <a href="#biodata" data-toggle="tab">Biodata</a>
@@ -60,7 +60,7 @@
                                             </div>
                                             <div class="d-flex">
                                                 <h6>No Telepon: </h6>
-                                                <p class="ml-2">{{ $user->phone_number }}</p>
+                                                <p class="ml-2"><img src="{{ route('profile.phone-image', $user->id) }}" /></p>
                                             </div>
                                         @endguest
                                         @auth <!-- jika login maka ditampikan -->
@@ -82,7 +82,7 @@
                                             </div>
                                             <div class="d-flex">
                                                 <h6>No Telepon: </h6>
-                                                <p class="ml-2">{{ $user->phone_number }}</p>
+                                                <img class="ml-2" style="height: 20px; width: auto;" src="{{ route('profile.phone-image', $user->id) }}" />
                                             </div>
                                         @endauth
                                     </div>
@@ -135,7 +135,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>                    
+                    </div>
                     <div class="tab-pane" id="pendidikan">
                         <div class="row mt-2">
                             <div class="col-12">
@@ -290,7 +290,7 @@
                                             $totalMonths = $yearsInMonths + $months;
                                         @endphp
                                         <p class="my-0">{{ date('d M Y', strtotime($project->tanggal_mulai))  }} - {{ date('d M Y', strtotime($project->tanggal_selesai)) }} · {{ $totalMonths }} Bulan</p>
-                                        <p>{!! $project->deskripsi !!}</p>                                        
+                                        <p>{!! $project->deskripsi !!}</p>
                                     </div>
                                     <hr class="border border-2">
                                 @empty
