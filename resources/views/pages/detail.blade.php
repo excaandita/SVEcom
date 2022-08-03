@@ -184,12 +184,12 @@
                                 @endif
                                 
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
+                                <a href="{{ route('login') }}" class="site-btn">
                                     Sign In untuk membeli
                                 </a>
                             @endauth
                             @else
-                             <a href="#" class="btn btn-warning disabled px-4 text-white btn-block mb-3">
+                             <a href="#" class="site-btn">
                                     Toko Tutup
                                 </a>
                                 

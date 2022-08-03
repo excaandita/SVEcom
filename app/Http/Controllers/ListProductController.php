@@ -14,7 +14,7 @@ class ListProductController extends Controller
             // di link ?search=a query parameter(search valuenya a). paramater function buat query berdasarkan requestnya(search kaya misal sear kandang )
             //$request itu dari luar kurung kurawa kalo mau dimasukin harus diuse dlu
                 $query->where('name', 'LIKE', '%' . $request->search . '%'); //intinya buat nampilin ini dijalanin kalo ada request search maka ini dijalanin, fungsi search berdasarkan nama 
-            })->inRandomOrder()->paginate(25);      //mengambil data product dengan relasi gelleries untuk mengambil gambar productnya
+            })->inRandomOrder()->paginate(9);      //mengambil data product dengan relasi gelleries untuk mengambil gambar productnya
 
         return view('pages.listproduct',[
             'products' => $products,

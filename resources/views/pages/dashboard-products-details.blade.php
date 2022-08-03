@@ -80,7 +80,7 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                               <div class="form-group">
                                 <label>Nama Produk</label>
                                 <input
@@ -89,6 +89,17 @@
                                   class="form-control"
                                   value="{{$product->name }}"
                                 />
+                              </div>
+                            </div>
+                             <div class="col-md-6">
+                              <div class="form-group">
+                                <label>Kategori</label>
+                                <select name="categories_id" class="form-control">
+                                  <option value="{{ $product->categories_id }}">{{ $product->category->name }}</option>
+                                  @foreach ($categories as $category)
+                                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                  @endforeach
+                                </select>
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -113,15 +124,15 @@
                                 />
                               </div>
                             </div>
-                            <div class="col-md-12">
+                            <div class="col-md-4">
                               <div class="form-group">
-                                <label>Kategori</label>
-                                <select name="categories_id" class="form-control">
-                                  <option value="{{ $product->categories_id }}">{{ $product->category->name }}</option>
-                                  @foreach ($categories as $category)
-                                      <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                  @endforeach
-                                </select>
+                                <label>Berat Produk</label>
+                                <input
+                                  type="number"
+                                  name="weight"
+                                  class="form-control"
+                                  value="{{ $product->weight }}"
+                                />
                               </div>
                             </div>
                             <div class="col-md-12">
