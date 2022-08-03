@@ -50,7 +50,7 @@
             <img
                 v-bind:src="photos[activePhoto].url" 
                 :key="photos[activePhoto].id"
-                class="w-100 main-image"
+                class="w-100 image-box"
                 alt=""
               />
             </transition>

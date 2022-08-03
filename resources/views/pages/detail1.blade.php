@@ -62,14 +62,13 @@
                   <ul class="nav nav-tabs" role="tablist">
                       <li class="nav-item">
                            <div 
-                           
                             class=" nav-link col-3 col-lg-12 mt-2 mt-lg-0" 
                             v-for="(photo, index) in photos" 
                             :key="photo.id" 
                             data-aos="zoom-in" 
                             data-aos-delay="100">
                             <a href="#" @click="changeActive(index)">
-                                <img :src="photo.url" class="w-100 thumbnail-image" :class="{active:index==activePhoto}"alt="">
+                                <img :src="photo.url" class="w-100 " :class="{active:index==activePhoto}"alt="">
                             </a>
                             </div>
                        </li>
@@ -83,8 +82,8 @@
                                 <img 
                                 :src="photos[activePhoto].url" 
                                 :key="photos[activePhoto].id" 
-                                class="w-100 main-image"
-                                style= "object-fit : contain"
+                                class="image-detail"
+                                
                                 alt="">
                             </transition>
                         </div>

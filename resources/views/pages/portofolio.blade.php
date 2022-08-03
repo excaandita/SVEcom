@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('title')
     Portofolio - Sekolah Vokasi E-COM

@@ -119,15 +119,23 @@
               </div>
             </div>
             <div class="row">
+<<<<<<< Updated upstream
             @forelse ($products as $product )
               <div class="col-lg-4 col-md-6 col-sm-6">
+=======
+                @foreach ($products as $product )
+              <div class="col-lg-4 col-md-4 col-sm-6">
+>>>>>>> Stashed changes
                <div class="product__item">
-                  <div
+                 <div class="image-content">
+                   <div
                     class="product__item__pic"
                     style="
                         background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
                     "
                   ></div>
+                 </div>
+                  
                   <div class="product__item__text">
                     <h6>{{ $product->name }}</h6>
                     <a href="{{ route('detailproduk', $product->slug)}}" class="add-cart">Detail Produk</a>
@@ -145,7 +153,7 @@
            
             </div>
             <div class="row">
-              <div class="col-lg-12 text-right">
+              <div class="col-lg-12">
                 <div class="product__pagination">
                   {{ $products->links() }}
                 </div>
