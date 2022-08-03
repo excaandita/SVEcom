@@ -50,6 +50,9 @@
 class="section-content section-dashboard-home"
 data-aos="fade-up"
 >
+@php
+  $priceThisTransaction = $transaction->price * $transaction->quantity;
+@endphp
   <div class="container-fluid"> 
     <div class="dashboard-heading">
       <h2 class="dashboard-title">{{ $transaction->code }}</h2>
@@ -68,222 +71,238 @@ data-aos="fade-up"
                     alt=""
                   />
                 </div>
+
                 <div class="col-12 col-md-8">
-                  <div class="row">
-                    <div class="col-12 col-md-6">
-                      <div class="product-title">Nama Pelanggan</div>
-                      <div class="product-subtitle">{{ $transaction->transaction->user->name }}</div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <div class="product-title">Nama Produk</div>
-                      <div class="product-subtitle">
-                        {{ $transaction->product->name}}
+                  <div class="card-body">
+                    <div class="row invoice-info">
+                      <div class="col-md-6">
+                        <div class="row">
+                          <div class="col-12 table-responsive">
+                            <table class="table table-striped">
+                              <tbody>
+                                @php
+                                    $totalPrice = 0
+                                @endphp
+                                <tr>
+                                  <th>Serial #</th>
+                                  <td>{{ $transaction->code }}</td>
+                                <tr>
+                                  <th>Qty</th>
+                                  <td>{{ $transaction->quantity }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Nama Produk</th>
+                                  <td>{{ $transaction->product->name }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Nama Toko</th>
+                                  <td>{{ $transaction->product->user->store_name }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Harga Satuan</th>
+                                  <td>Rp. {{ number_format($transaction->product->price) }}</td>
+                                </tr>
+                                <tr>
+                                  <th>Deskripsi</th>
+                                  <td>{!! $transaction->product->description !!}</td>
+                                </tr>
+                                <tr>
+                                  <th>Subtotal</th>
+                                  <td>Rp. {{ number_format($transaction->price * $transaction->quantity) }}</td>
+                                </tr>
+                                 @php $totalPrice = $transaction->product->price * $transaction->quantity @endphp
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <div class="product-title">
-                        Tanggal Transaksi
+                      
+                      <div class="col-1"></div>
+                      <div class="col-5">
+                        <div class="row">
+                          <p class="lead">Order ID: <b>{{ $transaction->transaction->code }}</b></p>
+                        
+                          <p class="lead">Status Pembayaran <b class="text-danger">{{$transaction->transaction->transaction_status}}</b></p>
+                          <div div class="table-responsive">
+                            <table class="table">
+                              <tr>
+                                <th style="width:50%">Total Harga ( {{$transaction->quantity}} Barang)</th>
+                                <td>Rp. {{ number_format($totalPrice) ?? 0 }}</td>
+                              </tr>
+                            </table>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-12 invoice-col">
+                            <b>Tanggal transaksi:</b> {{ $transaction->created_at}} <br>
+                            <b>Account:</b> {{ $transaction->transaction->user->name}}
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12">
+                            <p class="lead">Payment Supported With:</p>
+                            <img src="/images/Midtrans.png" style="width: 150px" alt="Visa">
+                            <p class="text-muted well well-sm shadow-none" style="margin-top: 10px;">
+  
+                            </p>
+                          </div>
+                        </div>
+                        
+                      </div>  
+                      
+                      <div class="col-sm-6 invoice-col">
+                        <h5>Informasi Pengiriman</h5>
+                        <div class="product-title"> Alamat Pengiriman</div>
+                        <address>
+                          <strong>{{ $transaction->transaction->user->name }}</strong><br>
+                          {{ $transaction->transaction->user->address_one }}<br>
+                          {{ App\Models\Province::find($transaction->transaction->user->provinces_id)->name }}, {{ $transaction->transaction->user->zip_code }}<br>
+                          telfon: {{ $transaction->transaction->user->phone_number }}<br>
+                          Email: {{ $transaction->transaction->user->email }}
+                        </address>
                       </div>
-                      <div class="product-subtitle">
-                        {{ $transaction->created_at }}
+
+                      <div class="col-sm-6">
+                        <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
+                          @csrf
+                            @if (auth()->user()->roles == 'BUYER')
+                            <div class="row">
+                              <div class="col-sm-12">
+                                <div class="product-title">Status Pengiriman</div>
+                                <input
+                                    type="text"
+                                    name="shipping_status"
+                                    v-model="status"
+                                    class="form-control"
+                                    disabled
+                                  />
+                              </div>
+                            </div>
+                            
+                            <template v-if="status == 'SHIPPING'">
+                              <div class="col-sm-12">
+                                <div class="product-title">Resi</div>
+                                <div class="product-subtitle">{{ $transaction->resi ?? '-' }}</div>
+                              </div>
+                              <div class="col-sm-12">
+                                <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
+                                  @csrf
+                                  <input type="hidden" value="SUCCESS" name="shipping_status">
+                                  <button
+                                    class="btn btn-success btn-block mt-4"
+                                    type="submit"
+                                  >
+                                  Barang Diterima
+                                  </button>
+                                </form>
+                              </div>
+                            </template>
+                          
+                            <template v-if="status == 'SUCCESS'">
+                              <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <div class="row">
+                                  <div class="col-sm-12 mt-3">
+                                    <div class="row">
+                                      <!-- Rating Star -->
+                                      <div class="col-sm-12 md-4">
+                                        <div class="product-title">Rating produk</div>
+                                        <div class="rate">
+                                          <input type="radio" id="star5" name="rating" value="5" />
+                                          <label for="star5" title="text">5 stars</label>
+                                          <input type="radio" id="star4" name="rating" value="4" />
+                                          <label for="star4" title="text">4 stars</label>
+                                          <input type="radio" id="star3" name="rating" value="3" />
+                                          <label for="star3" title="text">3 stars</label>
+                                          <input type="radio" id="star2" name="rating" value="2" />
+                                          <label for="star2" title="text">2 stars</label>
+                                          <input type="radio" id="star1" name="rating" value="1" />
+                                          <label for="star1" title="text">1 star</label>
+                                        </div>
+                                      </div>
+                                      <!-- kolom komentar -->
+                                      <div class="col-sm-12">
+                                        <div class="form-group">
+                                          <div class="product-title">Kolom Komentar</div>
+                                          <textarea name="komentar" id="editor"></textarea>
+                                        </div>
+                                      </div>
+                                      </div>
+                                      <!-- tombol Submit Komen rating-->
+                                      <div class="row justify-content-center">
+                                        <div class="col-md-12">
+                                        <button
+                                          class="btn btn-success btn-block mt-4"
+                                          type="submit"
+                                        >
+                                          Beri Komentar!!!
+                                        </button>
+                                      </div>
+                                    </div>
+                                  </div>  
+                                </div>
+                              </form>
+                            </template>
+    
+                            <template v-if="status == 'PENDING'">
+                              <div class="col-md-3">
+                                <form action="{{ route('dashboard-refund-create', $transaction->id)}}" method="POST" enctype="multipart/form-data">
+                                  @csrf
+                                  <button
+                                    class="btn btn-success btn-block mt-4"
+                                    type="submit"
+                                  >
+                                  REFUND
+                                  </button>
+                                </form>
+                              </div>
+                            </template>
+                          @endif
+    
+                          @if (auth()->user()->roles == 'USER')
+                          <div class="col-sm-12">
+                            <div class="product-title">Status Pengiriman</div>
+                            <select
+                              name="shipping_status"
+                              id="status"
+                              class="form-control"
+                              v-model="status"
+                            >
+                              <option value="UNPAID">Unpaid</option>
+                              <option value="PENDING">Pending</option>
+                              <option value="SHIPPING">Shipping</option>
+                              <option value="SUCCESS">Success</option>
+                            </select>
+                          </div>
+                          <template v-if="status == 'SHIPPING'">
+                            <div class="col-sm-12">
+                              <div class="product-title">Input Resi</div>
+                              <input
+                                type="text"
+                                name="resi"
+                                v-model="resi"
+                                class="form-control"
+                              />
+                            </div>
+                            <div class="col-md-6">
+                              <button
+                                type="submit"
+                                class="btn btn-success btn-block mt-4"
+                              >
+                                Update Resi
+                              </button>
+                            </div>
+                          </template>
+                          @endif
+                          </div>
+                        </form>
                       </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <div class="product-title">Status Pembayaran</div>
-                      <div class="product-subtitle text-danger">
-                        {{ $transaction->transaction->transaction_status}}
-                      </div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <div class="product-title">Total Harga</div>
-                      <div class="product-subtitle">Rp. {{ number_format($transaction->transaction->total_price)}}</div>
-                    </div>
-                     <div class="col-12 col-md-6">
-                      <div class="product-title">Jumlah Barang</div>
-                      <div class="product-subtitle"> {{$transaction->quantity}}</div>
-                    </div>
-                    <div class="col-12 col-md-6">
-                      <div class="product-title">Telfon</div>
-                      <div class="product-subtitle">{{ $transaction->transaction->user->phone_number }}</div>
-                    </div>
+
+                     
+                    </div> 
                   </div>
                 </div>
               </div>
-              <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="row">
-                  <div class="col-12 mt-4">
-                    <h5>Informasi Pengiriman</h5>
-                  </div>
-                  <div class="col-12">
-                    <div class="row">
-                      <div class="col-12 col-md-6">
-                        <div class="product-title">Alamat</div>
-                        <div class="product-subtitle">
-                          {{ $transaction->transaction->user->address_one }}
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-6">
-                        <div class="product-title">Alamat Lengkap</div>
-                        <div class="product-subtitle">
-                          {{ $transaction->transaction->user->address_one }}
-                        </div>
-                      </div>
-                      <div class="col-12 col-md-6">
-                        <div class="product-title">Kota</div>
-                        <div class="product-subtitle">{{ App\Models\Regency::find($transaction->transaction->user->regencies_id)->name }}</div>
-                      </div>
-                      <div class="col-12 col-md-6">
-                        <div class="product-title">Provinsi</div>
-                        <div class="product-subtitle">{{ App\Models\Province::find($transaction->transaction->user->provinces_id)->name }}</div>
-                      </div>
-                      <div class="col-12 col-md-6">
-                        <div class="product-title">Kode Pos</div>
-                        <div class="product-subtitle">{{ $transaction->transaction->user->zip_code }}</div>
-                      </div>
-                      <div class="col-12 col-md-6">
-                        <div class="product-title">Negara</div>
-                        <div class="product-subtitle">{{ $transaction->transaction->user->country }}</div>
-                      </div>
-
-                      @if (auth()->user()->roles == 'BUYER')
-                        <div class="col-12 col-md-3">
-                          <div class="product-title">Status Pengiriman</div>
-                          <input
-                              type="text"
-                              name="shipping_status"
-                              v-model="status"
-                              class="form-control"
-                              disabled
-                            />
-                        </div>
-                        <template v-if="status == 'SHIPPING'">
-                          <div class="col-md-3">
-                            <div class="product-title">Resi</div>
-                            <input
-                              type="text"
-                              name="resi"
-                              v-model="resi"
-                              class="form-control"
-                              disabled
-                            />
-                          </div>
-                          <div class="col-md-3">
-                            <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                              <input type="hidden" value="SUCCESS" name="shipping_status">
-                              <button
-                                class="btn btn-success btn-block mt-4"
-                                type="submit"
-                              >
-                              Barang Diterima
-                              </button>
-                            </form>
-                          </div>
-                        </template>
-                    </div>
-                        <template v-if="status == 'SUCCESS'">
-                          <form action="{{ route('dashboard-transaction-update', $transaction->id)}}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            <div class="row">
-                              <div class="col-12 mt-3">
-                                <div class="row">
-                                  <!-- Rating Star -->
-                                  <div class="col-md-6">
-                                    <div class="product-title">Rating produk</div>
-                                    <div class="rate">
-                                      <input type="radio" id="star5" name="rating" value="5" />
-                                      <label for="star5" title="text">5 stars</label>
-                                      <input type="radio" id="star4" name="rating" value="4" />
-                                      <label for="star4" title="text">4 stars</label>
-                                      <input type="radio" id="star3" name="rating" value="3" />
-                                      <label for="star3" title="text">3 stars</label>
-                                      <input type="radio" id="star2" name="rating" value="2" />
-                                      <label for="star2" title="text">2 stars</label>
-                                      <input type="radio" id="star1" name="rating" value="1" />
-                                      <label for="star1" title="text">1 star</label>
-                                    </div>
-                                  </div>
-                                  <!-- kolom komentar -->
-                                  <div class="col-md-12">
-                                    <div class="form-group">
-                                      <div class="product-title">Kolom Komentar</div>
-                                      <textarea name="komentar" id="editor"></textarea>
-                                    </div>
-                                  </div>
-                                  </div>
-                                  <!-- tombol Submit Komen rating-->
-                                  <div class="row justify-content-center">
-                                    <div class="col-md-4">
-                                    <button
-                                      class="btn btn-success btn-block mt-4"
-                                      type="submit"
-                                    >
-                                      Beri Komentar!!!
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </template>
-
-                        <template v-if="status == 'PENDING'">
-                          <div class="col-md-3">
-                            <form action="{{ route('dashboard-refund-create', $transaction->id)}}" method="POST" enctype="multipart/form-data">
-                              @csrf
-                              <button
-                                class="btn btn-success btn-block mt-4"
-                                type="submit"
-                              >
-                              REFUND
-                              </button>
-                            </form>
-                          </div>
-                        </template>
-                      @endif
-
-                      @if (auth()->user()->roles == 'USER')
-                      <div class="col-12 col-md-3">
-                        <div class="product-title">Status Pengiriman</div>
-                        <select
-                          name="shipping_status"
-                          id="status"
-                          class="form-control"
-                          v-model="status"
-                        >
-                          <option value="UNPAID">Unpaid</option>
-                          <option value="PENDING">Pending</option>
-                          <option value="SHIPPING">Shipping</option>
-                          <option value="SUCCESS">Success</option>
-                        </select>
-                      </div>
-                      <template v-if="status == 'SHIPPING'">
-                        <div class="col-md-3">
-                          <div class="product-title">Input Resi</div>
-                          <input
-                            type="text"
-                            name="resi"
-                            v-model="resi"
-                            class="form-control"
-                          />
-                        </div>
-                        <div class="col-md-2">
-                          <button
-                            type="submit"
-                            class="btn btn-success btn-block mt-4"
-                          >
-                            Update Resi
-                          </button>
-                        </div>
-                      </template>
-                      @endif
-                        
-                      
-                    </div>
-                  </div>
-                </div>
-              </form>
             </div>
           </div>
         </div>
