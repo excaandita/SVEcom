@@ -22,6 +22,7 @@
                       <div class="card">
                         <div class="card-body">
                           <div class="row mb-2">
+                            
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="name">Nama</label>
@@ -151,6 +152,20 @@
 <script src="https://unpkg.com/vue-toasted"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
+  function pilih_foto(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+ 
+                reader.onload = function (e) {
+                    $('#tampilkan_foto')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(auto);
+                };
+ 
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
   var locations = new Vue({
     el: "#locations",
     mounted() {

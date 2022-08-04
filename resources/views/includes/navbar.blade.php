@@ -61,7 +61,7 @@
               <a
                 href="{{ route('login')}}"
                 class="btn btn-dark nav-link px-5 text-white"
-                >Sign-In</a
+                >Sign-In</a 
               >
             </li>
             @endguest
@@ -128,7 +128,7 @@
               </a>
             </li>
             @endif
-          </ul>
+          
 
           <!-- <ul class="navbar-nav d-block d-lg-none">
             <li class="nav-item" style="list-style: none">

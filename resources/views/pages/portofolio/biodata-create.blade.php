@@ -31,9 +31,31 @@
                     <form action="{{ route('portofolio-biodata-store') }}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <input type="hidden" name="users_id" value="{{ Auth::user()->id }}">
-                      <div class="card">
+                      <div class="card" style="margin-bottom: 20px;">
                         <div class="card-body">
                           <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="name">
+                                  Foto Profile
+                                </label>
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                  </div>
+                                  <div class="custom-file">
+                                    <input type="file" name="foto" class="custom-file-input" onchange="pilih_foto(this);">
+                                    <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                  </div>
+                                </div>
+                              </div>
+                              @if ($user->image)
+                              <img src="{{ url('public/images/'.$user->image) }}" id="tampilkan_foto"  style="height: auto; width: 150px;margin-bottom:10px">
+                          @else
+                              <img src="" id="tampilkan_foto" style="margin-bottom: 10px">
+                          @endif
+                            </div>
+                            <div class="col-md-6"></div>
                             <div class="col-md-4">
                               <div class="form-group">
                                 <label for="name">Nama</label>
@@ -153,7 +175,22 @@
 
 @push('addon-script')
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
+  function pilih_foto(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+ 
+                reader.onload = function (e) {
+                    $('#tampilkan_foto')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(auto);
+                };
+ 
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
     ClassicEditor.create(document.querySelector("#editor"))
         .then((editor) => {
             console.log(editor);

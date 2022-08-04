@@ -173,7 +173,7 @@
                         aria-expanded="false"
                     >
                         <img
-                        src="/images/icon-user.png"
+                        src="{{ url('public/images/'.Auth::user()->image) }}"
                         alt=""
                         class="rounded-circle mr-2 profile-picture"
                         />
@@ -242,6 +242,7 @@
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
+  
   <script>
     AOS.init();
   </script>
