@@ -68,16 +68,16 @@
                             data-aos="zoom-in" 
                             data-aos-delay="100">
                             <a href="#" @click="changeActive(index)">
-                                <img :src="photo.url" class="w-100 " :class="{active:index==activePhoto}"alt="">
+                                <img :src="photo.url" class="image-detail-row " :class="{active:index==activePhoto}"alt="">
                             </a>
                             </div>
                        </li>
                   </ul>
               </div>
-              <div class="col-lg-8 col-md-9">
+              <div class="col-lg-8 col-md-9 ">
                   <div class="tab-content">
                     <div class="tab-pane active">
-                        <div class="product__details__pic__item" style="height: 800px; width: 800px">
+                        <div class="product__details__pic__item">
                             <transition name="slide-fade" mode="out-in">
                                 <img 
                                 :src="photos[activePhoto].url" 
