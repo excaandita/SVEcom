@@ -32,6 +32,8 @@
                         @endif
                         <div class="card">
                             <div class="card-body">
+                                <h5>Foto Profile</h5>
+                                <img src="{{ url('public/images/'.$user->image) }}" style="height:100px;width:auto;margin-bottom:20px;">
                                 <h5>Deskripsi</h5>
                                 <p>{!! $user->deskripsi !!}</p>
                                 <div class="row">
