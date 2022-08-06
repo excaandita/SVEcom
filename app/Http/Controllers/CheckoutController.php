@@ -32,7 +32,7 @@ class CheckoutController extends Controller
             'insurace_price' => 0,
             'shipping_price' => $request->shipping_price,
             'total_price' => $request->total_price,
-            'transaction_status' => 'PENDING',
+            'transaction_status' => 'UNPAID',
             'code' => $code,
         ]);
 

@@ -11,7 +11,7 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Transaction</h2>
+                <h2 class="dashboard-title">Transaksi</h2>
                 <p class="dashboard-subtitle">Look what you have made today!</p>
               </div>
               <div class="dashboard-content">
@@ -34,18 +34,23 @@
                           >Buy Products</a
                         >
                       </li>
-                      <li class="nav-item" role="presentation">
-                        <a
-                          class="nav-link"
-                          id="pills-profile-tab"
-                          data-toggle="pill"
-                          href="#pills-profile"
-                          role="tab"
-                          aria-controls="pills-profile"
-                          aria-selected="false"
-                          >Sell Product</a
-                        >
-                      </li>
+
+                      @if (auth()->user()->roles == 'USER')
+                        <li class="nav-item" role="presentation">
+                          <a
+                            class="nav-link"
+                            id="pills-profile-tab"
+                            data-toggle="pill"
+                            href="#pills-profile"
+                            role="tab"
+                            aria-controls="pills-profile"
+                            aria-selected="false"
+                            >Sell Product</a
+                          >
+                        </li>
+                      @endif
+
+                      
                     </ul>
                     <div class="tab-content" id="pills-tabContent">
                       <div
@@ -55,24 +60,20 @@
                         aria-labelledby="pills-home-tab"
                       >
                         <!-- view list barang  -->
-                        @foreach ($buyTransactions as $b_transaction)
+                        @foreach ($buyTransactionCart as $b_transaction)
                           <a
                             class="card card-list d-block"
-                            href="{{ route('dashboard-transaction-details', $b_transaction->id)}}"
+                            href="{{ route('dashboard-transaction-cart-details', $b_transaction->id)}}"
                           >
                             <div class="card-body">
                               <div class="row">
-                                <div class="col-md-1">
-                                  <img
-                                    src="{{ Storage::url($b_transaction->product->galleries->first()->photos ?? '')}}"
-                                    class="w-50"
-                                    alt=""
-                                  />
-                                </div>
-                                <div class="col-md-4">{{ $b_transaction->product->name }}</div>
-                                <div class="col-md-3">{{ $b_transaction->product->user->store_name }}</div>
-                                <div class="col-md-3">{{ $b_transaction->created_at }}</div>
-                                <div class="col-md-1 d-none d-md-block">
+                                
+                                <div class="col-md-2">{{ $b_transaction->code }}</div>
+                                <div class="col-md-3">Rp. {{ number_format($b_transaction->total_price)  }}</div>
+                                <div class="col-md-3">{{ $b_transaction->transaction_status }}</div>
+                                <div class="col-md-2">{{ $b_transaction->created_at }}</div>
+                                <div class="col-md-2 d-none d-md-block">
+                                  Lihat Detail Transaksi
                                   <img
                                     src="/images/dashboard-arrow-right.svg"
                                     alt=""

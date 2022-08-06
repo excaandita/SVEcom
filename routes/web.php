@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\SliderController as AdminSliderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\Dashboard1Controller as AdminDashboard1Controller;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
 use App\Http\Controllers\Admin\SertifikatController;
@@ -46,6 +47,7 @@ use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileTokoController;
 use App\Http\Controllers\DashboardWithdrawController;
 
 use App\Http\Controllers\DashboardRefundController;
@@ -96,11 +98,13 @@ Route::get('/portofolio/{id}', [PortofolioController::class, 'detail'])->name('p
 Route::get('/search', [PortofolioController::class, 'search'])->name('')->name('portofolio-search');
 
 Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
+Route::get('/listproduct/{id}', [ListProductController::class, 'detail'])->name('product-categories');
 Route::get('/daftarproduct', [DaftarProdukController::class, 'index'])->name('daftarproduct');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
 
 Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile');
+Route::get('/profiletoko/{id}', [ProfileTokoController::class, 'index'])->name('profiletoko');
 
 Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
 
@@ -122,6 +126,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/dashboard/account/{redirect}', [DashboardSettingController::class, 'update'])->name('dashboard-setting-redirect');
 
     Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
+    Route::get('/dashboard/transactions/cart/{id}', [DashboardTransactionController::class, 'transactionCartDetail'])->name('dashboard-transaction-cart-details');
     Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details');
     Route::post('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'update'])->name('dashboard-transaction-update');
 
@@ -223,6 +228,7 @@ Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function(){
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+        Route::get('dashboard/admin', [AdminDashboard1Controller::class, 'index'])->name('dashboard-admin');
         Route::resource('category', AdminCategoryController::class);
         Route::resource('slider', AdminSliderController::class);
         Route::resource('user', AdminUserController::class);

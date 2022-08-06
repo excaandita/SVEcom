@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('title')
     Detail - Sekolah Vokasi E-COM
@@ -50,7 +50,7 @@
             <img
                 v-bind:src="photos[activePhoto].url" 
                 :key="photos[activePhoto].id"
-                class="w-100 main-image"
+                class="w-100 image-box"
                 alt=""
               />
             </transition>

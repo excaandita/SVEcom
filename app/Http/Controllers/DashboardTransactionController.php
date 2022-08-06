@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
 use App\Models\TransactionDetail;
 use Illuminate\Support\Facades\Auth;
@@ -17,15 +18,36 @@ class DashboardTransactionController extends Controller
                             })->get();
 
         //viriable untuk memanggil data transaksi barang yang user Beli
-        $buyTransactions = TransactionDetail::with(['transaction.user', 'product.galleries'])
-                            ->whereHas('transaction', function($transaction){ // mencari transaksi yang berhasil terbuat
-                                $transaction->where('users_id', Auth::user()->id); //mencari transaksi pada user yang sedang login
-                            
-        })->get();
+ 
+        $buyTransactionCart = Transaction::where('users_id', Auth::user()->id)
+                                ->get();
 
         return view('pages.dashboard-transactions',[
             'sellTransactions' => $sellTransactions, //viriable yang akan dipakai di view
-            'buyTransactions' => $buyTransactions //viriable yang akan dipakai di view
+            'buyTransactionCart' => $buyTransactionCart, //viriable yang akan dipakai di view
+        ]);
+    }
+
+
+    public function transactionCartDetail($id)
+    {
+        $buyTransactions = TransactionDetail::with(['transaction.user', 'product.galleries'])
+                            ->whereHas('transaction', function($transaction){ // mencari transaksi yang berhasil terbuat
+                                $transaction->where('users_id', Auth::user()->id);       //mencari transaksi pada user yang sedang login
+                            })->where('transactions_id', $id)->get();
+
+        $sellTransactions = TransactionDetail::with(['transaction.user', 'product.galleries']) //memanggil data DB dan relasi di model
+                            ->whereHas('product', function($product){ //mencari produk yang berhasil terjual
+                                $product->where('users_id', Auth::user()->id); //mencari transaksi pada user yang sedang login
+                            })->where('transactions_id', $id)->get();
+
+        $transaction = Transaction::where('id', $id)
+                            ->get();
+
+        return view('pages.dashboard-transactions-cart-detail',[
+            'cartBuyTransactions' => $buyTransactions,
+            'cartSellTransactions' => $sellTransactions,
+            'transaction' => $transaction
         ]);
     }
 

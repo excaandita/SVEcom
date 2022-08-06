@@ -173,7 +173,7 @@ sup {
 }
 
 a {
-    color: #007bff;
+    color: #ffffff;
     text-decoration: none;
     background-color: transparent;
 }
@@ -4911,11 +4911,12 @@ input[type="button"].btn-block {
 }
 
 .tab-content > .tab-pane {
-    display: none;
+    width: 500px;
 }
 
 .tab-content > .active {
     display: block;
+    width: 500px;
 }
 
 .navbar {
@@ -11354,6 +11355,7 @@ body {
 
 .page-details .store-gallery img {
     border-radius: 10px;
+    justify-content: center;
 }
 
 .page-details .store-gallery .thumbnail-image {
@@ -11729,7 +11731,10 @@ body {
     border-bottom: 2px solid #0c0d36;
     background: none;
 }
-
+.page-dashboard .section-content .gallery-container {
+    width: 350px;
+    justify-content: center;
+}
 .page-dashboard .section-content .gallery-container .delete-gallery {
     display: block;
     position: absolute;
@@ -11932,6 +11937,7 @@ body {
 
 .tabs .tab-content {
     padding: 5px 15px;
+    width: 550px;
     border-radius: 0 0 4px 4px;
 }
 
@@ -12002,7 +12008,8 @@ body {
     text-align: center;
     background: #f3f2ee;
     padding: 40px 0 40px;
-    margin-bottom: 50px;
+    justify-content: center;
+    margin-bottom: 30px;
 }
 
 .product__details__pic .nav-tabs {
@@ -12083,6 +12090,9 @@ body {
 
 .product__details__pic__item {
     position: relative;
+    justify-content: center;
+    width: 500px;
+    margin-bottom: 20px;
 }
 
 .product__details__pic__item a {
@@ -12358,7 +12368,69 @@ body {
     padding-top: 40px;
     padding-bottom: 100px;
 }
+.product__details__tab__profile {
+    padding-top: 0;
+    padding-bottom: 30px;
+}
+.product__details__tab__profile .nav-tabs {
+    border-bottom: 1px solid #e5e5e5;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
 
+.product__details__tab__profile .nav-tabs .nav-item {
+    margin-right: 50px;
+}
+
+.product__details__tab__profile .nav-tabs .nav-item:last-child {
+    margin-right: 0;
+}
+
+.product__details__tab__profile .nav-tabs .nav-item .nav-link {
+    font-size: 20px;
+    color: #111111;
+    padding: 0;
+    border: none;
+    font-weight: 700;
+    padding-bottom: 10px;
+    border-bottom: 2px solid transparent;
+}
+
+.product__details__tab__profile .nav-tabs .nav-item .nav-link.active {
+    border-bottom: 2px solid #e53637;
+}
+
+.product__details__tab__profile__content {
+    padding-top: 35px;
+}
+
+.note {
+    color: #111111;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+.product__details__tab__profile__content__item {
+    margin-bottom: 30px;
+}
+
+.product__details__tab__profile__content__item:last-child {
+    margin-bottom: 0;
+}
+
+.product__details__tab__profile__content__item h5 {
+    color: #111111;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.product__details__tab__profile__content__item p {
+    margin-bottom: 0;   
+}
 .product__details__tab .nav-tabs {
     border-bottom: 1px solid #e5e5e5;
     -webkit-box-pack: center;
@@ -12560,7 +12632,7 @@ body {
 .shop__sidebar__categories ul li a,
 .shop__sidebar__price ul li a,
 .shop__sidebar__brand ul li a {
-    color: #b7b7b7;
+    color: #292828;
     font-size: 15px;
     line-height: 32px;
     -webkit-transition: all, 0.3s;
@@ -13478,7 +13550,6 @@ ol {
 }
 
 .header__top__links a {
-    color: #ffffff;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -13544,6 +13615,7 @@ ol {
 
 .header__logo {
     padding: 30px 0;
+    width: 100%;
 }
 
 .header__logo a {
@@ -14079,8 +14151,7 @@ ol {
 }
 
 .product__item {
-    overflow: hidden;
-    margin-bottom: 40px;
+    margin-bottom: 100px;
 }
 
 .product__item.sale .product__item__pic .label {
@@ -14116,9 +14187,11 @@ ol {
 }
 
 .product__item__pic {
-    height: 260px;
-    position: relative;
-    background-position: center center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
 }
 
 .product__item__pic .label {
@@ -14393,7 +14466,7 @@ ol {
 .shop__sidebar__categories ul li a,
 .shop__sidebar__price ul li a,
 .shop__sidebar__brand ul li a {
-    color: #b7b7b7;
+    color: #292828;
     font-size: 15px;
     line-height: 32px;
     -webkit-transition: all, 0.3s;
@@ -14648,9 +14721,10 @@ ol {
 
 .product__details__pic {
     text-align: center;
+    justify-content: center;
     background: #f3f2ee;
     padding: 40px 0 60px;
-    margin-bottom: 100px;
+    margin-bottom: 30px;
 }
 
 .product__details__pic .nav-tabs {
@@ -14731,6 +14805,7 @@ ol {
 
 .product__details__pic__item {
     position: relative;
+    justify-content: center;
 }
 
 .product__details__pic__item a {
@@ -17497,4 +17572,38 @@ ol {
     color: #e53637;
     font-weight: 700;
     float: right;
+}
+.image-content {
+    border: solid;
+    height: 100%;
+    width: 100%;
+}
+.image-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.image-detail {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.image-detail-row {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.huruf {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
 }

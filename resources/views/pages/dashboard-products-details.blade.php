@@ -33,12 +33,12 @@
                         <div class="row">
 
                           @foreach ($product->galleries as $gallery)
-                            <div class="col-md-4">
+                            <div class="col-md-3 mx-3">
                               <div class="gallery-container">
                                 <img
                                   src="{{ Storage::url($gallery->photos ?? '') }}"
                                   alt=""
-                                  class="w-100"
+                                  class="image-box"
                                 />
                                 <a href="{{ route('dashboard-product-gallery-delete', $gallery->id )}}" class="delete-gallery">
                                   <img src="/images/icon-delete.svg" alt="" />

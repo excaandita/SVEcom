@@ -34,11 +34,12 @@
                       >
                       
                       
-                      <div class="card-body products-image">
-                          <img
+                      <div class="card-body">
+                         
+                           <img
                             src="{{ Storage::url($p->galleries->first()->photos ?? '') }}"
                             alt=""
-                            class="w-100 mb-2 "
+                            class="mb-2 image-box"
                           />
                           <div class="product-title">{{ $p->name }}</div>
                           <div class="product-category">{{ $p->category->name }}</div>
