@@ -52,76 +52,78 @@
 
                       
                     </ul>
-                    <div class="tab-content" id="pills-tabContent">
-                      <div
-                        class="tab-pane fade show active"
-                        id="pills-home"
-                        role="tabpanel"
-                        aria-labelledby="pills-home-tab"
-                      >
-                        <!-- view list barang  -->
-                        @foreach ($buyTransactionCart as $b_transaction)
-                          <a
-                            class="card card-list d-block"
-                            href="{{ route('dashboard-transaction-cart-details', $b_transaction->id)}}"
-                          >
-                            <div class="card-body">
-                              <div class="row">
-                                
-                                <div class="col-md-2">{{ $b_transaction->code }}</div>
-                                <div class="col-md-3">Rp. {{ number_format($b_transaction->total_price)  }}</div>
-                                <div class="col-md-3">{{ $b_transaction->transaction_status }}</div>
-                                <div class="col-md-2">{{ $b_transaction->created_at }}</div>
-                                <div class="col-md-2 d-none d-md-block">
-                                  Lihat Detail Transaksi
-                                  <img
-                                    src="/images/dashboard-arrow-right.svg"
-                                    alt=""
-                                  />
+                    <div class="col-12">
+                        <div
+                          class="tab-pane fade show active"
+                          id="pills-home"
+                          role="tabpanel"
+                          aria-labelledby="pills-home-tab"
+                        >
+                          <!-- view list barang  -->
+                          @foreach ($buyTransactionCart as $b_transaction)
+                            <a
+                              class="card card-list d-block"
+                              href="{{ route('dashboard-transaction-cart-details', $b_transaction->id)}}"
+                            >
+                              <div class="card-body">
+                                <div class="row">
+                                  
+                                  <div class="col-md-2">{{ $b_transaction->code }}</div>
+                                  <div class="col-md-3">Rp. {{ number_format($b_transaction->total_price)  }}</div>
+                                  <div class="col-md-3">{{ $b_transaction->transaction_status }}</div>
+                                  <div class="col-md-2">{{ $b_transaction->created_at }}</div>
+                                  <div class="col-md-2 d-none d-md-block">
+                                    Lihat Detail Transaksi
+                                    <img
+                                      src="/images/dashboard-arrow-right.svg"
+                                      alt=""
+                                    />
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </a>
-                        @endforeach
-
-                        
-
-                      </div>
-                      <div
-                        class="tab-pane fade"
-                        id="pills-profile"
-                        role="tabpanel"
-                        aria-labelledby="pills-profile-tab"
-                      >
-                        @foreach ($sellTransactions as $s_transaction)
-                          <a
-                            class="card card-list d-block"
-                            href="{{ route('dashboard-transaction-details', $s_transaction->id)}}"
-                          >
-                            <div class="card-body">
-                              <div class="row">
-                                <div class="col-md-1">
-                                  <img
-                                    src="{{ Storage::url($s_transaction->product->galleries->first()->photos ?? '')}}"
-                                    class="w-50"
-                                    alt=""
-                                  />
-                                </div>
-                                <div class="col-md-4">{{ $s_transaction->product->name }}</div>
-                                <div class="col-md-3">{{ $s_transaction->transaction->user->name }}</div>
-                                <div class="col-md-3">{{ $s_transaction->created_at }}</div>
-                                <div class="col-md-1 d-none d-md-block">
-                                  <img
-                                    src="/images/dashboard-arrow-right.svg"
-                                    alt=""
-                                  />
+                            </a>
+                          @endforeach
+  
+                          
+  
+                        </div>
+                        <div
+                          class="tab-pane fade"
+                          id="pills-profile"
+                          role="tabpanel"
+                          aria-labelledby="pills-profile-tab"
+                        >
+                          @foreach ($sellTransactions as $s_transaction)
+                            <a
+                              class="card card-list d-block"
+                              href="{{ route('dashboard-transaction-details', $s_transaction->id)}}"
+                            >
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col-md-1">
+                                    <img
+                                      src="{{ Storage::url($s_transaction->product->galleries->first()->photos ?? '')}}"
+                                      class="w-50"
+                                      alt=""
+                                    />
+                                  </div>
+                                  <div class="col-md-4">{{ $s_transaction->product->name }}</div>
+                                  <div class="col-md-3">{{ $s_transaction->transaction->user->name }}</div>
+                                  <div class="col-md-3">{{ $s_transaction->created_at }}</div>
+                                  <div class="col-md-1 d-none d-md-block">
+                                    <img
+                                      src="/images/dashboard-arrow-right.svg"
+                                      alt=""
+                                    />
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </a>
-                        @endforeach
-                      </div>
+                            </a>
+                          @endforeach
+                        </div>
+                      
                     </div>
+                    
                   </div>
                 </div>
               </div>

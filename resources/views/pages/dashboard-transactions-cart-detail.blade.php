@@ -18,7 +18,6 @@
                 <div class="row">
                   <div class="col-12 mt-2">
                     
-                    <div class="tab-content" id="pills-tabContent">
                       <div
                         class="tab-pane fade show active"
                         id="pills-home"
@@ -95,7 +94,6 @@
                           </a>
                         @endforeach
                       </div>
-                    </div>
                   </div>
                 </div>
               </br>
