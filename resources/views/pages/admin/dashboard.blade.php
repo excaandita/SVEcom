@@ -77,8 +77,8 @@ Dashboard-Sekolah Vokasi E-COM
                                 </svg>
                             </div>
                             <div class="col-md-3">
-                                <h5 class="fw-bold mb-1">{{ $item->user->name }}</h5>
-                                <small class="text-muted mb-0">{{ $item->user->email }}</small>
+                                <h5 class="fw-bold mb-1">{{ $item->name }}</h5>
+                                <small class="text-muted mb-0">{{ $item->email }}</small>
                             </div>
                             <div class="col-md-2">
                                 <h5 class="fw-bold mb-1">Admin</h4>

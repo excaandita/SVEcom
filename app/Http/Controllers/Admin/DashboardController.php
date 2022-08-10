@@ -20,8 +20,7 @@ class DashboardController extends Controller
         $success = Transaction::where('transaction_status', 'SUCCESS')->count();
         $canceled = Transaction::where('transaction_status', 'CANCELLED')->count();
         $done = Transaction::where('transaction_status', 'DONE')->count();
-        $recentlytransaction=Transaction::With('user')->orderBy('transactions.updated_at', 'desc')->limit(3)->get();
-        // $recentlytransaction=Transaction::orderBy('transactions.updated_at', 'desc')->join('users','users.id','transactions.users_id')->limit(3)->get();
+        $recentlytransaction=Transaction::orderBy('transactions.updated_at', 'desc')->join('users','users.id','transactions.users_id')->limit(3)->get();
         $portofoliobaru = Skill::where('status', 'pending')->count();
         $portofolioverifikasi = Skill::where('status', 'verified')->count();
 

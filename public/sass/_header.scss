@@ -6,7 +6,7 @@
 }
 
 .header__top {
-    background: #3774cf;
+    background: #111111;
     padding: 10px 0;
 }
 
@@ -62,8 +62,7 @@
         cursor: pointer;
 
         i {
-
-            font-size: 20px;
+            font-size: 20px;       
             position: relative;
             top: 3px;
             right: 2px;
@@ -81,8 +80,7 @@
         visibility: hidden;
         z-index: 3;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        @include transition(all, 0.3s);
-
+        @include transition(all, .3s);
 
         li {
             list-style: none;
@@ -115,7 +113,10 @@
             position: relative;
 
             &.active {
+
                 a {
+                    
+                    
                     &:after {
                         transform: scale(1);
                     }
@@ -123,9 +124,11 @@
             }
 
             &:hover {
+
                 a {
+                    
                     &:after {
-                        transform: scale(1);
+                       transform: scale(1);
                     }
                 }
 
@@ -151,7 +154,7 @@
                 z-index: 9;
                 opacity: 0;
                 visibility: hidden;
-                @include transition(all, 0.3s);
+                @include transition(all, .3s);
 
                 li {
                     display: block;
@@ -186,8 +189,8 @@
                     width: 100%;
                     height: 2px;
                     background: $primary-color;
-                    content: "";
-                    @include transition(all, 0.5s);
+                    content: '';
+                    @include transition(all, .5s);
                     transform: scale(0);
                 }
             }
