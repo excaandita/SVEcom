@@ -59,12 +59,9 @@
                 <script>
                   document.write(new Date().getFullYear());
                 </script>
-                2020 All rights reserved | This template is made with
-                <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                <a href="https://colorlib.com" target="_blank">Colorlib</a>.
-                Downloaded from
-                <a href="https://themeslab.org/" target="_blank">Themeslab</a>
-              </p>
+                 All rights reserved | This template is made with
+                <i class="fa fa-heart" aria-hidden="true"></i> by
+                KMM-TA-ECOMSVUNS
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </div>
           </div>
