@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Admin\ProductRequest;
 use App\Models\ProductGallery;
 use App\Models\TransactionDetail;
+use Illuminate\Support\Facades\File;
 class DashboardProductController extends Controller
 {
     public function index()
@@ -95,6 +96,13 @@ class DashboardProductController extends Controller
     public function delete($id)
     {
         $item = Product::findOrFail($id);
+        $productGalleries = ProductGallery::where('products_id', $id)->get();
+
+        foreach ($productGalleries as $productGallery) {
+            if (File::delete(public_path('storage/'.$productGallery->photos))) {
+                $productGallery->delete();
+            }
+        }
         $item->delete();
 
         return redirect()->route('dashboard-product');

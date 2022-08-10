@@ -18,7 +18,8 @@ class Product extends Model
         'price',
         'description',
         'slug',
-        'stock'
+        'stock',
+        'weight'
     ];
 
     protected $hidden = [
@@ -37,7 +38,7 @@ class Product extends Model
 
     public function category() //pengen tau produk itu masuk kategori mana
     {
-        return $this->belongsTo(Category::class, 'categories_id', 'id'); //kategori cuma satu tiap produk
+        return $this->belongsTo(Category::class, 'categories_id', 'id'); //kategori cuma satu tiap produk, karena fk direlasiin ke pk
     }
      public function transactiondetail()
     {

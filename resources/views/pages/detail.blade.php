@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app1')
 
 @section('title')
     Detail - Sekolah Vokasi E-COM
@@ -50,7 +50,7 @@
             <img
                 v-bind:src="photos[activePhoto].url" 
                 :key="photos[activePhoto].id"
-                class="w-100 main-image"
+                class="w-100 image-box"
                 alt=""
               />
             </transition>
@@ -184,12 +184,12 @@
                                 @endif
                                 
                             @else
-                                <a href="{{ route('login') }}" class="btn btn-success px-4 text-white btn-block mb-3">
+                                <a href="{{ route('login') }}" class="site-btn">
                                     Sign In untuk membeli
                                 </a>
                             @endauth
                             @else
-                             <a href="#" class="btn btn-warning disabled px-4 text-white btn-block mb-3">
+                             <a href="#" class="site-btn">
                                     Toko Tutup
                                 </a>
                                 
@@ -211,7 +211,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12 col-lg-12 mb-3 mt-3">
-                            <h3>Customer Review ( {{$comment->count()}} )</h3>
+                            <h3>Komentar( {{$comment->count()}} )</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -219,7 +219,7 @@
                             <ul class="list-unstyled">
                                 @foreach ($comment as $com)
                                     <li class="media md-6">
-                                        <img src="/images/icons-testimonial-1.png" class="mr-3 rounded-circle" alt="" />
+                                        <img src="/images/icons-testimonial-2.png" class="mr-3 rounded-circle" alt="" />
                                         <div class="media-body">
                                             <!-- nama -->
                                             <h5 class="mt-3 mb-1">{{ $com->transaction->user->name }}</h5>

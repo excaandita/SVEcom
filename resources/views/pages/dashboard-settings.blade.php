@@ -30,27 +30,6 @@
                         </div>
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label>Kategori</label>
-                                  <select name="categories_id" class="form-control">
-                                    <option value="{{ $user->categories_id }}">Tidak Ganti</option>
-                                      @foreach ($categories as $category)
-                                          <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                      @endforeach
-                                  </select>
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Deskripsi Toko</label>
-                                <textarea
-                                  name=""
-                                  id=""
-                                  class="form-control"
-                                ></textarea>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
                                 <label>Toko</label>
                                 <p class="text-muted">
                                   Apakah anda juga ingin membuka Toko dan

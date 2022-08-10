@@ -139,15 +139,6 @@
                                 </span>
                             @enderror
                     </div>
-                    <div class="form-group" v-if="is_store_open">
-                      <label>Kategori</label>
-                      <select type="category" class="form-control" name="categories_id">
-                        <option value="" disabled>Select category</option>
-                        @foreach ($categories as $category)
-                          <option value="{{ $category->id }}">{{ $category->name }}</option>
-                        @endforeach
-                      </select>
-                    </div>
                     <button type="submit" 
                       class="btn btn-success btn-block mt-4"
                       :disabled="this.email_unavailable"
@@ -159,10 +150,12 @@
                     </a>
                   </form>
                 </div>
-                <div class="tab-pane" id="portofolio">
+                <!-- end market -->
+
+                <div class="tab-pane" id="portofolio"> <!-- tab untuk pilih portofolio -->
                   <form method="POST" action="{{ route('register') }}" class="mt-3">
                     @csrf
-                    <input type="hidden" name="is_store_open" :value="false">
+                    <input type="hidden" name="is_store_open" :value="false"> <!--pake input type hidden spy ((false)) karna ada pengecekan, mahasiswa ga buka toko -->
                     <input type="hidden" name="roles" :value="'MAHASISWA'">
                     <div class="form-group">
                       <label>Nama Lengkap</label>
@@ -171,25 +164,24 @@
                         class="form-control @error('name') is-invalid @enderror" 
                         name="name"  placeholder="Masukkan Nama Lengkap"
                         value="{{ old('name') }}" 
-                        required autocomplete="name" autofocus>
+                        required autocomplete="name" autofocus> <!-- ngecek apakah nama sudah ada atau belum-->
                           @error('name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
                           @enderror
-                          
                     </div>
 
                     <div class="form-group">
                       <label>E-mail</label>
                       <input id="email" type="email"
                         v-model="email" 
-                        @change="checkForEmailAvailability()"
+                        @change="checkForEmailAvailability()"                          
                         class="form-control @error('email') is-invalid @enderror"
                         :class="{ 'is-invalid' : this.email_unavailable }" 
-                        name="email" 
+                        name="email" placeholder="Masukkan Email"
                         value="{{ old('email') }}" 
-                        required autocomplete="email">
+                        required autocomplete="email"> <!-- ngecek apakah email sudah ada atau belum-->
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -202,6 +194,7 @@
                       <input id="password" type="password" 
                         class="form-control @error('password') is-invalid @enderror" 
                         name="password" required 
+                        placeholder="Password"
                         autocomplete="new-password">
                             @error('password')
                                 <span class="invalid-feedback" role="alert">
@@ -216,6 +209,7 @@
                         type="password" 
                         class="form-control @error('password_confirmation') is-invalid @enderror" 
                         name="password_confirmation" required 
+                        placeholder="Masukkan Ulang Password"
                         autocomplete="new-password">
                             @error('password_confirmation')
                                 <span class="invalid-feedback" role="alert">
@@ -230,18 +224,20 @@
                       Daftar Sekarang
                     </button>
                     <a href="{{route('login')}}" class="btn btn-signup btn-block mt-4"
-                      >Sign In Kembali
-                    </a>
+                      >Sign In
+                  </a>
                   </form>
-                </div>
+                </div> 
+                <!-- end porto -->
               </div>
-            </div>
-          </div>
+                <!-- end tab content -->
+
+            </div> <!-- end tabs -->
+          </div> <!-- end col-lg-5 -->
         </div>
       </div>
     </div>
 </div>
-
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

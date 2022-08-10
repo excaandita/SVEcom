@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\SliderController as AdminSliderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\Dashboard1Controller as AdminDashboard1Controller;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\ProductGalleryController as AdminProductGalleryController;
 use App\Http\Controllers\Admin\SertifikatController;
@@ -34,6 +35,11 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ListProductController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\DaftarProdukController;
+use App\Http\Controllers\DetailProdukController;
+use App\Http\Controllers\CartProdukController;
+
+
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
@@ -41,9 +47,11 @@ use App\Http\Controllers\DashboardProductController;
 use App\Http\Controllers\DashboardSettingController;
 use App\Http\Controllers\DashboardTransactionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfileTokoController;
 use App\Http\Controllers\DashboardWithdrawController;
 
 use App\Http\Controllers\DashboardRefundController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Mahasiswa\DashboardController as MahasiswaDashboardController;
 use App\Http\Controllers\PortofolioController;
 use App\Http\Controllers\Portofolio\BiodataController;
@@ -72,7 +80,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/detailsproduk/{id}', [DetailProdukController::class, 'index'])->name('detailproduk');
+
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+
+
+Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
 
 Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 Route::get('/categories/{id}', [CategoryController::class, 'detail'])->name('categories-detail');
@@ -81,11 +98,13 @@ Route::get('/portofolio/{id}', [PortofolioController::class, 'detail'])->name('p
 Route::get('/search', [PortofolioController::class, 'search'])->name('')->name('portofolio-search');
 
 Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
+Route::get('/listproduct/{id}', [ListProductController::class, 'detail'])->name('product-categories');
+Route::get('/daftarproduct', [DaftarProdukController::class, 'index'])->name('daftarproduct');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
-Route::post('/details/{product}', [DetailController::class, 'add'])->name('detail-add');
 
 Route::get('/profile/{id}', [ProfileController::class, 'index'])->name('profile');
+Route::get('/profiletoko/{id}', [ProfileTokoController::class, 'index'])->name('profiletoko');
 
 Route::post('/checkout/callback', [CheckoutController::class, 'callback'])->name('midtrans-callback');
 
@@ -93,28 +112,21 @@ Route::get('/success', [CartController::class, 'success'])->name('success');
 
 Route::get('/register/success', [RegisterController::class, 'success'])->name('register-success');
 
-// Route::group(['middleware' => ['auth', 'mahasiswa']], function () {
-//     Route::get('/', [PortofolioController::class, 'index'])->name('home-mahasiswa');
-// });
+Route::get('/profile/{user}/phone-image',[ImageController::class, 'phone'])->name('profile.phone-image');
 
 Route::group(['middleware' => ['auth']], function(){
 
-    Route::get('/cart', [CartController::class, 'index'])->name('cart');
-    Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
-    Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
-
-    Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
-
-    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
+  
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-   
+
     Route::get('/dashboard/setting', [DashboardSettingController::class, 'store'])->name('dashboard-setting-store');
     Route::get('/dashboard/account', [DashboardSettingController::class, 'account'])->name('dashboard-setting-account');
     Route::post('/dashboard/account/{redirect}', [DashboardSettingController::class, 'update'])->name('dashboard-setting-redirect');
 
     Route::get('/dashboard/transactions', [DashboardTransactionController::class, 'index'])->name('dashboard-transaction');
+    Route::get('/dashboard/transactions/cart/{id}', [DashboardTransactionController::class, 'transactionCartDetail'])->name('dashboard-transaction-cart-details');
     Route::get('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'details'])->name('dashboard-transaction-details');
     Route::post('/dashboard/transactions/{id}', [DashboardTransactionController::class, 'update'])->name('dashboard-transaction-update');
 
@@ -172,6 +184,21 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/dashboard/portofolio/setting/update', [SettingController::class, 'update'])->name('portofolio-setting-update');
 });
 
+Route::prefix('campur')
+    ->namespace('')
+    ->middleware(['auth', 'campur'])
+    ->group(function(){
+
+    Route::post('/details/{product}', [DetailController::class, 'add'])->name('detail-add');
+
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    Route::patch('/cart/{cart}', [CartController::class, 'updateQuantity'])->name('cart-update-quantity');
+    Route::delete('/cart/{id}', [CartController::class, 'delete'])->name('cart-delete');
+
+    Route::get('ongkir/{regencies_id}', [CartController::class, 'cekOngkir'])->name('api-cek-ongkir');
+
+    Route::post('/checkout', [CheckoutController::class, 'process'])->name('checkout');
+         });
 
 Route::prefix('user')
     ->namespace('')
@@ -187,7 +214,7 @@ Route::prefix('user')
 
     Route::post('/dashboard/products/gallery/upload', [DashboardProductController::class, 'uploadGallery'])->name('dashboard-product-gallery-upload');
     Route::get('/dashboard/products/gallery/delete/{id}', [DashboardProductController::class, 'deleteGallery'])->name('dashboard-product-gallery-delete');
-    
+
     Route::get('/dashboard/withdraw', [DashboardWithdrawController::class, 'index'])->name('dashboard-withdraw');
     Route::get('/dashboard/withdraw/create', [DashboardWithdrawController::class, 'create'])->name('dashboard-withdraw-create');
     Route::get('/dashboard/withdraw/edit/{id}', [DashboardWithdrawController::class, 'edit'])->name('dashboard-withdraw-edit');
@@ -201,6 +228,7 @@ Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function(){
         Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+        Route::get('dashboard/admin', [AdminDashboard1Controller::class, 'index'])->name('dashboard-admin');
         Route::resource('category', AdminCategoryController::class);
         Route::resource('slider', AdminSliderController::class);
         Route::resource('user', AdminUserController::class);

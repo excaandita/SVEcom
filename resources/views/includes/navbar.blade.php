@@ -17,12 +17,12 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav mr-auto">
 
-            @guest
+            @guest <!-- Kondisi user belum login -->
               <li class="nav-item ">
                 <a href="{{ route('home') }}" class="nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Categories</a>
+                <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Kategori</a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('listproduct') }}" class="nav-link {{ (request()->is('listproduct')) ? 'active' : '' }}">Produk</a>
@@ -32,16 +32,16 @@
               </li>
             @endguest
             @auth
-              @if (auth()->user()->roles == 'MAHASISWA')
+              @if (auth()->user()->roles == 'MAHASISWA') <!-- Kondisi user login sbg mahasiswa -->
                   <li class="nav-item active">
                     <a href="{{ route('home') }}" class="nav-link {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
                   </li>
-              @else
+              @else <!-- Kondisi user login bkn sbg mahasiswa -->
                 <li class="nav-item active">
                   <a href="{{ route('home') }}" class="nav-link  {{ (request()->is('/')) ? 'active' : '' }}">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Categories</a>
+                  <a href="{{ route('categories') }}" class="nav-link {{ (request()->is('categories')) ? 'active' : '' }}">Kategori</a>
                 </li>
                 <li class="nav-item">
                   <a href="{{ route('listproduct') }}" class="nav-link {{ (request()->is('listproduct')) ? 'active' : '' }}">Produk</a>
@@ -53,7 +53,7 @@
             @endauth
           </ul>
           <ul class="navbar-nav ml-auto">
-            @guest
+            @guest <!-- navbar kanan -->
             <li class="nav-item ">
               <a href="{{ route('register')}}" class="nav-link">Sign-Up</a>
             </li>
@@ -61,13 +61,13 @@
               <a
                 href="{{ route('login')}}"
                 class="btn btn-dark nav-link px-5 text-white"
-                >Sign-In</a
+                >Sign-In</a 
               >
             </li>
             @endguest
 
 
-          @auth
+          @auth <!-- navbar kanan sdh login -->
           <ul class="navbar-nav d-none d-lg-flex">
             <li class="nav-item dropdown" style="list-style: none">
               <a
@@ -113,11 +113,11 @@
                 </form>
               </div>
             </li>
-            @if (auth()->user()->roles != 'MAHASISWA')
+            @if (auth()->user()->roles != 'MAHASISWA') 
             <li class="nav-item" style="list-style: none">
               <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-2">
                 @php
-                  $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity'); //untuk nampilin data cart
+                  $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity'); 
                 @endphp
                 @if ($carts > 0)
                   <img src="/images/icon-cart-filled.svg" alt="" />
@@ -128,16 +128,16 @@
               </a>
             </li>
             @endif
-          </ul>
+          
 
-          <ul class="navbar-nav d-block d-lg-none">
+          <!-- <ul class="navbar-nav d-block d-lg-none">
             <li class="nav-item" style="list-style: none">
               <a href="#" class="nav-link"> Hi, {{ Auth::user()->name }}</a>
             </li>
             <li class="nav-item" style="list-style: none">
               <a href="#" class="nav-link d-inline-block"> Cart </a>
             </li>
-          </ul>
+          </ul> -->
           @endauth
 
         </div>

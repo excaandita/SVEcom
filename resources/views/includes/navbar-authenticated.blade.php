@@ -20,7 +20,7 @@
               <a href="{{ route('/') }}" class="nav-link">Home</a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('categories')}}" class="nav-link">Categories</a>
+              <a href="{{ route('categories')}}" class="nav-link">Kategori</a>
             </li>
             <li class="nav-item">
               <a href="{{ route('listproduct')}}" class="nav-link">Produk</a>

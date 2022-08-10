@@ -79,9 +79,9 @@
                   <div class="sidebar-submenu">
                     <ul>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/biodata*')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
+                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
-                      <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experience*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
                       <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
@@ -98,9 +98,9 @@
               @endif
               @if (auth()->user()->roles == 'MAHASISWA')
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/biodata*')) ? 'active' : '' }}" href="{{ route('portofolio-biodata') }}">Biodata</a>
+                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/kepanitiaan*')) ? 'active' : '' }}" href="{{ route('portofolio-kepanitiaan') }}">Kepanitiaan</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/organisasi*')) ? 'active' : '' }}" href="{{ route('portofolio-organisasi') }}">Organisasi</a>
-                <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/pendidikan*')) ? 'active' : '' }}" href="{{ route('portofolio-pendidikan') }}">Pendidikan</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/experience*')) ? 'active' : '' }}" href="{{ route('portofolio-experiences') }}">Experience</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/projects*')) ? 'active' : '' }}" href="{{ route('portofolio-projects') }}">Project</a>
                 <a class="nav-link list-group-item-action list-group-item-info {{ (request()->is('dashboard/portofolio/skills*')) ? 'active' : '' }}" href="{{ route('portofolio-skills') }}">Skills</a>
@@ -173,7 +173,7 @@
                         aria-expanded="false"
                     >
                         <img
-                        src="/images/icon-user.png"
+                        src="{{ url('public/images/'.Auth::user()->image) }}"
                         alt=""
                         class="rounded-circle mr-2 profile-picture"
                         />
@@ -242,6 +242,7 @@
   <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
+  
   <script>
     AOS.init();
   </script>

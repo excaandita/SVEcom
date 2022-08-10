@@ -19,12 +19,25 @@ class SkillController extends Controller
         ]);
     }
 
-    public function create(){
+    public function uploadGallery(Request $request)
+    {
+        $data = $request->all();
+
+        $data['photos'] = $request->file('photos')->store('assets/skill', 'public');
+
+        SkillGallery::create($data);
+
+        return redirect()->route('dashboard-product-details', $request->products_id);
+    }
+
+    public function create()
+    {
         return view('pages.portofolio.skill-create');
     }
+
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'jenis' => 'string|max:255',
             'no_sertifikat' => 'string|max:255',
             'lembaga' => 'string|max:255',
@@ -33,10 +46,14 @@ class SkillController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response(['errors'=>$validator->errors()->all()], 422);
+            return response(['errors' => $validator->errors()->all()], 422);
         }
 
-        $skill = Skill::create($request->toArray());
+        $data = $request->all();
+        $data['path_url_photo'] = $request->file('photo')->store('assets/skill', 'public');
+        // $skill = Skill::create($request->toArray());
+        Skill::create($data);
+
         return redirect()->route('portofolio-skills');
     }
     public function destroy($id)

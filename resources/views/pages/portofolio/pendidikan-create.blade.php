@@ -8,6 +8,7 @@
 <div
             class="section-content section-dashboard-home"
             data-aos="fade-up"
+            id="jenjang"
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
@@ -37,10 +38,11 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label>Jenjang</label>
+
                                     <select name="jenjang" required id="jenjang" class="form-control">
                                       <option value="SMP">SMP</option>
-                                      <option value="SMA">SMA</option>
-                                      <option value="KULIAH">KULIAH</option>
+                                      <option value="SMA">SMA</option>                                      
+                                      <option value="SMK">SMK</option>
                                     </select>
                               </div>
                             </div>
@@ -51,9 +53,20 @@
                               </div>
                             </div>
                             <div class="col-md-4">
-                              <div class="form-group">
+                              <div class="form-group" v-if="is_jenjang_smp">
                                 <label>Jurusan</label>
-                                <input type="text" class="form-control" name="jurusan" />
+                                <input 
+                                  type="text" 
+                                  class="form-control @error('jurusan') is-invalid @enderror" 
+                                  id="jurusan" 
+                                  name="jurusan"
+                                  autocomplete
+                                  autofocus/>
+                                    @error('jurusan')
+                                      <span class="disabled-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                      </span>
+                                    @enderror
                               </div>
                             </div>
                             <div class="col-md-4">
@@ -64,7 +77,7 @@
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label>Tahun Keluar</label>
+                                <label>Tahun Keluar</label> 
                                 <input type="number" class="form-control" name="keluar" />
                               </div>
                             </div>
@@ -91,3 +104,25 @@
           </div>
 @endsection
 
+@push('addon-script')
+<script src="/vendor/vue/vue.js"></script>
+<script src="https://unpkg.com/vue-toasted"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+  Vue.use(Toasted);
+
+  var jenjang = new Vue({
+    el: "#jenjang",
+    mounted() {
+      AOS.init();
+    },
+    data() {
+      return {
+        is_jenjang_smp: true,
+        jurusan: "",
+      }
+    }
+  });
+</script>
+@endpush

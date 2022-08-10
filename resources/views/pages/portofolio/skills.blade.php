@@ -54,6 +54,12 @@
                                             <h5>Tanggal Sertifikasi: </h5>
                                             <p class="ml-2">{{ $skill->tanggal }}</p>
                                         </div>
+                                        @if ($skill->status == "rejected")
+                                            <div class="d-flex">
+                                                <h5>Alasan Penolakan: </h5>
+                                                <p class="ml-2">{{ $skill->alasan }}</p>
+                                            </div>
+                                        @endif
                                     </div>
                                     <div class="col-6">
                                         <div class="d-flex">
@@ -68,10 +74,16 @@
                                                 <p class="ml-2">Tidak ada Tanggal Expired</p>
                                             @endif
                                         </div>
-                                    </div>
+
+                                        <img
+                                            src="{{ Storage::url($skill->path_url_photo ?? '') }}"
+                                            alt=""
+                                            class="w-50 h-50 mb-2 "
+                                        />
                                 </div>
                             </div>
                         </div>
+
                     @empty
                         <div class="col-12 text-center py-5" data-aos="fade-up"
                             data-aos-delay="100">

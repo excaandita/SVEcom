@@ -61,12 +61,9 @@
                 { data: 'name', name: 'name' },
                 { data: 'email', name: 'email' },
                 { data: 'roles', name: 'roles' },
-                { 
-                    data: 'suspend', 
-                    name: 'suspend',
-                    orderable: false,
-                    searchable:false, 
-                },
+                {data: 'suspend', name: 'suspend'
+                ,orderable: false,
+                searchable:false,},
                 { 
                     data: 'action',
                     name: 'action',

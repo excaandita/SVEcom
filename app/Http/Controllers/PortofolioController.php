@@ -33,9 +33,9 @@ class PortofolioController extends Controller
     {
         $user = User::where('id', $request->id)->where('isPublic', 1)->first();
         $prodi = Prodi::where('id', $user->prodis_id)->first();
+        $pendidikans = Pendidikan::where('users_id', $request->id)->get();
         $kepanitiaans = Kepanitiaan::where('users_id', $request->id)->get();
         $organisasis = Organisasi::where('users_id', $request->id)->get();
-        $pendidikans = Pendidikan::where('users_id', $request->id)->get();
         $experiences = Experience::where('users_id', $request->id)->get();
         $projects = Project::where('users_id', $request->id)->get();
         $skills = Skill::where('users_id', $request->id)->where('status', 'verified')->get();
@@ -46,9 +46,9 @@ class PortofolioController extends Controller
         return view('pages.portofolio-detail', [
             'user' => $user,
             'prodi' => $prodi,
+            'pendidikans' => $pendidikans,
             'kepanitiaans' => $kepanitiaans,
             'organisasis' => $organisasis,
-            'pendidikans' => $pendidikans,
             'experiences' => $experiences,
             'projects' => $projects,
             'skills' => $skills,
@@ -61,11 +61,12 @@ class PortofolioController extends Controller
         if ($search_query == "") {
             return redirect('/portofolio');
         }
-        $skills = User::where('isPublic', 1)->join('skills', 'users.id', '=', 'skills.users_id')->join('prodis', 'prodis.id', '=', 'users.prodis_id')->where('skills.jenis', 'LIKE', '%'.$search_query.'%')->where('skills.status', 'verified')->get();
-        $users = User::where('isPublic', 1)->join('prodis', 'users.prodis_id', '=', 'prodis.id')->get();
+        $skills = User::where('isPublic', 1)->join('skills', 'users.id', '=', 'skills.users_id')->join('prodis', 'prodis.id', '=', 'users.prodis_id')->where('skills.jenis', 'LIKE', '%'.$search_query.'%')->where('skills.status', 'verified')->select('skills.*', 'prodis.*', 'users.*', 'users.name as name', 'users.id as id')->get(); /*dia akan ngequery dr tabel users yg ispublic nya 1, sesuai dg skill yg dicari, yg sudah verified */
+        $users = User::where('isPublic', 1)->join('prodis', 'users.prodis_id', '=', 'prodis.id', )->where('users.name', 'LIKE', '%'.$search_query.'%')->select('users.*', 'prodis.*', 'users.id as id')->get(); /*dia akan ngequery dr tabel users yg ispublic nya 1, sesuai dg user yg dicari */
+
         return view('pages.portofolio', [
             'users' => $users,
-            'skills' => $skills,
+            'skills' => $skills
         ]);
     }
 }

@@ -17,6 +17,43 @@
         </div>
         <div class="dashboard-content">
             <div class="row">
+                <div class="col-md-3" onclick="filter('');">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-body">
+                            <div class="dashboard-card-title">Total Sertifikat</div>
+                            <div class="dashboard-card-subtitle">{{ $data_sertifikat['total'] }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" onclick="filter('pending');">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-body">
+                            <div class="dashboard-card-title">Request</div>
+                            <div class="dashboard-card-subtitle">{{ $data_sertifikat['pending'] }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" onclick="filter('verified');">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-body">
+                            <div class="dashboard-card-title">Approve</div>
+                            <div class="dashboard-card-subtitle">{{ $data_sertifikat['approved'] }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" onclick="filter('rejected');">
+                    <div class="card text-white bg-info mb-3">
+                        <div class="card-body">
+                            <div class="dashboard-card-title">Rejected</div>
+                            <div class="dashboard-card-subtitle">{{ $data_sertifikat['rejected'] }}</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="dashboard-content">
+            <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
@@ -24,10 +61,12 @@
                                 <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead class="bg-info">
                                         <tr>
-                                            <th>ID</th>
+                                            <th>No</th>
+                                            <th>User</th>
                                             <th>Jenis</th>
                                             <th>Lembaga</th>
                                             <th>No Sertifikat</th>
+                                            <th>Sertifikat</th>
                                             <th>Status</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -54,12 +93,28 @@
                 url: '{!! url()->current() !!}',
             },
             columns: [
-                { data: 'id', name: 'id' },
+                { "data" : null, "sortable":false,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;}
+                },
+                { data: 'user.name', name: 'user.name' },
                 { data: 'jenis', name: 'jenis' },
                 { data: 'lembaga', name: 'lembaga' },
                 { data: 'no_sertifikat', name: 'no_sertifikat' },
-                { data: 'status', name: 'status' },
-                { 
+                // { data: 'path_url_photo', name: 'path_url_photo' },
+                { data: 'photo', name: 'photo'},
+                {
+                    data: 'status',
+                    name: 'status',
+                    render: function (data, type, row, meta) {
+                        if (data == 'rejected') {
+                            return data + '<br>Alasan: ' + row.alasan;
+                        } else {
+                            return data
+                        }
+                    }
+                },
+                {
                     data: 'action',
                     name: 'action',
                     orderable: false,
@@ -68,5 +123,9 @@
                 },
             ]
         })
+
+        function filter(status) {
+            datatable.column(6).search(status).draw();
+        }
     </script>
 @endpush

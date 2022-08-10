@@ -65,7 +65,8 @@
                 { data: 'category.name', name: 'category.name' },
                 { data: 'price', name: 'price' },
                 { data: 'stock', name: 'stock' },
-                { data: 'transactiondetail_sum_quantity', name: 'transactiondetail_sum_quantity' },
+                { data: 'transactiondetail_sum_quantity', name: 'transactiondetail_sum_quantity', orderable: false, //fungsinya supaya field action gabisa disortir
+                    searchable:false, },
                 {
                     data: 'action',
                     name: 'action',

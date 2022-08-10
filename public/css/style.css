@@ -1996,7 +1996,6 @@ ol {
     background-position: center center;
     background-repeat: no-repeat;
     border-width: 1px 0px 0px 0px;
-
     padding-top: 70px;
 }
 
@@ -2113,6 +2112,7 @@ ol {
 -----------------------*/
 
 .breadcrumb-option {
+    background: #f3f2ee;
     padding: 40px 0;
 }
 
@@ -2574,6 +2574,7 @@ ol {
 }
 
 .cart__total {
+    background: #f3f2ee;
     padding: 35px 40px 40px;
 }
 

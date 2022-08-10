@@ -123,7 +123,7 @@ Dashboard-Sekolah Vokasi E-COM
                                         id="crudTable">
                                         <thead class="bg-info">
                                             <tr>
-                                                <th>ID</th>
+                                                <th>No</th>
                                                 <th>Nama</th>
                                                 <th>Jenis</th>
                                                 <th>Lembaga</th>
@@ -178,7 +178,10 @@ Dashboard-Sekolah Vokasi E-COM
                 url: '{!! url()->current() !!}',
             },
             columns: [
-                { data: 'id_skill', name: 'id_skill' },
+                { "data" : null, "sortable":false,
+                render: function (data, type, row, meta) {
+                    return meta.row + meta.settings._iDisplayStart + 1;}
+                },
                 { data: 'name', name: 'name' },
                 { data: 'jenis', name: 'jenis' },
                 { data: 'lembaga', name: 'lembaga' },

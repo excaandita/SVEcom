@@ -1,71 +1,73 @@
-<<<<<<< Updated upstream
-@extends('layouts.cart')
-=======
-@extends('layouts.app1')
->>>>>>> Stashed changes
+@extends('layouts.app')
 
 @section('title')
     Cart - Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
-    <div class="page-content page-cart">
-        <section class="store-breadcrumbs" data-aos="fade-down" data-aos-delay="100">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <nav>
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item">
-                                    <a href="/">Home</a>
-                                </li>
-                                <li class="breadcrumb-item active">Cart</li>
-                            </ol>
-                        </nav>
+    <!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Shopping Cart</h4>
+                        <div class="breadcrumb__links">
+                            <a href="./index.html">Home</a>
+                            <a href="./shop.html">Shop</a>
+                            <span>Shopping Cart</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
 
-        <section class="store-cart">
+      <!-- Shopping Cart Section Begin -->
+    <section class="shopping-cart spad">
             <div class="container">
-                <!--Error-->
+                  <!--Error-->
                 @if (session('error'))
                     <div class="alert alert-danger">{{ session('error') }}</div>
                 @endif
-                <!--Product-->
-                <div class="row" data-aos="fade-up" data-aos-delay="100">
-                    <div class="col-12 table-responsive">
-                        <table class="table table-borderless table-cart">
+                <!--end Error-->
+                <div class="row">
+                <div class="col-lg-8">
+                    <div class="shopping__cart__table">
+                         <table>
                             <thead>
                                 <tr>
-                                    <td>Gambar</td>
-                                    <td>Barang & Penjual</td>
-                                    <td>Harga</td>
-                                    <td>Jumlah</td>
-                                    <td>Menu</td>
+                                    <th>Produk</th>
+                                    <th>Total</th>
+                                    <th>Jumlah</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $totalPrice = 0 @endphp  <!--variable kosong di isi 0 soalnya kan awalnya gada totalnya alias datanya nol-->
+                                
+                                @php $totalPrice = 0 @endphp 
+                                @php $totalWeight = 0 @endphp
                                 @foreach ($carts as $cart)
-                                    <tr>
-                                        <td style="width: 20%">
+                                @php $totalWeight += $cart->product->weight * $cart->quantity @endphp
+
+                                <tr>
+                                    <td class="product__cart__item">
+                                        <div class="product__cart__item__pic"  style="width:30%">  
                                             @if ($cart->product->galleries) <!--kalo da gambar maka gambar akan muncul dgn ngambil dari storage, variabel cart ke objek produk ke objek galleri berdasarkan foto pertama -->
                                                 <img src="{{ Storage::url($cart->product->galleries->first()->photos ?? '') }}"
-                                                    class="cart-image" alt="" />
+                                                     alt="" />
                                             @endif
-
-                                        </td>
-                                        <td style="width: 25%">
-                                            <div class="product-title">{{ $cart->product->name }}</div>
-                                            <div class="product-subtitle">By {{ $cart->product->user->store_name }}</div>
-                                        </td>
-                                        <td style="width: 20%">
-                                            <div class="product-title">Rp. {{ number_format($cart->product->price) }}
-                                            </div>
-                                        </td>
-                                        <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
+                                        </div>
+                                        <div class="product__cart__item__text">
+                                            <h6>{{ $cart->product->name }}</h6>
+                                            <h6> {{ number_format($cart->product->weight)}}gr</h6>
+                                            <h5>Rp. {{ number_format($cart->product->price)}}</h5>
+                                        </div>
+                                    </td>
+                                    <td class="cart__price">Rp. {{ number_format($cart->product->price*$cart->quantity)}}</td>
+                                    
+                                    {{-- <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
                                             @csrf
                                             @method('PATCH')
                                             <td style="width: 15%">
@@ -81,32 +83,63 @@
                                             </td>
                                             <td style="width: 50%">
                                                 <button type="submit" class="btn btn-success"> Update</button>
-                                        </form>
-                                        <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
+                                        </form> --}}
+
+
+                                    <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                            <div class="pro-qty-2">
+                                                 <div class="input-group-append">
+                                                    <input class="form-control" type="number" name="quantity"
+                                                                    id="quantity" value="{{ $cart->quantity }}">
+                                                        <div class="input-group-append">
+                                                                    <label for="quantity" class="input-group-text">Pcs</label>
+                                                        </div>
+                                                 </div>
+                                            </div>
+                                        </div>
+                                        <td class="cart__close">
+                                                <button type="submit" class="cart-btn fa fa-repeat"></button>
+                                    </form>
+                                    <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit" class="btn btn-remove-cart"> Hapus </button>
+                                             <button type="submit" class=" cart-btn fa fa-close"></button>
                                         </form>
                                         </td>
                                     </tr>
                                     @php $totalPrice += $cart->product->price * $cart->quantity @endphp <!--buat ngitung total harga produk(harga*quantity)-->
-                                @endforeach
-
+                               @endforeach
                             </tbody>
-                        </table>
+                        </table>            
                     </div>
+                </div>
+                    <div class="col-lg-4">
+                        <div class="cart__total">
+                            <h4 style="font-weight: bold">Cart total</h4>
+                            <ul>
+                                <li id="totalproduct_text">Subtotal <span>Rp.{{ number_format($totalPrice ?? 0) }}</span></li>
+                                <li id="ongkir-text">Ongkos Kirim <span>Rp.0</span></li>
+                                <li id="total-text">Total <span>Rp.
+                                {{ number_format($totalPrice ?? 0) }}</span></li>
+                            </ul>
+                            <a href="#" class="primary-btn">Checkout</a>
+                        </div>
+                </div>
                 </div>
                 <!--Shipping-->
-                <div class="row" data-aos="fade-up" data-aos-delay="150">
-                    <div class="col-12">
-                        <hr />
-                    </div>
-                    <div class="col-12">
-                        <h2 class="mb-4">Detail Pengiriman</h2>
+                <div class="row">
+                    <div class="col-8">
+                        <hr/>
                     </div>
                 </div>
+                <div class="col-8">
                 <form action="{{ route('checkout') }}" id="locations" enctype="multipart/form-data" method="POST">
                     @csrf
+                    
                     <input type="hidden" name="total_price" id="total_price" value=" {{ $totalPrice }}">
                     <input type="hidden" name="shipping_price" id="shipping_price" value="">
                     <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
@@ -127,10 +160,10 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="provinces_id">Provinsi </label>
-                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces" 
-                                    v-model="provinces_id"> <!-- v-if="provinces" klo data provinsi ada baru dimunculin, klo gada ya ga. 
+                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces"
+                                    v-model="provinces_id"> <!-- v-if="provinces" klo data provinsi ada baru dimunculin, klo gada ya ga.
                                         v-model:provinces_id datanya bisa dibaca divuejs-->
-                                    <option v-for="province in provinces" :value="province.id"> @{{ province.name }} <!--klo mau output vue tu pke et{{  }} soalnya biar ga kebaca sebagai output blade karena vue js dan blad utput variable hampir sama  -->
+                                    <option v-for="province in provinces" :value="province.id"> @{{ province.name }} <!--klo mau output vue tu pke et soalnya biar ga kebaca sebagai output blade karena vue js dan blad utput variable hampir sama  -->
                                     </option>
                                 </select>
                                 <select v-else class="form-control"></select>
@@ -149,84 +182,68 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                <label for="courier">Pilihan Kurir</label>
+                                <select name="couriers_id" id="couriers_id" class="form-control">
+                                </select>
+                                <input type="hidden" name="courier_name" id="courier_name">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
                                 <label for="zip_code">Kode POS</label>
                                 <input type="text" class="form-control" name="zip_code" id="zip_code" />
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="country">Negara</label>
                                 <input type="text" class="form-control" name="country" id="country"
                                     value="Indonesia" disabled />
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="phone_number">Nomor Telpon</label>
                                 <input type="text" class="form-control" name="phone_number" id="phone_number" />
                             </div>
                         </div>
                     </div>
-                    <!--Payment Info-->
-                    <div class="row" >
-                        <div class="col-12">
-                            <hr />
-                        </div>
-                        <div class="col-12">
-                            <h2 class="mb-2">Pembayaran</h2>
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col-4 col-md-3">
-                            <div class="product-title" id="totalproduct_text">Rp.{{ number_format($totalPrice ?? 0) }}</div><!-- ?? 0 mksudnya kalo gada datanya ga akan eror soalnya jd 0, klo $totalprice itu variable diatas yg buat ngitung harga produk-->
-                            <div class="product-subtitle">Total Harga Produk</div>
-                        </div>
-                        <div class="col-4 col-md-3">
-                            <div class="product-title" id="ongkir-text">Rp.0</div>
-                            <div class="product-subtitle">Ongkos Kirim</div>
-                        </div>
-                        <div class="col-4 col-md-3">
-                            <div class="product-title text-success" id="total-text">Rp.
-                                {{ number_format($totalPrice ?? 0) }}</div>
-                            <div class="product-subtitle">Total Pembayaran</div>
-                        </div>
-                        <div class="col-8 col-md-3">
-                            <button type="submit" id="btn_submit" class="btn btn-info mt-4 px-4 btn-block" disabled>
-                                CheckOut
-                            </button>
-                        </div>
-                    </div>
                 </form>
+                </div>
+                
             </div>
         </section>
-    </div>
+    
 @endsection
 
 @push('addon-script')
     <script src="/vendor/vue/vue.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script>
-        var locations = new Vue({ //inisialisasi dalam satu variable bernama location didalamnya menginisialisasikan vue baru 
+        var locations = new Vue({ //inisialisasi dalam satu variable bernama location didalamnya menginisialisasikan vue baru
             el: "#locations", // element location ini buat id:locations di atas dibagian form
             mounted() {
                 AOS.init();
                 this.getProvincesData(); //panggil methods dibawah saat hal ditampilkan dan vue js terpanggil
             },
-            data: { //data kosongan, untuk menympan data provinsi dan data kabupaten xisimpen berdasarkan idnya itu sendiri 
+            data: { //data kosongan, untuk menympan data provinsi dan data kabupaten xisimpen berdasarkan idnya itu sendiri
                 provinces: null,
                 regencies: null,
                 provinces_id: null,
                 regencies_id: null,
+                couriers: null,
+                couriers_id: null,
             },
             methods: { //untuk nampilin data perlu axios
                 getProvincesData() {
                     var self = this; //biar bisa baca variable ini diaxios
                     axios.get('{{ route('api-provinces') }}') //panggil route
-                        .then(function(response) { //panggil 
+                        .then(function(response) { //panggil
                             //data respon dari api itu sendiri
                             self.provinces = response.data;
                         })
                 },
+               
 
                 getRegenciesData() { //dipanggil berdasarkan perubahan pd provinsi
                     var self = this;
@@ -240,15 +257,13 @@
                 //caranya panggil provinces_id kemudaian bikin function(val,old val) mksudnya klo butuh value lama, nah value barunya ada disini
                 provinces_id: function(val, oldVal) {
                     this.regencies_id = null; //ini fungsinya kalo gnti provinsi data kabupatennya null atau ke reset
-                    this.getRegenciesData(); //ambil data 
+                    this.getRegenciesData(); //ambil data
                 }
             }
 
         });
-    </script>
-    <script>
+
         function cekOngkir() {
-            var total_product = {{ $totalPrice }}; // total harga produk
             var regencies_id = $('#regencies_id').val(); // id kota pembeli
 
             // mengirimkan data ke route
@@ -257,14 +272,26 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(res) {
-                    $('#totalproduct_text').text('Rp. ' + total_product); //menampilkan harga total produk
-                    $('#ongkir-text').text('Rp. ' + res); // menampilkan harga ongkir
-                    $('#total-text').text('Rp. ' + (total_product + res)); // menampilkan total harga
-                    $('#total_price').val(total_product + res); // merubah value form total harga
-                    $('#shipping_price').val(res); // merubah value form ongkir
-                    $('#btn_submit').prop('disabled', false); // mengaktifkan tombol submit
+                    $('#couriers_id').append('<option>Pilih Kurir</option>');
+                    $.each(res, function (i, value) {
+                        $('#couriers_id').append('<option data-name="' + i +'" value=' + value + '>' + i + ' - Rp. ' + value + '</option>');
+                    });
                 }
             });
         }
+
+        $('#couriers_id').change(function() {
+            var ongkir = $(this).val();
+            var total_product = {{ $totalPrice }}; // total harga produk
+            var total = parseInt(ongkir) + parseInt(total_product); // total harga produk + ongkir
+
+            $('#courier_name').val($(this).find(':selected').data('name'));
+            $('#totalproduct_text').text('Rp. ' + total_product); //menampilkan harga total produk
+            $('#ongkir-text').text('Rp. ' + ongkir); // menampilkan harga ongkir
+            $('#total-text').text('Rp. ' + total); // menampilkan total harga
+            $('#total_price').val(total); // merubah value form total harga
+            $('#shipping_price').val(ongkir); // merubah value form ongkir
+            $('#btn_submit').prop('disabled', false); // mengaktifkan tombol submit
+        });
     </script>
 @endpush

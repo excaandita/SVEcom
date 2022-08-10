@@ -30,31 +30,23 @@ class ProductGalleryController extends Controller
             return DataTablesDataTables::of($query)
                 ->addColumn('action', function($item){
                     return '
-                        <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn btn-info dropdown=toggle mr-1 mb-1"
-                                        type="button"
-                                        data-toggle="dropdown">
-                                        Aksi
-                                </button>
-                                <div class="dropdown-menu">
-                                    <form action="'. route('product-gallery.destroy', $item->id) .'" method="POST">
+                        <div>
+                                    <form action="'. route('product-gallery.destroy', $item->id) .'" method="POST" class="btn btn-danger">
                                         '. method_field('delete').  csrf_field() .'
-                                        <button type="submit" class="dropdown-item text-danger">
+                                        <button type="submit" class="dropdown-item text-light">
                                             Hapus
                                         </button>
                                     </form>
-                                </div>
-                            </div>
+                                
                         </div>
                     ';
                 })
-                ->editColumn('photos', function($item){ //nama fungsinya adalah editColum mau ngedit kolom yang udah ada yaitu photo(buat nampilin fotondari url img)
+                ->editColumn('photos', function($item){ //nama fungsinya adalah editColum buatngedit kolom foto. yang udah ada yaitu photo(buat nampilin fotondari url img)
                     return $item->photos ? '<img src="'. Storage::url($item->photos) .'" style="max-height: 80px" />' : ''; //dikembalikan dalam bentuk url dibuat menggunakan ternary function
                 //ngecek ada foto apa ga, kalo ada munculin gambar klo gada kosongan
                     //disimpan img src, memanggil url storage dari foto itu sndiri
                 })
-                ->rawColumns(['action','photos']) //kalo ga dikasi photos munculnya urlnya
+                ->rawColumns(['action','photos']) //buat enntuin column 2 diatas. kalo ga dikasi photos munculnya urlnya
                 ->make();
         }
 

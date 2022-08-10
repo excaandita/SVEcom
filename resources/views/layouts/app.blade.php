@@ -20,7 +20,7 @@
 
   <body class="vh-100">
     <!-- NAVBAR -->
-    @include('includes.navbar')
+    @include('includes.navbar1')
     
     <!-- Page Content-->
     @yield('content')
