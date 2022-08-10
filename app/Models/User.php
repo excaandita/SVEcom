@@ -41,7 +41,8 @@ class User extends Authenticatable
         'fakultas',
         'angkatan',
         'is_active',
-        'deskripsi'
+        'deskripsi',
+        'image',
     ];
 
     /**

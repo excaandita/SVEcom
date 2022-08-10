@@ -125,6 +125,14 @@
                                 />
                               </div>
                             </div>
+                            <div class="col-md-12">
+                              <div class="form-group">
+                                <label>Foto Profil</label>
+                                <input type="file" name="image" class="form-control" />
+                                <p class="text-muted">
+                                </p>
+                              </div>
+                            </div>
                           </div>
                           <div class="row">
                             <div class="col text-right">
