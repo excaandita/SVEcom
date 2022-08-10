@@ -11804,12 +11804,13 @@ body {
 }
 
 .component-products .products-thumbnail {
-    width: 100%;
-    height: 150px;
+    width: 250px;
+    height: 200px;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
     z-index: 1;
+    margin-right: 10px;
 }
 
 .component-products .products-thumbnail:hover .products-image,
@@ -12005,6 +12006,15 @@ body {
     min-height: 11rem;
 }
 .product__details__pic {
+    width: 680px;
+    text-align: center;
+    margin: auto;
+    padding: 40px 0px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+.product__details__ukuran {
+
     text-align: center;
     background: #f3f2ee;
     padding: 40px 0 40px;
@@ -12370,7 +12380,7 @@ body {
 }
 .product__details__tab__profile {
     padding-top: 0;
-    padding-bottom: 30px;
+
 }
 .product__details__tab__profile .nav-tabs {
     border-bottom: 1px solid #e5e5e5;
@@ -12429,7 +12439,7 @@ body {
 }
 
 .product__details__tab__profile__content__item p {
-    margin-bottom: 0;   
+    margin-bottom: 0;
 }
 .product__details__tab .nav-tabs {
     border-bottom: 1px solid #e5e5e5;
@@ -12461,7 +12471,7 @@ body {
 }
 
 .product__details__tab__content {
-    padding-top: 35px;
+    padding-top: 20px;
 }
 
 .note {
@@ -12495,7 +12505,6 @@ body {
 -----------------------*/
 
 .breadcrumb-option {
-    background: #f3f2ee;
     padding: 40px 0;
 }
 
@@ -12914,9 +12923,12 @@ body {
 -----------------------*/
 
 .footer {
-    background: #111111;
+    background-color: #dff800;
+    background-image: linear-gradient(189deg, #3774cf 39%, #8cb4e2 100%);
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-width: 1px 0px 0px 0px;
     padding-top: 70px;
-    margin-top: 70px;
 }
 
 .footer__about {
@@ -12932,7 +12944,7 @@ body {
 }
 
 .footer__about p {
-    color: #b7b7b7;
+    color: #ffffff;
     margin-bottom: 30px;
 }
 
@@ -12958,7 +12970,7 @@ body {
 }
 
 .footer__widget ul li a {
-    color: #b7b7b7;
+    color: #faebaa;
     margin-left: 0px;
     margin-right: 0px;
     padding-left: 0px;
@@ -12966,7 +12978,7 @@ body {
 }
 
 .footer__widget .footer__newslatter p {
-    color: #b7b7b7;
+    color: #faebaa;
 }
 
 .footer__widget .footer__newslatter form {
@@ -13527,11 +13539,11 @@ ol {
 -----------------------*/
 
 .header {
-    background: #ffffff;
+    background: none;
 }
 
 .header__top {
-    background: #111111;
+    background: #3774cf;
     padding: 10px 0;
 }
 
@@ -13704,7 +13716,7 @@ ol {
     bottom: 0;
     width: 100%;
     height: 2px;
-    background: #e53637;
+    background: #facc02;
     content: "";
     -webkit-transition: all, 0.5s;
     -o-transition: all, 0.5s;
@@ -14187,11 +14199,17 @@ ol {
 }
 
 .product__item__pic {
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    background-color: #ddd;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .product__item__pic .label {
@@ -14305,7 +14323,7 @@ ol {
 }
 
 .product__item__text h5 {
-    color: #0d0d0d;
+    color: #ff7158;
     font-weight: 700;
 }
 
@@ -14722,7 +14740,6 @@ ol {
 .product__details__pic {
     text-align: center;
     justify-content: center;
-    background: #f3f2ee;
     padding: 40px 0 60px;
     margin-bottom: 30px;
 }
@@ -15107,7 +15124,7 @@ ol {
 }
 
 .product__details__tab__content {
-    padding-top: 35px;
+    padding-top: 20px;
 }
 
 .note {
@@ -15157,8 +15174,12 @@ ol {
 -----------------------*/
 
 .footer {
-    background: #111111;
     padding-top: 70px;
+    background-color: #dff800;
+    background-image: linear-gradient(189deg, #3774cf 39%, #8cb4e2 100%);
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-width: 1px 0px 0px 0px;
 }
 
 .footer__about {
@@ -15174,7 +15195,7 @@ ol {
 }
 
 .footer__about p {
-    color: #b7b7b7;
+    color: #ffec41;
     margin-bottom: 30px;
 }
 
@@ -15197,12 +15218,12 @@ ol {
 }
 
 .footer__widget ul li a {
-    color: #b7b7b7;
+    color: #faebaa;
     font-size: 15px;
 }
 
 .footer__widget .footer__newslatter p {
-    color: #b7b7b7;
+    color: #faebaa;
 }
 
 .footer__widget .footer__newslatter form {
@@ -15274,7 +15295,6 @@ ol {
 -----------------------*/
 
 .breadcrumb-option {
-    background: #f3f2ee;
     padding: 40px 0;
 }
 
@@ -15736,7 +15756,6 @@ ol {
 }
 
 .cart__total {
-    background: #f3f2ee;
     padding: 0px 0px 0px;
 }
 
@@ -17331,7 +17350,6 @@ ol {
 }
 
 .cart__total {
-    background: #f3f2ee;
     padding: 0px 40px 40px;
 }
 
@@ -17574,9 +17592,17 @@ ol {
     float: right;
 }
 .image-content {
-    border: solid;
     height: 100%;
     width: 100%;
+}
+.image-content-list {
+    width: 250px;
+    height: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+    margin-right: 10px;
 }
 .image-box {
     width: 300px;

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Cart - Sekolah Vokasi E-COM
+    Profile Toko - Sekolah Vokasi E-COM
 @endsection
 @section('content')
     <!-- Breadcrumb Section Begin -->
@@ -36,27 +36,35 @@
                     >
                       <div class="card-body">
                         <div class="shop__sidebar__categories">
-                          <div class="card-body box-profile">
-                            <h3 class="profile-username text-center">{{ $users->store_name }}</h3>
-                                <p class="text-muted text-center">{{ $users->name }}</p>
-                                  <ul class="list-group list-group-unbordered mb-3">
-                                    <li class="list-group-item">
-                                      <b>Status Toko</b> <a class="float-right">
-                                        @if ($users->store_status == 1)
-                                        Toko Buka
-                                        @else
-                                        Toko Tutup
-                                        @endif</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <b>Jumlah Produk</b> <a class="float-right">{{ $products_count }}</a>
-                                    </li>
-                                    <li class="list-group-item">
-                                      <b>Total Terjual</b> <a class="float-right">{{ $totalProductSold }}</a>
-                                    </li>
-                                  </ul>
-                                </div>
-                          
+                          <div class="card card-info card-outline">
+                            <div class="card-body box-profile">
+                              <!-- Foto belum dipakai
+
+                              <div class="text-center">
+                                <img class="profile-user-img img-fluid img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+                              </div>
+
+                              -->
+                              <h3 class="profile-username text-center">{{ $users->store_name }}</h3>
+                              <p class="text-muted text-center">{{ $users->name }}</p>
+                              <ul class="list-group list-group-unbordered mb-3">
+                                <li class="list-group-item">
+                                  <b>Status Toko</b> <a class="float-right">
+                                    @if ($users->store_status == 1)
+                                    Toko Buka
+                                    @else
+                                    Toko Tutup
+                                    @endif</a>
+                                </li>
+                                <li class="list-group-item">
+                                  <b>Jumlah Produk</b> <a class="float-right">{{ $products_count }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                  <b>Total Terjual</b> <a class="float-right">{{ $totalProductSold }}</a>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -103,9 +111,9 @@
                           <div class="row">
                             @php $incrementProduct = 0 @endphp
                             @forelse ($products as $product)
-                              <div class="col-12 col-md-3 col-lg-4" data-aos="fade-up"
+                              <div class="col-12 col-md-4 " data-aos="fade-up"
                                 data-aos-delay="{{ $incrementProduct+= 100 }}">
-                                <a href="{{ route('detail', $product->slug)}}" class="component-products d-block">
+                                <a href="{{ route('detailproduk', $product->slug)}}" class="component-products d-block">
                                   <div class="products-thumbnail">
                                     <div class="products-image " style="
                                       @if($product->galleries->count())
@@ -137,8 +145,8 @@
                           <div class="row">
                             @php $incrementProduct = 0 @endphp
                             @forelse ($bestSellerProducts as $product)
-                            <div class="col-12 col-md-3 col-lg-4" data-aos="fade-up"
-                              data-aos-delay="{{ $incrementProduct+= 100 }}">
+                            <div class="col-12 col-md-4 " data-aos="fade-up"
+                                data-aos-delay="{{ $incrementProduct+= 100 }}">
                               <a href="{{ route('detail', $product->slug)}}" class="component-products d-block">
                                 <div class="products-thumbnail">
                                   <div class="products-image" style="

@@ -15,82 +15,61 @@
 
 @endpush
 @section('content')
-{{-- <!DOCTYPE html>
-<html lang="zxx">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="description" content="Male_Fashion Template" />
-    <meta name="keywords" content="Male_Fashion, unica, creative, html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Male-Fashion | Template</title>
-
-    <!-- Google Font -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-
-  </head> --}}
-
-
-
-    <!-- Header Section Begin -->
-    <header class="header">
-
-    </header>
-    <!-- Header Section End -->
-
-    
-
+<!-- Breadcrumb Section Begin -->
+    <section class="breadcrumb-option">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb__text">
+                        <h4>Detail Produk</h4>
+                        <div class="breadcrumb__links">
+                            <a href="/">Home</a>
+                            <a href="{{ route('daftarproduct') }}">Produk</a>
+                            <span>Detail</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Shop Details Section Begin -->
     <div class="shop-details" >
-      <div class="product__details__pic">
         <div class="container">
           <div class="row">
             <div class="col-lg-12">
-              <div class="product__details__breadcrumb">
-                <a href="/">Home</a>
-                <a href="./shop.html">Produk Lainnya</a>
-                <span>Product Detail</span>
-              </div>
-            </div>
-          </div>
 
-          <div class="row" id="gallery">
-              <div class="col-lg-2 col-md-3" >
-                  <ul class="nav nav-tabs" role="tablist">
-                      <li class="nav-item">
-                           <div 
-                            class=" nav-link col-3 col-lg-12 mt-2 mt-lg-0" 
-                            v-for="(photo, index) in photos" 
-                            :key="photo.id" 
-                            data-aos="zoom-in" 
-                            data-aos-delay="100">
-                            <a href="#" @click="changeActive(index)">
-                                <img :src="photo.url" class="image-detail-row " :class="{active:index==activePhoto}"alt="">
-                            </a>
-                            </div>
-                       </li>
-                  </ul>
-              </div>
-              <div class="col-lg-8 col-md-9 ">
-                  <div class="tab-content">
-                    <div class="tab-pane active">
-                        <div class="product__details__pic__item">
-                            <transition name="slide-fade" mode="out-in">
-                                <img 
-                                :src="photos[activePhoto].url" 
-                                :key="photos[activePhoto].id" 
-                                class="image-detail"
-                                
-                                alt="">
-                            </transition>
-                        </div>
+              <div class="product__details__pic">
+                <div class="row" id="gallery">
+                    <div class="col-lg-2 col-md-3" >
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="nav-item">
+                                <div 
+                                  class=" nav-link col-3 col-lg-12 mt-2 mt-lg-0" 
+                                  v-for="(photo, index) in photos" 
+                                  :key="photo.id" 
+                                  data-aos="zoom-in" 
+                                  data-aos-delay="100">
+                                  <a href="#" @click="changeActive(index)">
+                                      <img :src="photo.url" class="image-detail-row mb-2" :class="{active:index==activePhoto}"alt="">
+                                  </a>
+                                  </div>
+                            </li>
+                        </ul>
                     </div>
-                  </div>
-              </div>         
-          </div>
+                    <div class="col-lg-6 col-md-9  ">
+                              <div class="product__details__pic__item ">
+                                  <transition name="slide-fade" mode="out-in">
+                                      <img 
+                                      :src="photos[activePhoto].url" 
+                                      :key="photos[activePhoto].id" 
+                                      class="image-detail "
+                                      alt="">
+                                  </transition>
+                              </div>
+                          </div>
+                        </div>
+                    </div>         
+                </div>
         </div>
       </div> 
     </div>
@@ -145,7 +124,7 @@
                 
                   <div class="product__details__last__option">
                     <ul>
-                      <li><span>By : </span> <a href="{{ route('profile', $product->user->id) }}">{{ $product->user->store_name }}</a></li>
+                      <li><span>By : </span> <a href="{{ route('profiletoko', $product->user->id) }}">{{ $product->user->store_name }}</a></li>
                       <li><span>Stok : </span>{{ number_format($product->stock) }} pcs</li>
                       <li><span>Terjual :</span> {{ number_format($product->transactiondetail->sum('quantity')) }}</li>
                     </ul>     

@@ -336,7 +336,7 @@ ol {
 }
 
 .header__top {
-    background: #111111;
+    background: #3774cf;
     padding: 10px 0;
 }
 
@@ -509,7 +509,7 @@ ol {
     bottom: 0;
     width: 100%;
     height: 2px;
-    background: #e53637;
+    background: #facc02;
     content: "";
     -webkit-transition: all, 0.5s;
     -o-transition: all, 0.5s;
@@ -1141,7 +1141,7 @@ ol {
 }
 
 .product__item__text h5 {
-    color: #0d0d0d;
+    color: #ff7158;
     font-weight: 700;
 }
 
@@ -1991,7 +1991,11 @@ ol {
 -----------------------*/
 
 .footer {
-    background: #111111;
+    background-color: #dff800;
+    background-image: linear-gradient(189deg, #3774cf 39%, #8cb4e2 100%);
+    background-position: center center;
+    background-repeat: no-repeat;
+    border-width: 1px 0px 0px 0px;
     padding-top: 70px;
 }
 
@@ -2008,7 +2012,7 @@ ol {
 }
 
 .footer__about p {
-    color: #b7b7b7;
+    color: #ffff;
     margin-bottom: 30px;
 }
 
@@ -2031,12 +2035,12 @@ ol {
 }
 
 .footer__widget ul li a {
-    color: #b7b7b7;
+    color: #faebaa;
     font-size: 15px;
 }
 
 .footer__widget .footer__newslatter p {
-    color: #b7b7b7;
+    color: #faebaa;
 }
 
 .footer__widget .footer__newslatter form {
