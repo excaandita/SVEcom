@@ -1,86 +1,109 @@
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title')
     Dashboard-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section" data-aos="fade-up">
+      <div class="section-header">
+        <h1>Admin Dashboard - Sertifikat</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item"><a href="#">Dashboard</a></div>
+          <div class="breadcrumb-item active"><a href="#">Sertifikat</a></div>
+        </div>
+      </div>
 
-<div
-    class="section-content section-dashboard-home"
-    data-aos="fade-up"
-    >
-    <div class="container-fluid">
-        <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - Sertifikat</h2>
-            <p class="dashboard-subtitle">Sekolah Vokasi E-Commerce</p>
-        </div>
-        <div class="dashboard-content">
-            <div class="row">
-                <div class="col-md-3" onclick="filter('');">
-                    <div class="card text-white bg-info mb-3">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">Total Sertifikat</div>
-                            <div class="dashboard-card-subtitle">{{ $data_sertifikat['total'] }}</div>
-                        </div>
-                    </div>
+      <div class="section-body">
+        <h2 class="section-title">Sertifikat- Marketplace Sekolah Vokasi </h2>
+        <p class="section-lead">List Sertifikat</p>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                    <i class="fas fa-certificate"></i>
                 </div>
-                <div class="col-md-3" onclick="filter('pending');">
-                    <div class="card text-white bg-info mb-3">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">Request</div>
-                            <div class="dashboard-card-subtitle">{{ $data_sertifikat['pending'] }}</div>
-                        </div>
-                    </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Total Sertifikat</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $data_sertifikat['total'] }}
+                  </div>
                 </div>
-                <div class="col-md-3" onclick="filter('verified');">
-                    <div class="card text-white bg-info mb-3">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">Approve</div>
-                            <div class="dashboard-card-subtitle">{{ $data_sertifikat['approved'] }}</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3" onclick="filter('rejected');">
-                    <div class="card text-white bg-info mb-3">
-                        <div class="card-body">
-                            <div class="dashboard-card-title">Rejected</div>
-                            <div class="dashboard-card-subtitle">{{ $data_sertifikat['rejected'] }}</div>
-                        </div>
-                    </div>
-                </div>
-
+              </div>
             </div>
-        </div>
-        <div class="dashboard-content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
-                                    <thead class="bg-info">
-                                        <tr>
-                                            <th>No</th>
-                                            <th>User</th>
-                                            <th>Jenis</th>
-                                            <th>Lembaga</th>
-                                            <th>No Sertifikat</th>
-                                            <th>Sertifikat</th>
-                                            <th>Status</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-warning">
+                    <i class="fab fa-bitbucket"></i>
                 </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Request</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $data_sertifikat['pending'] }}
+                  </div>
+                </div>
+              </div>
             </div>
-        </div>
-    </div>
-</div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-success">
+                    <i class="fas fa-stamp"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Approve</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $data_sertifikat['approved'] }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-danger">
+                    <i class="far fa-window-close"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Rejected</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $data_sertifikat['rejected'] }}
+                  </div>
+                </div>
+              </div>
+            </div>                  
+          </div>
+          <div class="card">
+              <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>User</th>
+                                <th>Jenis</th>
+                                <th>Lembaga</th>
+                                <th>No Sertifikat</th>
+                                <th>Sertifikat</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+              </div>
+          </div>
+    </section>
+  </div>
 @endsection
 
 @push('addon-script')

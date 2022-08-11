@@ -50,8 +50,10 @@ class SkillController extends Controller
         }
 
         $data = $request->all();
-        $data['path_url_photo'] = $request->file('photo')->store('assets/skill', 'public');
-        // $skill = Skill::create($request->toArray());
+        $file = $request->file('photo');
+            $filename= date('Ymdhi');
+            $file->move(public_path('storage/assets/skill'), $filename);
+        $data['path_url_photo'] = $filename;;
         Skill::create($data);
 
         return redirect()->route('portofolio-skills');

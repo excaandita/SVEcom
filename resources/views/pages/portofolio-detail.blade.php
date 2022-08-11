@@ -10,7 +10,7 @@
             <div class="row d-flex justify-content align-items-center h-100" style="width: 175%">
               <div class="col col-lg-9 col-xl-7">
                 <div class="card">
-                  <div class="rounded-top text-white d-flex flex-row" style="background-color: grey; height:200px;">
+                  <div class="rounded-top text-white d-flex flex-row" style="background-color: navy; height:200px;">
                     <div class="ms-4 mt-5 d-flex flex-column" style="width: 150px;margin-left:20px;">
                         @if (empty($user->image))
                         <img src="{{ url('img/person.png') }}"
