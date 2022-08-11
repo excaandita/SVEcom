@@ -1,86 +1,123 @@
-@extends('layouts.dashboard')
+@extends('layouts.app_new')
 
 @section('title')
 Dashboard-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
-<div class="container-fluid">
-    <div class="section-content section-dashboard-home" data-aos="fade-up">
-        <div class="container-fluid">
-            <div class="dashboard-heading">
-                <h2 class="dashboard-title">Ringkasan statistik</h2>
-                <p class="dashboard-subtitle">Rutin pantau perkembangan toko untuk tingkatkan penjualanmu</p>
+<div class="main-content">
+    <section class="section">
+      <div class="section-header">
+        <h1>Dashboard</h1>
+      </div>
+      <div class="section-body">
+        <h2 class="section-title">Ringkasan statistik</h2>
+        <p class="section-lead">Rutin pantau perkembangan toko untuk tingkatkan penjualanmu</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-info">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>Pendapatan</h4>
+                      </div>
+                      <div class="card-body">
+                        Rp. {{ number_format($revenue) }}
+                      </div>
+                    </div>
+                  </div>
             </div>
-            <div class="dashboard-content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Pendapatan</div>
-                                <div class="dashboard-card-subtitle">Rp. {{ number_format($revenue) }}</div>
-                            </div>
-                        </div>
+            <div class="col-md-6">
+                <div class="card card-statistic-1">
+                    <div class="card-icon bg-success">
+                      <i class="fas fa-archive"></i>
                     </div>
-                    <div class="col-md-6">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Pesanan Baru</div>
-                                <div class="dashboard-card-subtitle">{{ $newrevenue}}</div>
-                            </div>
-                        </div>
+                    <div class="card-wrap">
+                      <div class="card-header">
+                        <h4>Pesanan Baru</h4>
+                      </div>
+                      <div class="card-body">
+                        {{ $newrevenue}}
+                      </div>
                     </div>
-                </div>
-            </div>
-            <div class="dashboard-heading">
-                <h2 class="dashboard-title">Aktivitas Hari ini</h2>
-                <p class="dashboard-subtitle">Aktivitas yang perlu kamu pantau untuk jaga kepuasan pembeli</p>
-            </div>
-            <div class="dashboard-content">
-                <div class="row">
-                    <div class="col-md-3">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Pesanan Diproses</div>
-                                <div class="dashboard-card-subtitle">{{ $pending }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Pesanan Dikirim</div>
-                                <div class="dashboard-card-subtitle">{{ $success}}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Pesanan Selesai</div>
-                                <div class="dashboard-card-subtitle">{{ $done }}</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card text-white bg-info mb-3">
-                            <div class="card-body">
-                                <div class="dashboard-card-title">Pesanan Dibatalkan</div>
-                                <div class="dashboard-card-subtitle">{{ $canceled }}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  </div>
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="dashboard-heading">
-                <h3 class="dashboard-title">Recent Transactions</h3>
-                <p class="dashboard-subtitle"></p>
-            </div>
-            <div class="dashboard-content">
+      </div>
 
-                @forelse ($recentlytransaction as $item)
+      <div class="section-body">
+        <h2 class="section-title">Aktivitas Hari ini</h2>
+        <p class="section-lead">Aktivitas yang perlu kamu pantau untuk jaga kepuasan pembeli</p>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-primary">
+                  <i class="fas fa-hourglass"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Pesanan Diproses</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $pending }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-warning">
+                  <i class="fas fa-check"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Pesanan Dikirim</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $success}}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-success">
+                  <i class="fas fa-archive"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Pesanan Diselesaikan</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $done }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+              <div class="card card-statistic-1">
+                <div class="card-icon bg-danger">
+                  <i class="fas fa-calendar-times"></i>
+                </div>
+                <div class="card-wrap">
+                  <div class="card-header">
+                    <h4>Pesanan Dibatalkan</h4>
+                  </div>
+                  <div class="card-body">
+                    {{ $canceled }}
+                  </div>
+                </div>
+              </div>
+            </div>                  
+          </div>
+      </div>
+
+      <div class="section-body">
+        <h2 class="section-title">Recent Transactions</h2>
+        <p class="section-lead"></p>
+        @forelse ($recentlytransaction as $item)
                 <ul class="list-group list-group-light">
                     <li class="list-group-item list-group-item-action justify-content-between align-items-center">
                         <div class="row">
@@ -133,48 +170,50 @@ Dashboard-Sekolah Vokasi E-COM
 
                 </ul>
                 @endforelse
-            </div>
-            <div class="dashboard-heading">
-                <h3 class="dashboard-title">Produk Terlaris di Tokomu</h3>
-                <p class="dashboard-subtitle"></p>
-            </div>
-            <div class="dashboard-content">
-                <div class="card">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama Produk</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Terjual</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                            $i=0;
-                            @endphp
-                            @forelse ($bestselling as $item)
-                            @php
-                            $i++;
-                            @endphp
-                            <tr>
-                                <th scope="row">{{ $i }}</th>
-                                <td>{{ $i }}</td>
-                                <td>Rp. {{ number_format($item->price) }}</td>
-                                <td>{{ $item->count }}</td>
-                                <td>Aktif</td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td>Produk Kosong</td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
+      </div>
+
+      <div class="section-body">
+        <h2 class="section-title">Produk Terlaris di Tokomu</h2>
+        <p class="section-lead">Aktivitas yang perlu kamu pantau untuk jaga kepuasan pembeli</p>
+        <div class="card">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered scroll-horizontal-vertical w-100" id="crudTable">
+                <thead class="bg-light">
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Produk</th>
+                        <th>Harga</th>
+                        <th>Terjual</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @php
+                    $i=0;
+                    @endphp
+                    @forelse ($bestselling as $item)
+                    @php
+                    $i++;
+                    @endphp
+                    <tr>
+                        <th scope="row">{{ $i }}</th>
+                        <td>{{ $i }}</td>
+                        <td>Rp. {{ number_format($item->price) }}</td>
+                        <td>{{ $item->count }}</td>
+                        <td>Aktif</td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td>Produk Kosong</td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
             </div>
         </div>
-    </div>
+        </div>
+      </div>
+    </section>
 </div>
+
 @endsection

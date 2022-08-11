@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app_new')
 
 @section('title')
     Dashboard Account-Sekolah Vokasi E-COM
@@ -123,14 +123,6 @@
                                   id="phone_number"
                                   value="{{ $user->phone_number}}"
                                 />
-                              </div>
-                            </div>
-                            <div class="col-md-12">
-                              <div class="form-group">
-                                <label>Foto Profil</label>
-                                <input type="file" name="image" class="form-control" />
-                                <p class="text-muted">
-                                </p>
                               </div>
                             </div>
                           </div>

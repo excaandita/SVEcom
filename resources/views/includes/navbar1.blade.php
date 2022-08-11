@@ -20,6 +20,20 @@
                   @auth
                   <ul class="navbar-nav d-none d-lg-flex">
             <li class="nav-item dropdown" style="list-style: none">
+              <a
+                href="#"
+                class="nav-link huruf"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+              >
+                <img
+                  src="/images/icon-user.png"
+                  alt=""
+                  class="rounded-circle mr-3 profile-picture"
+                />
+                Hi, {{ Auth::user()->name }}
+              </a>
               <div class="dropdown-menu">
                 @if (auth()->user()->roles == 'ADMIN')
                 <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
@@ -54,10 +68,9 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 col-md-2">
-            <div class="header__logo mb-2">
-              <a href="{{ route('home')}}"><img src="{{ asset('img/LOGO-SV-1.webp') }}" style="height: 50px;width:auto"/></a>
-              Sekolah <b>VOKASI</b>
+          <div class="col-lg-2 col-md-2">
+            <div class="header__logo">
+              <a href="./index.html"><img src="{{ asset('img/LOGO-SV-1.webp') }}" style="height: 80px;width:auto"/></a>
             </div>
           </div>
           <div class="col-lg-5 col-md-6 " style="margin-top: 10px">
@@ -92,7 +105,7 @@
               /></a>
               @guest
               <a href="#"
-              ><img src="/images/icon-cart-empty.svg" alt="" /> <span></span></a
+              ><img src="img/icon/cart.png" alt="" /> <span>0</span></a
             >
               @endguest
               @auth
@@ -102,10 +115,10 @@
                       $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity'); 
                     @endphp
                     @if ($carts > 0)
-                      <img src="/images/icon-cart-filled.svg" alt="" />
+                      <img src="{{ asset('img/icon/cart.png') }}" alt="" />
                       <div class="cart-badge">{{ $carts }}</div>
                     @else
-                      <img src="/images/icon-cart-empty.svg" alt="" />
+                      <img src="{{ asset('img/icon/cart.png') }}" alt="" /><span>0</span>
                     @endif
                   </a>
                   @endif

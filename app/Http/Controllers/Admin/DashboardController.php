@@ -49,7 +49,7 @@ class DashboardController extends Controller
 
 
 
-        return view('pages.admin.dashboard', [
+        return view('pages.admin.dashboard1', [
             'customer' => $customer,
             'revenue' => $revenue,
             'transaction' => $transaction,

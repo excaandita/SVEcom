@@ -1,25 +1,23 @@
-@extends('layouts.dashboard')
+@extends('layouts.app_new')
 
 @section('title')
     Tambah Produk-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
-<div
-            class="section-content section-dashboard-home"
-            data-aos="fade-up"
-          >
-            <div class="container-fluid">
-              <div class="dashboard-heading">
-                <h2 class="dashboard-title">Tambah Produk Baru</h2>
-                <p class="dashboard-subtitle">
-                  tambah produk yang ingin dijual!
-                </p>
-              </div>
-              <div class="dashboard-content">
-                <div class="row">
-                  <div class="col-12">
-                    @if($errors->any())
+
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1>Produk</h1>
+      <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Produk</a></div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h2 class="section-title">Tambah Produk Baru</h2>
+      <p class="section-lead">tambah produk yang ingin dijual!</p>
+      @if($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -98,11 +96,10 @@
                         </div>
                       </div>
                     </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    </div>
+  </section>
+</div>
+
 @endsection
 
 @push('addon-script')

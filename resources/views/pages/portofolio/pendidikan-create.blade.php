@@ -1,26 +1,22 @@
-@extends('layouts.portofolio')
+@extends('layouts.app_new')
 
 @section('title')
     Tambah Riwayat Pendidikan Mahasiswa Sekolah Vokasi
 @endsection
 
 @section('content')
-<div
-            class="section-content section-dashboard-home"
-            data-aos="fade-up"
-            id="jenjang"
-          >
-            <div class="container-fluid">
-              <div class="dashboard-heading">
-                <h2 class="dashboard-title">Riwayat Pendidikan</h2>
-                <p class="dashboard-subtitle">
-                  Tambahkan Riwayat Pendidikan
-                </p>
-              </div>
-              <div class="dashboard-content">
-                <div class="row">
-                  <div class="col-12">
-                    @if($errors->any())
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1>Riwayat Pendidikan</h1>
+      <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Riwayat Pendidikan</a></div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h2 class="section-title">Riwayat Pendidikan</h2>
+      <p class="section-lead">Tambahkan Riwayat Pendidikan</p>
+      @if($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -97,11 +93,10 @@
                         </div>
                       </div>
                     </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    </div>
+  </section>
+</div>
+
 @endsection
 
 @push('addon-script')
