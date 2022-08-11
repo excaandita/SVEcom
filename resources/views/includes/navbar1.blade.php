@@ -20,20 +20,7 @@
                   @auth
                   <ul class="navbar-nav d-none d-lg-flex">
             <li class="nav-item dropdown" style="list-style: none">
-              <a
-                href="#"
-                class="nav-link huruf"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                <img
-                  src="/images/icon-user.png"
-                  alt=""
-                  class="rounded-circle mr-3 profile-picture"
-                />
-                Hi, {{ Auth::user()->name }}
-              </a>
+              
               <div class="dropdown-menu">
                 @if (auth()->user()->roles == 'ADMIN')
                 <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>

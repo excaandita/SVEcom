@@ -1,55 +1,57 @@
-@extends('layouts.dashboard')
+@extends('layouts.app_new')
 
 @section('title')
     Pengajuan Penarikan-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
-<div
-    class="section-content section-dashboard-home"
-    data-aos="fade-up"
-    >
-    <div class="container-fluid">
-        <div class="dashboard-heading">
-            <h2 class="dashboard-title">Seller Dashboard - Penarikan Uang</h2>
-            <p class="dashboard-subtitle">Sekolah Vokasi E-Commerce</p>
-        </div>
-        <div class="dashboard-content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-body">
-                          <a href="{{ route('dashboard-withdraw-create')}}" class="btn btn-primary mb-3">
-                            + Tambah Pengajuan 
-                          </a>
-                          <div class="table-responsive">
-                                <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
-                                    <thead>
-                                        <tr>
-                                            <th>ID</th>
-                                            <th>Kode Transaksi</th>
-                                            <th>Akun Pengaju</th>
-                                            <th>Total Penarikan</th>
-                                            <th>Pemilik Rekening</th>
-                                            <th>Nomor Rekening</th>
-                                            <th>Bank</th>
-                                            <th>Status</th>
-                                            <th>Tanggal Pengajuan</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                       
-                                    </tbody>
-                                </table>
-                          </div>
+<div class="main-content">
+    <section class="section">
+        <div class="container-fluid">
+            <div class="section-header">
+                <h1>Seller Dashboard - Penarikan Uang</h1>
+                <div class="section-header-breadcrumb">
+                  <div class="breadcrumb-item active"></div>
+                </div>
+            </div>
+            <div class="dashboard-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                              <a href="{{ route('dashboard-withdraw-create')}}" class="btn btn-primary mb-3">
+                                + Tambah Pengajuan 
+                              </a>
+                              <div class="table-responsive">
+                                    <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Kode Transaksi</th>
+                                                <th>Akun Pengaju</th>
+                                                <th>Total Penarikan</th>
+                                                <th>Pemilik Rekening</th>
+                                                <th>Nomor Rekening</th>
+                                                <th>Bank</th>
+                                                <th>Status</th>
+                                                <th>Tanggal Pengajuan</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           
+                                        </tbody>
+                                    </table>
+                              </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
+
 @endsection
 
 @push('addon-script')
