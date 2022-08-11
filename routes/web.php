@@ -227,8 +227,8 @@ Route::prefix('admin')
     ->namespace('')
     ->middleware(['auth', 'admin'])
     ->group(function(){
-        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
-        Route::resource('admin', AdminDashboardController::class);
+        Route::get('/admin', [AdminDashboardController::class, 'index'])->name('admin-dashboard');;
+        Route::resource('dashboard', AdminDashboardController::class);
         Route::resource('category', AdminCategoryController::class);
         Route::resource('slider', AdminSliderController::class);
         Route::resource('user', AdminUserController::class);
