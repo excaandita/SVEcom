@@ -1,58 +1,58 @@
-@extends('layouts.dashboard')
+@extends('layouts.app_new')
 
 @section('title')
     Dashboard-Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
-          <div
-            class="section-content section-dashboard-home"
-            data-aos="fade-up"
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1>Transaksi</h1>
+      <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Transaksi</a></div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h2 class="section-title">Transaksi</h2>
+      <div class="row">
+        <div class="col-12 mt-2">
+          <ul
+            class="nav nav-pills mb-3"
+            id="pills-tab"
+            role="tablist"
           >
-            <div class="container-fluid">
-              <div class="dashboard-heading">
-                <h2 class="dashboard-title">Transaksi</h2>
-                <p class="dashboard-subtitle">Look what you have made today!</p>
-              </div>
-              <div class="dashboard-content">
-                <div class="row">
-                  <div class="col-12 mt-2">
-                    <ul
-                      class="nav nav-pills mb-3"
-                      id="pills-tab"
-                      role="tablist"
-                    >
-                      <li class="nav-item" role="presentation">
-                        <a
-                          class="nav-link active"
-                          id="pills-home-tab"
-                          data-toggle="pill"
-                          href="#pills-home"
-                          role="tab"
-                          aria-controls="pills-home"
-                          aria-selected="true"
-                          >Buy Products</a
-                        >
-                      </li>
+            <li class="nav-item" role="presentation">
+              <a
+                class="nav-link active"
+                id="pills-home-tab"
+                data-toggle="pill"
+                href="#pills-home"
+                role="tab"
+                aria-controls="pills-home"
+                aria-selected="true"
+                >Buy Products</a
+              >
+            </li>
 
-                      @if (auth()->user()->roles == 'USER')
-                        <li class="nav-item" role="presentation">
-                          <a
-                            class="nav-link"
-                            id="pills-profile-tab"
-                            data-toggle="pill"
-                            href="#pills-profile"
-                            role="tab"
-                            aria-controls="pills-profile"
-                            aria-selected="false"
-                            >Sell Product</a
-                          >
-                        </li>
-                      @endif
+            @if (auth()->user()->roles == 'USER')
+              <li class="nav-item" role="presentation">
+                <a
+                  class="nav-link"
+                  id="pills-profile-tab"
+                  data-toggle="pill"
+                  href="#pills-profile"
+                  role="tab"
+                  aria-controls="pills-profile"
+                  aria-selected="false"
+                  >Sell Product</a
+                >
+              </li>
+            @endif
 
                       
                     </ul>
-                    <div class="tab-content" id="pills-tabContent">
+                    <div class="col-12">
                       <div
                         class="tab-pane fade show active"
                         id="pills-home"

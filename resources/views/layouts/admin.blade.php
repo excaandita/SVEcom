@@ -11,11 +11,20 @@
 
     <title>@yield('title')</title>
     @stack('prepend-style')
+
+    <link rel="stylesheet" href="/admin/assets/modules/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/admin/assets/modules/fontawesome/css/all.min.css">
+  
+    <!-- CSS Libraries -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link href="/style/main.css" rel="stylesheet" />
     <link href="/style/main.scss" rel="stylesheet" />
+
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="/admin/assets/css/style.css">
+    <link rel="stylesheet" href="/admin/assets/css/components.css">
+    
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
- 
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
@@ -23,6 +32,7 @@
       crossorigin="anonymous"
     />
     @stack('addon-style')
+    
   </head>
 
   <body>
@@ -109,6 +119,43 @@
           </div>
         </div>
 
+        
+        <div class="main-sidebar sidebar-style-2" >
+          <aside id="sidebar-wrapper">
+          <div class="sidebar-brand">
+            <a href="{{ route('home')}}">E-Commerce SV UNS</a>
+          </div>
+          <div class="sidebar-brand sidebar-brand-sm">
+            <a href="{{ route('home') }}">St</a>
+          </div>
+          <ul class="sidebar-menu">
+            <li class="menu-header">Dashboard</li>
+            <li class="dropdown">
+              <a href="{{ route('admin-dashboard')}}" class="nav-link has-dropdown"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            </li>
+            <li class="menu-header">Management Product</li>
+            <li><a class="nav-link" href="{{ route('product.index') }}"><i class="far fa-square"></i> <span>Product</span></a></li>
+            <li><a class="nav-link" href="{{ route('product-gallery.index') }}"><i class="far fa-square"></i> <span>Gallery Product</span></a></li>
+            
+            <li class="menu-header">Management Transaction</li>
+            <li><a class="nav-link" href="{{ route('product.index') }}"><i class="far fa-square"></i> <span>Transaction</span></a></li>
+            <li><a class="nav-link" href="{{ route('refund.index') }}"><i class="far fa-square"></i> <span>Refund</span></a></li>
+            <li><a class="nav-link" href="{{ route('withdraw.index') }}"><i class="far fa-square"></i> <span>Withdraw</span></a></li>
+
+            <li class="menu-header">Master</li>
+            <li><a class="nav-link" href="{{ route('slider.index') }}"><i class="far fa-square"></i> <span>Slider</span></a></li>
+            <li><a class="nav-link" href="{{ route('category.index') }}"><i class="far fa-square"></i> <span>Category</span></a></li>
+            <li><a class="nav-link" href="{{ route('sertifikat.index') }}"><i class="far fa-square"></i> <span>Sertificate</span></a></li>
+            <li><a class="nav-link" href="{{ route('user.index') }}"><i class="far fa-square"></i> <span>User</span></a></li>
+          </ul>
+
+          <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+            <a href="{{ route('logout') }}" class="btn btn-primary btn-lg btn-block btn-icon-split">
+              <i class="fas fa-rocket"></i> Log Out
+            </a>
+          </div>        
+          </aside>
+        </div>
         <!-- Page Content -->
         <div id="page-content-wrapper">
           <nav
@@ -204,5 +251,18 @@
       $("#wrapper").toggleClass("toggled");
     });
   </script>
+  
    @stack('addon-script')
+   
+   @push('addon-script')
+   <script src="/admin/assets/modules/jquery.min.js"></script>
+   <script src="/admin/assets/modules/popper.js"></script>
+   <script src="/admin/assets/modules/tooltip.js"></script>
+   <script src="/admin/assets/modules/bootstrap/js/bootstrap.min.js"></script>
+   <script src="/admin/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+   <script src="/admin/assets/modules/moment.min.js"></script>
+   <script src="/admin/assets/js/stisla.js"></script>
+   <script src="/admin/assets/js/scripts.js"></script>
+   <script src="/admin/assets/js/custom.js"></script>       
+   @endpush
 </html>

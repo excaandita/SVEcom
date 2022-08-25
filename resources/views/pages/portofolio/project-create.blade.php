@@ -1,25 +1,22 @@
-@extends('layouts.dashboard')
+@extends('layouts.app_new')
 
 @section('title')
     Tambah Project Mahasiswa Sekolah Vokasi
 @endsection
 
 @section('content')
-<div
-            class="section-content section-dashboard-home"
-            data-aos="fade-up"
-          >
-            <div class="container-fluid">
-              <div class="dashboard-heading">
-                <h2 class="dashboard-title">Project</h2>
-                <p class="dashboard-subtitle">
-                  Tambahkan Project
-                </p>
-              </div>
-              <div class="dashboard-content">
-                <div class="row">
-                  <div class="col-12">
-                    @if($errors->any())
+<div class="main-content">
+  <section class="section">
+    <div class="section-header">
+      <h1>Riwayat Project</h1>
+      <div class="section-header-breadcrumb">
+        <div class="breadcrumb-item active"><a href="#">Riwayat Project</a></div>
+      </div>
+    </div>
+    <div class="section-body">
+      <h2 class="section-title">Riwayat Project</h2>
+      <p class="section-lead">Tambahkan Riwayat Project</p>
+      @if($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -81,11 +78,10 @@
                         </div>
                       </div>
                     </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+    </div>
+  </section>
+</div>
+
 @endsection
 @push('addon-script')
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>

@@ -1,4 +1,4 @@
-@extends('layouts.app1')
+@extends('layouts.app')
 
 @section('title')
     Portofolio - Sekolah Vokasi E-COM
@@ -6,7 +6,7 @@
 
 @section('content')
 <!-- Breadcrumb Section Begin -->
-<section class="breadcrumb-blog set-bg" data-setbg="img/bg1.jpeg">
+<section class="breadcrumb-blog set-bg" data-setbg="img/bg1.png">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">

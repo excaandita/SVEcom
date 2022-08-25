@@ -20,20 +20,7 @@
                   @auth
                   <ul class="navbar-nav d-none d-lg-flex">
             <li class="nav-item dropdown" style="list-style: none">
-              <a
-                href="#"
-                class="nav-link huruf"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                <img
-                  src="/images/icon-user.png"
-                  alt=""
-                  class="rounded-circle mr-3 profile-picture"
-                />
-                Hi, {{ Auth::user()->name }}
-              </a>
+              
               <div class="dropdown-menu">
                 @if (auth()->user()->roles == 'ADMIN')
                 <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
@@ -73,7 +60,7 @@
               <a href="./index.html"><img src="{{ asset('img/LOGO-SV-1.webp') }}" style="height: 80px;width:auto"/></a>
             </div>
           </div>
-          <div class="col-lg-6 col-md-6 " style="margin-top: 30px">
+          <div class="col-lg-5 col-md-6 " style="margin-top: 10px">
             <nav class="header__menu mobile-menu">
               <ul>
                 @guest
@@ -81,16 +68,6 @@
                 <li class="{{ (request()->is('listproduct')) ? 'active' : '' }}"><a href="{{ route('listproduct') }}">Produk</a></li>
                 <li><a href="{{ route('portofolio') }}">Portofolio</a></li>
                 <li class="{{ (request()->is('categories')) ? 'active' : '' }}"><a href="{{ route('categories') }}">Kategori</a></li>
-                <li>
-                  <a href="#">Pages</a>
-                  <ul class="dropdown">
-                    <li><a href="./about.html">About Us</a></li>
-                    <li><a href="./shop-details.html">Shop Details</a></li>
-                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                    <li><a href="./checkout.html">Check Out</a></li>
-                    <li><a href="./blog-details.html">Blog Details</a></li>
-                  </ul>
-                </li>
                 @endguest
                 @auth
                 @if (auth()->user()->roles == 'MAHASISWA')
@@ -108,7 +85,7 @@
             </nav>
             
           </div>
-          <div class="col-lg-4 col-md-4 mt-4">
+          <div class="col-lg-4 col-md-4 mt-1">
             <div class="header__nav__option">
               <a href="{{ route('listproduct') }}" class="search-switch"
                 ><img src="images/search.png" alt=""
@@ -120,7 +97,7 @@
               @endguest
               @auth
                   @if (auth()->user()->roles != 'MAHASISWA')
-                  <a href="{{ route('cart') }}">
+                  <a href="{{ route('cart') }}" class="nav-link d-inline-block mt-10">
                     @php
                       $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity'); 
                     @endphp

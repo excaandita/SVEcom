@@ -38,23 +38,18 @@ class WithdrawController extends Controller
                 ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown=toggle mr-1 mb-1"
-                                        type="button"
-                                        data-toggle="dropdown">
-                                        Aksi
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('withdraw.edit', $item->id) .'">
-                                        Edit
-                                    </a>
-                                    <form action="'. route('withdraw.destroy', $item->id) .'" method="POST">
-                                        '. method_field('delete').  csrf_field() .'
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
+                            <div>
+                                <a href="' . route('withdraw.edit', $item->id) . '" class="btn btn-info">
+                                    Edit
+                                </a>
+                            </div>
+                            <div style="margin-left: 10px">
+                                <form action="'. route('withdraw.destroy', $item->id) .'" method="POST">
+                                    '. method_field('delete').  csrf_field() .'
+                                    <button type="submit" class="btn btn-danger">
+                                        Hapus
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     ';

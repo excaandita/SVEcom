@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.app_new')
 
 @section('title')
     Dashboard-Sekolah Vokasi E-COM

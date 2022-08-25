@@ -26,10 +26,9 @@ class SertifikatController extends Controller
 
             return DataTablesDataTables::of($query)
                 ->addColumn('photo', function ($skill) {
-                    $url = $skill->path_url_photo ? Storage::url($skill->path_url_photo) : ''; //untuk manggil photo di tabel skill
                     return '
                     <div>
-                    <img src="' . $url . '" border="0" width="100" class="img img-fluid img-rounded" align="center" />
+                    <img src="' .url('storage/assets/skill/'.$skill->path_url_photo )  . '" border="0" width="100" class="img img-fluid img-rounded" align="center" />
                     </div>
                 ';
                 })

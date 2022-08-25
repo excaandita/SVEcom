@@ -29,20 +29,7 @@
           <!--Desktop Menu-->
           <ul class="navbar-nav d-none d-lg-flex">
             <li class="nav-item dropdown" style="list-style: none">
-              <a
-                href="#"
-                class="nav-link"
-                id="navbarDropdown"
-                role="button"
-                data-toggle="dropdown"
-              >
-                <img
-                  src="/images/icon-user.png"
-                  alt=""
-                  class="rounded-circle mr-2 profile-picture"
-                />
-                Hi, {{ Auth::user()->name }}
-              </a>
+              
               <div class="dropdown-menu">
                 <a href="{{route('/dashboard')}}" class="dropdown-item">Dashboard</a>
                 <a href="/dashboard-account.html" class="dropdown-item"

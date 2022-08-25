@@ -45,19 +45,13 @@ class DashboardWithdrawController extends Controller
                 ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn btn-primary dropdown=toggle mr-1 mb-1"
-                                        type="button"
-                                        data-toggle="dropdown">
-                                        Aksi
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('dashboard-withdraw-edit', $item->id) .'">
-                                        Edit
-                                    </a>
-                                </div>
+                            <div>
+                                <a href="' . route('dashboard-withdraw-edit', $item->id) . '" class="btn btn-info">
+                                    Edit
+                                </a>
                             </div>
                         </div>
+                        
                     ';
                 })
                 ->rawColumns(['action', 'status'])

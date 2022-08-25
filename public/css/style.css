@@ -320,7 +320,7 @@ ol {
 }
 
 .header__top {
-    background: #3774cf;
+    background: #0d258a;
     padding: 10px 0;
 }
 
@@ -1942,12 +1942,7 @@ ol {
 -----------------------*/
 
 .footer {
-    background-color: #dff800;
-    background-image: linear-gradient(189deg, #3774cf 39%, #8cb4e2 100%);
-    background-position: center center;
-    background-repeat: no-repeat;
-    border-width: 1px 0px 0px 0px;
-
+    background: #0d258a;
     padding-top: 70px;
 }
 

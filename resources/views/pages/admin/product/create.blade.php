@@ -1,98 +1,97 @@
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title')
     Product-Marketplace Sekolah Vokasi
 @endsection
 
 @section('content')
-
-<div
-    class="section-content section-dashboard-home"
-    data-aos="fade-up"
-    >
-    <div class="container-fluid">
-        <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - Produk</h2>
-            <p class="dashboard-subtitle">Tambah Produk Baru</p>
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section" data-aos="fade-up">
+      <div class="section-header">
+        <h1>Admin Dashboard - Product </h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item"><a href="#">Dashboard</a></div>
+          <div class="breadcrumb-item active"><a href="#">Product</a></div>
         </div>
-        <div class="dashboard-content">
-            <div class="row">
-                <div class="col-md-12">
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data"> <!--maksudnya enctype="multipart/form-data biar bisa upload file-->
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Nama Produk</label>
-                                            <input type="text" name="name" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Pemilik Produk</label>
-                                            <select name="users_id" class="form-control">
-                                                @foreach ($users as $p)
-                                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Kategori Produk</label>
-                                            <select name="categories_id" class="form-control">
-                                                @foreach ($categories as $p)
-                                                    <option value="{{ $p->id }}">{{ $p->name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Harga Produk</label>
-                                            <input type="number" name="price" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Stok Produk</label>
-                                            <input type="number" name="stock" class="form-control" min="0" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Deksripsi Produk</label>
-                                            <textarea name="description" id="deskripsi"></textarea>
-                                        </div>
-                                    </div>
+      </div>
 
-                                </div>
-                                <div class="row">
-                                    <div class="col text-right">
-                                        <button type="submit" class="btn btn-info px-5">
-                                            Simpan
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+      <div class="section-body">
+        <h2 class="section-title">Produk- Marketplace Sekolah Vokasi </h2>
+        <p class="section-lead">Tambah Produk Baru</p>
+        @if($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data"> <!--maksudnya enctype="multipart/form-data biar bisa upload file-->
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nama Produk</label>
+                                <input type="text" name="name" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Pemilik Produk</label>
+                                <select name="users_id" class="form-control">
+                                    @foreach ($users as $p)
+                                        <option value="{{ $p->id }}">{{ $p->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Kategori Produk</label>
+                                <select name="categories_id" class="form-control">
+                                    @foreach ($categories as $p)
+                                        <option value="{{ $p->id }}">{{ $p->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Harga Produk</label>
+                                <input type="number" name="price" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Stok Produk</label>
+                                <input type="number" name="stock" class="form-control" min="0" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Deksripsi Produk</label>
+                                <textarea name="description" id="deskripsi"></textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <button type="submit" class="btn btn-info px-5">
+                                Simpan
+                            </button>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-    </div>
-</div>
+      </div>
+    </section>
+  </div>
 @endsection
 <!--manggil ck editor 5 ngambil dri cdn ck editor-->
 @push('addon-script')

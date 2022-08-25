@@ -14,6 +14,7 @@ class DashboardSettingController extends Controller
         $user = Auth::user();
         $categories = Category::all();
 
+
         return view('pages.dashboard-settings',[
             'user' => $user,
             'categories' => $categories,
@@ -33,6 +34,7 @@ class DashboardSettingController extends Controller
     {
         $data = $request->all();
         $item = Auth::user();
+        $data['image'] = $request->file('image')->store('assets/product', 'public');
 
         $item->update($data);
 

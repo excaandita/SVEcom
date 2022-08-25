@@ -1,27 +1,22 @@
-@extends('layouts.dashboard')
+@extends('layouts.app_new')
 
 @section('title')
     Biodata Mahasiswa Sekolah Vokasi
 @endsection
 
 @section('content')
-    <div
-        class="section-content section-dashboard-home"
-        data-aos="fade-up"
-    >
-        <div class="container-fluid">
-            <div class="dashboard-heading">
-                <h2 class="dashboard-title">BIODATA</h2>
-                <p class="dashboard-subtitle">
-                    <a class="btn btn-info px-5" href="{{ route('portofolio-biodata-create') }}" role="button">
-                        Edit
-                    </a>
-                </p>
-            </div>
-            <div class="dashboard-content">
-                <div class="row">
-                    <div class="col-12">
-                        @if($errors->any())
+<div class="main-content">
+    <section class="section">
+      <div class="section-header">
+        <h1>My Account</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active"><a href="#">Account</a></div>
+        </div>
+      </div>
+      <div class="section-body">
+        <h2 class="section-title">BIODATA</h2>
+        
+        @if($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
                                     @foreach ($errors->all() as $error)
@@ -32,6 +27,9 @@
                         @endif
                         <div class="card">
                             <div class="card-body">
+                                <a class="btn btn-info px-5 mb-4" href="{{ route('portofolio-biodata-create') }}" role="button">
+                                    Edit
+                                </a>
                                 <h5>Foto Profile</h5>
                                 <img src="{{ url('public/images/'.$user->image) }}" style="height:100px;width:auto;margin-bottom:20px;">
                                 <h5>Deskripsi</h5>
@@ -88,10 +86,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
+      </div>
+    </section>
+</div>
 @endsection

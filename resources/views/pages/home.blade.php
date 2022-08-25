@@ -1,69 +1,45 @@
 @extends('layouts.app')
 
+@push('addon-style')
+    <style>
+
+    </style>
+@endpush
+
 @section('title')
     Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
-<div class="page-content page-home" style="margin-top: 80px">
-    <section class="store-carousel">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12" data-aos="zoom-in-up">
-            <div
-              id="storeCarousel"
-              class="carousel slide"
-              data-ride="carousel"
-            >
-              <ol class="carousel-indicators">
-                <li data-target="#storeCarousel"data-slide-to="0"class="active"></li>
-                <li data-target="#storeCarousel" data-slide-to="1"></li>
-                <li data-target="#storeCarousel" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                
-                @php $incrementSlider = 'first' @endphp
-                @foreach ($sliders as $slider)
-                  <div class="carousel-item {{ $slider->status }}">
-                    <img
-                      class="d-block w-100 "
-                      src="{{ Storage::url($slider->photo) }}"
-                      alt="{{ $slider->alt }} slide"
-                    />
+<div class="page-content page-home" style="margin-top: -20px">
+      <!-- section start Hero-->
+      <section class="hero">
+        <div class="hero__slider owl-carousel">
+          @foreach ($sliders as $slider)
+          <div class="hero__items set-bg" data-setbg="{{ Storage::url($slider->photo) }}">
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-5 col-lg-7 col-md-8">
+                  <div class="hero__text">
+                    <h6>Sekolah Vokasi UNS</h6>
+                    <h2>Diskon - Hari Mahasiswa 2030</h2>
+                    <p>Diskon spesial bagi seluruh mahasiswa sekolah vokasi yang baru pertama kali mendaftar sebesar 70%</p>
+                    <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a>
+                    <div class="hero__social">
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                      <a href="#"><i class="fa fa-twitter"></i></a>
+                      <a href="#"><i class="fa fa-pinterest"></i></a>
+                      <a href="#"><i class="fa fa-instagram"></i></a>
+                    </div>
                   </div>
-                @endforeach
+                </div>
               </div>
-
-
-              <a
-                class="carousel-control-prev"
-                href="#carouselExampleIndicators"
-                role="button"
-                data-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a
-                class="carousel-control-next"
-                href="#storeCarousel"
-                role="button"
-                data-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="sr-only">Next</span>
-              </a>
             </div>
           </div>
+          @endforeach
         </div>
-      </div>
-    </section>
+      </section>
+    <!-- end section Hero-->
 
     <section class="store-trend-categories mt-5">
       <div class="container">
@@ -101,50 +77,60 @@
     </section>
 
     <div class="section store-new-products">
-      <div class="container">
-        <div class="row">
-          <div class="col-12" data-aos="fade-up">
-            <h5>Produk Terbaru</h5>
+      <section class="product spad">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <ul class="filter__controls">
+                <li class="active" data-filter=".new-arrivals">Produk Terbaru</li>
+                <li data-filter=".hot-sales">Produk Terlaris</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row product__filter">
+
+            @foreach ($products as $product)
+            <div
+              class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals"
+            >
+              <div class="product__item">
+                <div
+                  class="product__item__pic set-bg products-image"
+                  data-setbg="{{ Storage::url($product->galleries->first()->photos) }}"
+                >
+                  <span class="label">New</span>
+                </div>
+                <div class="product__item__text">
+                  <h6>{{ $product->name }}</h6>
+                  <a href="{{ route('detail', $product->slug)}}" class="add-cart">+ Add To Cart</a>
+                  <h5>Rp. {{number_format($product->price) }}</h5>
+                </div>
+              </div>
+            </div>
+            @endforeach
+
+            @foreach ($productBests as $product )
+            <div
+              class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix hot-sales"
+            >
+              <div class="product__item">
+                <div
+                  class="product__item__pic set-bg"
+                  data-setbg="{{ Storage::url($product->galleries->first()->photos) }}"
+                >
+                </div>
+                <div class="product__item__text">
+                  <h6>{{ $product->name }}</h6>
+                  <a href="{{ route('detail', $product->slug)}}" class="add-cart">+ Add To Cart</a>
+                  
+                  <h5>Rp. {{number_format($product->price) }}</h5>
+                </div>
+              </div>
+            </div>
+            @endforeach
           </div>
         </div>
-        <div class="row">
-          <!--looping pke forelse-->
-          @php $incrementProduct = 0 @endphp
-          @forelse ($products as $product )
-            <div
-            class="col-6 col-md-4 col-lg-3"
-            data-aos="fade-up"
-            data-aos-delay="{{ $incrementProduct+= 100 }}"
-            >
-              <a href="{{ route('detail', $product->slug)}}" class="component-products d-block">
-                <div class="products-thumbnail">
-                  <!-- if($product->galleries->count()) = pengecekan jika produk galeri ada datanya mata manggil data  -->
-                  <div
-                    class="products-image"
-                    style="
-                      @if($product->galleries->count()) 
-                        background-image: url('{{ Storage::url($product->galleries->first()->photos) }}') 
-                      @else
-                        background-color: #17A2B8
-                      @endif
-                    "
-                  ></div>
-                </div>
-                <div class="products-text">{{ $product->name }}</div>
-                <div class="products-price">Rp. {{number_format($product->price) }}</div>
-              </a>
-            </div>
-          @empty
-            <div class="col-12 text-center py-5" data-aos="fade-up"
-            data-aos-delay="100">
-              Tidak ada produk ditemukan
-            </div>
-          @endforelse
-
-          
-          <!-- batas new Product-->
-        </div>
-      </div>
+      </section>
     </div>
 </div>
 @endsection

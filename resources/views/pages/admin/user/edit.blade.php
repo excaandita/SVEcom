@@ -5,79 +5,78 @@
 @endsection
 
 @section('content')
-
-<div
-    class="section-content section-dashboard-home"
-    data-aos="fade-up"
-    >
-    <div class="container-fluid">
-        <div class="dashboard-heading">
-            <h2 class="dashboard-title">Admin Dashboard - Pengguna</h2>
-            <p class="dashboard-subtitle">Edit Pengguna</p>
+<!-- Main Content -->
+<div class="main-content">
+    <section class="section" data-aos="fade-up">
+      <div class="section-header">
+        <h1>Admin Dashboard - Pengguna </h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item"><a href="#">Dashboard</a></div>
+          <div class="breadcrumb-item active"><a href="#">Pengguna</a></div>
         </div>
-        <div class="dashboard-content">
-            <div class="row">
-                <div class="col-md-12">
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+      </div>
+
+      <div class="section-body">
+        <h2 class="section-title">Pengguna- Marketplace Sekolah Vokasi </h2>
+        <p class="section-lead">Edit Pengguna</p>
+        @if($errors->any())
+        <div class="alert alert-danger alert-dismissible">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+        <div class="card">
+            <div class="card-body">
+                <form action="{{ route('user.update', $item->id) }}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')<!-- untuk update data emg hrs pke put/patch-->
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nama Pengguna</label>
+                                <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
+                            </div>
                         </div>
-                    @endif
-                    <div class="card">
-                        <div class="card-body">
-                            <form action="{{ route('user.update', $item->id) }}" method="POST" enctype="multipart/form-data">
-                                @method('PUT')<!-- untuk update data emg hrs pke put/patch-->
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Nama Pengguna</label>
-                                            <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Email Pengguna</label>
-                                            <input type="email" name="email" class="form-control" value="{{ $item->email }}" required >
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Password Pengguna</label>
-                                            <input type="password" name="password" class="form-control" >
-                                            <small>Kosongkan jika tidak ingin mengganti password</small>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Roles</label>
-                                            <select name="roles" required id="roles" class="form-control">
-                                                <option value="{{ $item->roles }}" selected>Tidak Berubah ({{ $item->roles }})</option>
-                                                <option value="ADMIN">Admin</option>
-                                                <option value="USER">User</option>
-                                                <option value="BUYER">Buyer</option>
-                                                <option value="MAHASISWA">Mahasiswa</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col text-right">
-                                        <button type="submit" class="btn btn-success px-5">
-                                            Simpan
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Email Pengguna</label>
+                                <input type="email" name="email" class="form-control" value="{{ $item->email }}" required >
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Password Pengguna</label>
+                                <input type="password" name="password" class="form-control" >
+                                <small>Kosongkan jika tidak ingin mengganti password</small>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Roles</label>
+                                <select name="roles" required id="roles" class="form-control">
+                                    <option value="{{ $item->roles }}" selected>Tidak Berubah ({{ $item->roles }})</option>
+                                    <option value="ADMIN">Admin</option>
+                                    <option value="USER">User</option>
+                                    <option value="BUYER">Buyer</option>
+                                    <option value="MAHASISWA">Mahasiswa</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <button type="submit" class="btn btn-success px-5">
+                                Simpan
+                            </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-    </div>
-</div>
+      </div>
+    </section>
+  </div>
 @endsection
