@@ -32,6 +32,12 @@
           <div class="sidebar-heading text-center">
             <img src="/images/dashboard-store-logo.svg" class="my-4" alt="" />
           </div>
+          <a
+                href="/"
+                class="list-group-item list-group-item-action list-group-item-info {{ (request()->is('/')) ? 'active' : '' }}"
+              >
+              Home
+          </a>
           <div class="list-group list-group-flush">
              @if (auth()->user()->roles == 'USER')
              <a
@@ -160,7 +166,7 @@
                 <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                {{-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto d-none d-lg-flex">
                     <li class="nav-item dropdown">
                     <a
@@ -222,7 +228,7 @@
                     <a class="nav-link d-inline-block" href="#"> Cart </a>
                     </li>
                 </ul>
-                </div>
+                </div> --}}
             </div>
           </nav>
             @if (auth()->user()->roles == 'MAHASISWA')

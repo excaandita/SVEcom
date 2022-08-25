@@ -126,17 +126,17 @@
                     @endphp
                     @if ($carts > 0)
                       <img src="{{ asset('img/icon/cart.png') }}" alt="" />
-                      <div class="cart-badge">{{ $carts }}</div>
+                      <span>{{ $carts }}</span>
                     @else
                       <img src="{{ asset('img/icon/cart.png') }}" alt="" /><span>0</span>
                     @endif
                   </a>
                   @endif
 
-                  <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
+                  {{-- <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
                   style="color: black">
                     <img
-                  src="{{ url('public/images/'.Auth::user()->image) }}"
+                  src="{{ asset('images/icon-user.png') }}"
                   alt=""
                   style="height: 40px;width:40px"
                   class="rounded-circle mr-3 profile-picture"
@@ -145,7 +145,7 @@
               {!! Str::substr(Auth::user()->name, 0, 18) !!}
               @else
               {{ Auth::user()->name }}
-              @endif
+              @endif --}}
              
                    
                   </a>
