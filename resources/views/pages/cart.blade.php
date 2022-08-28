@@ -35,6 +35,7 @@
                 <div class="row">
                 <div class="col-lg-8">
                     <div class="shopping__cart__table">
+                        
                          <table>
                             <thead>
                                 <tr>
@@ -50,7 +51,7 @@
                                 @php $totalWeight = 0 @endphp
                                 @foreach ($carts as $cart)
                                 @php $totalWeight += $cart->product->weight * $cart->quantity @endphp
-
+                                
                                 <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic"  style="width:30%">  
@@ -84,7 +85,7 @@
                                             <td style="width: 50%">
                                                 <button type="submit" class="btn btn-success"> Update</button>
                                         </form> --}}
-
+                                        
 
                                     <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
                                             @csrf
@@ -95,9 +96,7 @@
                                                  <div class="input-group-append">
                                                     <input class="form-control" type="number" name="quantity"
                                                                     id="quantity" value="{{ $cart->quantity }}">
-                                                        <div class="input-group-append">
                                                                     <label for="quantity" class="input-group-text">Pcs</label>
-                                                        </div>
                                                  </div>
                                             </div>
                                         </div>
@@ -113,17 +112,20 @@
                                     </tr>
                                     @php $totalPrice += $cart->product->price * $cart->quantity @endphp <!--buat ngitung total harga produk(harga*quantity)-->
                                @endforeach
+                               
                             </tbody>
-                        </table>            
+                        </table>    
+                                
                     </div>
                 </div>
                     <div class="col-lg-4">
                         <div class="cart__total">
+                            
                             <h4 style="font-weight: bold">Cart total</h4>
                             <ul>
-                                <li id="totalproduct_text">Subtotal <span>Rp.{{ number_format($totalPrice ?? 0) }}</span></li>
-                                <li id="ongkir-text">Ongkos Kirim <span>Rp.0</span></li>
-                                <li id="total-text">Total <span>Rp.
+                                <li>Subtotal <span id="totalproduct_text">Rp.{{ number_format($totalPrice ?? 0) }}</span></li>
+                                <li>Ongkos Kirim <span id="ongkir-text">Rp.0</span></li>
+                                <li>Total <span id="total-text">Rp.
                                 {{ number_format($totalPrice ?? 0) }}</span></li>
                             </ul>
                             <a href="#" class="primary-btn">Checkout</a>
@@ -135,82 +137,81 @@
                     <div class="col-8">
                         <hr/>
                     </div>
-                </div>
-                <div class="col-8">
-                <form action="{{ route('checkout') }}" id="locations" enctype="multipart/form-data" method="POST">
-                    @csrf
-                    
-                    <input type="hidden" name="total_price" id="total_price" value=" {{ $totalPrice }}">
-                    <input type="hidden" name="shipping_price" id="shipping_price" value="">
-                    <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="address_one">Alamat Detail</label>
-                                <input type="text" class="form-control" name="address_one" id="address_one"
-                                    />
+                    <div class="col-8">
+                        <form action="{{ route('checkout') }}" id="locations" enctype="multipart/form-data" method="POST">
+                            @csrf
+                            <input type="hidden" name="total_price" id="total_price" value=" {{ $totalPrice }}">
+                            <input type="hidden" name="shipping_price" id="shipping_price" value="">
+                            <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="address_one">Alamat Detail</label>
+                                        <input type="text" class="form-control" name="address_one" id="address_one"
+                                            />
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="address_two">Detail Patokan</label>
+                                        <input type="text" class="form-control" name="address_two" id="address_two"
+                                            />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="provinces_id">Provinsi </label>
+                                        <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces"
+                                            v-model="provinces_id"> <!-- v-if="provinces" klo data provinsi ada baru dimunculin, klo gada ya ga.
+                                                v-model:provinces_id datanya bisa dibaca divuejs-->
+                                            <option v-for="province in provinces" :value="province.id"> @{{ province.name }} <!--klo mau output vue tu pke et soalnya biar ga kebaca sebagai output blade karena vue js dan blad utput variable hampir sama  -->
+                                            </option>
+                                        </select>
+                                        <select v-else class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="regencies_id">Kota </label>
+                                        <select name="regencies_id" onchange="cekOngkir()" id="regencies_id" class="form-control"
+                                            v-if="regencies" v-model="regencies_id">
+                                            <option v-for="regency in regencies" :value="regency.id"> @{{ regency.name }}
+                                            </option>
+                                        </select>
+                                        <select v-else class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="courier">Pilihan Kurir</label>
+                                        <select name="couriers_id" id="couriers_id" class="form-control">
+                                        </select>
+                                        <input type="hidden" name="courier_name" id="courier_name">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="zip_code">Kode POS</label>
+                                        <input type="text" class="form-control" name="zip_code" id="zip_code" />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="country">Negara</label>
+                                        <input type="text" class="form-control" name="country" id="country"
+                                            value="Indonesia" disabled />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="phone_number">Nomor Telpon</label>
+                                        <input type="text" class="form-control" name="phone_number" id="phone_number" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="address_two">Detail Patokan</label>
-                                <input type="text" class="form-control" name="address_two" id="address_two"
-                                     />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="provinces_id">Provinsi </label>
-                                <select name="provinces_id" id="provinces_id" class="form-control" v-if="provinces"
-                                    v-model="provinces_id"> <!-- v-if="provinces" klo data provinsi ada baru dimunculin, klo gada ya ga.
-                                        v-model:provinces_id datanya bisa dibaca divuejs-->
-                                    <option v-for="province in provinces" :value="province.id"> @{{ province.name }} <!--klo mau output vue tu pke et soalnya biar ga kebaca sebagai output blade karena vue js dan blad utput variable hampir sama  -->
-                                    </option>
-                                </select>
-                                <select v-else class="form-control"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="regencies_id">Kota </label>
-                                <select name="regencies_id" onchange="cekOngkir()" id="regencies_id" class="form-control"
-                                    v-if="regencies" v-model="regencies_id">
-                                    <option v-for="regency in regencies" :value="regency.id"> @{{ regency.name }}
-                                    </option>
-                                </select>
-                                <select v-else class="form-control"></select>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="courier">Pilihan Kurir</label>
-                                <select name="couriers_id" id="couriers_id" class="form-control">
-                                </select>
-                                <input type="hidden" name="courier_name" id="courier_name">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="zip_code">Kode POS</label>
-                                <input type="text" class="form-control" name="zip_code" id="zip_code" />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="country">Negara</label>
-                                <input type="text" class="form-control" name="country" id="country"
-                                    value="Indonesia" disabled />
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="phone_number">Nomor Telpon</label>
-                                <input type="text" class="form-control" name="phone_number" id="phone_number" />
-                            </div>
-                        </div>
+                        </form>
                     </div>
-                </form>
+                    
                 </div>
-                
             </div>
         </section>
     
@@ -294,4 +295,5 @@
             $('#btn_submit').prop('disabled', false); // mengaktifkan tombol submit
         });
     </script>
+    
 @endpush

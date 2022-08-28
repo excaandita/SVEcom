@@ -110,10 +110,10 @@
                   </a>
                   @endif
 
-                  <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
+                  {{-- <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
                   style="color: black">
                     <img
-                  src="{{ Storage::url(Auth::user()->image) ?? url('/images/icon-user.png')}}"
+                  src="{{ asset('images/icon-user.png') }}"
                   alt=""
                   style="height: 40px;width:40px"
                   class="rounded-circle mr-3 profile-picture"
@@ -122,7 +122,7 @@
               {!! Str::substr(Auth::user()->name, 0, 18) !!}
               @else
               {{ Auth::user()->name }}
-              @endif
+              @endif --}}
              
                    
                   </a>

@@ -36,22 +36,6 @@ body {
     font-family: "Nunito Sans", sans-serif;
     -webkit-font-smoothing: antialiased;
 }
-.card {
-    position: relative;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: 15px;
-}
-.card:hover{
- box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
-}
 
 h1,
 h2,
@@ -336,7 +320,7 @@ ol {
 }
 
 .header__top {
-    background: #0D258A;
+    background: #0d258a;
     padding: 10px 0;
 }
 
@@ -355,7 +339,6 @@ ol {
 }
 
 .header__top__links a {
-    color: #ffffff;
     font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -495,8 +478,8 @@ ol {
 }
 
 .header__menu ul li a {
-    font-size: 18px;
-    color: #111111;
+    font-size: 20px;
+    color: #000000;
     display: block;
     font-weight: 600;
     position: relative;
@@ -509,7 +492,7 @@ ol {
     bottom: 0;
     width: 100%;
     height: 2px;
-    background: #e53637;
+    background: #facc02;
     content: "";
     -webkit-transition: all, 0.5s;
     -o-transition: all, 0.5s;
@@ -522,38 +505,6 @@ ol {
 .header__nav__option {
     text-align: right;
     padding: 30px 0;
-}
-.header__nav__option ul li .dropdown {
-	position: absolute;
-	left: 0;
-	top: 56px;
-	width: 150px;
-	background: #111111;
-	text-align: left;
-	padding: 5px 0;
-	z-index: 9;
-	opacity: 0;
-	visibility: hidden;
-	-webkit-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
-}
-
-.header__nav__option ul li .dropdown li {
-	display: block;
-	margin-right: 0;
-}
-
-.header__nav__option ul li .dropdown li a {
-	font-size: 14px;
-	color: #ffffff;
-	font-weight: 400;
-	padding: 5px 20px;
-	text-transform: capitalize;
-}
-
-.header__nav__option ul li .dropdown li a:after {
-	display: none;
 }
 
 .header__nav__option a {
@@ -1141,7 +1092,7 @@ ol {
 }
 
 .product__item__text h5 {
-    color: #0d0d0d;
+    color: #ff7158;
     font-weight: 700;
 }
 
@@ -1280,7 +1231,7 @@ ol {
 }
 
 .shop__sidebar__accordion .card-heading a {
-    color: #111111;
+    color: #ff7158;
     font-size: 16px;
     font-weight: 700;
     text-transform: uppercase;
@@ -1558,8 +1509,7 @@ ol {
 .product__details__pic {
     text-align: center;
     background: #f3f2ee;
-    padding: 40px 0 60px;
-    margin-bottom: 100px;
+    padding: 10px 0 60px;
 }
 
 .product__details__pic .nav-tabs {
@@ -1928,7 +1878,7 @@ ol {
 
 .product__details__tab .nav-tabs .nav-item .nav-link {
     font-size: 20px;
-    color: #b7b7b7;
+    color: #3774cf;
     padding: 0;
     border: none;
     font-weight: 700;
@@ -1937,11 +1887,12 @@ ol {
 }
 
 .product__details__tab .nav-tabs .nav-item .nav-link.active {
-    border-bottom: 2px solid #e53637;
+    border-bottom: 2px solid #fed700;
 }
 
 .product__details__tab__content {
-    padding-top: 35px;
+    padding-top: 0px;
+    width: 880px;
 }
 
 .note {
@@ -1961,7 +1912,7 @@ ol {
 }
 
 .product__details__tab__content__item h5 {
-    color: #111111;
+    color: #ff7158;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 12px;
@@ -1991,7 +1942,7 @@ ol {
 -----------------------*/
 
 .footer {
-    background: #0D258A;
+    background: #0d258a;
     padding-top: 70px;
 }
 
@@ -2008,7 +1959,7 @@ ol {
 }
 
 .footer__about p {
-    color: #b7b7b7;
+    color: #ffff;
     margin-bottom: 30px;
 }
 
@@ -2031,12 +1982,12 @@ ol {
 }
 
 .footer__widget ul li a {
-    color: #b7b7b7;
+    color: #faebaa;
     font-size: 15px;
 }
 
 .footer__widget .footer__newslatter p {
-    color: #b7b7b7;
+    color: #faebaa;
 }
 
 .footer__widget .footer__newslatter form {
@@ -2108,12 +2059,10 @@ ol {
 -----------------------*/
 
 .breadcrumb-option {
-    background: #f3f2ee;
     padding: 40px 0;
 }
 
 .breadcrumb__text h4 {
-    color: #111111;
     font-weight: 700;
     margin-bottom: 8px;
 }
@@ -2570,7 +2519,6 @@ ol {
 }
 
 .cart__total {
-    background: #f3f2ee;
     padding: 35px 40px 40px;
 }
 
@@ -3943,4 +3891,8 @@ ol {
     .categories__text:before {
         height: 250px;
     }
+}
+.box-profile h3 {
+    color: #e53637;
+    margin-bottom: 15px;
 }

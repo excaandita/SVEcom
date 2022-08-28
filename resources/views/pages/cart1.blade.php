@@ -1,12 +1,10 @@
-@extends('layouts.app1')
+@extends('layouts.app')
 
 @section('title')
     Cart - Sekolah Vokasi E-COM
 @endsection
 
 @section('content')
-     
-
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-option">
         <div class="container">
@@ -15,7 +13,7 @@
                     <div class="breadcrumb__text">
                         <h4>Shopping Cart</h4>
                         <div class="breadcrumb__links">
-                            <a href="{{ route('home')}}">Home</a>
+                            <a href="./index.html">Home</a>
                             <a href="./shop.html">Shop</a>
                             <span>Shopping Cart</span>
                         </div>
@@ -26,28 +24,34 @@
     </section>
     <!-- Breadcrumb Section End -->
 
-    <!-- Shopping Cart Section Begin -->
+      <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
-        <div class="container">
-            <div class="row">
+            <div class="container">
+                  <!--Error-->
+                @if (session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
+                <!--end Error-->
+                <div class="row">
                 <div class="col-lg-8">
                     <div class="shopping__cart__table">
-                        <table>
+                         <table>
                             <thead>
                                 <tr>
                                     <th>Produk</th>
-                                    <th>Jumlah</th>
                                     <th>Total</th>
+                                    <th>Jumlah</th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                @php $totalPrice = 0 @endphp 
-                                @php $totalWeight = 0 @endphp  <!--variable kosong di isi 0 soalnya kan awalnya gada totalnya alias datanya nol-->
                                 
-                                     @foreach ($carts as $cart)
-                                     @php $totalWeight += $cart->product->weight * $cart->quantity @endphp
+                                @php $totalPrice = 0 @endphp 
+                                @php $totalWeight = 0 @endphp
+                                @foreach ($carts as $cart)
+                                @php $totalWeight += $cart->product->weight * $cart->quantity @endphp
+
+                                <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic"  style="width:30%">  
                                             @if ($cart->product->galleries) <!--kalo da gambar maka gambar akan muncul dgn ngambil dari storage, variabel cart ke objek produk ke objek galleri berdasarkan foto pertama -->
@@ -60,53 +64,82 @@
                                             <h6> {{ number_format($cart->product->weight)}}gr</h6>
                                             <h5>Rp. {{ number_format($cart->product->price)}}</h5>
                                         </div>
-                                     </td>
-                                     <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty-2 product-title">
-                                            <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
+                                    </td>
+                                    <td class="cart__price">Rp. {{ number_format($cart->product->price*$cart->quantity)}}</td>
+                                    
+                                    {{-- <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
                                             @csrf
                                             @method('PATCH')
-                                                    <div class="input-group-append">
+                                            <td style="width: 15%">
+                                                <div class="product-title">
+                                                    <div class="input-group">
                                                         <input class="form-control" type="number" name="quantity"
                                                             id="quantity" value="{{ $cart->quantity }}">
+                                                        <div class="input-group-append">
                                                             <label for="quantity" class="input-group-text">Pcs</label>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </td>
+                                            <td style="width: 50%">
+                                                <button type="submit" class="btn btn-success"> Update</button>
+                                        </form> --}}
+
+
+                                    <form action="{{ route('cart-update-quantity', $cart->id) }}" method="post">
+                                            @csrf
+                                            @method('PATCH')
+                                    <td class="quantity__item">
+                                        <div class="quantity">
+                                            <div class="pro-qty-2">
+                                                 <div class="input-group-append">
+                                                    <input class="form-control" type="number" name="quantity"
+                                                                    id="quantity" value="{{ $cart->quantity }}">
+                                                        <div class="input-group-append">
+                                                                    <label for="quantity" class="input-group-text">Pcs</label>
+                                                        </div>
+                                                 </div>
                                             </div>
                                         </div>
-                                    </td>
-                                    <td class="cart__price">Rp. {{ number_format($cart->product->price  * $cart->product->quantity)}}</td>
-                                    <td class="cart__close">
-                                                <button type="submit" class="fa fa-repeat"></button>
+                                        <td class="cart__close">
+                                                <button type="submit" class="cart-btn fa fa-repeat"></button>
                                     </form>
-                                        <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
+                                    <form action="{{ route('cart-delete', $cart->id) }}" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button type="submit"><button class="fa fa-close btn-cart"></button></button> 
+                                             <button type="submit" class=" cart-btn fa fa-close"></button>
                                         </form>
-                                    </td>
-                                </tr>
-                                  @php $totalPrice += $cart->product->price * $cart->quantity @endphp <!--buat ngitung total harga produk(harga*quantity)-->
-                                @endforeach
+                                        </td>
+                                    </tr>
+                                    @php $totalPrice += $cart->product->price * $cart->quantity @endphp <!--buat ngitung total harga produk(harga*quantity)-->
+                               @endforeach
                             </tbody>
-                        </table>
+                        </table>            
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="cart__total">
-                        <h4>Cart total</h4>
-                        <ul>
-                            <li id="totalproduct_text">Subtotal <span>Rp.{{ number_format($totalPrice ?? 0) }}</span></li>
-                            <li id="ongkir-text">Ongkos Kirim<span>Rp.0</span></li>
-                            <li id="total-text">Total <span>Rp.  {{ number_format($totalPrice ?? 0) }}</span></li>
-                        </ul>
-                        
+                    <div class="col-lg-4">
+                        <div class="cart__total">
+                            <h4 style="font-weight: bold">Cart total</h4>
+                            <ul>
+                                <li id="totalproduct_text">Subtotal <span>Rp.{{ number_format($totalPrice ?? 0) }}</span></li>
+                                <li id="ongkir-text">Ongkos Kirim <span>Rp.0</span></li>
+                                <li id="total-text">Total <span>Rp.
+                                {{ number_format($totalPrice ?? 0) }}</span></li>
+                            </ul>
+                            <a href="#" class="primary-btn">Checkout</a>
+                        </div>
+                </div>
+                </div>
+                <!--Shipping-->
+                <div class="row">
+                    <div class="col-8">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="col-8">
                 <form action="{{ route('checkout') }}" id="locations" enctype="multipart/form-data" method="POST">
                     @csrf
-                        <button type="submit" id="btn_submit" class="primary-btn" disabled >Checkout</button>  
-                    </div>
-                </div>
-                <div class="col-lg-12 mt-4">
+                    
                     <input type="hidden" name="total_price" id="total_price" value=" {{ $totalPrice }}">
                     <input type="hidden" name="shipping_price" id="shipping_price" value="">
                     <div class="row mb-2" data-aos="fade-up" data-aos-delay="200">
@@ -161,12 +194,6 @@
                                 <input type="text" class="form-control" name="zip_code" id="zip_code" />
                             </div>
                         </div>
-                          <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="phone_number">Nomor Telpon</label>
-                                <input type="text" class="form-control" name="phone_number" id="phone_number" />
-                            </div>
-                        </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="country">Negara</label>
@@ -174,11 +201,19 @@
                                     value="Indonesia" disabled />
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="phone_number">Nomor Telpon</label>
+                                <input type="text" class="form-control" name="phone_number" id="phone_number" />
+                            </div>
+                        </div>
                     </div>
                 </form>
                 </div>
+                
             </div>
-        </div>
+        </section>
+    
 @endsection
 
 @push('addon-script')
@@ -209,6 +244,7 @@
                         })
                 },
                
+
                 getRegenciesData() { //dipanggil berdasarkan perubahan pd provinsi
                     var self = this;
                     axios.get('{{ url('api/regencies') }}/' + self.provinces_id)//ngambil provinces_id pada methods getprovincesdata diatas
