@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Support\Facades\File;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Models\Tags;
 use Yajra\DataTables\DataTables as DataTablesDataTables;
 
 class ProductController extends Controller
@@ -27,7 +28,7 @@ class ProductController extends Controller
         if(request()->ajax()) 
         {
             //query datatable
-            $query = Product::with(['user','category'])->withSum('transactiondetail','quantity'); //manggil sm relasinya
+            $query = Product::with(['user','category', 'tags'])->withSum('transactiondetail','quantity'); //manggil sm relasinya
 
             return DataTablesDataTables::of($query) //bentuk json buat balikin data dataable
                 ->addColumn('action', function($item){
@@ -74,10 +75,12 @@ class ProductController extends Controller
             
         // $users = User::all();
         $categories = Category::all();
+        $tags = Tags::all();
         
         return view('pages.admin.product.create', [
             'users' => $users,
             'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 
@@ -92,6 +95,7 @@ class ProductController extends Controller
         $data = $request->all(); //variable data isinya semua data yang masuk
 
         $data['slug'] = Str::slug($request->name); //slug digunakan untuk menamai urlnya. menggunakan str slug. tulisan apa yang mau dibentuk slug kalo pada produk ini namanya 
+        $data['tags'] = json_encode($request->tags);
 
         Product::create($data);
 
@@ -122,11 +126,13 @@ class ProductController extends Controller
                         ->where("roles", "=", 'USER')
                         ->get();
         $categories = Category::all();
+        $tags = Tags::all();
 
         return view('pages.admin.product.edit',[
             'item' => $item,
             'users' => $users,
             'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 

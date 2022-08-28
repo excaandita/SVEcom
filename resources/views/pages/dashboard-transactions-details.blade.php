@@ -243,8 +243,14 @@
                                   </div>
                                 </form>
                               </template>
-      
-                              <template v-if="status == 'PENDING'">
+  
+                              <template v-if="status == 'CANCELLED'">
+                                <div class="row">
+                                    <div class="col-sm-12 mt-2">
+                                      <div class="product-title mt-2">Alasan Pembatalan</div>
+                                      <div class="product-subtitle">{!! $transaction->reason ?? '-' !!}</div>
+                                    </div>
+                                </div>
                                 <div class="row">
                                   <div class="col-sm-4">
                                     <form action="{{ route('dashboard-refund-create', $transaction->id)}}" method="POST" enctype="multipart/form-data">
@@ -257,15 +263,6 @@
                                       </button>
                                     </form>
                                   </div>
-                                </div>
-                              </template>
-  
-                              <template v-if="status == 'CANCELLED'">
-                                <div class="row">
-                                    <div class="col-sm-12 mt-2">
-                                      <div class="product-title mt-2">Alasan Pembatalan</div>
-                                      <div class="product-subtitle">{!! $transaction->reason ?? '-' !!}</div>
-                                    </div>
                                 </div>
                               </template>
                             @endif

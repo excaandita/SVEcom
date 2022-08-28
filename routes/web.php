@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\TagsController as AdminTagsController;
 use App\Http\Controllers\Admin\SliderController as AdminSliderController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\Dashboard1Controller as AdminDashboard1Controller;
@@ -98,7 +99,10 @@ Route::get('/portofolio/{id}', [PortofolioController::class, 'detail'])->name('p
 Route::get('/search', [PortofolioController::class, 'search'])->name('')->name('portofolio-search');
 
 Route::get('/listproduct', [ListProductController::class, 'index'])->name('listproduct');
+Route::get('/listproduct/tag/{id}', [ListProductController::class, 'detailTag'])->name('product-tag');
 Route::get('/listproduct/{id}', [ListProductController::class, 'detail'])->name('product-categories');
+
+
 Route::get('/daftarproduct', [DaftarProdukController::class, 'index'])->name('daftarproduct');
 
 Route::get('/details/{id}', [DetailController::class, 'index'])->name('detail');
@@ -230,6 +234,7 @@ Route::prefix('admin')
         Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
         Route::get('dashboard/admin', [AdminDashboard1Controller::class, 'index'])->name('dashboard-admin');
         Route::resource('category', AdminCategoryController::class);
+        Route::resource('tags', AdminTagsController::class);
         Route::resource('slider', AdminSliderController::class);
         Route::resource('user', AdminUserController::class);
         Route::get('/user/status/{id}/{status_code}', [AdminUserController::class, 'updateActive'])->name('update-active');

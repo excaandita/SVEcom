@@ -83,13 +83,9 @@
                     >
                       <div class="card-body">
                         <div class="shop__sidebar__tags">
-                          <a href="#">Product</a>
-                          <a href="#">Bags</a>
-                          <a href="#">Shoes</a>
-                          <a href="#">Fashio</a>
-                          <a href="#">Clothing</a>
-                          <a href="#">Hats</a>
-                          <a href="#">Accessories</a>
+                          @foreach ($tags as $tag)
+                            <a href="{{ route('product-tag', $tag->tags) }}">{{ $tag->tags }}</a>
+                          @endforeach
                         </div>
                       </div>
                     </div>

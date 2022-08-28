@@ -92,7 +92,7 @@
               /></a>
               @guest
               <a href="#"
-              ><img src="img/icon/cart.png" alt="" /> <span>0</span></a
+              ><img src="/images/icon-cart-empty.svg" alt="" /></a
             >
               @endguest
               @auth
@@ -102,10 +102,10 @@
                       $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity'); 
                     @endphp
                     @if ($carts > 0)
-                      <img src="{{ asset('img/icon/cart.png') }}" alt="" />
+                      <img src="{{ asset('/images/icon-cart-filled.svg') }}" alt="" />
                       <div class="cart-badge">{{ $carts }}</div>
                     @else
-                      <img src="{{ asset('img/icon/cart.png') }}" alt="" /><span>0</span>
+                      <img src="{{ asset('/images/icon-cart-empty.svg') }}" alt="" /><span></span>
                     @endif
                   </a>
                   @endif

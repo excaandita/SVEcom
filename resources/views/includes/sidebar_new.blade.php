@@ -20,10 +20,19 @@
             <a class="nav-link " href="{{ route('dashboard-product') }}">
                 <i class="fas fa-ice-cream"></i> <span>Produk</span></a></li>
         @endif
+
         @if (auth()->user()->roles == 'BUYER')
         <li class="{{ Route::is('buyer-dashboard') ? 'active' : '' }}">
             <a class="nav-link " href="{{ route('buyer-dashboard') }}">
-                <i class="fas fa-grip-horizontal"></i> <span>Dashboard</span></a></li>
+                <i class="fas fa-grip-horizontal"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        <li class="{{ Route::is('dashboard-refund') ? 'active' : '' }}">
+            <a class="nav-link " href="{{ route('dashboard-refund') }}">
+                <i class="fas fa-ice-cream"></i> <span>Pengembalian Dana</span>
+            </a>
+        </li>
+                  
         @endif
         @if (auth()->user()->roles != 'MAHASISWA')
         <li class="{{ Route::is('dashboard-transaction') ? 'active' : '' }}">
@@ -69,11 +78,7 @@
         <li class="{{ Route::is('portofolio-setting') ? 'active' : '' }}"><a class="nav-link " href="{{ route('portofolio-setting') }}">	
             <i class="fas fa-cogs"></i> <span>Pengaturan Portofolio</a></span></li>
       @endif
-      @if (auth()->user()->roles == 'BUYER')
-      <li class="{{ Route::is('dashboard-refund') ? 'active' : '' }}">
-        <a class="nav-link " href="{{ route('dashboard-refund') }}">
-            <i class="fas fa-money-bill-wave"> <span>Pengembalian Dana</span></a></li>
-      @endif
+      
         <li class="{{ Route::is('dashboard-setting-account') ? 'active' : '' }}" >
             <a href="{{ route('dashboard-setting-account')}}" class="nav-link ">
                 <i class="fas fa-user-cog"></i> <span>Pengaturan Akun</span></a>

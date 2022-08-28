@@ -15,6 +15,7 @@
     </div>
     <div class="section-body">
       <h2 class="section-title">Transaksi</h2>
+      <p class="section-lead">Daftar seluruh transaksi</p>
       <div class="row">
         <div class="col-12 mt-2">
           <ul
