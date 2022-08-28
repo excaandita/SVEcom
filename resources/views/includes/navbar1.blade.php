@@ -92,7 +92,7 @@
               /></a>
               @guest
               <a href="#"
-              ><img src="img/icon/cart.png" alt="" /> <span>0</span></a
+              ><img src="/images/icon-cart-empty.svg" alt="" /></a
             >
               @endguest
               @auth
@@ -102,18 +102,18 @@
                       $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity'); 
                     @endphp
                     @if ($carts > 0)
-                      <img src="{{ asset('img/icon/cart.png') }}" alt="" />
+                      <img src="{{ asset('/images/icon-cart-filled.svg') }}" alt="" />
                       <div class="cart-badge">{{ $carts }}</div>
                     @else
-                      <img src="{{ asset('img/icon/cart.png') }}" alt="" /><span>0</span>
+                      <img src="{{ asset('/images/icon-cart-empty.svg') }}" alt="" /><span></span>
                     @endif
                   </a>
                   @endif
 
-                  <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
+                  {{-- <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
                   style="color: black">
                     <img
-                  src="{{ Storage::url(Auth::user()->image) ?? url('/images/icon-user.png')}}"
+                  src="{{ asset('images/icon-user.png') }}"
                   alt=""
                   style="height: 40px;width:40px"
                   class="rounded-circle mr-3 profile-picture"
@@ -122,7 +122,7 @@
               {!! Str::substr(Auth::user()->name, 0, 18) !!}
               @else
               {{ Auth::user()->name }}
-              @endif
+              @endif --}}
              
                    
                   </a>

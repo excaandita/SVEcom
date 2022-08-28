@@ -6,6 +6,9 @@
 
 @section('content')
 <!-- Main Content -->
+    
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 <div class="main-content">
     <section class="section" data-aos="fade-up">
       <div class="section-header">
@@ -73,6 +76,16 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <label for="select2Multiple">Tags Produk</label>
+                                <select class="select2-multiple form-control" name="tags[]" id="select2Multiple" multiple="multiple">
+                                    @foreach ($tags as $p)
+                                        <option value="{{ $p->tags }}">{{ $p->tags }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <label>Deksripsi Produk</label>
                                 <textarea name="description" id="deskripsi"></textarea>
                             </div>
@@ -96,6 +109,17 @@
 <!--manggil ck editor 5 ngambil dri cdn ck editor-->
 @push('addon-script')
     <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          // Select2 Multiple
+          $('.select2-multiple').select2({
+              placeholder: "Select",
+              allowClear: true,
+          });
+
+      });
+    </script>
     <script>
         ClassicEditor.create(document.querySelector("#deskripsi"))
           .then((editor) => {
@@ -105,4 +129,5 @@
             console.error(error);
           });
       </script>
+
 @endpush

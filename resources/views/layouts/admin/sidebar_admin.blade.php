@@ -24,6 +24,8 @@
         
         <li class="{{ Route::is('category.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('category.index') }}"><i class="fas fa-shapes"></i> <span>Kategori</span></a></li>
        
+        <li class="{{ Route::is('tags.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('tags.index') }}"><i class="fas fa-tag"></i> <span>Tags</span></a></li>
+       
         <li class="{{ Route::is('slider.index') ? 'active' : '' }}"><a class="nav-link" href="{{ route('slider.index') }}"><i class="fas fa-sliders-h"></i> <span>Slider</span></a></li>
      
         <li class="dropdown {{ Route::is('transaction.index') ? 'active' : '' }}">
