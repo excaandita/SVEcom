@@ -102,11 +102,7 @@
                       $carts = \App\Models\Cart::where('users_id', Auth::user()->id)->sum('quantity'); 
                     @endphp
                     @if ($carts > 0)
-<<<<<<< HEAD
                       <img src="{{ asset('/images/icon-cart-filled.svg') }}" alt="" />
-=======
-                      <img src="{{ asset('img/icon/cart.png') }}" alt="" />
->>>>>>> parent of 4d11ad5 (revisi rizquna)
                       <div class="cart-badge">{{ $carts }}</div>
                     @else
                       <img src="{{ asset('/images/icon-cart-empty.svg') }}" alt="" /><span></span>

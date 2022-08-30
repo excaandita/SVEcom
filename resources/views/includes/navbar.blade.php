@@ -1,4 +1,4 @@
-<nav
+ <nav
       class="navbar navbar-expand-lg navbar-light bg-light navbar-store fixed-top navbar-fixed-top"
       data-aos="fade-up-left"
     >
