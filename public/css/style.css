@@ -46,11 +46,11 @@ body {
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 15px;
 }
-.card:hover{
- box-shadow: 0 10px 20px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.06);
+.card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
 }
 
 h1,
@@ -336,11 +336,7 @@ ol {
 }
 
 .header__top {
-<<<<<<< HEAD
     background: #0d258a;
-=======
-    background: #111111;
->>>>>>> parent of 4d11ad5 (revisi rizquna)
     padding: 10px 0;
 }
 
@@ -528,36 +524,36 @@ ol {
     padding: 30px 0;
 }
 .header__nav__option ul li .dropdown {
-	position: absolute;
-	left: 0;
-	top: 56px;
-	width: 150px;
-	background: #111111;
-	text-align: left;
-	padding: 5px 0;
-	z-index: 9;
-	opacity: 0;
-	visibility: hidden;
-	-webkit-transition: all, 0.3s;
-	-o-transition: all, 0.3s;
-	transition: all, 0.3s;
+    position: absolute;
+    left: 0;
+    top: 56px;
+    width: 150px;
+    background: #111111;
+    text-align: left;
+    padding: 5px 0;
+    z-index: 9;
+    opacity: 0;
+    visibility: hidden;
+    -webkit-transition: all, 0.3s;
+    -o-transition: all, 0.3s;
+    transition: all, 0.3s;
 }
 
 .header__nav__option ul li .dropdown li {
-	display: block;
-	margin-right: 0;
+    display: block;
+    margin-right: 0;
 }
 
 .header__nav__option ul li .dropdown li a {
-	font-size: 14px;
-	color: #ffffff;
-	font-weight: 400;
-	padding: 5px 20px;
-	text-transform: capitalize;
+    font-size: 14px;
+    color: #ffffff;
+    font-weight: 400;
+    padding: 5px 20px;
+    text-transform: capitalize;
 }
 
 .header__nav__option ul li .dropdown li a:after {
-	display: none;
+    display: none;
 }
 
 .header__nav__option a {
@@ -1995,11 +1991,7 @@ ol {
 -----------------------*/
 
 .footer {
-<<<<<<< HEAD
     background: #0d258a;
-=======
-    background: #111111;
->>>>>>> parent of 4d11ad5 (revisi rizquna)
     padding-top: 70px;
 }
 
