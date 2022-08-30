@@ -86,7 +86,7 @@
               </a>
               <div class="dropdown-menu">
                 @if (auth()->user()->roles == 'ADMIN')
-                  <a href="{{route('dashboard-admin')}}" class="dropdown-item">Admin</a>
+                  <a href="{{route('admin-dashboard')}}" class="dropdown-item">Admin</a>
                 @endif
                 @if (auth()->user()->roles == 'USER')
                   <a href="{{ route('seller-dashboard')}}" class="dropdown-item">Dashboard</a>

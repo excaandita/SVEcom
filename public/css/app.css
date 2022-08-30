@@ -4317,7 +4317,7 @@ fieldset:disabled .btn {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: rgb(88, 133, 255);
+    background-color: #fff;
     background-clip: border-box;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
@@ -5035,9 +5035,14 @@ fieldset:disabled .btn {
         var(--bs-list-group-item-padding-x);
     color: var(--bs-list-group-color);
     text-decoration: none;
+<<<<<<< HEAD
     background-color: var(--bs-list-group-bg);
     border: var(--bs-list-group-border-width) solid
         var(--bs-list-group-border-color);
+=======
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+>>>>>>> parent of 4d11ad5 (revisi rizquna)
 }
 .list-group-item:first-child {
     border-top-left-radius: inherit;

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-   Produk - Sekolah Vokasi E-COM
+    Cart - Sekolah Vokasi E-COM
 @endsection
 @section('content')
     <!-- Breadcrumb Section Begin -->
@@ -83,9 +83,19 @@
                     >
                       <div class="card-body">
                         <div class="shop__sidebar__tags">
+<<<<<<< HEAD
                           @foreach ($tags as $tag)
                             <a href="{{ route('product-tag', $tag->tags) }}">{{ $tag->tags }}</a>
                           @endforeach
+=======
+                          <a href="#">Product</a>
+                          <a href="#">Bags</a>
+                          <a href="#">Shoes</a>
+                          <a href="#">Fashio</a>
+                          <a href="#">Clothing</a>
+                          <a href="#">Hats</a>
+                          <a href="#">Accessories</a>
+>>>>>>> parent of 4d11ad5 (revisi rizquna)
                         </div>
                       </div>
                     </div>
@@ -99,26 +109,32 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="shop__product__option__left">
-                     
-                    <p>Showing 1–9 of {{ $products->count()}}</p>
-                    
+                    <p>Showing 1–12 of 126 results</p>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                  <div class="shop__product__option__right">
+                    <p>Sort by Price:</p>
+                    <select>
+                      <option value="">Low To High</option>
+                      <option value="">$0 - $55</option>
+                      <option value="">$55 - $100</option>
+                    </select>
                   </div>
                 </div>
               </div>
             </div>
             <div class="row">
                 @forelse ($products as $product )
-              <div class="col-lg-4 col-md-4 col-sm-6" data-aos="fade-up">
+              <div class="col-lg-4 col-md-4 col-sm-6">
                <div class="product__item">
-                 <div class="image-content-list">
-                    <a href="{{ route('detailproduk', $product->slug)}}" class="component-products d-block">
-                      <div
-                        class="product__item__pic"
-                        style="
-                            background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
-                        "
-                      ></div>
-                    </a>
+                 <div class="image-content">
+                   <div
+                    class="product__item__pic"
+                    style="
+                        background-image: url('{{ Storage::url($product->galleries->first()->photos) }}')
+                    "
+                  ></div>
                  </div>
                   
                   <div class="product__item__text">

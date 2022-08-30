@@ -39,9 +39,10 @@
                            <img
                             src="{{ Storage::url($p->galleries->first()->photos ?? '') }}"
                             alt=""
-                            class="mb-2 image-box-product"
+                            class="mb-2 image-box"
                           />
                           <div class="product-title">{{ $p->name }}</div>
+                          <div class="product-category">{{ $p->category->name }}</div>
                            <div class="product-category">Terjual {{ ($p->transactiondetail->sum('quantity')) }} pcs</div>
                            
                         </div>
