@@ -7,14 +7,17 @@
 @section('content')
 <div class="main-content">
   <div class="section">
-    <div class="container-fluid">
-      <div class="dashboard-heading">
-        <h2 class="dashboard-title">Produk </h2>
-        <p class="dashboard-subtitle">Kelola Produk Anda</p>
-      </div>
+    <div class="section-header">
+      <h1>Produk </h2>
+        <div class="section-header-breadcrumb">
+            <div class="breadcrumb-item active"></div>
+        </div>
+    </div>
       <div class="dashboard-content">
+         <h2 class="section-title">Daftar Produk</h2>
+                <p class="section-lead">List daftar produk yang anda miliki</p>
         <div class="row">
-          <div class="col-12">
+          <div class="col-md-12">
             <a
               href="{{ route('dashboard-product-create')}}"
               class="btn btn-info"
@@ -49,7 +52,7 @@
           @endforeach
         </div>
       </div>
-    </div>
+    
   </div>
 </div>         
 @endsection

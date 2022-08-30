@@ -1133,7 +1133,7 @@ ol {
 }
 
 .product__item__text h5 {
-    color: #0d0d0d;
+    color: #ff7158;
     font-weight: 700;
 }
 
@@ -1547,12 +1547,6 @@ ol {
   Shop
 -----------------------*/
 
-.product__details__pic {
-    text-align: center;
-    padding: 40px 0 60px;
-    margin-bottom: 100px;
-}
-
 .product__details__pic .nav-tabs {
     border-bottom: none;
     width: 105px;
@@ -1919,7 +1913,6 @@ ol {
 
 .product__details__tab .nav-tabs .nav-item .nav-link {
     font-size: 20px;
-    color: #b7b7b7;
     padding: 0;
     border: none;
     font-weight: 700;
@@ -1928,11 +1921,7 @@ ol {
 }
 
 .product__details__tab .nav-tabs .nav-item .nav-link.active {
-    border-bottom: 2px solid #e53637;
-}
-
-.product__details__tab__content {
-    padding-top: 35px;
+    border-bottom: 2px solid #fed700;
 }
 
 .note {
@@ -1952,7 +1941,7 @@ ol {
 }
 
 .product__details__tab__content__item h5 {
-    color: #111111;
+    color: #ff7158;
     font-size: 20px;
     font-weight: 700;
     margin-bottom: 12px;

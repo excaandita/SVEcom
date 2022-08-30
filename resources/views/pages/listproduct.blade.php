@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Cart - Sekolah Vokasi E-COM
+    Produk - Sekolah Vokasi E-COM
 @endsection
 @section('content')
     <!-- Breadcrumb Section Begin -->
@@ -99,26 +99,17 @@
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                   <div class="shop__product__option__left">
-                    <p>Showing 1–12 of 126 results</p>
+                     <p>Showing 1–9 of {{ $products->count()}}</p>
                   </div>
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                  <div class="shop__product__option__right">
-                    <p>Sort by Price:</p>
-                    <select>
-                      <option value="">Low To High</option>
-                      <option value="">$0 - $55</option>
-                      <option value="">$55 - $100</option>
-                    </select>
-                  </div>
-                </div>
+                
               </div>
             </div>
             <div class="row">
                 @forelse ($products as $product )
               <div class="col-lg-4 col-md-4 col-sm-6">
                <div class="product__item">
-                 <div class="image-content">
+                 <div class="image-content-list">
                    <div
                     class="product__item__pic"
                     style="
