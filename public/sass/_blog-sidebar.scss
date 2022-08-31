@@ -2,7 +2,6 @@
   Blog Sidebar
 -----------------------*/
 .blog__sidebar {
-
 }
 
 .blog__sidebar__item {
@@ -14,7 +13,6 @@
     }
 
     form {
-
         input {
             height: 50px;
             font-size: 15px;
@@ -56,14 +54,13 @@
 }
 
 .blog__sidebar__social {
-
     a {
         display: inline-block;
         font-size: 18px;
         color: $heading-color;
         width: 50px;
         height: 50px;
-        background: #f2f2f2;
+
         border-radius: 50%;
         line-height: 50px;
         text-align: center;

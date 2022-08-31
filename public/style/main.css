@@ -173,7 +173,6 @@ sup {
 }
 
 a {
-    color: #ffffff;
     text-decoration: none;
     background-color: transparent;
 }
@@ -17563,6 +17562,13 @@ ol {
 .image-box {
     width: 300px;
     height: 300px;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.gambar {
+    width: 300px;
+    height: 300px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -17591,7 +17597,7 @@ ol {
     text-decoration: none;
     background-color: transparent;
 }
-<<<<<<< Updated upstream
+
 .box-profile h3 {
     color: #e53637;
     margin-bottom: 15px;
@@ -17632,7 +17638,7 @@ ol {
 .product__item__text {
     padding-top: 25px;
     position: relative;
-=======
+}
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -17851,6 +17857,23 @@ figure {
 img {
     vertical-align: middle;
     border-style: none;
+}
+
+.image-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.image-box-product {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
 }
 
 svg {
@@ -30110,10 +30133,6 @@ body {
     border-bottom: 2px solid #e53637;
 }
 
-.product__details__tab__content {
-    padding-top: 20px;
-}
-
 .note {
     color: #111111;
     font-size: 18px;
@@ -32808,7 +32827,6 @@ ol {
 }
 
 .product__details__tab__content {
-    padding-top: 20px;
     width: 880px;
 }
 
@@ -35289,14 +35307,6 @@ ol {
     z-index: 1;
     margin-right: 10px;
 }
-.image-box {
-    width: 300px;
-    height: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    object-fit: cover;
-}
 .image-box-product {
     width: 250px;
     height: 250px;
@@ -35349,5 +35359,8 @@ ol {
 .box-profile h3 {
     color: #e53637;
     margin-bottom: 15px;
->>>>>>> Stashed changes
+}
+.box-profile h3 {
+    color: #e53637;
+    margin-bottom: 15px;
 }

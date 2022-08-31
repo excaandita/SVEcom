@@ -3917,3 +3917,42 @@ ol {
         height: 250px;
     }
 }
+.image-box {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.image-box-product {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.image-detail {
+    width: 500px;
+    height: 500px;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.image-detail-row {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    object-fit: cover;
+}
+.huruf {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: transparent;
+}
