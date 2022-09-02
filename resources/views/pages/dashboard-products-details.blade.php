@@ -26,19 +26,19 @@
           </ul>
       </div>
   @endif
-  <div class="row">
+  <div class="row justify-content-between">
 
     @foreach ($product->galleries as $gallery)
-      <div class="col-md-3 mx-3">
-        <div class="gallery-container">
+      <div class="col-12 col-sm-6 col-md-3 mb-3 mb-md-auto">
+        <div class="custom_s gallery-container position-relative">
+           <a href="{{ route('dashboard-product-gallery-delete', $gallery->id )}}" class="delete-gallery">
+            <img src="/images/icon-delete.svg" alt="" />
+          </a>
           <img
             src="{{ Storage::url($gallery->photos ?? '') }}"
             alt=""
             class="image-box"
           />
-          <a href="{{ route('dashboard-product-gallery-delete', $gallery->id )}}" class="delete-gallery">
-            <img src="/images/icon-delete.svg" alt="" />
-          </a>
         </div>
       </div>
     @endforeach
@@ -161,6 +161,31 @@
 @endsection
 
 @push('addon-script')
+<style>
+  /* .custom_s.gallery-container {
+    width: 230px;
+    height: 230px;
+  } */
+  .custom_s .image-box {
+    width: 230px;
+    height: 230px;
+    max-width: 100%;
+    object-fit: cover;
+  }
+  .custom_s .delete-gallery {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 4px
+  }
+  @media (max-width: 720px) {
+    .custom_s .image-box {
+      width: 100%;
+      max-height: 100%;
+      min-height: 330px;
+    }
+  }
+</style>
 <script>
     function thisFileUpload() {
         document.getElementById("file").click();

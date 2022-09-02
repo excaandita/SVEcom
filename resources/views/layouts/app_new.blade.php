@@ -23,6 +23,9 @@
       <link rel="stylesheet" href="{{ asset('/admin/assets/css/style.css') }}">
       <link rel="stylesheet" href="{{ asset('/admin/assets/css/components.css') }}">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+
+      <!-- Main CSS -->
+      <link rel="stylesheet" href="{{ asset('/style/main.css') }}">
     
   </head>
 
@@ -51,12 +54,12 @@
 
   
   <!-- General JS Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltip.js/1.3.3/tooltip.min.js"></script>
   <script src="{{ asset('js/bootstrap.min.js') }}"></script>
   <script src="{{ asset('js/jquery.nicescroll.min.js') }}"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
   <script src="{{ asset('/admin/assets/js/stisla.js') }}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tooltip.js/1.3.3/tooltip.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.5/umd/popper.min.js"></script>
   
   
   <!-- JS Libraies -->
