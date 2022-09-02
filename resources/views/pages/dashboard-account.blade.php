@@ -11,7 +11,7 @@
       <div class="section-header">
         <h1>Seller Dashboard - My Account</h1>
         <div class="section-header-breadcrumb">
-          <div class="breadcrumb-item active">Update yout current profile</div>
+          <div class="breadcrumb-item active">Update your current profile</div>
         </div>
       </div>
       <div class="dashboard-content">
