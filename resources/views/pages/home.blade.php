@@ -102,7 +102,7 @@
                 </div>
                 <div class="product__item__text">
                   <h6>{{ $product->name }}</h6>
-                  <a href="{{ route('detail', $product->slug)}}" class="add-cart">+ Add To Cart</a>
+                  <a href="{{ route('detailproduk', $product->slug)}}" class="add-cart">+ Add To Cart</a>
                   <h5>Rp. {{number_format($product->price) }}</h5>
                 </div>
               </div>
@@ -121,7 +121,7 @@
                 </div>
                 <div class="product__item__text">
                   <h6>{{ $product->name }}</h6>
-                  <a href="{{ route('detail', $product->slug)}}" class="add-cart">+ Add To Cart</a>
+                  <a href="{{ route('detailproduk', $product->slug)}}" class="add-cart">+ Add To Cart</a>
                   
                   <h5>Rp. {{number_format($product->price) }}</h5>
                 </div>

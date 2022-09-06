@@ -85,7 +85,7 @@
             </nav>
             
           </div>
-          <div class="col-lg-4 col-md-4 mt-1">
+          <div class="col-lg-5 col-md-6 mt-1">
             <div class="header__nav__option">
               <a href="{{ route('listproduct') }}" class="search-switch"
                 ><img src="images/search.png" alt=""
@@ -113,7 +113,7 @@
                   <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
                   style="color: black">
                     <img
-                  src="{{ url('public/images/'.Auth::user()->image) }}"
+                  src="{{ url('public/images/'.Auth::user()->image) ?? url('images/icon-user.png') }}"
                   alt=""
                   style="height: 40px;width:40px"
                   class="rounded-circle mr-3 profile-picture"
