@@ -126,7 +126,7 @@
                                 <li id="total-text">Total <span>Rp.
                                 {{ number_format($totalPrice ?? 0) }}</span></li>
                             </ul>
-                            <a href="#" class="primary-btn">Checkout</a>
+                            
                         </div>
                 </div>
                 </div>
@@ -207,7 +207,10 @@
                                 <input type="text" class="form-control" name="phone_number" id="phone_number" />
                             </div>
                         </div>
+                        <button type="submit" id="btn_submit" class="primary-btn" disabled >Checkout</button>
                     </div>
+
+
                 </form>
                 </div>
                 
