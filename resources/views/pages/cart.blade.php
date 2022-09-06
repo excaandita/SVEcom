@@ -121,9 +121,9 @@
                         <div class="cart__total">
                             <h4 style="font-weight: bold">Cart total</h4>
                             <ul>
-                                <li id="totalproduct_text">Subtotal <span>Rp.{{ number_format($totalPrice ?? 0) }}</span></li>
-                                <li id="ongkir-text">Ongkos Kirim <span>Rp.0</span></li>
-                                <li id="total-text">Total <span>Rp.
+                                <li>Subtotal <span id="totalproduct_text">Rp.{{ number_format($totalPrice ?? 0) }}</span></li>
+                                <li>Ongkos Kirim <span id="ongkir-text">Rp.0</span></li>
+                                <li>Total <span id="total-text">Rp.
                                 {{ number_format($totalPrice ?? 0) }}</span></li>
                             </ul>
                             
