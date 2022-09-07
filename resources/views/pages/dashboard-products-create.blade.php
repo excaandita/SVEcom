@@ -98,7 +98,7 @@
                             <div class="col">
                               <button
                                 type="submit"
-                                class="btn btn-success col-md-12"
+                                class="btn btn-info col-md-12"
                               >
                                 Simpan Produk
                               </button>
