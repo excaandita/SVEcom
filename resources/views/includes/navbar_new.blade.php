@@ -26,7 +26,7 @@
                     @endif
           </li>
         <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-          <img alt="image" src="{{ Storage::url(Auth::user()->image) }}" style="height: 40px;width:40px" class="rounded-circle mr-3 profile-picture">
+          <img alt="image" src="{{ url('public/images/'.Auth::user()->image) }}" class="rounded-circle mr-1">
           <div class="d-sm-none d-lg-inline-block">{{ Auth::user()->name }}</div></a>
           <div class="dropdown-menu dropdown-menu-right ">
            
