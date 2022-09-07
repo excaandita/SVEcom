@@ -89,7 +89,7 @@ class UserController extends Controller
         $data = $request->all();
 
         $data['password'] = bcrypt($request->password); //dipake laravel untuk membuat password ambil dari library laravel. di enksripsi biar ga kebaca .menggunakan bcrypt karena lebih kuat daripda md5 (md5 mengenkripsi hingga 32 ) sedangkan bcrypt 60 
-        $data['image'] = $request->file('image')->store('assets/product', 'public');
+        $data['image'] = $request->file('image')->store('assets/users', 'public');
         $data['is_active']= 1;
         User::create($data);
 

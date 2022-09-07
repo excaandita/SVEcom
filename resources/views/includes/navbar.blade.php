@@ -78,7 +78,7 @@
                 data-toggle="dropdown"
               >
                 <img
-                  src="/images/icon-user.png"
+                  src="{{ Storage::url(Auth::user()->image) }}"
                   alt=""
                   class="rounded-circle mr-3 profile-picture"
                 />

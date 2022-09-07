@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.app')
 
 @section('title')
     Dashboard Marketplace Sekolah Vokasi 
@@ -33,13 +33,13 @@
                 <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nama Pengguna : </label>
                                 <input type="text" name="name" class="form-control" required>
                             </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Email Pengguna : </label>
                                 <input type="email" name="email" class="form-control" required>
@@ -49,6 +49,21 @@
                             <div class="form-group">
                                 <label>Password Pengguna</label>
                                 <input type="password" name="password" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Foto Profil</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01" name="image" required>
+                                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">

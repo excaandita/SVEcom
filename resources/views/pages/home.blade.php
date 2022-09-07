@@ -96,7 +96,7 @@
               <div class="product__item">
                 <div
                   class="product__item__pic set-bg products-image"
-                  data-setbg="{{ Storage::url($product->galleries->first()->photos) }}"
+                  data-setbg="{{ Storage::url($product->galleries->first()->photos ?? '')  }}"
                 >
                   <span class="label">New</span>
                 </div>

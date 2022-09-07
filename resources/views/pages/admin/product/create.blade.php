@@ -86,6 +86,12 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
+                                <label>Berat Produk</label>
+                                <input type="number" name="weight" class="form-control" min="0" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
                                 <label>Deksripsi Produk</label>
                                 <textarea name="description" id="deskripsi"></textarea>
                             </div>
