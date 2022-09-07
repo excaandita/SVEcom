@@ -4,6 +4,8 @@
     Dashboard-Sekolah Vokasi E-COM
 @endsection
 
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @section('content')
 <div class="main-content">
   <section class="section">
@@ -202,6 +204,17 @@
     }
 </script>
 <script src="https://cdn.ckeditor.com/ckeditor5/34.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+      $(document).ready(function() {
+          // Select2 Multiple
+          $('.select2-multiple').select2({
+              placeholder: "Select",
+              allowClear: true,
+          });
+
+      });
+    </script>
 <script>
     ClassicEditor.create(document.querySelector("#editor"))
         .then((editor) => {
