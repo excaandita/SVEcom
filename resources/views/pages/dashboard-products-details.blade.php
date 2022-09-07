@@ -28,7 +28,7 @@
           </ul>
       </div>
   @endif
-  <div class="row justify-content-between">
+  <div class="row">
 
     @foreach ($product->galleries as $gallery)
       <div class="col-12 col-sm-6 col-md-3 mb-3 mb-md-auto">
