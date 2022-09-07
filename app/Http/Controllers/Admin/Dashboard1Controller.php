@@ -35,8 +35,8 @@ class Dashboard1Controller extends Controller
                 ->addColumn('action', function($item){
                     return '
                         <div class="btn-group">
-                        <a class="btn btn-info dropdown=toggle mr-1 mb-1" href="'.route('sertifikat.index').'">
-                        >
+                            <a class="btn btn-info dropdown=toggle mr-1 mb-1" href="'.route('sertifikat.index').'">
+                            >
                         </a>
 
                         </div>
@@ -48,7 +48,7 @@ class Dashboard1Controller extends Controller
 
 
 
-        return view('pages.admin.dashboard', [
+        return view('pages.admin.dashboard1', [
             'customer' => $customer,
             'revenue' => $revenue,
             'transaction' => $transaction,

@@ -231,8 +231,8 @@ Route::prefix('admin')
     ->namespace('')
     ->middleware(['auth', 'admin'])
     ->group(function(){
-        Route::get('/', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
-        Route::get('dashboard/admin', [AdminDashboard1Controller::class, 'index'])->name('dashboard-admin');
+        Route::get('dashboard', [AdminDashboardController::class, 'index'])->name('admin-dashboard');
+        Route::get('dashboard/admin', [AdminDashboardController::class, 'index'])->name('dashboard-admin');
         Route::resource('category', AdminCategoryController::class);
         Route::resource('tags', AdminTagsController::class);
         Route::resource('slider', AdminSliderController::class);

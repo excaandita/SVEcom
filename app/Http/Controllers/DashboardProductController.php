@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tags;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\Admin\ProductRequest;
 use App\Models\ProductGallery;
 use App\Models\TransactionDetail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\Admin\ProductRequest;
+
 class DashboardProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with(['galleries','category','transactiondetail'])
+        $products = Product::with(['galleries','category','transactiondetail', 'tags'])
                     ->where('users_id', Auth::user()->id)
                     ->get();
 
@@ -57,9 +59,11 @@ class DashboardProductController extends Controller
     public function create()
     {
         $categories = Category::all();
+        $tags = Tags::all();
 
         return view('pages.dashboard-products-create',[
             'categories' => $categories,
+            'tags' => $tags,
         ]);
     }
 
@@ -68,6 +72,7 @@ class DashboardProductController extends Controller
         $data = $request->all();
 
         $data['slug'] = Str::slug($request->name);
+        $data['tags'] = json_encode($request->tags);
 
         $product = Product::create($data);
 

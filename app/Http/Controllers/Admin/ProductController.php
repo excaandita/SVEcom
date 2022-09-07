@@ -33,26 +33,22 @@ class ProductController extends Controller
             return DataTablesDataTables::of($query) //bentuk json buat balikin data dataable
                 ->addColumn('action', function($item){
                     return '
-                        <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn btn-info dropdown=toggle mr-1 mb-1"
-                                        type="button"
-                                        data-toggle="dropdown">
-                                        Aksi
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('product.edit', $item->id) .'"> 
-                                        Edit
-                                    </a>
-                                    <form action="'. route('product.destroy', $item->id) .'" method="POST">
-                                        '. method_field('delete').  csrf_field() .' 
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
+
+                    <div class="btn-group">
+                        <div>
+                            <a href="' . route('product.edit', $item->id) . '" class="btn btn-primary">
+                                Edit
+                            </a>
                         </div>
+                        <div style="margin-left: 10px;">
+                            <form action="'. route('product.destroy', $item->id) .'" method="POST">
+                                '. method_field('delete').  csrf_field() .'
+                                <button type="submit" class="btn btn-danger">
+                                    Hapus
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                     ';
                 })
                 ->rawColumns(['action'])
@@ -150,6 +146,7 @@ class ProductController extends Controller
         $item = Product::findOrFail($id);
 
         $data['slug'] = Str::slug($request->name); //biar wktu update nama, slugnya jg ke update
+        $data['tags'] = json_encode($request->tags);
 
         $item->update($data);
 

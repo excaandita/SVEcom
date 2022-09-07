@@ -28,24 +28,20 @@ class UserController extends Controller
             return DataTablesDataTables::of($query) //bentuk json buat balikin data dataable
                 ->addColumn('action', function($item){
                     return '
+
                         <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="btn btn-info dropdown=toggle mr-1 mb-1"
-                                        type="button"
-                                        data-toggle="dropdown">
-                                        Aksi
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="' . route('user.edit', $item->id) .'">
-                                        Edit
-                                    </a>  
-                                    <form action="'. route('user.destroy', $item->id) .'" method="POST">
-                                        '. method_field('delete').  csrf_field() .'
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                </div>
+                            <div>
+                                <a href="' . route('user.edit', $item->id) . '" class="btn btn-primary">
+                                    Edit
+                                </a>
+                            </div>
+                            <div style="margin-left: 10px;">
+                                <form action="'. route('user.destroy', $item->id) .'" method="POST">
+                                    '. method_field('delete').  csrf_field() .'
+                                    <button type="submit" class="btn btn-danger">
+                                        Hapus
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     ';
