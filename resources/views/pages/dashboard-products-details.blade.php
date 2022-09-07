@@ -72,7 +72,7 @@
     <div class="card">
       <div class="card-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label>Nama Produk</label>
               <input
@@ -83,7 +83,7 @@
               />
             </div>
           </div>
-           <div class="col-md-6">
+          <div class="col-md-4">
             <div class="form-group">
               <label>Kategori</label>
               <select name="categories_id" class="form-control">
@@ -92,6 +92,16 @@
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
               </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+                <label for="select2Multiple">Tags Produk</label>
+                <select class="select2-multiple form-control" name="tags[]" id="select2Multiple" multiple="multiple">
+                    @foreach ($tags as $p)
+                        <option value="{{ $p->tags }}">{{ $p->tags }}</option>
+                    @endforeach
+                </select>
             </div>
           </div>
           <div class="col-md-4">
