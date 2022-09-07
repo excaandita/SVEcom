@@ -113,7 +113,7 @@
                   <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
                   style="color: black">
                     <img
-                  src="{{ url('public/images/'.Auth::user()->image) ?? url('images/icon-user.png') }}"
+                  src="{{ url('public/images/'.Auth::user()->image) }}"
                   alt=""
                   style="height: 40px;width:40px"
                   class="rounded-circle mr-3 profile-picture"
