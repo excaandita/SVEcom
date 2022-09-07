@@ -207,7 +207,7 @@
                                 <input type="text" class="form-control" name="phone_number" id="phone_number" />
                             </div>
                         </div>
-                        <button type="submit" id="btn_submit" class="primary-btn" disabled >Checkout</button>
+                        <button type="submit" id="btn_submit" class="primary-btn col-lg-12 col-md-12" disabled >Checkout</button>
                     </div>
 
 
