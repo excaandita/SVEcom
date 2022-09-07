@@ -34,23 +34,38 @@
                     @method('PUT')<!-- untuk update data emg hrs pke put/patch-->
                     @csrf
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Nama Pengguna</label>
                                 <input type="text" name="name" class="form-control" value="{{ $item->name }}" required>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group">
                                 <label>Email Pengguna</label>
                                 <input type="email" name="email" class="form-control" value="{{ $item->email }}" required >
                             </div>
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label>Password Pengguna</label>
                                 <input type="password" name="password" class="form-control" >
                                 <small>Kosongkan jika tidak ingin mengganti password</small>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Foto Profil</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                      <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                        aria-describedby="inputGroupFileAddon01" name="image" required>
+                                      <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="col-md-12">

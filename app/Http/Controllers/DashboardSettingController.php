@@ -34,7 +34,7 @@ class DashboardSettingController extends Controller
     {
         $data = $request->all();
         $item = Auth::user();
-        $data['image'] = $request->file('image')->store('assets/product', 'public');
+        $data['image'] = $request->file('image')->store('assets/users', 'public');
 
         $item->update($data);
 

@@ -71,6 +71,7 @@
                         />
                       </div>
                     </div>
+
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="provinces_id">Provinsi </label>
@@ -101,7 +102,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="country">Negara</label>
                         <input
@@ -113,7 +114,7 @@
                         />
                       </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-3">
                       <div class="form-group">
                         <label for="phone_number">Nomor Telpon</label>
                         <input
@@ -125,6 +126,21 @@
                         />
                       </div>
                     </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                          <label>Foto Profil</label>
+                          <div class="input-group">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                              </div>
+                              <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="inputGroupFile01"
+                                  aria-describedby="inputGroupFileAddon01" name="image" required>
+                                <label class="custom-file-label" for="inputGroupFile01" value="{{ $user->image }}">Choose file</label>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
                   </div>
                   <div class="row">
                     <div class="col text-right">
